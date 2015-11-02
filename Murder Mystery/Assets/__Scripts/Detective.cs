@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Detective : Human {
+    public KeyCode arrestKey;
     public GameObject   detective;
     public Transform murdererTransform;
     Murderer murderer;
@@ -13,7 +14,7 @@ public class Detective : Human {
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.RightShift) && murderer && murderer.alive)
+        if (Input.GetKey(arrestKey) && murderer && murderer.alive)
         {
             Vector3 detectivePos = gameObject.transform.position;
             Vector3 murdererPos = murderer.transform.position;

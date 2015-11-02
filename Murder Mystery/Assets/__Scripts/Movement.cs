@@ -8,34 +8,45 @@ public class Movement : MonoBehaviour {
     public KeyCode          leftKey;
     public KeyCode          upKey;
     public KeyCode          downKey;
+
+    public Human human;
 	// Use this for initialization
 	void Start () {
-	
+        human = gameObject.GetComponent<Human>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (!ClimbScript.S.canMove) {
-			gameObject.GetComponent<Rigidbody>().useGravity = true;
-		}
+        if (human.alive)
+        {
+            if (!ClimbScript.S.canMove)
+            {
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
 
-		if (Input.GetKey (rightKey)) {
-			transform.Translate(Vector3.right*Time.deltaTime*speed);
-		}
-		if (Input.GetKey (leftKey)) {
-			transform.Translate(Vector3.left*Time.deltaTime*speed);
-		}
+            if (Input.GetKey(rightKey))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+            }
+            if (Input.GetKey(leftKey))
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * speed);
+            }
 
-		if (ClimbScript.S.canMove) {
-			gameObject.GetComponent<Rigidbody>().useGravity = false;
+            if (ClimbScript.S.canMove)
+            {
+                gameObject.GetComponent<Rigidbody>().useGravity = false;
 
-			if (Input.GetKey (upKey)) {
-				transform.Translate (Vector3.up * Time.deltaTime * speed);
-			}
-			if (Input.GetKey (downKey)) {
-				transform.Translate (Vector3.down * Time.deltaTime * speed);
-			}
-		}
+                if (Input.GetKey(upKey))
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime * speed);
+                }
+                if (Input.GetKey(downKey))
+                {
+                    transform.Translate(Vector3.down * Time.deltaTime * speed);
+                }
+            }
+        }
 	}
 
 	void OnCollisionEnter(Collision other){
