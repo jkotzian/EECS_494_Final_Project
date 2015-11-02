@@ -21,8 +21,6 @@ public class Detective : Human {
             if ((detectivePos - murdererPos).magnitude < 1)
             {
                 murderer.Kill();
-                //Knock the murderer over
-                //murderer.transform.Rotate(new Vector3(0, 0, 90));
             }
         }
     }
