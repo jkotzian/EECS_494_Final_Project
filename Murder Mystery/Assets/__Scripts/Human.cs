@@ -15,7 +15,8 @@ public class Human : MonoBehaviour {
 
     public void Kill()
     {
-        // Daniel, put your rotating sprite on death code here
+        //Knock the murderer over
+        transform.Rotate(new Vector3(0, 0, 90));
         alive = false;
     }
 }

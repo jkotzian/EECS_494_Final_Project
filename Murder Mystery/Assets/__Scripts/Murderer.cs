@@ -15,15 +15,17 @@ public class Murderer : Human {
 
     void OnCollisionStay(Collision collisionInfo)
     {
-        print("a");
+        Human collidedHuman = collisionInfo.collider.gameObject.GetComponent<Human>();
+        print(collidedHuman);
+
         if (Input.GetKeyDown(murderKey)) 
         {
-            print("b");
-            Human collidedHuman = collisionInfo.collider.gameObject.GetComponent<Human>();
+            //Human collidedHuman = collisionInfo.collider.gameObject.GetComponent<Human>();
+            //print(collidedHuman);
             // If the murderer collided with a human and they're alive
             if (collidedHuman && collidedHuman.alive)
             {
-                Kill();
+                collidedHuman.Kill();
                 print("Killed");
             }
         }

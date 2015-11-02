@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPC : MonoBehaviour {
+public class NPC : Human {
 
     public int          checkMoveTimerMin;
     public int          checkMoveTimerMax;
