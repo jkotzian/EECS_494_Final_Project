@@ -19,4 +19,16 @@ public class Human : MonoBehaviour {
         transform.Rotate(new Vector3(0, 0, 90));
         alive = false;
     }
+
+    public int GetLayerMask(string[] layerNames)
+    {
+        int layerMask = 0;
+
+        foreach (string layer in layerNames)
+        {
+            layerMask = layerMask | (1 << LayerMask.NameToLayer(layer));
+        }
+
+        return layerMask;
+    }
 }
