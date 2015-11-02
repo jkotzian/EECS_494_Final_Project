@@ -2,15 +2,20 @@
 using System.Collections;
 
 public class Human : MonoBehaviour {
-    bool alive;
+    public bool alive;
 
 	// Use this for initialization
 	void Start () {
-        alive = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void Kill()
+    {
+        // Daniel, put your rotating sprite on death code here
+        alive = false;
+    }
 }
