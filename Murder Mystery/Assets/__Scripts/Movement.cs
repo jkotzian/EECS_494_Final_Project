@@ -2,16 +2,28 @@
 using System.Collections;
 
 public class Movement : MonoBehaviour {
-	public float speed;
+    private float           speed;
 
-    public KeyCode          rightKey;
-    public KeyCode          leftKey;
-    public KeyCode          upKey;
-    public KeyCode          downKey;
+    private KeyCode         upKey;
+    private KeyCode         downKey;
+    private KeyCode         leftKey;
+    private KeyCode         rightKey;
 
-    public Human human;
-	// Use this for initialization
-	void Start () {
+    private Human human;
+
+    public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
+        upKey = up;
+        downKey = down;
+        leftKey = left;
+        rightKey = right;
+    }
+
+    void Awake() {
+        setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        speed = 1;
+    }
+
+	void Start() {
         human = gameObject.GetComponent<Human>();
 	}
 	
