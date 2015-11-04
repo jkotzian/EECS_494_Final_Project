@@ -2,27 +2,39 @@
 using System.Collections;
 
 public class Detective : Human {
-    public GameObject   detective;
-    public Transform murdererTransform;
-    Murderer murderer;
+    private KeyCode         arrestKey;
+    private Murderer[]      murderers;
 
-	// Use this for initialization
-	void Start () {
-        murderer = murdererTransform.GetComponent<Murderer>();
-	}
+    public void setArrestKey(KeyCode key)
+    {
+        arrestKey = key;
+    }
+    
+	void Awake () {
+        // Set default arrest key
+        setArrestKey(KeyCode.RightShift);
+        // Link Murderer objects from GamePlay singleton GameObjects
+        murderers = new Murderer[2];
+        murderers[0] = GamePlay.S.Murderers[0].GetComponent<Murderer>();
+        murderers[1] = GamePlay.S.Murderers[1].GetComponent<Murderer>();
+    }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.RightShift) && murderer && murderer.alive)
+        if (Input.GetKey(arrestKey))
         {
             Vector3 detectivePos = gameObject.transform.position;
-            Vector3 murdererPos = murderer.transform.position;
-
-            if ((detectivePos - murdererPos).magnitude < 1)
+            // Check for murderers within arrest range
+            for(int i=0; i<murderers.Length; i++)
             {
-                murderer.Kill();
-                //Knock the murderer over
-                //murderer.transform.Rotate(new Vector3(0, 0, 90));
+                if (murderers[i] && murderers[i].alive)
+                {
+                    Vector3 murdererPos = murderers[i].transform.position;
+                    if ((detectivePos - murdererPos).magnitude < 1)
+                    {
+                        murderers[i].Kill();
+                    }
+                }
             }
         }
     }

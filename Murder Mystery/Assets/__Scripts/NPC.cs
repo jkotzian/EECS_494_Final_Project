@@ -3,21 +3,32 @@ using System.Collections;
 
 public class NPC : Human {
 
-    public int          checkMoveTimerMin;
-    public int          checkMoveTimerMax;
-    int                 checkMoveTimer;
-    public int          standingTime;
-    
-    public bool         movingRight;
-    public bool         moving;
-    public int          speed;
+    private int         checkMoveTimerMin;
+    private int         checkMoveTimerMax;
+    private int         checkMoveTimer;
+    private int         standingTime;
+
+    private bool        moving;
+    private bool        movingRight;
+    private int         speed;
+
+    public void setTimerValues(int min, int max, int standing)
+    {
+        checkMoveTimerMin = min;
+        checkMoveTimerMax = max;
+        standingTime = standing;
+        // Randomely set the next time the NPC will check its direction between the min and the max
+        checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
+    }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        // Set default timer values
+        setTimerValues(40, 70, 150);
+        // Set default values
         moving = false;
-        // Randomely set the next time the NPC will check its direction
-        // between the min and the max
-        checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
+        movingRight = false;
+        speed = 1;
 	}
 	
 	// Update is called once per frame
@@ -53,8 +64,7 @@ public class NPC : Human {
                     moving = true;
                     movingRight = true;
                 }
-                // Randomely set the next time the NPC will check its direction
-                // between the min and the max
+                // Randomely set the next time the NPC will check its direction between the min and the max
                 checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
             }
         }

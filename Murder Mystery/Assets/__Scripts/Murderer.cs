@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Murderer : Human {
-
-    public KeyCode          murderKey;
+    private KeyCode         murderKey;
     public RaycastHit       hitInfo;
 
-	// Use this for initialization
-	void Start () {
-	
+    public void setMurderKey(KeyCode key)
+    {
+        murderKey = key;
+    }
+
+    void Awake () {
+        // Default murder key
+        setMurderKey(KeyCode.Space);
 	}
 	
 	// Update is called once per frame
