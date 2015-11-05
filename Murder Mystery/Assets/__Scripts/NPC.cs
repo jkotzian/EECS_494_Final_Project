@@ -33,10 +33,9 @@ public class NPC : Human {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!ClimbScript.S.canMove)
-        {
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
-        }
+     
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        
 
         if (checkMoveTimer > 0)
         {

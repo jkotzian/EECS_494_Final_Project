@@ -31,10 +31,9 @@ public class Movement : MonoBehaviour {
 	void FixedUpdate () {
         if (human.alive)
         {
-            if (!ClimbScript.S.canMove)
-            {
-                gameObject.GetComponent<Rigidbody>().useGravity = true;
-            }
+           
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+           
 
             if (Input.GetKey(rightKey))
             {
@@ -45,7 +44,7 @@ public class Movement : MonoBehaviour {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
 
-            if (ClimbScript.S.canMove)
+            /*if (ClimbScript.S.canMove)
             {
                 gameObject.GetComponent<Rigidbody>().useGravity = false;
 
@@ -57,7 +56,7 @@ public class Movement : MonoBehaviour {
                 {
                     transform.Translate(Vector3.down * Time.deltaTime * speed);
                 }
-            }
+            }*/
         }
 	}
 
