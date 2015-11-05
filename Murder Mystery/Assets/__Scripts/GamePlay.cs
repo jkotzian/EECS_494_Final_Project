@@ -43,16 +43,22 @@ public class GamePlay : MonoBehaviour {
         // Place Murderers
         Murderers[0] = Instantiate(murdererPrefab, new Vector3(-7f, -1f, -0.2f), Quaternion.identity) as GameObject;
         Murderers[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        Murderers[0].GetComponent<Movement>().isMurderer = true;
         Murderers[0].GetComponent<Murderer>().setMurderKey(KeyCode.Q);
         Murderers[1] = Instantiate(murdererPrefab, new Vector3(-7f, -4f, -0.2f), Quaternion.identity) as GameObject;
         Murderers[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
+        Murderers[1].GetComponent<Movement>().isMurderer = true;
         Murderers[1].GetComponent<Murderer>().setMurderKey(KeyCode.R);
         // Place Detectives
         Detectives[0] = Instantiate(detectivePrefab, new Vector3(7f, -1f, -0.2f), Quaternion.identity) as GameObject;
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
+        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H);
+		Detectives[0].GetComponent<Movement> ().isDetective = true;
         Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.U);
         Detectives[1] = Instantiate(detectivePrefab, new Vector3(7f, -4f, -0.2f), Quaternion.identity) as GameObject;
         Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M);
+		Detectives[1].GetComponent<Movement> ().isDetective = true;
         Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
     }
 	

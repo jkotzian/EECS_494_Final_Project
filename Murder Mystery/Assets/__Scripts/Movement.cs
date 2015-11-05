@@ -8,8 +8,12 @@ public class Movement : MonoBehaviour {
     private KeyCode         downKey;
     private KeyCode         leftKey;
     private KeyCode         rightKey;
+    private KeyCode         boostKey;
 
     private Human human;
+
+	public bool isDetective;
+	public bool isMurderer;
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
@@ -17,6 +21,10 @@ public class Movement : MonoBehaviour {
         leftKey = left;
         rightKey = right;
     }
+
+	public void setBoostKey(KeyCode boost) {
+		boostKey = boost;
+	}
 
     void Awake() {
         setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
@@ -44,19 +52,15 @@ public class Movement : MonoBehaviour {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
 
-            /*if (ClimbScript.S.canMove)
-            {
-                gameObject.GetComponent<Rigidbody>().useGravity = false;
+			if (Input.GetKey(rightKey) && isDetective && Input.GetKey(boostKey))
+			{
+				transform.Translate(Vector3.right * Time.deltaTime * speed * 1.5f);
+			}
+			if (Input.GetKey(leftKey) && isDetective && Input.GetKey(boostKey))
+			{
+				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
+			}
 
-                if (Input.GetKey(upKey))
-                {
-                    transform.Translate(Vector3.up * Time.deltaTime * speed);
-                }
-                if (Input.GetKey(downKey))
-                {
-                    transform.Translate(Vector3.down * Time.deltaTime * speed);
-                }
-            }*/
         }
 	}
 
