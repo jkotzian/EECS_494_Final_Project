@@ -30,5 +30,21 @@ public class Door : MonoBehaviour {
 				other.transform.position = temp;
 			}
 		}
+
+		if(other.gameObject.name == "Murderer(Clone)"){
+			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown(other.GetComponent<Movement> ().upKey) && gameObject.name != "TopDoor") {
+				print ("Triggered");
+				Vector3 temp = other.transform.position;
+				temp.y += 1.25f;
+				other.transform.position = temp;
+			}
+			
+			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown(other.GetComponent<Movement> ().downKey) && gameObject.name != "BottomDoor") {
+				print ("Triggered");
+				Vector3 temp = other.transform.position;
+				temp.y -= 1.25f;
+				other.transform.position = temp;
+			}
+		}
 	}
 }
