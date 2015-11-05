@@ -4,11 +4,11 @@ using System.Collections;
 public class Movement : MonoBehaviour {
     private float           speed;
 
-    private KeyCode         upKey;
-    private KeyCode         downKey;
-    private KeyCode         leftKey;
-    private KeyCode         rightKey;
-    private KeyCode         boostKey;
+    public KeyCode         upKey;
+    public KeyCode         downKey;
+    public KeyCode         leftKey;
+    public KeyCode         rightKey;
+    public KeyCode         boostKey;
 
     private Human human;
 
