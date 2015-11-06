@@ -1,9 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Human : MonoBehaviour {
-    public bool alive;
+    public bool 		alive;
+    public bool 		facingRight;
+    public bool 		isStabbed;
+	float				delayKill;
+	public float        delayPerSecond; 
+	Human				collidedHuman;
+	public	 GameObject	trackerPrefab;
 
+	void Start() {
+		delayKill = 0;
+		delayPerSecond = 0.2f;
+	}
+	
+	void FixedUpdate() {
+		if (isStabbed) {
+			if (delayKill < 1)
+			{
+				delayKill += delayPerSecond * Time.deltaTime;
+			}
+			else
+			{
+				Kill();
+				delayKill = 0;
+				print("Killed");
+				isStabbed = false;
+				CancelInvoke();
+			}
+		}
+	}
+	
     public void Kill()
     {
         //Knock the murderer over

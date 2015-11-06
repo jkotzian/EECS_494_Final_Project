@@ -46,10 +46,12 @@ public class Movement : MonoBehaviour {
             if (Input.GetKey(rightKey))
             {
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
+                human.facingRight = true;
             }
             if (Input.GetKey(leftKey))
             {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
+                human.facingRight = false;
             }
 
 			if (Input.GetKey(rightKey) && isDetective && Input.GetKey(boostKey))

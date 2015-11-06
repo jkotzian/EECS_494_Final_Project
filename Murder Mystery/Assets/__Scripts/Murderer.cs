@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Murderer : Human {
     private 	KeyCode         	murderKey;
-	private 	bool				isStabbed = false;
-	private 	float				delayKill = 0, delayPerSecond = 0.2f; 
-	private 	Human				collidedHuman;
-	private 	List<GameObject>	bloodTrail = new List<GameObject>();
-	public	 	GameObject			trackerPrefab;
     public 		RaycastHit       	hitInfo;
+    public      GameObject          knifeObjRef;
+    public		int					bloodDropTimeMax;
+	public		int 				bloodDropInterval;
+    int								bloodDropTimer;
+    GameObject currentKnifeObj;
+    List<GameObject> bloodTrail;
+    bool		tracked;
 
     public void setMurderKey(KeyCode key)
     {
@@ -21,56 +23,58 @@ public class Murderer : Human {
         setMurderKey(KeyCode.Space);
 	}
 	
+	void Start() {
+		bloodTrail = new List<GameObject>();
+		bloodDropTimer = 0;
+		tracked = false;
+	}
+	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (Input.GetKeyDown(murderKey))
+        if (Input.GetKeyDown(murderKey) && !currentKnifeObj)
         {
-            //Vector3 directionVec = Vector3.zero;
-			//print ("Pressed");
-            //Debug.DrawLine(transform.position, transform.position + Vector3.right, Color.black, 1.0f);
-            // Look left and right for a target
-            if (Physics.Raycast(transform.position, Vector3.right, out hitInfo, 1f, GetLayerMask(new string[] { "Human" })) ||
-                Physics.Raycast(transform.position, Vector3.left, out hitInfo, 1f, GetLayerMask(new string[] { "Human" })))
+            Vector3 knifePos = transform.position;
+            Vector3 knifeOffset;
+            if (facingRight)
             {
-                collidedHuman = hitInfo.collider.gameObject.GetComponent<Human>();
-                //Human collidedHuman = collisionInfo.collider.gameObject.GetComponent<Human>();
-                //print(collidedHuman);
-                // If the murderer collided with a human and they're alive
-                if (collidedHuman && !isStabbed)
-                {
-					isStabbed = true;
-					//print ("Initial: " + transform.position);
-					GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
-					bloodTrail.Add (blood);
-					InvokeRepeating ("tracking", 1f, 1f);
-                }
+				knifeOffset = Vector3.right/1.7f;
             }
+            else
+            {
+                knifeOffset = Vector3.left/1.7f;
+            }
+            knifePos += knifeOffset;
+            currentKnifeObj = Instantiate(knifeObjRef, knifePos, transform.rotation) as GameObject;
+            
+            // Get the knife object
+            Knife currentKnife = currentKnifeObj.GetComponent<Knife>();
+            currentKnife.murdererOwner = this;
+            // Make sure to set its offset!!!
+            currentKnife.offset = knifeOffset;
         }
-		if (isStabbed) {
-            if (delayKill < 1){
-                delayKill += delayPerSecond * Time.deltaTime;
+		if (tracked) {
+			if (bloodDropTimer % bloodDropInterval == 0) {
+				// Drop the blood
+				GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+				bloodTrail.Add (blood);
 			}
-            else{
-                collidedHuman.Kill();
-                delayKill = 0;
-                print("Killed");
-                isStabbed = false;
-				CancelInvoke();
-            }
-        }
+			
+			bloodDropTimer++;
+			
+			if (bloodDropTimer == bloodDropTimeMax) {
+				tracked = false;
+				bloodDropTimer = 0;
+			}
+		}
+		// If you want to Raycast in the future, this is how you do it:
+		//Physics.Raycast(transform.position, Vector3.left, out hitInfo, 1f, GetLayerMask(new string[] { "Human" })))
 	}
 
-	void tracking(){
-		GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
-		bloodTrail.Add (blood);
-		//print (transform.position);
+	public void track(){
+		// If the murderer is already being tracked, just reset the tracked timer
+		if (tracked) {
+			bloodDropTimer = 0;
+		}
+		tracked = true;
 	}
-
-    //void OnCollisionStay(Collision collisionInfo)
-    //{
-    //    Human collidedHuman = collisionInfo.collider.gameObject.GetComponent<Human>();
-    //    print(collidedHuman);
-
-
-    //}
 }

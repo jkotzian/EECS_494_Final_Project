@@ -56,12 +56,14 @@ public class NPC : Human {
                 {
                     moving = true;
                     movingRight = false;
+                    facingRight = false;
                 }
                 // Go right
                 else
                 {
                     moving = true;
                     movingRight = true;
+                    facingRight = true;
                 }
                 // Randomely set the next time the NPC will check its direction between the min and the max
                 checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
