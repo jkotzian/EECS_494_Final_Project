@@ -18,14 +18,16 @@ public class Environment : MonoBehaviour {
     // go on next
     int                     nextTurnOnTime;
 	public Transform		blackScene;
-    //public Transform        lightObject;
+    public Transform        lightObject;
+    public Transform        nightVisionObject;
 	
 	// Use this for initialization
 	void Start () {
         nextTurnOffTime = Random.Range(turnOffTimeMin, turnOffTimeMax + 1);
         lightTimer = 0;
         turnedOff = false;
-        Debug.Log(nextTurnOffTime);
+        nightVisionObject.gameObject.SetActive(false);
+        //Debug.Log(nextTurnOffTime);
 	}
 	
 	// Update is called once per frame
@@ -50,12 +52,13 @@ public class Environment : MonoBehaviour {
         Vector3 temp = blackScene.transform.position;
         temp.z = -1;
         blackScene.transform.position = temp;
-        //lightObject.GetComponent<Light>().enabled = false;
+        lightObject.GetComponent<Light>().enabled = false;
+        nightVisionObject.gameObject.SetActive(true);
         // Reset the timer and figure out when to turn the lights
         // back on
         lightTimer = 0;
         nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
-        Debug.Log(nextTurnOnTime);
+        //Debug.Log(nextTurnOnTime);
     }
 
     void turnOn()
@@ -66,12 +69,13 @@ public class Environment : MonoBehaviour {
         Vector3 temp = blackScene.transform.position;
         temp.z = 1;
         blackScene.transform.position = temp;
-        //lightObject.GetComponent<Light>().enabled = true;
+        lightObject.GetComponent<Light>().enabled = true;
+        nightVisionObject.gameObject.SetActive(false);
         // Reset the timer and figure out when to turn the lights
         // back off
         lightTimer = 0;
         nextTurnOffTime = Random.Range(turnOffTimeMin, turnOffTimeMax + 1);
-        Debug.Log(nextTurnOffTime);
+        //Debug.Log(nextTurnOffTime);
     }
 
     //void OnTriggerStay(Collider other) {
