@@ -3,15 +3,18 @@ using System.Collections;
 
 public class NPC : Human {
 
-    private int         checkMoveTimerMin;
-    private int         checkMoveTimerMax;
-    private int         checkMoveTimer;
-    private int         standingTime;
+    // These things should most definitely be kept public!
+    public int         checkMoveTimerMin;
+    public int         checkMoveTimerMax;
+    public int         standingTime;
+    int                checkMoveTimer;
 
     private bool        moving;
     private bool        movingRight;
-    private int         speed;
+    public  float       speed;
 
+    // Much better to set these values in the inspector for quick
+    // iteration rather than hard code it in a function like this
     public void setTimerValues(int min, int max, int standing)
     {
         checkMoveTimerMin = min;
@@ -21,22 +24,27 @@ public class NPC : Human {
         checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
     }
 
-	// Use this for initialization
+	// Awake might not be the best place for initialization
 	void Awake () {
         // Set default timer values
-        setTimerValues(40, 70, 150);
+        //setTimerValues(40, 70, 150);
         // Set default values
+        //moving = false;
+        //movingRight = false;
+	}
+
+    void Start()
+    {
+        checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
         moving = false;
         movingRight = false;
-        speed = 1;
-	}
-	
+    }
+
 	// Update is called once per frame
 	void Update () {
      
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         
-
         if (checkMoveTimer > 0)
         {
             --checkMoveTimer;

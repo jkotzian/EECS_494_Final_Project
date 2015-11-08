@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Movement : MonoBehaviour {
-    private float           speed;
+    public float           speed;
 
     public KeyCode         upKey;
     public KeyCode         downKey;
@@ -28,7 +28,6 @@ public class Movement : MonoBehaviour {
 
     void Awake() {
         setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        speed = 1;
     }
 
 	void Start() {
