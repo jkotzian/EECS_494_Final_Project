@@ -20,6 +20,10 @@ public class Movement : MonoBehaviour {
         downKey = down;
         leftKey = left;
         rightKey = right;
+        print(upKey);
+        print(downKey);
+        print(leftKey);
+        print(rightKey);
     }
 
 	public void setBoostKey(KeyCode boost) {

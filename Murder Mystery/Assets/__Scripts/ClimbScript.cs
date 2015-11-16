@@ -15,7 +15,7 @@ public class ClimbScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		print ("Triggered bitches");
+		//print ("Triggered bitches");
 		canMove = true;
 	}
 

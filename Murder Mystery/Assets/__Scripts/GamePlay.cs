@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Linq;
+using UnityEngine.UI;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
@@ -13,12 +16,15 @@ public class GamePlay : MonoBehaviour {
     public GameObject[] Murderers;
     public GameObject[] Detectives;
 
+    private int[] targetIndices;
+
     void Awake()
     {
         S = this;
         NPCs = new GameObject[18];
         Murderers = new GameObject[2];
         Detectives = new GameObject[2];
+        targetIndices = Enumerable.Repeat(-1, 4).ToArray();
     }
     
     void Start () {
@@ -40,6 +46,7 @@ public class GamePlay : MonoBehaviour {
         NPCs[5] = Instantiate(npcPrefab, new Vector3(4.5f, -1.5f, -0.2f), Quaternion.identity) as GameObject;
         NPCs[6] = Instantiate(npcPrefab, new Vector3(-4.5f, -4f, -0.2f), Quaternion.identity) as GameObject;
         NPCs[7] = Instantiate(npcPrefab, new Vector3(4.5f, -4f, -0.2f), Quaternion.identity) as GameObject;
+
         // Place Murderers
         Murderers[0] = Instantiate(murdererPrefab, new Vector3(-7f, -1f, -0.2f), Quaternion.identity) as GameObject;
         Murderers[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
@@ -60,6 +67,38 @@ public class GamePlay : MonoBehaviour {
         Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M);
 		Detectives[1].GetComponent<Movement> ().isDetective = true;
         Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+
+        //Set targets
+        for(int i = 0; i < 4; i++)
+        {
+            int newIndex = UnityEngine.Random.Range(0, 8);
+            while (Array.Exists(targetIndices, element => element == newIndex)) {
+                newIndex = UnityEngine.Random.Range(0, 8);
+            }
+            targetIndices[i] = newIndex;
+            NPCs[i].GetComponent<NPC>().target = true;
+        }
+    }
+
+    void Update()
+    {
+        if (checkForWin())
+        {
+            GameObject murdererText = GameObject.Find("MurdererText");
+            murdererText.GetComponent<Text>().text = "You Win!";
+        }
+    }
+
+    bool checkForWin()
+    {
+        foreach(int i in targetIndices)
+        {
+            if (NPCs[i].GetComponent<NPC>().alive)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 	
 }
