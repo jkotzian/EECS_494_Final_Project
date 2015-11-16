@@ -9,10 +9,11 @@ public class Movement : MonoBehaviour {
     public KeyCode         leftKey;
     public KeyCode         rightKey;
     public KeyCode         boostKey;
-
+	public KeyCode		   detectiveMode;	
     private Human human;
 
 	public bool isDetective;
+	public bool inDetectiveMode;
 	public bool isMurderer;
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
@@ -26,8 +27,9 @@ public class Movement : MonoBehaviour {
         print(rightKey);
     }
 
-	public void setBoostKey(KeyCode boost) {
+	public void setBoostKey(KeyCode boost, KeyCode dMode) {
 		boostKey = boost;
+		detectiveMode = dMode;
 	}
 
     void Awake() {
@@ -45,6 +47,15 @@ public class Movement : MonoBehaviour {
            
             gameObject.GetComponent<Rigidbody>().useGravity = true;
            
+			if(Input.GetKey(detectiveMode)){
+				inDetectiveMode = true;
+				print("Currently in D-Mode");
+			}
+			
+			if(Input.GetKeyUp(detectiveMode)){
+				inDetectiveMode = false;
+				print("Left D-Mode");
+			}
 
             if (Input.GetKey(rightKey))
             {

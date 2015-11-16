@@ -59,12 +59,12 @@ public class GamePlay : MonoBehaviour {
         // Place Detectives
         Detectives[0] = Instantiate(detectivePrefab, new Vector3(7f, -1f, -0.2f), Quaternion.identity) as GameObject;
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
-        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H);
+        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
 		Detectives[0].GetComponent<Movement> ().isDetective = true;
         Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.U);
         Detectives[1] = Instantiate(detectivePrefab, new Vector3(7f, -4f, -0.2f), Quaternion.identity) as GameObject;
         Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M);
+        Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[1].GetComponent<Movement> ().isDetective = true;
         Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
 
