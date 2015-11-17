@@ -32,24 +32,6 @@ public class GamePlay : MonoBehaviour {
         targetIndices = Enumerable.Repeat(-1, 4).ToArray();
         startLoc = generateStartLoc();
     }
-
-    List<Vector3> generateStartLoc()
-    {
-        List<Vector3> sL = new List<Vector3>();
-        int numPerFloor = (int)Math.Ceiling((float)((numNPCs + 4) / numFloors));
-        print(numPerFloor);
-        float z = -0.2f;
-        for(int i = 0; i < numFloors; i++)
-        {
-            float y = (2.5f * i) - 4;
-            for (int j = 0; j < numPerFloor; j++)
-            {
-                float x = (float)((14f / numPerFloor) * (j + 0.5f)) - 7;
-                sL.Add(new Vector3(x, y, z));
-            }
-        }
-        return sL.OrderBy(item => UnityEngine.Random.value).ToList<Vector3>();
-    }
     
     void Start () {
         // Place switches
@@ -102,16 +84,38 @@ public class GamePlay : MonoBehaviour {
 
     void Update()
     {
-        if (checkForWin())
+        if (checkForMurdererWin())
         {
             GameObject murdererText = GameObject.Find("MurdererText");
             murdererText.GetComponent<Text>().text = "You Win!";
         }
+        if (checkForDetectiveWin())
+        {
+            GameObject detectiveText = GameObject.Find("DetectiveText");
+            detectiveText.GetComponent<Text>().text = "You Win!";
+        }
     }
 
-    bool checkForWin()
+    List<Vector3> generateStartLoc()
     {
-        foreach(int i in targetIndices)
+        List<Vector3> sL = new List<Vector3>();
+        int numPerFloor = (int)Math.Ceiling((float)((numNPCs + 4) / numFloors));
+        float z = -0.2f;
+        for (int i = 0; i < numFloors; i++)
+        {
+            float y = (2.5f * i) - 4;
+            for (int j = 0; j < numPerFloor; j++)
+            {
+                float x = (float)((14f / numPerFloor) * (j + 0.5f)) - 7;
+                sL.Add(new Vector3(x, y, z));
+            }
+        }
+        return sL.OrderBy(item => UnityEngine.Random.value).ToList<Vector3>();
+    }
+
+    bool checkForMurdererWin()
+    {
+        foreach (int i in targetIndices)
         {
             if (NPCs[i].GetComponent<NPC>().alive)
             {
@@ -120,5 +124,17 @@ public class GamePlay : MonoBehaviour {
         }
         return true;
     }
-	
+
+    bool checkForDetectiveWin()
+    {
+        foreach (GameObject m in Murderers)
+        {
+            if (m.GetComponent<Murderer>().alive)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
