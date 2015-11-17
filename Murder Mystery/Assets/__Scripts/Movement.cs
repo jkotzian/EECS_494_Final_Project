@@ -26,10 +26,6 @@ public class Movement : MonoBehaviour {
         downKey = down;
         leftKey = left;
         rightKey = right;
-        print(upKey);
-        print(downKey);
-        print(leftKey);
-        print(rightKey);
 
 		dModeTotal = 100f;
 		dModeLoss = 45f;
