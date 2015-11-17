@@ -16,6 +16,11 @@ public class Movement : MonoBehaviour {
 	public bool inDetectiveMode;
 	public bool isMurderer;
 
+	public GameObject dModeBar;
+	public float dModeTotal;
+	public float dModeLoss;
+	public float dModeRegain;
+
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
         downKey = down;
@@ -25,6 +30,10 @@ public class Movement : MonoBehaviour {
         print(downKey);
         print(leftKey);
         print(rightKey);
+
+		dModeTotal = 100f;
+		dModeLoss = 45f;
+		dModeRegain = 10f;
     }
 
 	public void setBoostKey(KeyCode boost, KeyCode dMode) {
@@ -47,14 +56,23 @@ public class Movement : MonoBehaviour {
            
             gameObject.GetComponent<Rigidbody>().useGravity = true;
            
-			if(Input.GetKey(detectiveMode)){
-				inDetectiveMode = true;
-				print("Currently in D-Mode");
+			if(Input.GetKey(detectiveMode) && dModeTotal > -50f){
+				if(dModeTotal > 0f){
+					inDetectiveMode = true;
+					print("Currently in D-Mode");
+				}
+
+				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
 			if(Input.GetKeyUp(detectiveMode)){
 				inDetectiveMode = false;
 				print("Left D-Mode");
+			}
+
+			if(dModeTotal < 100f){
+				dModeTotal += Time.deltaTime * dModeRegain;
+				print("D - Total: " + dModeTotal);
 			}
 
             if (Input.GetKey(rightKey))
