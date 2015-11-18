@@ -12,6 +12,7 @@ public class NPC : Human {
     private bool        moving;
     private bool        movingRight;
     public  float       speed;
+    public bool         target;
 
     // Much better to set these values in the inspector for quick
     // iteration rather than hard code it in a function like this
@@ -38,6 +39,7 @@ public class NPC : Human {
         checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
         moving = false;
         movingRight = false;
+        target = false;
     }
 
 	// Update is called once per frame

@@ -17,8 +17,11 @@ public class Human : MonoBehaviour {
 	}
 	
 	void FixedUpdate() {
-		if (isStabbed) {
-			if (delayKill < 1)
+		if (isStabbed)
+        {
+            Kill();
+            isStabbed = false;
+            /*if (delayKill < 1)
 			{
 				delayKill += delayPerSecond * Time.deltaTime;
 			}
@@ -29,8 +32,8 @@ public class Human : MonoBehaviour {
 				print("Killed");
 				isStabbed = false;
 				CancelInvoke();
-			}
-		}
+			}*/
+        }
 	}
 	
     public void Kill()
