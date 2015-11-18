@@ -9,6 +9,9 @@ public class Murderer : Human {
     public		int					bloodDropTimeMax;
 	public		int 				bloodDropInterval;
     int								bloodDropTimer;
+
+	public int newInterval;
+
     GameObject currentKnifeObj;
     List<GameObject> bloodTrail;
     bool		tracked;
@@ -21,6 +24,7 @@ public class Murderer : Human {
     void Awake () {
         // Default murder key
         setMurderKey(KeyCode.Space);
+		newInterval = 7;
 	}
 	
 	void Start() {
@@ -31,8 +35,14 @@ public class Murderer : Human {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(Time.time % newInterval == 0f){
+			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+		}
+
         if (Input.GetKeyDown(murderKey) && !currentKnifeObj)
         {
+
+
             Vector3 knifePos = transform.position;
             Vector3 knifeOffset;
             if (facingRight)

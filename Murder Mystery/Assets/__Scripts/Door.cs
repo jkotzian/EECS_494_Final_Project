@@ -15,7 +15,7 @@ public class Door : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
 		//sending the characters up and down a level 
-		if(other.gameObject.name == "Detective(Clone)"){
+		if(other.GetComponent<Movement>() != null){
 			if (other.GetComponent<Movement> ().isDetective == true && Input.GetKeyDown(other.GetComponent<Movement> ().upKey) && gameObject.name != "TopDoor") {
 				print ("Triggered");
 				Vector3 temp = other.transform.position;
@@ -29,9 +29,7 @@ public class Door : MonoBehaviour {
 				temp.y -= 2.5f;
 				other.transform.position = temp;
 			}
-		}
 
-		if(other.gameObject.name == "Murderer(Clone)"){
 			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown(other.GetComponent<Movement> ().upKey) && gameObject.name != "TopDoor") {
 				print ("Triggered");
 				Vector3 temp = other.transform.position;
