@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Detective : Human {
     private KeyCode         arrestKey;
-    private Murderer[]      murderers;
+    private Ghost[]      ghosts;
 
     public void setArrestKey(KeyCode key)
     {
@@ -13,10 +13,10 @@ public class Detective : Human {
 	void Awake () {
         // Set default arrest key
         setArrestKey(KeyCode.RightShift);
-        // Link Murderer objects from GamePlay singleton GameObjects
-        murderers = new Murderer[2];
-        murderers[0] = GamePlay.S.Murderers[0].GetComponent<Murderer>();
-        murderers[1] = GamePlay.S.Murderers[1].GetComponent<Murderer>();
+        // Link Ghost objects from GamePlay singleton GameObjects
+        ghosts = new Ghost[2];
+        ghosts[0] = GamePlay.S.Ghosts[0].GetComponent<Ghost>();
+        ghosts[1] = GamePlay.S.Ghosts[1].GetComponent<Ghost>();
     }
 
     void FixedUpdate()
@@ -24,15 +24,15 @@ public class Detective : Human {
         if (Input.GetKey(arrestKey))
         {
             Vector3 detectivePos = gameObject.transform.position;
-            // Check for murderers within arrest range
-            for(int i=0; i<murderers.Length; i++)
+            // Check for ghosts within arrest range
+            for(int i=0; i<ghosts.Length; i++)
             {
-                if (murderers[i] && murderers[i].alive)
+                if (ghosts[i] && ghosts[i].alive)
                 {
-                    Vector3 murdererPos = murderers[i].transform.position;
+                    Vector3 murdererPos = ghosts[i].transform.position;
                     if ((detectivePos - murdererPos).magnitude < 1)
                     {
-                        murderers[i].Kill();
+                        ghosts[i].Kill();
                     }
                 }
             }
@@ -45,7 +45,7 @@ public class Detective : Human {
         //if (Input.GetKey(KeyCode.RightShift))
         //{
         //    // See if the object is a murderer
-        //    Murderer murderer = collisionInfo.collider.gameObject.GetComponent<Murderer>();
+        //    Ghost murderer = collisionInfo.collider.gameObject.GetComponent<Ghost>();
 
 
         //}

@@ -10,13 +10,13 @@ public class GamePlay : MonoBehaviour {
 
 	public GameObject		switchPrefab;
     public GameObject       npcPrefab;
-    public GameObject       murdererPrefab;
+    public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
 
     public int numNPCs = 8;
     public int numFloors = 4;
     public List<GameObject> NPCs;
-    public List<GameObject> Murderers;
+    public List<GameObject> Ghosts;
     public List<GameObject> Detectives;
 
     private List<Vector3> startLoc;
@@ -27,7 +27,7 @@ public class GamePlay : MonoBehaviour {
     {
         S = this;
         NPCs = new List<GameObject>();
-        Murderers = new List<GameObject>();
+        Ghosts = new List<GameObject>();
         Detectives = new List<GameObject>();
         targetIndices = Enumerable.Repeat(-1, 4).ToArray();
         startLoc = generateStartLoc();
@@ -49,15 +49,13 @@ public class GamePlay : MonoBehaviour {
             NPCs.Add(Instantiate(npcPrefab, startLoc[i], Quaternion.identity) as GameObject);
         }
 
-        // Place Murderers
-        Murderers.Add(Instantiate(murdererPrefab, startLoc[numNPCs], Quaternion.identity) as GameObject);
-        Murderers[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
-        Murderers[0].GetComponent<Movement>().isMurderer = true;
-        Murderers[0].GetComponent<Murderer>().setMurderKey(KeyCode.Q);
-        Murderers.Add(Instantiate(murdererPrefab, startLoc[numNPCs+1], Quaternion.identity) as GameObject);
-        Murderers[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
-        Murderers[1].GetComponent<Movement>().isMurderer = true;
-        Murderers[1].GetComponent<Murderer>().setMurderKey(KeyCode.R);
+        // Place Ghosts
+        Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs], Quaternion.identity) as GameObject);
+        Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        Ghosts[0].GetComponent<Ghost>().alive = true;
+        Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs+1], Quaternion.identity) as GameObject);
+        Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
+        Ghosts[1].GetComponent<Ghost>().alive = true;
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+2], Quaternion.identity) as GameObject);
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
@@ -84,16 +82,16 @@ public class GamePlay : MonoBehaviour {
 
     void Update()
     {
-        if (checkForMurdererWin())
-        {
-            GameObject murdererText = GameObject.Find("MurdererText");
-            murdererText.GetComponent<Text>().text = "You Win!";
-        }
-        if (checkForDetectiveWin())
-        {
-            GameObject detectiveText = GameObject.Find("DetectiveText");
-            detectiveText.GetComponent<Text>().text = "You Win!";
-        }
+        //if (checkForMurdererWin())
+        //{
+        //    GameObject murdererText = GameObject.Find("MurdererText");
+        //    murdererText.GetComponent<Text>().text = "You Win!";
+        //}
+        //if (checkForDetectiveWin())
+        //{
+        //    GameObject detectiveText = GameObject.Find("DetectiveText");
+        //    detectiveText.GetComponent<Text>().text = "You Win!";
+        //}
     }
 
     List<Vector3> generateStartLoc()
@@ -113,28 +111,28 @@ public class GamePlay : MonoBehaviour {
         return sL.OrderBy(item => UnityEngine.Random.value).ToList<Vector3>();
     }
 
-    bool checkForMurdererWin()
-    {
-        foreach (int i in targetIndices)
-        {
-            if (NPCs[i].GetComponent<NPC>().alive)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+    //bool checkForMurdererWin()
+    //{
+    //    foreach (int i in targetIndices)
+    //    {
+    //        if (NPCs[i].GetComponent<NPC>().alive)
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //    return true;
+    //}
 
-    bool checkForDetectiveWin()
-    {
-        foreach (GameObject m in Murderers)
-        {
-            if (m.GetComponent<Murderer>().alive)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+    //bool checkForDetectiveWin()
+    //{
+    //    foreach (GameObject m in Ghosts)
+    //    {
+    //        if (m.GetComponent<Murderer>().alive)
+    //        {
+    //            return false;
+    //        }
+    //    }
+    //    return true;
+    //}
 
 }
