@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Ghost : Human
 {
-    private KeyCode murderKey;
+    private KeyCode possessKey;
     public RaycastHit hitInfo;
     public int bloodDropTimeMax;
     public int bloodDropInterval;
@@ -13,17 +13,21 @@ public class Ghost : Human
     public int newInterval;
 
     List<GameObject> bloodTrail;
+
+    public GameObject possessObjRef;
+    GameObject currentPossessObj;
+
     bool tracked;
 
-    public void setMurderKey(KeyCode key)
+    public void setPossessKey(KeyCode key)
     {
-        murderKey = key;
+        possessKey = key;
     }
 
     void Awake()
     {
         // Default murder key
-        setMurderKey(KeyCode.Space);
+        setPossessKey(KeyCode.Space);
     }
 
     void Start()
@@ -36,6 +40,28 @@ public class Ghost : Human
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(possessKey) && !currentPossessObj)
+        {
+            Vector3 possessObjPos = transform.position;
+            Vector3 possessObjOffset;
+            if (facingRight)
+            {
+                possessObjOffset = Vector3.right / 1.3f;
+            }
+            else
+            {
+                possessObjOffset = Vector3.left / 1.3f;
+            }
+            possessObjPos += possessObjOffset;
+            currentPossessObj = Instantiate(possessObjRef, possessObjPos, transform.rotation) as GameObject;
+
+            // Get the possess hit script
+            PossessHit possessHit = currentPossessObj.GetComponent<PossessHit>();
+            possessHit.ghostOwner = this;
+            // Make sure to set its offset!!!
+            possessHit.offset = possessObjOffset;
+        }
+
         if (Time.deltaTime % bloodDropInterval == 0f)
         {
             GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
@@ -58,6 +84,16 @@ public class Ghost : Human
                 bloodDropTimer = 0;
             }
         }
+    }
+
+    void getPossessTarget()
+    {
+
+    }
+
+    public void possess()
+    {
+
     }
 
     public void track()

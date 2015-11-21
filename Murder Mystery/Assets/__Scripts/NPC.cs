@@ -15,6 +15,7 @@ public class NPC : Human {
     public bool         target;
 
     public bool possessed;
+    Ghost possessionOwner;
     // Much better to set these values in the inspector for quick
     // iteration rather than hard code it in a function like this
     public void setTimerValues(int min, int max, int standing)
@@ -48,7 +49,7 @@ public class NPC : Human {
      
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         
-        if (checkMoveTimer > 0)
+        if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
             if (checkMoveTimer == 0)
@@ -93,4 +94,10 @@ public class NPC : Human {
             }
         }
 	}
+
+    void possess(Ghost possessor)
+    {
+        possessed = true;
+        possessionOwner = possessor;
+    }
 }

@@ -53,9 +53,11 @@ public class GamePlay : MonoBehaviour {
         Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs], Quaternion.identity) as GameObject);
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
+        Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
         Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs+1], Quaternion.identity) as GameObject);
         Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
         Ghosts[1].GetComponent<Ghost>().alive = true;
+        Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+2], Quaternion.identity) as GameObject);
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);

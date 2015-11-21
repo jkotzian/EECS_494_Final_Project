@@ -41,8 +41,6 @@ public class Murderer : Human {
 
         if (Input.GetKeyDown(murderKey) && !currentKnifeObj)
         {
-
-
             Vector3 knifePos = transform.position;
             Vector3 knifeOffset;
             if (facingRight)

@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
 
 	public bool isDetective;
 	public bool inDetectiveMode;
-	public bool isMurderer;
+	public bool isGhost;
 
 	public GameObject dModeBar;
 	public float dModeTotal;
@@ -49,19 +49,15 @@ public class Movement : MonoBehaviour {
 	void FixedUpdate () {
         if (human.alive)
         {
-           
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
-           
-			if(Input.GetKey(detectiveMode) && dModeTotal > -50f){
+			if (Input.GetKey(detectiveMode) && dModeTotal > -50f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					print("Currently in D-Mode");
 				}
-
 				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
-			if(Input.GetKeyUp(detectiveMode)){
+			if (Input.GetKeyUp(detectiveMode)){
 				inDetectiveMode = false;
 				print("Left D-Mode");
 			}
@@ -90,7 +86,16 @@ public class Movement : MonoBehaviour {
 			{
 				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
 			}
-
+            // Move up for ghosts
+            if (Input.GetKey(upKey) && isGhost)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * speed);
+            }
+            // Move up for ghosts
+            if (Input.GetKey(downKey) && isGhost)
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * speed);
+            }
         }
 	}
 
