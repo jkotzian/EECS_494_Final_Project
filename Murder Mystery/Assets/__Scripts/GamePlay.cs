@@ -13,6 +13,7 @@ public class GamePlay : MonoBehaviour {
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
     public List<Material>   disguises;
+    public List<Text>       timerTexts;
 
     public int numNPCs = 8;
     public int numFloors = 4;
