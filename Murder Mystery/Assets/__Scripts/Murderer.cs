@@ -41,7 +41,10 @@ public class Murderer : Human {
 
         if (Input.GetKeyDown(murderKey) && !currentKnifeObj)
         {
-            Vector3 knifePos = transform.position;
+            /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
+            OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
+            LAYER IS NOT SUPPOSED TO COLLIDE*/
+            Vector3 possessionObjPos = transform.position;
             Vector3 knifeOffset;
             if (facingRight)
             {
@@ -51,8 +54,8 @@ public class Murderer : Human {
             {
                 knifeOffset = Vector3.left/1.7f;
             }
-            knifePos += knifeOffset;
-            currentKnifeObj = Instantiate(knifeObjRef, knifePos, transform.rotation) as GameObject;
+            possessionObjPos += knifeOffset;
+            currentKnifeObj = Instantiate(knifeObjRef, possessionObjPos, transform.rotation) as GameObject;
             
             // Get the knife object
             Knife currentKnife = currentKnifeObj.GetComponent<Knife>();

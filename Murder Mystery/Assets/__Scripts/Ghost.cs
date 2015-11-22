@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Ghost : Human
 {
-    private KeyCode possessKey;
+    public KeyCode possessKey;
     public RaycastHit hitInfo;
     public int bloodDropTimeMax;
     public int bloodDropInterval;
@@ -14,8 +14,8 @@ public class Ghost : Human
 
     List<GameObject> bloodTrail;
 
-    public GameObject possessObjRef;
-    GameObject currentPossessObj;
+    public GameObject possessionObjRef;
+    GameObject currentPossessionObj;
 
     bool tracked;
 
@@ -38,30 +38,40 @@ public class Ghost : Human
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKeyDown(possessKey) && !currentPossessObj)
+        if (Input.GetKeyDown(possessKey) && !currentPossessionObj)
         {
-            Vector3 possessObjPos = transform.position;
-            Vector3 possessObjOffset;
+            /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
+            OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
+            LAYER IS NOT SUPPOSED TO COLLIDE*/
+            Vector3 possessionObjPos = transform.position;
+            // Not having an offset for now, might want one laters
+            /*Vector3 possessionObjOffset;
             if (facingRight)
             {
-                possessObjOffset = Vector3.right / 1.3f;
+                possessionObjOffset = Vector3.right / 1.7f;
             }
             else
             {
-                possessObjOffset = Vector3.left / 1.3f;
+                possessionObjOffset = Vector3.left / 1.7f;
             }
-            possessObjPos += possessObjOffset;
-            currentPossessObj = Instantiate(possessObjRef, possessObjPos, transform.rotation) as GameObject;
-
-            // Get the possess hit script
-            PossessHit possessHit = currentPossessObj.GetComponent<PossessHit>();
-            possessHit.ghostOwner = this;
+            possessionObjPos += possessionObjOffset;
             // Make sure to set its offset!!!
-            possessHit.offset = possessObjOffset;
-        }
+            possess.offset = possessionObjOffset;*/
+            currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
 
+            // Get the possession object
+            PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
+            possess.ghostOwner = this;
+        }
+        if (Input.GetKeyUp(possessKey) && currentPossessionObj)
+        {
+            Destroy(currentPossessionObj);
+        }
+    }
+
+    void FixedUpdate() { 
         if (Time.deltaTime % bloodDropInterval == 0f)
         {
             GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;

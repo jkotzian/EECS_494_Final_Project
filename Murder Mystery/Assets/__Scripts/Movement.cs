@@ -70,12 +70,26 @@ public class Movement : MonoBehaviour {
             if (Input.GetKey(rightKey))
             {
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
-                human.facingRight = true;
+                // If the human is facing right, then flip
+                if (!human.facingRight)
+                {
+                    Vector3 newScale = this.gameObject.transform.localScale;
+                    newScale.x *= -1;
+                    this.gameObject.transform.localScale = newScale;
+                    human.facingRight = true;
+                }
             }
             if (Input.GetKey(leftKey))
             {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
-                human.facingRight = false;
+                // If the human is facing right, then flip
+                if (human.facingRight)
+                {
+                    Vector3 newScale = this.gameObject.transform.localScale;
+                    newScale.x *= -1;
+                    this.gameObject.transform.localScale = newScale;
+                    human.facingRight = false;
+                }
             }
 
 			if (Input.GetKey(rightKey) && isDetective && Input.GetKey(boostKey))

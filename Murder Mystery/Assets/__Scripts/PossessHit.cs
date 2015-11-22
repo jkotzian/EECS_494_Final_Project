@@ -6,26 +6,23 @@ public class PossessHit : MonoBehaviour
     public int lifetimeMax;
     public Ghost ghostOwner;
     public Vector3 offset;
-    int lifetime;
+    public int lifetime;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        lifetime = lifetimeMax;
+        //lifetime = lifetimeMax;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.position = ghostOwner.transform.position + offset;
-        if (lifetime > 0)
+        /*lifetime--;
+        if (lifetime == 0)
         {
-            lifetime--;
-            if (lifetime == 0)
-            {
-                Destroy(this.gameObject);
-            }
-        }
+            this.gameObject.SetActive(false);
+        }*/
     }
 
     void OnCollisionEnter(Collision collision)
@@ -33,12 +30,8 @@ public class PossessHit : MonoBehaviour
         NPC target = collision.gameObject.GetComponent<NPC>();
         if (target)
         {
-            Possess(target);
+            target.possess(ghostOwner);
+            Destroy(this.gameObject);
         }
-    }
-
-    public void Possess(NPC target)
-    {
-        target.isStabbed = true;
     }
 }
