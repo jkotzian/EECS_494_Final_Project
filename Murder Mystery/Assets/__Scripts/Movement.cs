@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour {
 			if(Input.GetKey(detectiveMode) && dModeTotal > -50f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
-					print("Currently in D-Mode");
+					//print("Currently in D-Mode");
 				}
 
 				dModeTotal -= Time.deltaTime * dModeLoss;
@@ -63,12 +63,12 @@ public class Movement : MonoBehaviour {
 			
 			if(Input.GetKeyUp(detectiveMode)){
 				inDetectiveMode = false;
-				print("Left D-Mode");
+				//print("Left D-Mode");
 			}
 
 			if(dModeTotal < 100f){
 				dModeTotal += Time.deltaTime * dModeRegain;
-				print("D - Total: " + dModeTotal);
+				//print("D - Total: " + dModeTotal);
 			}
 
             if (Input.GetKey(rightKey))
@@ -96,7 +96,7 @@ public class Movement : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.name == "Stairs") {
-			print("Stairs");
+			//print("Stairs");
 
 			if (Input.GetKey (upKey)) {
 				transform.Translate(Vector3.up*Time.deltaTime*speed);

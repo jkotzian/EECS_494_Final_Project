@@ -12,12 +12,21 @@ public class GamePlay : MonoBehaviour {
     public GameObject       npcPrefab;
     public GameObject       murdererPrefab;
     public GameObject       detectivePrefab;
+	public GameObject		chandelierPrefab;
+	public GameObject		knightAxePrefab;
+	public GameObject		toxicAreaPrefab;
+	public GameObject		flamethrowerPrefab;
+	public GameObject		poisonWaterPrefab;
+	public GameObject		pianoTopPrefab;
+	public GameObject		pianoBottomPrefab;
 
     public int numNPCs = 8;
     public int numFloors = 4;
     public List<GameObject> NPCs;
     public List<GameObject> Murderers;
     public List<GameObject> Detectives;
+	public List<GameObject> EnvironmentalObjects;
+	public List<GameObject> Switches;
 
     private List<Vector3> startLoc;
 
@@ -30,19 +39,11 @@ public class GamePlay : MonoBehaviour {
         Murderers = new List<GameObject>();
         Detectives = new List<GameObject>();
         targetIndices = Enumerable.Repeat(-1, 4).ToArray();
+		EnvironmentalObjects = new List<GameObject> ();
         startLoc = generateStartLoc();
     }
     
     void Start () {
-        // Place switches
-		/*Instantiate(switchPrefab, new Vector3(-4.78f, -3.54f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(-7.46f, -1.24f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(-1.76f, 1.3f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(-4.68f, 3.74f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(4.38f, 3.74f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(7.09f, 1.3f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(1.43f, -1.24f, -0.2f), Quaternion.identity);
-		Instantiate(switchPrefab, new Vector3(4.25f, -3.75f, -0.2f), Quaternion.identity);*/
         // Place NPCs
         for(int i = 0; i < numNPCs; i++)
         {
@@ -80,6 +81,39 @@ public class GamePlay : MonoBehaviour {
             targetIndices[i] = newIndex;
             NPCs[i].GetComponent<NPC>().target = true;
         }
+
+		//Place Environmental Objects
+		EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
+		EnvironmentalObjects.Add (Instantiate(toxicAreaPrefab, new Vector3(-4.64f, -3.77f, 1), Quaternion.identity) as GameObject);
+		EnvironmentalObjects.Add (Instantiate(flamethrowerPrefab, new Vector3(1.46f	, -1.37f, 0), Quaternion.Euler (0,0,90)) as GameObject);
+		EnvironmentalObjects.Add (Instantiate(knightAxePrefab, new Vector3(-4.06f, 0.95f, 0), Quaternion.identity) as GameObject);
+		EnvironmentalObjects.Add (Instantiate(pianoTopPrefab, new Vector3(-0.4f, 3.7f, 0), Quaternion.Euler (0,0,-50)) as GameObject);
+		//print (EnvironmentalObjects [0]);
+
+		// Place switches
+		//Chandelier Switch
+		Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
+		Switches [0].GetComponent<Switch> ().switchNum = 1;
+		//Hole in ground Switch
+		Switches.Add (Instantiate(switchPrefab, new Vector3(0.05f, -3.91f, 0), Quaternion.identity) as GameObject);
+		Switches [1].GetComponent<Switch> ().switchNum = 2;
+		//Toxic air Switch
+		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.32f, -3.85f, 0), Quaternion.identity) as GameObject);
+		Switches [2].GetComponent<Switch> ().switchNum = 3;
+		//Flamethrower Switch
+		Switches.Add (Instantiate(switchPrefab, new Vector3(2.5f, -1.37f, 0), Quaternion.identity) as GameObject);
+		Switches [3].GetComponent<Switch> ().switchNum = 4;
+		//Poison water Switch
+		Switches.Add (Instantiate(poisonWaterPrefab, new Vector3(-4.23f, -1.29f, 0), Quaternion.identity) as GameObject);
+		Switches [4].GetComponent<Switch> ().switchNum = 5;
+		//Knight axe Switch
+		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.83f, 1.2f, 0), Quaternion.identity) as GameObject);
+		Switches [5].GetComponent<Switch> ().switchNum = 6;
+		//Piano bottom Switch
+		Switches.Add (Instantiate(pianoBottomPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
+		Switches [6].GetComponent<Switch> ().switchNum = 7;
+		
+
     }
 
     void Update()
