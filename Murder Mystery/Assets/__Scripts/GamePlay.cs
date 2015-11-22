@@ -33,6 +33,7 @@ public class GamePlay : MonoBehaviour {
     private List<Vector3> startLoc;
 
     private int[] targetIndices;
+    private float starttime;
 
     void Awake()
     {
@@ -117,8 +118,9 @@ public class GamePlay : MonoBehaviour {
 		//Piano bottom Switch
 		Switches.Add (Instantiate(pianoBottomPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
 		Switches [6].GetComponent<Switch> ().switchNum = 7;
-		
 
+        starttime = Time.time;
+        TotalGame.S.round++;
     }
 
     void Update()
@@ -133,6 +135,14 @@ public class GamePlay : MonoBehaviour {
         //    GameObject detectiveText = GameObject.Find("DetectiveText");
         //    detectiveText.GetComponent<Text>().text = "You Win!";
         //}
+        foreach(Text t in timerTexts)
+        {
+            t.text = (120 - (int)(Time.time - starttime)).ToString();
+        }
+        if(Time.time > 10 + starttime)
+        {
+            Application.LoadLevel("RoundEnd");
+        }
     }
 
     List<Vector3> generateStartLoc()
