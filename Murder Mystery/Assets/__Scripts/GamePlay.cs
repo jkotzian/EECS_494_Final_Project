@@ -12,6 +12,7 @@ public class GamePlay : MonoBehaviour {
     public GameObject       npcPrefab;
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
+    public List<Material>   disguises;
 
     public int numNPCs = 8;
     public int numFloors = 4;
@@ -47,6 +48,7 @@ public class GamePlay : MonoBehaviour {
         for(int i = 0; i < numNPCs; i++)
         {
             NPCs.Add(Instantiate(npcPrefab, startLoc[i], Quaternion.identity) as GameObject);
+            NPCs[i].GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
         }
 
         // Place Ghosts
@@ -60,11 +62,13 @@ public class GamePlay : MonoBehaviour {
         Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+2], Quaternion.identity) as GameObject);
+        Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
 		Detectives[0].GetComponent<Movement> ().isDetective = true;
         Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.U);
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+3], Quaternion.identity) as GameObject);
+        Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
         Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[1].GetComponent<Movement> ().isDetective = true;
