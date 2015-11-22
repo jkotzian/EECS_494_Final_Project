@@ -130,7 +130,7 @@ public class GamePlay : MonoBehaviour {
         //    GameObject murdererText = GameObject.Find("MurdererText");
         //    murdererText.GetComponent<Text>().text = "You Win!";
         //}
-        //if (checkForDetectiveWin())
+        //if ()
         //{
         //    GameObject detectiveText = GameObject.Find("DetectiveText");
         //    detectiveText.GetComponent<Text>().text = "You Win!";
@@ -139,7 +139,7 @@ public class GamePlay : MonoBehaviour {
         {
             t.text = (120 - (int)(Time.time - starttime)).ToString();
         }
-        if(Time.time > 120 + starttime)
+        if(Time.time > 120 + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
         }
@@ -174,16 +174,16 @@ public class GamePlay : MonoBehaviour {
     //    return true;
     //}
 
-    //bool checkForDetectiveWin()
-    //{
-    //    foreach (GameObject m in Ghosts)
-    //    {
-    //        if (m.GetComponent<Murderer>().alive)
-    //        {
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
+    bool checkForDetectiveWin()
+    {
+        foreach (GameObject m in Ghosts)
+        {
+            if (m.GetComponent<Ghost>().alive)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

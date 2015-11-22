@@ -16,7 +16,20 @@ public class Restart : MonoBehaviour {
                 break;
 
             case 2:
-                message = "Round 2 Body Count: " + TotalGame.S.bodyCount[1];
+                string winner = "No winner";
+                if(TotalGame.S.bodyCount[0] > TotalGame.S.bodyCount[1])
+                {
+                    winner = "Team 1 Wins!\n";
+                }
+                else if (TotalGame.S.bodyCount[1] > TotalGame.S.bodyCount[0])
+                {
+                    winner = "Team 2 Wins!\n";
+                }
+                else
+                {
+                    winner = "It's a tie!\n";
+                }
+                message = winner + "\nRound 1 Body Count: " + TotalGame.S.bodyCount[0] + "\nRound 2 Body Count: " + TotalGame.S.bodyCount[1];
                 break;
             default:
                 message = "invalid round number";
