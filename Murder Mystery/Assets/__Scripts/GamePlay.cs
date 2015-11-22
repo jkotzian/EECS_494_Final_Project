@@ -12,10 +12,8 @@ public class GamePlay : MonoBehaviour {
     public GameObject       npcPrefab;
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
-<<<<<<< HEAD
     public List<Material>   disguises;
     public List<Text>       timerTexts;
-=======
 	public GameObject		chandelierPrefab;
 	public GameObject		knightAxePrefab;
 	public GameObject		toxicAreaPrefab;
@@ -23,7 +21,6 @@ public class GamePlay : MonoBehaviour {
 	public GameObject		poisonWaterPrefab;
 	public GameObject		pianoTopPrefab;
 	public GameObject		pianoBottomPrefab;
->>>>>>> Jeff's-Branch
 
     public int numNPCs = 8;
     public int numFloors = 4;
