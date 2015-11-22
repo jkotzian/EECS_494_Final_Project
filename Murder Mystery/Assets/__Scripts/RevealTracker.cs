@@ -16,8 +16,8 @@ public class RevealTracker : MonoBehaviour {
 	void Update () {
 		//for only a given interval, the tracks can be found
 		if (Time.time - timeTrack > interval) {
-			print ("TimeTrack: " + timeTrack);
-			print ("Time: " + Time.time);
+			//print ("TimeTrack: " + timeTrack);
+			//print ("Time: " + Time.time);
 			isTrackable = false;
 			gameObject.SetActive (false);
 		}
