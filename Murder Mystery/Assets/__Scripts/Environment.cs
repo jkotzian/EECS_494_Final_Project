@@ -23,6 +23,7 @@ public class Environment : MonoBehaviour {
     HideLight               cameraToHide;
     public Transform        nightVisionObject;
 	public bool lightsOn = true;
+    bool first;
 
 	void Awake(){
 		E = this;
@@ -36,6 +37,7 @@ public class Environment : MonoBehaviour {
         turnedOff = false;
         nightVisionObject.gameObject.SetActive(false);
         cameraToHide = cameraToHideObj.GetComponent<HideLight>();
+        first = true;
 	}
 	
 	// Update is called once per frame
@@ -62,7 +64,13 @@ public class Environment : MonoBehaviour {
         // Reset the timer and figure out when to turn the lights
         // back on
         lightTimer = 0;
-        nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
+        if (first)
+        {
+            first = false;
+            nextTurnOnTime = 500;
+        }
+        else
+            nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
 		lightsOn = false;
         //Debug.Log(nextTurnOnTime);
     }
