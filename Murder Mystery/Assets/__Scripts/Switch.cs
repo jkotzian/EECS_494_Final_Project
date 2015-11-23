@@ -32,8 +32,9 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerStay(Collider other){
-		Movement movement = other.GetComponent<Movement> ();
+	void OnTriggerStay(Collider other)
+    {
+        Movement movement = other.GetComponent<Movement> ();
 		bool pressed = Input.GetKeyDown (KeyCode.E);
 		if (movement && pressed) {
 			print ("Hey");
