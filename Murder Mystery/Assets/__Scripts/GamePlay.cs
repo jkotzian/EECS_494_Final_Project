@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using UnityEngine.UI;
 //using InControl;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
-
+    
 	public GameObject		switchPrefab;
     public GameObject       npcPrefab;
     public GameObject       ghostPrefab;
@@ -22,6 +21,8 @@ public class GamePlay : MonoBehaviour {
 	public GameObject		poisonWaterPrefab;
 	public GameObject		pianoTopPrefab;
 	public GameObject		pianoBottomPrefab;
+    public GameObject       ghostCameraObj;
+    HideLight               ghostCamera;
 
     public int numNPCs = 8;
     public int numFloors = 4;
@@ -45,6 +46,7 @@ public class GamePlay : MonoBehaviour {
         targetIndices = Enumerable.Repeat(-1, 4).ToArray();
 		EnvironmentalObjects = new List<GameObject> ();
         startLoc = generateStartLoc();
+        ghostCamera = ghostCameraObj.GetComponent<HideLight>();
     }
     
     void Start () {
@@ -66,6 +68,17 @@ public class GamePlay : MonoBehaviour {
         Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
         Ghosts[1].GetComponent<Ghost>().alive = true;
         Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+        // Randomely possess one of the NPCs
+        //int randPossessNum = Random.Range(0, numNPCs);
+        //Ghost ghost1 = Ghosts[0].GetComponent<Ghost>();
+        //NPC npc1 = NPCs[1].GetComponent<NPC>();
+        //ghost1.possess(npc1);
+        //int randPossessNum2 = Random.Range(0, numNPCs);
+        //while (randPossessNum2 == randPossessNum)
+        //{
+        //    randPossessNum2 = Random.Range(0, numNPCs);
+        //}
+        //Ghosts[1].GetComponent<Ghost>().possess(NPCs[2].GetComponent<NPC>());
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+2], Quaternion.identity) as GameObject);
         Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
@@ -80,8 +93,12 @@ public class GamePlay : MonoBehaviour {
 		Detectives[1].GetComponent<Movement> ().isDetective = true;
         Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
 
+        // Hide the light from the detectives from the ghost camera
+        ghostCamera.light = Detectives[0].GetComponent<Light>();
+        ghostCamera.light2 = Detectives[1].GetComponent<Light>();
+
         //Set targets
-        for(int i = 0; i < 4; i++)
+        /*for (int i = 0; i < 4; i++)
         {
             int newIndex = UnityEngine.Random.Range(0, 8);
             while (Array.Exists(targetIndices, element => element == newIndex)) {
@@ -89,7 +106,7 @@ public class GamePlay : MonoBehaviour {
             }
             targetIndices[i] = newIndex;
             NPCs[i].GetComponent<NPC>().target = true;
-        }
+        }*/
 
 		//Place Environmental Objects
 		EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
@@ -130,18 +147,6 @@ public class GamePlay : MonoBehaviour {
 
     void Update()
     {
-        //var inputDevice = InputManager.ActiveDevice;
-
-        //if (checkForMurdererWin())
-        //{
-        //    GameObject murdererText = GameObject.Find("MurdererText");
-        //    murdererText.GetComponent<Text>().text = "You Win!";
-        //}
-        //if ()
-        //{
-        //    GameObject detectiveText = GameObject.Find("DetectiveText");
-        //    detectiveText.GetComponent<Text>().text = "You Win!";
-        //}
         for (int i = 0; i < 2; i++)
         {
             texts[i].text = (120 - (int)(Time.time - starttime)).ToString();
@@ -150,8 +155,8 @@ public class GamePlay : MonoBehaviour {
         {
             texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 1];
         }
-		for (int j = 0; j < texts.Count; j++)
-			print (texts [j].text);
+        //for (int j = 0; j < texts.Count; j++)
+        //    print (texts [j].text);
         if (Time.time > 120 + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
@@ -161,7 +166,7 @@ public class GamePlay : MonoBehaviour {
     List<Vector3> generateStartLoc()
     {
         List<Vector3> sL = new List<Vector3>();
-        int numPerFloor = (int)Math.Ceiling((float)((numNPCs + 4) / numFloors));
+        int numPerFloor = (int)Mathf.Ceil((float)((numNPCs + 4) / numFloors));
         float z = -0.2f;
         for (int i = 0; i < numFloors; i++)
         {

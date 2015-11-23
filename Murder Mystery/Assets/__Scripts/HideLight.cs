@@ -3,24 +3,32 @@ using System.Collections;
 
 public class HideLight : MonoBehaviour {
 
-    public Light mansionLight;
+    public Light light;
+    public Light light2;
+    public bool alwaysHidden;
     bool hidden = false;
 
     void OnPreCull()
     {
-        if (mansionLight != null & hidden)
-            mansionLight.enabled = false;
+        if (light != null && (hidden || alwaysHidden))
+            light.enabled = false;
+        if (light2 != null && (hidden || alwaysHidden))
+            light2.enabled = false;
     }
 
     void OnPreRender()
     {
-        if (mansionLight != null && hidden)
-            mansionLight.enabled = false;
+        if (light != null && (hidden || alwaysHidden))
+            light.enabled = false;
+        if (light2 != null && (hidden || alwaysHidden))
+            light2.enabled = false;
     }
     void OnPostRender()
     {
-        if (mansionLight != null && hidden)
-            mansionLight.enabled = true;
+        if (light != null && (hidden || alwaysHidden))
+            light.enabled = true;
+        if (light2 != null && (hidden || alwaysHidden))
+            light2.enabled = true;
     }
 
     public void hideLight() {

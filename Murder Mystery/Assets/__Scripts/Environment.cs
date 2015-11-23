@@ -30,8 +30,9 @@ public class Environment : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-        nextTurnOffTime = Random.Range(turnOffTimeMin, turnOffTimeMax + 1);
-        lightTimer = 0;
+        nextTurnOffTime = turnOffTimeMax + 1;
+        // Set it so the lights start turned off
+        lightTimer = nextTurnOffTime - 1;
         turnedOff = false;
         nightVisionObject.gameObject.SetActive(false);
         cameraToHide = cameraToHideObj.GetComponent<HideLight>();
