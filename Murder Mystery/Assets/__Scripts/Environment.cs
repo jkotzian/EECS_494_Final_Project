@@ -17,8 +17,8 @@ public class Environment : MonoBehaviour {
     // The amount of time when the lights will
     // go on next
     int                     nextTurnOnTime;
-	public Transform		blackScene;
-    public Transform        lightObject;
+    public Transform        cameraToHideObj;
+    HideLight        cameraToHide;
     public Transform        nightVisionObject;
 	
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class Environment : MonoBehaviour {
         lightTimer = 0;
         turnedOff = false;
         nightVisionObject.gameObject.SetActive(false);
-        //Debug.Log(nextTurnOffTime);
+        cameraToHide = cameraToHideObj.GetComponent<HideLight>();
 	}
 	
 	// Update is called once per frame
@@ -49,10 +49,7 @@ public class Environment : MonoBehaviour {
         // Say that the lights are off and bring the black screen
         // to the forefront
         turnedOff = true;
-        Vector3 temp = blackScene.transform.position;
-        temp.z = -1;
-        blackScene.transform.position = temp;
-        lightObject.GetComponent<Light>().enabled = false;
+        cameraToHide.hideLight();
         nightVisionObject.gameObject.SetActive(true);
         // Reset the timer and figure out when to turn the lights
         // back on
@@ -66,10 +63,7 @@ public class Environment : MonoBehaviour {
         // Say that the lights are on and put the black screen
         // in the background
         turnedOff = false;
-        Vector3 temp = blackScene.transform.position;
-        temp.z = 1;
-        blackScene.transform.position = temp;
-        lightObject.GetComponent<Light>().enabled = true;
+        cameraToHide.unhideLight();
         nightVisionObject.gameObject.SetActive(false);
         // Reset the timer and figure out when to turn the lights
         // back off
