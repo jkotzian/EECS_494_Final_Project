@@ -41,7 +41,10 @@ public class Human : MonoBehaviour {
         //Knock the murderer over
         transform.Rotate(new Vector3(0, 0, 90));
         alive = false;
-        TotalGame.S.bodyCount[TotalGame.S.round - 1]++;
+        if (transform.GetComponent<NPC>())
+        {
+            TotalGame.S.bodyCount[TotalGame.S.round - 1]++;
+        }
     }
 
     public int GetLayerMask(string[] layerNames)

@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class Detective : Human {
-    private KeyCode         arrestKey;
-    private Ghost[]      ghosts;
+    private KeyCode     arrestKey;
+    private Ghost[]     ghosts;
+    private Movement movement;
 
     public void setArrestKey(KeyCode key)
     {
@@ -17,6 +18,7 @@ public class Detective : Human {
         ghosts = new Ghost[2];
         ghosts[0] = GamePlay.S.Ghosts[0].GetComponent<Ghost>();
         ghosts[1] = GamePlay.S.Ghosts[1].GetComponent<Ghost>();
+        movement = transform.GetComponent<Movement>();
     }
 
     void FixedUpdate()
@@ -39,8 +41,21 @@ public class Detective : Human {
         }
     }
 
-    void OnCollisionStay(Collision collisionInfo)
+    void OnTriggerStay(Collider collider)
     {
+        print(collider);
+        Door door = collider.GetComponent<Door>();
+        if (door)
+        {
+            if (Input.GetKeyDown(movement.upKey) && door.above)
+            {
+                door.MoveUp(gameObject);    
+            }
+            else if (Input.GetKeyDown(movement.downKey) && door.below)
+            {
+                door.MoveDown(gameObject);
+            }
+        }
         ////Make Arrest
         //if (Input.GetKey(KeyCode.RightShift))
         //{

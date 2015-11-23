@@ -13,7 +13,7 @@ public class GamePlay : MonoBehaviour {
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
     public List<Material>   disguises;
-    public List<Text>       timerTexts;
+    public List<Text>       texts;
 	public GameObject		chandelierPrefab;
 	public GameObject		knightAxePrefab;
 	public GameObject		toxicAreaPrefab;
@@ -135,11 +135,15 @@ public class GamePlay : MonoBehaviour {
         //    GameObject detectiveText = GameObject.Find("DetectiveText");
         //    detectiveText.GetComponent<Text>().text = "You Win!";
         //}
-        foreach(Text t in timerTexts)
+        for (int i = 0; i < 2; i++)
         {
-            t.text = (120 - (int)(Time.time - starttime)).ToString();
+            texts[i].text = (120 - (int)(Time.time - starttime)).ToString();
         }
-        if(Time.time > 120 + starttime || checkForDetectiveWin())
+        for (int i = 2; i < 4; i++)
+        {
+            texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 1];
+        }
+        if (Time.time > 120 + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
         }
