@@ -9,6 +9,9 @@ public class Murderer : Human {
     public		int					bloodDropTimeMax;
 	public		int 				bloodDropInterval;
     int								bloodDropTimer;
+
+	public int newInterval;
+
     GameObject currentKnifeObj;
     List<GameObject> bloodTrail;
     bool		tracked;
@@ -21,6 +24,7 @@ public class Murderer : Human {
     void Awake () {
         // Default murder key
         setMurderKey(KeyCode.Space);
+		newInterval = 7;
 	}
 	
 	void Start() {
@@ -31,9 +35,16 @@ public class Murderer : Human {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(Time.time % newInterval == 0f){
+			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+		}
+
         if (Input.GetKeyDown(murderKey) && !currentKnifeObj)
         {
-            Vector3 knifePos = transform.position;
+            /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
+            OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
+            LAYER IS NOT SUPPOSED TO COLLIDE*/
+            Vector3 possessionObjPos = transform.position;
             Vector3 knifeOffset;
             if (facingRight)
             {
@@ -43,8 +54,8 @@ public class Murderer : Human {
             {
                 knifeOffset = Vector3.left/1.7f;
             }
-            knifePos += knifeOffset;
-            currentKnifeObj = Instantiate(knifeObjRef, knifePos, transform.rotation) as GameObject;
+            possessionObjPos += knifeOffset;
+            currentKnifeObj = Instantiate(knifeObjRef, possessionObjPos, transform.rotation) as GameObject;
             
             // Get the knife object
             Knife currentKnife = currentKnifeObj.GetComponent<Knife>();

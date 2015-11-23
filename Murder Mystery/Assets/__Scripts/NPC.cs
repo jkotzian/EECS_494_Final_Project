@@ -14,6 +14,11 @@ public class NPC : Human {
     public  float       speed;
     public bool         target;
 
+    public bool possessed;
+    Ghost possessionOwner;
+    Movement NPCMovement;
+
+    Rigidbody rigidbody;
     // Much better to set these values in the inspector for quick
     // iteration rather than hard code it in a function like this
     public void setTimerValues(int min, int max, int standing)
@@ -40,14 +45,13 @@ public class NPC : Human {
         moving = false;
         movingRight = false;
         target = false;
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        NPCMovement = GetComponent<Movement>();
     }
 
 	// Update is called once per frame
 	void Update () {
-     
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
-        
-        if (checkMoveTimer > 0)
+        if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
             if (checkMoveTimer == 0)
@@ -80,7 +84,7 @@ public class NPC : Human {
             }
         }
 
-        if (moving)
+        if (moving && !possessed)
         {
             if (movingRight)
             {
@@ -91,5 +95,33 @@ public class NPC : Human {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
         }
+
+        if (possessionOwner && Input.GetKeyDown(possessionOwner.possessKey))
+        {
+            possessed = false;
+            // Disable the movement
+            NPCMovement.enabled = false;
+            // Re-enable the possession owner wherever the NPC is with an offset
+            Vector3 offset = new Vector3(0, .3f, 0);
+            possessionOwner.transform.position = gameObject.transform.position + offset;
+            possessionOwner.gameObject.SetActive(true);
+            possessionOwner = null;
+        }
 	}
+
+    public void possess(Ghost possessor)
+    {
+        possessed = true;
+        possessionOwner = possessor;
+        Movement possessorMovement = possessor.GetComponent<Movement>();
+        
+        // Enable the NPC's movement with the Ghost's controls
+        NPCMovement.enabled = true;
+        NPCMovement.setUDLRKeys(possessorMovement.upKey, possessorMovement.downKey,
+                                possessorMovement.leftKey, possessorMovement.rightKey);
+        // Disable the ghost
+        possessor.gameObject.SetActive(false);
+        // Set the velocity to 0
+        rigidbody.velocity = Vector3.zero;
+    }
 }

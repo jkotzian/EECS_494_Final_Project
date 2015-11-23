@@ -16,8 +16,8 @@ public class RevealTracker : MonoBehaviour {
 	void Update () {
 		//for only a given interval, the tracks can be found
 		if (Time.time - timeTrack > interval) {
-			print ("TimeTrack: " + timeTrack);
-			print ("Time: " + Time.time);
+			//print ("TimeTrack: " + timeTrack);
+			//print ("Time: " + Time.time);
 			isTrackable = false;
 			gameObject.SetActive (false);
 		}
@@ -26,9 +26,10 @@ public class RevealTracker : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		//tracker will show when a detective gets close enough
-		if(other.gameObject.name == "Detective(Clone)"){
-			gameObject.GetComponent<MeshRenderer>().enabled = true;
-
+		if(other.GetComponent<Movement>() != null){
+			if(other.GetComponent<Movement>().inDetectiveMode == true){
+				gameObject.GetComponent<MeshRenderer>().enabled = true;
+			}
 		}
 
 	}
