@@ -71,12 +71,14 @@ public class GamePlay : MonoBehaviour {
         Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
+		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement> ().isDetective = true;
         Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.U);
         Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+3], Quaternion.identity) as GameObject);
         Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
         Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
+		Detectives[1].GetComponent<Movement>().setLabel(765,400, "Player 2 Detective Mode: ");
 		Detectives[1].GetComponent<Movement> ().isDetective = true;
         Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
 

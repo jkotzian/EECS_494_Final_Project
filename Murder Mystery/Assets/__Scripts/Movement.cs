@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour {
 	public float dModeTotal;
 	public float dModeLoss;
 	public float dModeRegain;
+	public Rect label;
+	public string playerNum;
+
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
@@ -35,6 +38,21 @@ public class Movement : MonoBehaviour {
 	public void setBoostKey(KeyCode boost, KeyCode dMode) {
 		boostKey = boost;
 		detectiveMode = dMode;
+	}
+
+	
+	public void setLabel(int x, int y, string playernum){
+		label.x = x;
+		label.y = y;
+		label.width = 300;
+		label.height = 300;
+		playerNum = playernum;
+	}
+
+	void OnGUI(){
+		
+		GUI.Label (label, playerNum + Mathf.RoundToInt(dModeTotal) + "%");
+		
 	}
 
     void Awake() {
