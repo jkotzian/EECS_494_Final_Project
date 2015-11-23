@@ -30,13 +30,12 @@ public class Ghost : Human
     {
         // Default murder key
         setPossessKey(KeyCode.Space);
+		newInterval = 7;
     }
 
     void Start()
     {
-        bloodTrail = new List<GameObject>();
-        bloodDropTimer = 0;
-        tracked = false;
+
     }
 
     // Update is called once per frame
@@ -74,48 +73,9 @@ public class Ghost : Human
     }
 
     void FixedUpdate() { 
-        if (Time.deltaTime % bloodDropInterval == 0f)
-        {
-            GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
-        }
-        // Use this code if we want tracking 
-        if (tracked)
-        {
-            if (bloodDropTimer % bloodDropInterval == 0)
-            {
-                // Drop the blood
-                GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
-                bloodTrail.Add(blood);
-            }
-
-            bloodDropTimer++;
-
-            if (bloodDropTimer == bloodDropTimeMax)
-            {
-                tracked = false;
-                bloodDropTimer = 0;
-            }
-        }
-    }
-
-    public void track()
-    {
-        // If the murderer is already being tracked, just reset the tracked timer
-        if (tracked)
-        {
-            bloodDropTimer = 0;
-        }
-        tracked = true;
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        Switch s = collider.GetComponent<Switch>();
-        if (s)
-        {
-            GamePlay.S.texts[4].text = "press 'X' to activate trap";
-            GamePlay.S.texts[5].text = "press 'X' to activate trap";
-        }
+		if(Time.time % newInterval == 0f){
+			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+		}
     }
 
     void OnTriggerExit(Collider collider)

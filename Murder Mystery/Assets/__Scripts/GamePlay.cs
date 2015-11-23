@@ -114,12 +114,14 @@ public class GamePlay : MonoBehaviour {
 		Switches [3].GetComponent<Switch> ().switchNum = 4;
 		//Poison water Switch
 		Switches.Add (Instantiate(poisonWaterPrefab, new Vector3(-4.23f, -1.29f, 0), Quaternion.identity) as GameObject);
+		Instantiate (switchPrefab, new Vector3 (-4.23f, -1.29f, 0), Quaternion.identity);
 		Switches [4].GetComponent<Switch> ().switchNum = 5;
 		//Knight axe Switch
 		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.83f, 1.2f, 0), Quaternion.identity) as GameObject);
 		Switches [5].GetComponent<Switch> ().switchNum = 6;
 		//Piano bottom Switch
-		Switches.Add (Instantiate(pianoBottomPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
+		//Switches.Add (Instantiate(pianoBottomPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
+		Switches.Add (Instantiate(switchPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
 		Switches [6].GetComponent<Switch> ().switchNum = 7;
 
         starttime = Time.time;
@@ -148,6 +150,8 @@ public class GamePlay : MonoBehaviour {
         {
             texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 1];
         }
+		for (int j = 0; j < texts.Count; j++)
+			print (texts [j].text);
         if (Time.time > 120 + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
