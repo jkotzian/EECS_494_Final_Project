@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Switch : MonoBehaviour {
 	
-	public Material			emptyMaterial;
+	public Material			emptyMaterial, poisonMaterial;
 	public int				switchNum;
 	Light					lightObject;
 
@@ -16,6 +16,10 @@ public class Switch : MonoBehaviour {
 	bool					isInfected = false;
 	bool					isChopped = false;
 	bool					droppedLid = false;
+
+	float 			reset = 0;
+	float 			resetPerSecond = 0.2f;
+	bool			flippedSwitch = false;
 
 	//static public int		howManyTimes = 0;
 
@@ -30,6 +34,13 @@ public class Switch : MonoBehaviour {
 			murderer.GetComponent<Human> ().Kill ();
 			isInfected = false;
 		}
+		if (flippedSwitch) {
+			if (reset < 2) {
+				reset += resetPerSecond * Time.deltaTime;
+			} else {
+				resetEnvironment();
+			}
+		}
 	}
 
 	void OnTriggerStay(Collider other){
@@ -39,8 +50,8 @@ public class Switch : MonoBehaviour {
 			if (computer.possessed && pressed) {
 				print ("Hey");
 				print (switchNum);
+				flippedSwitch = true;
 				if (switchNum == 1) {
-					GamePlay.S.EnvironmentalObjects [0].GetComponent<BoxCollider>().enabled = true;
 					rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects [0].GetComponent<Rigidbody> ();
 					rigidbody2Dimensional.useGravity = true;
 					//computer.dispossess();
@@ -79,5 +90,34 @@ public class Switch : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void resetEnvironment(){
+		if (switchNum == 1) {
+			rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects [0].GetComponent<Rigidbody> ();
+			rigidbody2Dimensional.useGravity = false;
+			Vector3 tmpPos = rigidbody2Dimensional.position;
+			tmpPos.y = 2.059f;
+			rigidbody2Dimensional.position = tmpPos;
+			//computer.dispossess();
+		} else if (switchNum == 3) {
+			Vector3 tmpPos = GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position;
+			tmpPos.z = 1;
+			GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position = tmpPos;
+			//computer.dispossess();
+		} else if (switchNum == 5) {
+			this.GetComponent<Renderer> ().material = poisonMaterial;
+		} else if (switchNum == 6 && isChopped) {
+			GamePlay.S.EnvironmentalObjects [3].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, -90));
+			isChopped = false;
+			//computer.dispossess();
+		} else if (switchNum == 7 && droppedLid) {
+			print ("Got in");
+			GamePlay.S.EnvironmentalObjects [4].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, -320));
+			this.transform.Rotate (new Vector3 (0, 0, 60));
+			droppedLid = false;
+			//computer.dispossess();
+		}
+		flippedSwitch = false;
 	}
 }
