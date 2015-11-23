@@ -39,6 +39,7 @@ public class Human : MonoBehaviour {
     public void Kill()
     {
         //Knock the murderer over
+		GetComponent<NPC> ().dispossess ();
         transform.Rotate(new Vector3(0, 0, 90));
         alive = false;
         TotalGame.S.bodyCount[TotalGame.S.round - 1]++;

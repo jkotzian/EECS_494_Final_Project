@@ -54,13 +54,17 @@
      <Compile Include="Assets\__Scripts\FlameCollider.cs" />
      <Compile Include="Assets\__Scripts\Flamethrower.cs" />
      <Compile Include="Assets\__Scripts\GamePlay.cs" />
+     <Compile Include="Assets\__Scripts\Ghost.cs" />
      <Compile Include="Assets\__Scripts\Human.cs" />
      <Compile Include="Assets\__Scripts\Knife.cs" />
      <Compile Include="Assets\__Scripts\Movement.cs" />
      <Compile Include="Assets\__Scripts\Murderer.cs" />
      <Compile Include="Assets\__Scripts\NPC.cs" />
+     <Compile Include="Assets\__Scripts\PossessHit.cs" />
+     <Compile Include="Assets\__Scripts\Restart.cs" />
      <Compile Include="Assets\__Scripts\RevealTracker.cs" />
      <Compile Include="Assets\__Scripts\Switch.cs" />
+     <Compile Include="Assets\__Scripts\TotalGame.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
