@@ -43,7 +43,8 @@ public class Human : MonoBehaviour {
         if (NPCToKill)
         {
             //Knock the murderer over
-            NPCToKill.dispossess();
+            if (NPCToKill.possessed)
+				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
             alive = false;
 

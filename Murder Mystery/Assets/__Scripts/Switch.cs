@@ -26,7 +26,7 @@ public class Switch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isInfected && lightObject.enabled) {
+		if (isInfected && Environment.E.lightsOn) {
 			murderer.GetComponent<Human> ().Kill ();
 			isInfected = false;
 		}

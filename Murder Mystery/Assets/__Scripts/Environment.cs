@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Environment : MonoBehaviour {
 
+	public static Environment E;
+
 	bool					turnedOff;
     // The smallest and largest possible number of seconds until the lights go out
     public int              turnOffTimeMin;
@@ -20,6 +22,11 @@ public class Environment : MonoBehaviour {
     public Transform        cameraToHideObj;
     HideLight        cameraToHide;
     public Transform        nightVisionObject;
+	public bool lightsOn = false;
+
+	void Awake(){
+		E = this;
+	}
 	
 	// Use this for initialization
 	void Start () {
@@ -55,6 +62,7 @@ public class Environment : MonoBehaviour {
         // back on
         lightTimer = 0;
         nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
+		lightsOn = false;
         //Debug.Log(nextTurnOnTime);
     }
 
@@ -69,6 +77,7 @@ public class Environment : MonoBehaviour {
         // back off
         lightTimer = 0;
         nextTurnOffTime = Random.Range(turnOffTimeMin, turnOffTimeMax + 1);
+		lightsOn = true;
         //Debug.Log(nextTurnOffTime);
     }
 
