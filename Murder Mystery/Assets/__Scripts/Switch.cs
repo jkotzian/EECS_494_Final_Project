@@ -32,50 +32,6 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
-<<<<<<< HEAD
-	void OnTriggerStay(Collider other)
-    {
-        Movement movement = other.GetComponent<Movement> ();
-		bool pressed = Input.GetKeyDown (KeyCode.E);
-		if (movement && pressed) {
-			print ("Hey");
-			print (switchNum);
-			if (switchNum == 1){	
-				rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects [0].GetComponent<Rigidbody> ();
-                rigidbody2Dimensional.useGravity = true;
-			}
-			else if (switchNum == 2){
-				other.GetComponent<BoxCollider>().enabled = false;
-			}
-			else if (switchNum == 3){
-				Color tmpColor = GamePlay.S.EnvironmentalObjects [1].GetComponent<Renderer> ().material.color;
-				tmpColor.a = 0.5f;
-				GamePlay.S.EnvironmentalObjects [1].GetComponent<Renderer> ().material.color = tmpColor;
-				Vector3 tmpPos = GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform>().position;
-				tmpPos.z = 0;
-				GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform>().position = tmpPos;
-				other.gameObject.GetComponent<Human> ().Kill ();
-			}
-			else if (switchNum == 4){
-				GamePlay.S.EnvironmentalObjects[2].GetComponent<Flamethrower>().flameOn = true;
-			}
-			else if (switchNum == 5){
-				this.GetComponent<Renderer>().material = emptyMaterial;
-				murderer = other.gameObject;
-				isInfected = true;
-			}
-			else if (switchNum == 6 && !isChopped){
-				GamePlay.S.EnvironmentalObjects[3].GetComponent<Transform>().Rotate(new Vector3(0, 0, 90));
-				other.gameObject.GetComponent<Human> ().Kill ();
-				isChopped = true;
-			}
-			else if (switchNum == 7 && !droppedLid){
-				print ("Got in");
-				GamePlay.S.EnvironmentalObjects[4].GetComponent<Transform>().Rotate(new Vector3(0, 0, 320));
-				this.transform.Rotate(new Vector3(0, 0, -60));
-				other.gameObject.GetComponent<Human> ().Kill ();
-				droppedLid = true;
-=======
 	void OnTriggerStay(Collider other){
 		NPC computer = other.GetComponent<NPC> ();
 		bool pressed = Input.GetKeyDown (KeyCode.Q);
@@ -121,7 +77,6 @@ public class Switch : MonoBehaviour {
 					droppedLid = true;
 					//computer.dispossess();
 				}
->>>>>>> Jeff's-Branch
 			}
 		}
 	}
