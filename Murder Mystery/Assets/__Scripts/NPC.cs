@@ -96,16 +96,9 @@ public class NPC : Human {
             }
         }
 
-        if (possessionOwner && Input.GetKeyDown(possessionOwner.possessKey))
+        if (possessed && Input.GetKeyDown(possessionOwner.possessKey))
         {
-            possessed = false;
-            // Disable the movement
-            NPCMovement.enabled = false;
-            // Re-enable the possession owner wherever the NPC is with an offset
-            Vector3 offset = new Vector3(0, .3f, 0);
-            possessionOwner.transform.position = gameObject.transform.position + offset;
-            possessionOwner.gameObject.SetActive(true);
-            possessionOwner = null;
+			dispossess();
         }
 	}
 
@@ -124,4 +117,15 @@ public class NPC : Human {
         // Set the velocity to 0
         rigidbody.velocity = Vector3.zero;
     }
+
+	public void dispossess(){
+		possessed = false;
+		// Disable the movement
+		NPCMovement.enabled = false;
+		// Re-enable the possession owner wherever the NPC is with an offset
+		Vector3 offset = new Vector3(0, .3f, 0);
+		possessionOwner.transform.position = gameObject.transform.position + offset;
+		possessionOwner.gameObject.SetActive(true);
+		possessionOwner = null;
+	}
 }
