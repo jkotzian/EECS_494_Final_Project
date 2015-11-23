@@ -15,8 +15,8 @@ public class NPC : Human {
     public bool         target;
 
     public bool possessed;
-    Ghost possessionOwner;
-    Movement NPCMovement;
+    public Ghost possessionOwner;
+    public Movement NPCMovement;
 
     Rigidbody rigidbody;
     // Much better to set these values in the inspector for quick

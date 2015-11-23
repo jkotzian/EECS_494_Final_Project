@@ -31,10 +31,30 @@ public class Detective : Human {
             {
                 if (ghosts[i] && ghosts[i].alive)
                 {
-                    Vector3 murdererPos = ghosts[i].transform.position;
-                    if ((detectivePos - murdererPos).magnitude < 1)
+                    Vector3 ghostPos = ghosts[i].transform.position;
+                    if ((detectivePos - ghostPos).magnitude < 1)
                     {
                         ghosts[i].Kill();
+                    }
+                }
+            }
+            foreach(GameObject g in GamePlay.S.NPCs)
+            {
+                NPC npc = g.GetComponent<NPC>();
+                if (npc.possessed)
+                {
+                    Vector3 ghostPos = g.transform.position;
+                    if((detectivePos - ghostPos).magnitude < 1)
+                    {
+                        npc.possessed = false;
+                        // Disable the movement
+                        npc.NPCMovement.enabled = false;
+                        // Re-enable the possession owner wherever the NPC is with an offset
+                        Vector3 offset = new Vector3(0, .3f, 0);
+                        npc.possessionOwner.transform.position = g.transform.position + offset;
+                        npc.possessionOwner.gameObject.SetActive(true);
+                        npc.possessionOwner.Kill();
+                        npc.possessionOwner = null;
                     }
                 }
             }
