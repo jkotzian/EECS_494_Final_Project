@@ -1,16 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NPC : Human {
 
     // These things should most definitely be kept public!
     public int         checkMoveTimerMin;
     public int         checkMoveTimerMax;
-    public int         standingTime;
+    public int         standingTimeMin;
+    public int         standingTimeMax;
     int                checkMoveTimer;
 
     private bool        moving;
     private bool        movingRight;
+    public bool         blockedRight;
+    public bool         blockedLeft;
     public  float       speed;
     public bool         target;
 
@@ -19,16 +23,6 @@ public class NPC : Human {
     Movement NPCMovement;
 
     Rigidbody rigidbody;
-    // Much better to set these values in the inspector for quick
-    // iteration rather than hard code it in a function like this
-    public void setTimerValues(int min, int max, int standing)
-    {
-        checkMoveTimerMin = min;
-        checkMoveTimerMax = max;
-        standingTime = standing;
-        // Randomely set the next time the NPC will check its direction between the min and the max
-        checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
-    }
 
 	// Awake might not be the best place for initialization
 	void Awake () {
@@ -54,19 +48,20 @@ public class NPC : Human {
         if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
+
             if (checkMoveTimer == 0)
             {
                 // If the NPC was moving, have it stand still
                 if (moving)
                 {
                     moving = false;
-                    checkMoveTimer = standingTime;
+                    checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
                     return;
                 }
-                // Randomely decide the next movement of the NPC
-                int moveNextRandNum = Random.Range(0, 101);
+                // Randomely decide the direction of the NPC
+                int moveNextRandNum = Random.Range(0, 2);
                 // Go left
-                if (moveNextRandNum < 50)
+                if (blockedRight || moveNextRandNum == 0)
                 {
                     moving = true;
                     movingRight = false;
@@ -81,6 +76,7 @@ public class NPC : Human {
                 }
                 // Randomely set the next time the NPC will check its direction between the min and the max
                 checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
+                //Debug.Log(this.gameObject.name + " facing right = " + facingRight);
             }
         }
 
@@ -123,5 +119,35 @@ public class NPC : Human {
         possessor.gameObject.SetActive(false);
         // Set the velocity to 0
         rigidbody.velocity = Vector3.zero;
+    }
+
+    public void block(bool right)
+    {
+        if (right)
+        {
+            blockedRight = true;
+        }
+        else
+        {
+            blockedLeft = true;
+        }
+
+        // Have the NPC recalculate it's next move (
+        // it will also stop and see that it's blocked)
+        // Setting it to 1 will make it go just a tid bit further
+        // before stopping and re-evaluating
+        checkMoveTimer = 1;
+    }
+
+    public void unblock(bool right)
+    {
+        if (right)
+        {
+            blockedRight = false;
+        }
+        else
+        {
+            blockedLeft = false;
+        }
     }
 }

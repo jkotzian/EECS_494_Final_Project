@@ -9,7 +9,7 @@ public class Door : MonoBehaviour {
 	void OnTriggerStay(Collider other){
         Movement movement = other.GetComponent<Movement>();
 		//sending the characters up and down a level 
-		if(movement && movement.isDetective){
+		if (movement && !movement.isGhost) {
             // move up
 			if (Input.GetKeyDown(movement.upKey) && above) {
 				print ("up elevator");

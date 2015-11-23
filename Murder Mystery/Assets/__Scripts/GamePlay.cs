@@ -52,6 +52,7 @@ public class GamePlay : MonoBehaviour {
         {
             NPCs.Add(Instantiate(npcPrefab, startLoc[i], Quaternion.identity) as GameObject);
             NPCs[i].GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
+            NPCs[i].gameObject.name = "NPC " + i.ToString();   
         }
 
         // Place Ghosts
