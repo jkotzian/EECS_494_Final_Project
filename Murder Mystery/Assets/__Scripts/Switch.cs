@@ -31,6 +31,7 @@ public class Switch : MonoBehaviour {
 			isInfected = false;
 		}
 	}
+
 	void OnTriggerStay(Collider other){
 		NPC computer = other.GetComponent<NPC> ();
 		bool pressed = Input.GetKeyDown (KeyCode.Q);

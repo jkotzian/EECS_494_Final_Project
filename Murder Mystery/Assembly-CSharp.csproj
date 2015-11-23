@@ -55,6 +55,7 @@
      <Compile Include="Assets\__Scripts\Flamethrower.cs" />
      <Compile Include="Assets\__Scripts\GamePlay.cs" />
      <Compile Include="Assets\__Scripts\Ghost.cs" />
+     <Compile Include="Assets\__Scripts\HideLight.cs" />
      <Compile Include="Assets\__Scripts\Human.cs" />
      <Compile Include="Assets\__Scripts\Knife.cs" />
      <Compile Include="Assets\__Scripts\Movement.cs" />

@@ -15,8 +15,8 @@ public class FlameCollider : MonoBehaviour {
 
 	void OnTriggerStay(Collider other)
 	{
-
-		if (other.gameObject.GetComponent<Human>() != null && GetComponentInParent<Flamethrower>().flameOn)
-			other.gameObject.GetComponent<Human> ().Kill ();
+        NPC NPCToKill = other.gameObject.GetComponent<NPC>();
+		if (NPCToKill!= null && GetComponentInParent<Flamethrower>().flameOn)
+			NPCToKill.Kill ();
 	}
 }
