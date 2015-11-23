@@ -1,0 +1,26 @@
+	
+	public Rect label;
+	public string playerNum;
+
+
+	void OnGUI(){
+
+		label.width = 300;
+		label.height = 300;
+
+		GUI.Label (label, playerNum + Mathf.RoundToInt(dModeTotal) + "%");
+		
+	}
+
+
+	public void setLabel(int x, int y, string playernum){
+		label.x = x;
+		label.y = y;
+		playerNum = playernum;
+	}
+
+
+	//on gamplay.cs
+        Detectives[0].GetComponent<Movement>().setLabel(665,380, "Player 1 Detective Mode: ");		
+	
+		Detectives[1].GetComponent<Movement>().setLabel(1065,380, "Player 2 Detective Mode: ");
