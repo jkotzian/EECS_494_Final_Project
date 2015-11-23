@@ -11,7 +11,7 @@ public class Flamethrower : MonoBehaviour {
 	void Start () {
 		print (this.GetComponentInChildren<ParticleSystem> ());
 		this.GetComponentInChildren<ParticleSystem> ().emissionRate = 0.0f;
-		this.GetComponentInChildren<BoxCollider> ().enabled = false;
+		//this.GetComponentInChildren<BoxCollider> ().enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -19,14 +19,14 @@ public class Flamethrower : MonoBehaviour {
 		if (flameOn) {
 			if (heat < 1) {
 				this.GetComponentInChildren<ParticleSystem> ().emissionRate = 150f;
-				this.GetComponentInChildren<BoxCollider> ().enabled = true;
+				//this.GetComponentInChildren<BoxCollider> ().enabled = true;
 				heat += heatPerSecond * Time.deltaTime;
 			}
 			else{
 				heat = 0;
 				flameOn = false;
 				this.GetComponentInChildren<ParticleSystem> ().emissionRate = 0;
-				this.GetComponentInChildren<BoxCollider> ().enabled = false;
+				//this.GetComponentInChildren<BoxCollider> ().enabled = false;
 			}
 		}
 	}

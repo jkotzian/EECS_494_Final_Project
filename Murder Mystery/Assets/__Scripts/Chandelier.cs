@@ -18,6 +18,7 @@ public class Chandelier : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.GetComponent<Human> () != null && !hasFallen) {
+			//GetComponent<BoxCollider> ().enabled = false;
 			collision.gameObject.GetComponent<Human> ().Kill ();
 			hasFallen = true;
 		}

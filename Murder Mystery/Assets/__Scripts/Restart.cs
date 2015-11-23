@@ -12,7 +12,7 @@ public class Restart : MonoBehaviour {
         switch (TotalGame.S.round)
         {
             case 1:
-                message = "Round 1 Body Count: " + TotalGame.S.bodyCount[0];
+                message = "Round 1 Body Count: " + TotalGame.S.bodyCount[0] + "\n\nPress Space for Round 2";
                 break;
 
             case 2:

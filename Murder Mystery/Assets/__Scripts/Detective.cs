@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class Detective : Human {
-    private KeyCode         arrestKey;
-    private Ghost[]      ghosts;
+    private KeyCode     arrestKey;
+    private Ghost[]     ghosts;
+    private Movement movement;
 
     public void setArrestKey(KeyCode key)
     {
@@ -17,6 +18,7 @@ public class Detective : Human {
         ghosts = new Ghost[2];
         ghosts[0] = GamePlay.S.Ghosts[0].GetComponent<Ghost>();
         ghosts[1] = GamePlay.S.Ghosts[1].GetComponent<Ghost>();
+        movement = transform.GetComponent<Movement>();
     }
 
     void FixedUpdate()
@@ -29,18 +31,50 @@ public class Detective : Human {
             {
                 if (ghosts[i] && ghosts[i].alive)
                 {
-                    Vector3 murdererPos = ghosts[i].transform.position;
-                    if ((detectivePos - murdererPos).magnitude < 1)
+                    Vector3 ghostPos = ghosts[i].transform.position;
+                    if ((detectivePos - ghostPos).magnitude < 1)
                     {
                         ghosts[i].Kill();
+                    }
+                }
+            }
+            foreach(GameObject g in GamePlay.S.NPCs)
+            {
+                NPC npc = g.GetComponent<NPC>();
+                if (npc.possessed)
+                {
+                    Vector3 ghostPos = g.transform.position;
+                    if((detectivePos - ghostPos).magnitude < 1)
+                    {
+                        npc.possessed = false;
+                        // Disable the movement
+                        npc.NPCMovement.enabled = false;
+                        // Re-enable the possession owner wherever the NPC is with an offset
+                        Vector3 offset = new Vector3(0, .3f, 0);
+                        npc.possessionOwner.transform.position = g.transform.position + offset;
+                        npc.possessionOwner.gameObject.SetActive(true);
+                        npc.possessionOwner.Kill();
+                        npc.possessionOwner = null;
                     }
                 }
             }
         }
     }
 
-    void OnCollisionStay(Collision collisionInfo)
+    void OnTriggerStay(Collider collider)
     {
+        Door door = collider.GetComponent<Door>();
+        if (door)
+        {
+            if (Input.GetKeyDown(movement.upKey) && door.above)
+            {
+                door.MoveUp(gameObject);    
+            }
+            else if (Input.GetKeyDown(movement.downKey) && door.below)
+            {
+                door.MoveDown(gameObject);
+            }
+        }
         ////Make Arrest
         //if (Input.GetKey(KeyCode.RightShift))
         //{

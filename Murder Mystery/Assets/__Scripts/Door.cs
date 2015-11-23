@@ -6,22 +6,28 @@ public class Door : MonoBehaviour {
     public Door above;
     public Door below;
 
-	void OnTriggerStay(Collider other){
+    public void MoveUp(GameObject passenger)
+    {
+        print("up elevator");
+        Vector3 dest = new Vector3(above.transform.position.x, above.transform.position.y, -0.2f);
+        passenger.transform.position = dest;
+    }
+
+    public void MoveDown(GameObject passenger)
+    {
+        print("down elevator");
+        Vector3 dest = new Vector3(below.transform.position.x, below.transform.position.y, -0.2f);
+        passenger.transform.position = dest;
+    }
+
+    void OnTriggerStay(Collider other){
         Movement movement = other.GetComponent<Movement>();
 		//sending the characters up and down a level 
 		if (movement && !movement.isGhost) {
             // move up
 			if (Input.GetKeyDown(movement.upKey) && above) {
-				print ("up elevator");
-                Vector3 dest = new Vector3(above.transform.position.x, above.transform.position.y, -0.2f);
-                other.transform.position = dest;
+				
             }
-            // move down
-			if (Input.GetKeyDown(movement.downKey) && below) {
-				print ("down elevator");
-                Vector3 dest = new Vector3(below.transform.position.x, below.transform.position.y, -0.2f);
-                other.transform.position = dest;
-			}
 
 			//Elevator Kill is glitchy (fix this)
 //			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown (KeyCode.E)){

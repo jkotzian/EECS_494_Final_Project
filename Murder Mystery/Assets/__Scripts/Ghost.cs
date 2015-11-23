@@ -96,16 +96,6 @@ public class Ghost : Human
         }
     }
 
-    void getPossessTarget()
-    {
-
-    }
-
-    public void possess()
-    {
-
-    }
-
     public void track()
     {
         // If the murderer is already being tracked, just reset the tracked timer
@@ -114,6 +104,26 @@ public class Ghost : Human
             bloodDropTimer = 0;
         }
         tracked = true;
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Switch s = collider.GetComponent<Switch>();
+        if (s)
+        {
+            GamePlay.S.texts[4].text = "press 'X' to activate trap";
+            GamePlay.S.texts[5].text = "press 'X' to activate trap";
+        }
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        Switch s = collider.GetComponent<Switch>();
+        if (s)
+        {
+            GamePlay.S.texts[4].text = "";
+            GamePlay.S.texts[5].text = "";
+        }
     }
 }
 
