@@ -21,6 +21,7 @@ public class NPC : Human {
     public bool possessed;
     public Ghost possessionOwner;
     public Movement NPCMovement;
+    public Movement possessorMovement;
 
     Rigidbody rigidbody;
 
@@ -102,7 +103,7 @@ public class NPC : Human {
     {
         possessed = true;
         possessionOwner = possessor;
-        Movement possessorMovement = possessor.GetComponent<Movement>();
+        possessorMovement = possessor.GetComponent<Movement>();
         
         // Enable the NPC's movement with the Ghost's controls
         NPCMovement.enabled = true;
@@ -143,7 +144,7 @@ public class NPC : Human {
             blockedLeft = false;
         }
     }
-	public void dispossess(){
+	public void dispossess() {
 		possessed = false;
 		// Disable the movement
 		NPCMovement.enabled = false;
@@ -153,4 +154,24 @@ public class NPC : Human {
 		possessionOwner.gameObject.SetActive(true);
 		possessionOwner = null;
 	}
+
+    void OnTriggerStay(Collider collider)
+    {
+        if (!possessed)
+        {
+            return;
+        }
+        Door door = collider.GetComponent<Door>();
+        if (door)
+        {
+            if (Input.GetKeyDown(possessorMovement.upKey) && door.above)
+            {
+                door.MoveUp(gameObject);
+            }
+            else if (Input.GetKeyDown(possessorMovement.downKey) && door.below)
+            {
+                door.MoveDown(gameObject);
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine.UI;
+//using InControl;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
@@ -47,6 +48,7 @@ public class GamePlay : MonoBehaviour {
     }
     
     void Start () {
+        //print("Num of devices " + InputManager.Devices.Count);
         // Place NPCs
         for(int i = 0; i < numNPCs; i++)
         {
@@ -126,6 +128,8 @@ public class GamePlay : MonoBehaviour {
 
     void Update()
     {
+        //var inputDevice = InputManager.ActiveDevice;
+
         //if (checkForMurdererWin())
         //{
         //    GameObject murdererText = GameObject.Find("MurdererText");
