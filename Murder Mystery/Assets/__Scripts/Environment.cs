@@ -20,7 +20,7 @@ public class Environment : MonoBehaviour {
     // go on next
     int                     nextTurnOnTime;
     public Transform        cameraToHideObj;
-    HideLight        cameraToHide;
+    HideLight               cameraToHide;
     public Transform        nightVisionObject;
 	public bool lightsOn = false;
 

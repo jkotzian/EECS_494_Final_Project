@@ -38,6 +38,7 @@ public class Human : MonoBehaviour {
 	
     public void Kill()
     {
+        Debug.Log("Here1");
         // If it's an NPC that is killed
         NPC NPCToKill = GetComponent<NPC>();
         if (NPCToKill)
@@ -49,6 +50,14 @@ public class Human : MonoBehaviour {
             alive = false;
 
             TotalGame.S.bodyCount[TotalGame.S.round - 1]++;
+        }
+        // If it's a Ghost 
+        Ghost GhostToKill = GetComponent<Ghost>();
+        if (GhostToKill && alive)
+        {
+            Debug.Log("Here2");
+            transform.Rotate(new Vector3(0, 0, 90));
+            alive = false;
         }
     }
 

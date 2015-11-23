@@ -6,6 +6,9 @@ public class Detective : Human {
     private Ghost[]     ghosts;
     private Movement movement;
 
+    public GameObject ghostHitObjRef;
+    GameObject currentGhostHitObj;
+
     public void setArrestKey(KeyCode key)
     {
         arrestKey = key;
@@ -21,43 +24,36 @@ public class Detective : Human {
         movement = transform.GetComponent<Movement>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetKey(arrestKey))
+        if (Input.GetKeyDown(arrestKey) && !currentGhostHitObj)
         {
-            Vector3 detectivePos = gameObject.transform.position;
-            // Check for ghosts within arrest range
-            for(int i=0; i<ghosts.Length; i++)
+            Vector3 ghostHitObjPos = transform.position;
+            // Not having an offset for now, might want one laters
+            Vector3 ghostHitObjOffset;
+            if (facingRight)
             {
-                if (ghosts[i] && ghosts[i].alive)
-                {
-                    Vector3 ghostPos = ghosts[i].transform.position;
-                    if ((detectivePos - ghostPos).magnitude < 1)
-                    {
-                        ghosts[i].Kill();
-                    }
-                }
+                ghostHitObjOffset = Vector3.right / 1.3f;
             }
-            foreach(GameObject g in GamePlay.S.NPCs)
+            else
             {
-                NPC npc = g.GetComponent<NPC>();
-                if (npc.possessed)
-                {
-                    Vector3 ghostPos = g.transform.position;
-                    if((detectivePos - ghostPos).magnitude < 1)
-                    {
-                        npc.possessed = false;
-                        // Disable the movement
-                        npc.NPCMovement.enabled = false;
-                        // Re-enable the possession owner wherever the NPC is with an offset
-                        Vector3 offset = new Vector3(0, .3f, 0);
-                        npc.possessionOwner.transform.position = g.transform.position + offset;
-                        npc.possessionOwner.gameObject.SetActive(true);
-                        npc.possessionOwner.Kill();
-                        npc.possessionOwner = null;
-                    }
-                }
+                ghostHitObjOffset = Vector3.left / 1.3f;
             }
+            ghostHitObjOffset += Vector3.up / 2.0f;
+
+            ghostHitObjPos += ghostHitObjOffset;
+
+            currentGhostHitObj = Instantiate(ghostHitObjRef, ghostHitObjPos, transform.rotation) as GameObject;
+
+            // Get the possession object
+            GhostHit ghostHit = currentGhostHitObj.GetComponent<GhostHit>();
+            ghostHit.detectiveOwner = this;
+            // Make sure to set its offset!!!
+            ghostHit.offset = ghostHitObjOffset;
+        }
+        if (Input.GetKeyUp(arrestKey) && currentGhostHitObj)
+        {
+            Destroy(currentGhostHitObj);
         }
     }
 

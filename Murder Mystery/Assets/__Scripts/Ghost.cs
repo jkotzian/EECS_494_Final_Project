@@ -19,6 +19,8 @@ public class Ghost : Human
 
     bool tracked;
 
+    public bool possessing;
+
     public void setPossessKey(KeyCode key)
     {
         possessKey = key;

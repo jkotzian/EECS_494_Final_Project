@@ -152,6 +152,7 @@ public class NPC : Human {
 		Vector3 offset = new Vector3(0, .3f, 0);
 		possessionOwner.transform.position = gameObject.transform.position + offset;
 		possessionOwner.gameObject.SetActive(true);
+        possessionOwner.possessing = false;
 		possessionOwner = null;
 	}
 

@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PossessHit : MonoBehaviour
-{
+public class GhostHit : MonoBehaviour {
     public int lifetimeMax;
-    public Ghost ghostOwner;
+    public Detective detectiveOwner;
     public Vector3 offset;
     public int lifetime;
 
@@ -17,7 +16,7 @@ public class PossessHit : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = ghostOwner.transform.position + offset;
+        transform.position = detectiveOwner.transform.position + offset;
         /*lifetime--;
         if (lifetime == 0)
         {
@@ -25,14 +24,18 @@ public class PossessHit : MonoBehaviour
         }*/
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerStay(Collider other)
     {
-        NPC target = collision.gameObject.GetComponent<NPC>();
+        Ghost target = other.gameObject.GetComponent<Ghost>();
         if (target)
         {
-            target.possess(ghostOwner);
-            ghostOwner.possessing = true;
-            Destroy(this.gameObject);
+            Human human = target.GetComponent<Human>();
+            human.Kill();
+        }
+        NPC npc = other.gameObject.GetComponent<NPC>();
+        if (npc && npc.possessed)
+        {
+            npc.dispossess();
         }
     }
 }

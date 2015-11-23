@@ -37,7 +37,6 @@ public class Switch : MonoBehaviour {
 		bool pressed = Input.GetKeyDown (KeyCode.Q);
 		if (computer != null) {
 			if (computer.possessed && pressed) {
-				print ("Hey");
 				print (switchNum);
 				if (switchNum == 1) {
 					GamePlay.S.EnvironmentalObjects [0].GetComponent<BoxCollider>().enabled = true;
