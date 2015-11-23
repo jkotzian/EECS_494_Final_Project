@@ -43,6 +43,20 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		NPC computer = other.GetComponent<NPC> ();
+		print ("Hello");
+		if (computer != null) {
+			print ("Hey");
+			if (computer.possessed){
+				GamePlay.S.texts [4].text = "press 'X' to activate trap";
+
+				//GamePlay.S.texts [5].text = "press 'X' to activate trap";
+			}
+		}
+	}
+
 	void OnTriggerStay(Collider other){
 		NPC computer = other.GetComponent<NPC> ();
 		bool pressed = Input.GetKeyDown (KeyCode.Q);
@@ -90,6 +104,11 @@ public class Switch : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void OnTriggerExit(Collider other){
+		GamePlay.S.texts [4].text = "";
+		//GamePlay.S.texts [5].text = "";
 	}
 
 	void resetEnvironment(){

@@ -22,7 +22,7 @@ public class Environment : MonoBehaviour {
     public Transform        cameraToHideObj;
     HideLight        cameraToHide;
     public Transform        nightVisionObject;
-	public bool lightsOn = false;
+	public bool lightsOn = true;
 
 	void Awake(){
 		E = this;

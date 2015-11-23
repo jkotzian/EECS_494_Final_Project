@@ -58,6 +58,7 @@
      <Compile Include="Assets\__Scripts\HideLight.cs" />
      <Compile Include="Assets\__Scripts\Human.cs" />
      <Compile Include="Assets\__Scripts\Knife.cs" />
+     <Compile Include="Assets\__Scripts\MansionEnvironment.cs" />
      <Compile Include="Assets\__Scripts\Movement.cs" />
      <Compile Include="Assets\__Scripts\Murderer.cs" />
      <Compile Include="Assets\__Scripts\NPC.cs" />
