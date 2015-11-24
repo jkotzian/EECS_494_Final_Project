@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 
 public class Detective : Human {
     private KeyCode         arrestKey;
@@ -8,6 +9,8 @@ public class Detective : Human {
 
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
+
+	public int conNum;
 
     public void setArrestKey(KeyCode key)
     {
@@ -58,11 +61,11 @@ public class Detective : Human {
         Door door = collider.GetComponent<Door>();
         if (door)
         {
-            if (Input.GetKeyDown(movement.upKey) && door.above)
+			if ((Input.GetKeyDown(movement.upKey) || InputManager.Devices[conNum].DPadUp) && door.above)
             {
                 door.MoveUp(gameObject);    
             }
-            else if (Input.GetKeyDown(movement.downKey) && door.below)
+			else if ((Input.GetKeyDown(movement.downKey) || InputManager.Devices[conNum].DPadDown) && door.below)
             {
                 door.MoveDown(gameObject);
             }

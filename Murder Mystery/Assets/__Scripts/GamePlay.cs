@@ -69,8 +69,9 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
-		Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
-
+		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
+		Ghosts[0].GetComponent<Movement>().conNum = ControllerManager.S.ghostOne;
+		
         ++locationIndex;
 
         if (numPlayers == 4)
@@ -80,6 +81,7 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Ghost>().alive = true;
             Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
 			Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
+			Ghosts[1].GetComponent<Movement>().conNum = ControllerManager.S.ghostTwo;
             ++locationIndex;
         }
         // Randomely possess one of the NPCs
@@ -102,7 +104,9 @@ public class GamePlay : MonoBehaviour {
 		Detectives[0].GetComponent<Movement>().isDetective = true;
 		Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
 		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
-
+		Detectives[0].GetComponent<Movement>().conNum = ControllerManager.S.detectiveOne;
+		Detectives[0].GetComponent<Detective>().conNum = ControllerManager.S.detectiveOne;
+		
         // Hide the light from the detectives from the ghost camera
         ghostCamera.light = Detectives[0].GetComponent<Light>();
         ++locationIndex;
@@ -117,6 +121,8 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().isDetective = true;
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
 			Detectives[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveTwo];
+			Detectives[1].GetComponent<Movement>().conNum = ControllerManager.S.detectiveTwo;
+			Detectives[1].GetComponent<Detective>().conNum = ControllerManager.S.detectiveTwo;
             // Hide the light from the ghost
             ghostCamera.light2 = Detectives[1].GetComponent<Light>();
             ++locationIndex;
