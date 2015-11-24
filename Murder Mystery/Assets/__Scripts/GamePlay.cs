@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
-//using InControl;
+using InControl;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
@@ -68,6 +68,8 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
+		Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
+
         ++locationIndex;
 
         if (numPlayers == 4)
@@ -76,6 +78,7 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
             Ghosts[1].GetComponent<Ghost>().alive = true;
             Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+			Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
             ++locationIndex;
         }
         // Randomely possess one of the NPCs
@@ -96,7 +99,9 @@ public class GamePlay : MonoBehaviour {
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement>().isDetective = true;
-        Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+		Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
+		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+
         // Hide the light from the detectives from the ghost camera
         ghostCamera.light = Detectives[0].GetComponent<Light>();
         ++locationIndex;
@@ -110,6 +115,7 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().setLabel(765, 400, "Player 2 Detective Mode: ");
             Detectives[1].GetComponent<Movement>().isDetective = true;
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
+			Detectives[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveTwo];
             // Hide the light from the ghost
             ghostCamera.light2 = Detectives[1].GetComponent<Light>();
             ++locationIndex;

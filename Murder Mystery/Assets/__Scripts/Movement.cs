@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class Movement : MonoBehaviour {
     public float           speed;
@@ -23,6 +24,7 @@ public class Movement : MonoBehaviour {
 	public Rect label;
 	public string playerNum;
 
+	public InputDevice inputDevice;
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
