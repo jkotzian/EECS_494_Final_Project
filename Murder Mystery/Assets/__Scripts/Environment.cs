@@ -67,7 +67,7 @@ public class Environment : MonoBehaviour {
         if (first)
         {
             first = false;
-            nextTurnOnTime = 500;
+            nextTurnOnTime = turnOnTimeMax;
         }
         else
             nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);

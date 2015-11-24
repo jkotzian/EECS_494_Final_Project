@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Detective : Human {
-    private KeyCode     arrestKey;
-    private Ghost[]     ghosts;
-    private Movement movement;
+    private KeyCode         arrestKey;
+    private Movement        movement;
 
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
@@ -14,13 +14,9 @@ public class Detective : Human {
         arrestKey = key;
     }
     
-	void Awake () {
+	void Start () {
         // Set default arrest key
         setArrestKey(KeyCode.RightShift);
-        // Link Ghost objects from GamePlay singleton GameObjects
-        ghosts = new Ghost[2];
-        ghosts[0] = GamePlay.S.Ghosts[0].GetComponent<Ghost>();
-        ghosts[1] = GamePlay.S.Ghosts[1].GetComponent<Ghost>();
         movement = transform.GetComponent<Movement>();
     }
 

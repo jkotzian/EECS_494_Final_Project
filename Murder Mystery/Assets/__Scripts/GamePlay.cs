@@ -26,6 +26,8 @@ public class GamePlay : MonoBehaviour {
 
     public int numNPCs = 8;
     public int numFloors = 4;
+    // As of now, this value can only be 2 or 4
+    public int numPlayers;
     public List<GameObject> NPCs;
     public List<GameObject> Ghosts;
     public List<GameObject> Detectives;
@@ -52,22 +54,30 @@ public class GamePlay : MonoBehaviour {
     void Start () {
         //print("Num of devices " + InputManager.Devices.Count);
         // Place NPCs
-        for(int i = 0; i < numNPCs; i++)
+        int locationIndex = 0;
+        while (locationIndex < numNPCs)
         {
-            NPCs.Add(Instantiate(npcPrefab, startLoc[i], Quaternion.identity) as GameObject);
-            NPCs[i].GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
-            NPCs[i].gameObject.name = "NPC " + i.ToString();   
+            NPCs.Add(Instantiate(npcPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
+            NPCs[locationIndex].GetComponent<Renderer>().material = disguises[0];
+            NPCs[locationIndex].gameObject.name = "NPC " + locationIndex.ToString();
+            ++locationIndex;
         }
 
         // Place Ghosts
-        Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs], Quaternion.identity) as GameObject);
+        Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
-        Ghosts.Add(Instantiate(ghostPrefab, startLoc[numNPCs+1], Quaternion.identity) as GameObject);
-        Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
-        Ghosts[1].GetComponent<Ghost>().alive = true;
-        Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+        ++locationIndex;
+
+        if (numPlayers == 4)
+        {
+            Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
+            Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
+            Ghosts[1].GetComponent<Ghost>().alive = true;
+            Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+            ++locationIndex;
+        }
         // Randomely possess one of the NPCs
         //int randPossessNum = Random.Range(0, numNPCs);
         //Ghost ghost1 = Ghosts[0].GetComponent<Ghost>();
@@ -80,24 +90,30 @@ public class GamePlay : MonoBehaviour {
         //}
         //Ghosts[1].GetComponent<Ghost>().possess(NPCs[2].GetComponent<NPC>());
         // Place Detectives
-        Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+2], Quaternion.identity) as GameObject);
-        Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
-        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
-        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
+        Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
+        Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
+        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
-		Detectives[0].GetComponent<Movement> ().isDetective = true;
-        Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.U);
-        Detectives.Add(Instantiate(detectivePrefab, startLoc[numNPCs+3], Quaternion.identity) as GameObject);
-        Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[UnityEngine.Random.Range(0, disguises.Count)];
-        Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
-		Detectives[1].GetComponent<Movement>().setLabel(765,400, "Player 2 Detective Mode: ");
-		Detectives[1].GetComponent<Movement> ().isDetective = true;
-        Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
-
+		Detectives[0].GetComponent<Movement>().isDetective = true;
+        Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
         // Hide the light from the detectives from the ghost camera
         ghostCamera.light = Detectives[0].GetComponent<Light>();
-        ghostCamera.light2 = Detectives[1].GetComponent<Light>();
+        ++locationIndex;
+        
+        if (numPlayers == 4)
+        {
+            Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
+            Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
+            Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
+            Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
+            Detectives[1].GetComponent<Movement>().setLabel(765, 400, "Player 2 Detective Mode: ");
+            Detectives[1].GetComponent<Movement>().isDetective = true;
+            Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
+            // Hide the light from the ghost
+            ghostCamera.light2 = Detectives[1].GetComponent<Light>();
+            ++locationIndex;
+        }
 
         //Set targets
         /*for (int i = 0; i < 4; i++)
@@ -167,16 +183,32 @@ public class GamePlay : MonoBehaviour {
 
     List<Vector3> generateStartLoc()
     {
+        int numPeople = numNPCs + numPlayers;
         List<Vector3> sL = new List<Vector3>();
-        int numPerFloor = (int)Mathf.Ceil((float)((numNPCs + 4) / numFloors));
+        int numPerFloor = (int)Mathf.Ceil((float)((numPeople) / numFloors));
+        // Fill the top floor with any remaining people
+        // EXAMPLE: 10 people, 4 floors
+        // numPerFloor will be 2
+        // Floor 1: 2, Floor 2: 2, Floor 3: 2, Floor 4: 6
+        int remainderPerFloor = (numPeople - (numPerFloor * numFloors)) + numPerFloor;
         float z = -0.2f;
-        for (int i = 0; i < numFloors; i++)
+        int currentFloor = 0;
+        int currentPersonPerFloor = 0;
+        // Create a location for every person
+        for (int k = 0; k < numPeople; ++k)
         {
-            float y = (2.5f * i) - 4;
-            for (int j = 0; j < numPerFloor; j++)
+            // Place the y access according to the floor
+            float y = (2.5f * currentFloor) - 4;
+            float x = (float)((14f / numPerFloor) * (currentPersonPerFloor + 0.5f)) - 7;
+            sL.Add(new Vector3(x, y, z));
+            currentPersonPerFloor++;
+            // Go up a floor if necessary
+            if (currentPersonPerFloor == numPerFloor)
             {
-                float x = (float)((14f / numPerFloor) * (j + 0.5f)) - 7;
-                sL.Add(new Vector3(x, y, z));
+                currentPersonPerFloor = 0;
+                ++currentFloor;
+                if (currentFloor == (numFloors - 1))
+                    numPerFloor = remainderPerFloor;
             }
         }
         return sL.OrderBy(item => UnityEngine.Random.value).ToList<Vector3>();
