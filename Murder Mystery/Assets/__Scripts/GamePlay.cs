@@ -38,6 +38,7 @@ public class GamePlay : MonoBehaviour {
 
     private int[] targetIndices;
     private float starttime;
+    private int roundtime;
 
     void Awake()
     {
@@ -161,21 +162,33 @@ public class GamePlay : MonoBehaviour {
 
         starttime = Time.time;
         TotalGame.S.round++;
+        roundtime = 30;
+        if (TotalGame.S.round > 2)
+        {
+            roundtime += 90;
+        }
+        for (int i = 2; i < 4; i++)
+        {
+            texts[i].text = "";
+        }
     }
 
     void Update()
     {
         for (int i = 0; i < 2; i++)
         {
-            texts[i].text = (120 - (int)(Time.time - starttime)).ToString();
+            texts[i].text = (roundtime - (int)(Time.time - starttime)).ToString();
         }
-        for (int i = 2; i < 4; i++)
+        if(TotalGame.S.round > 2)
         {
-            texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 1];
+            for (int i = 2; i < 4; i++)
+            {
+                texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 3];
+            }
         }
         //for (int j = 0; j < texts.Count; j++)
         //    print (texts [j].text);
-        if (Time.time > 120 + starttime || checkForDetectiveWin())
+        if (Time.time > roundtime + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
         }
