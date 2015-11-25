@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 
 public class NPC : Human {
 
@@ -46,6 +47,13 @@ public class NPC : Human {
 
 	// Update is called once per frame
 	void Update () {
+		if (possessionOwner != null) {
+			//if the npc is possessed, just checking controllers
+			print ("Posseser Controller #: " + possessionOwner.conNum);
+			NPCMovement.conNum = possessionOwner.conNum;
+			print ("NPC Movement  #: " + NPCMovement.conNum);
+		}
+		
         if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
@@ -165,11 +173,11 @@ public class NPC : Human {
         Door door = collider.GetComponent<Door>();
         if (door)
         {
-            if (Input.GetKeyDown(possessorMovement.upKey) && door.above)
+            if ((Input.GetKeyDown(possessorMovement.upKey) || InputManager.Devices[possessionOwner.conNum].DPadUp ) && door.above)
             {
                 door.MoveUp(gameObject);
             }
-            else if (Input.GetKeyDown(possessorMovement.downKey) && door.below)
+			else if ((Input.GetKeyDown(possessorMovement.downKey) || InputManager.Devices[possessionOwner.conNum].DPadDown) && door.below)
             {
                 door.MoveDown(gameObject);
             }

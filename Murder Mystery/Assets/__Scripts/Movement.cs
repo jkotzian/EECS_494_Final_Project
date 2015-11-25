@@ -53,9 +53,13 @@ public class Movement : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		
-		GUI.Label (label, playerNum + Mathf.RoundToInt(dModeTotal) + "%");
-		
+		if (dModeTotal > 0) {
+			GUI.Label (label, playerNum + Mathf.RoundToInt (dModeTotal) + "%");
+		}
+
+		if(dModeTotal < 0){
+			GUI.Label (label, playerNum + "0%");
+		}
 	}
 
     void Awake() {
@@ -71,15 +75,15 @@ public class Movement : MonoBehaviour {
 		//var setDevice = ControllerManager.S.allControllers[0];
 		var setDevice = InputManager.Devices[conNum];
 		
-		print ("My controller in Movement.Script is : " + setDevice.Name);
-
-		if(setDevice.Action1){
-			print ("I was pressed!");
-		}
+		//print ("My controller in Movement.Script is : " + setDevice.Name);
+//
+//		if(setDevice.Action1){
+//			print ("I was pressed!");
+//		}
 
         if (human.alive)
         {
-			if ((Input.GetKey(detectiveMode) || setDevice.RightBumper ) && dModeTotal > -50f){
+			if ((Input.GetKey(detectiveMode) || setDevice.RightBumper ) && dModeTotal > -25f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					//print("Currently in D-Mode");

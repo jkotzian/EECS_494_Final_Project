@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using InControl;
 
 public class Switch : MonoBehaviour {
 	
@@ -43,7 +44,7 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTrigger(Collider other)
 	{
 		NPC computer = other.GetComponent<NPC> ();
 		print ("Hello");
@@ -51,17 +52,36 @@ public class Switch : MonoBehaviour {
 			print ("Hey");
 			if (computer.possessed){
 				GamePlay.S.texts [4].text = "press 'X' to activate trap";
-
+				print ("Who just triggered me? " + computer.name);
+				print ("And what's their controller #? " + computer.NPCMovement.conNum);
+				
+				if(InputManager.Devices[computer.NPCMovement.conNum].Action1){
+					//if a possessed npc is within field of activation, press A to activate
+					print ("PossessedNPC triggering trap by pressing A");
+				}
 				//GamePlay.S.texts [5].text = "press 'X' to activate trap";
 			}
 		}
 	}
 
 	void OnTriggerStay(Collider other){
+
+
 		NPC computer = other.GetComponent<NPC> ();
 		bool pressed = Input.GetKeyDown (KeyCode.Q);
+		if(computer != null){
+			print ("Who just triggered me? " + computer.name);
+			print ("And what's their controller #? " + computer.NPCMovement.conNum);
+
+			if(InputManager.Devices[computer.NPCMovement.conNum].Action1){
+				//if a possessed npc is within field of activation, press A to activate
+				print ("PossessedNPC triggering trap by pressing A");
+			}
+		}
+
 		if (computer != null) {
-			if (computer.possessed && pressed) {
+			if (computer.possessed && (pressed || InputManager.Devices[computer.NPCMovement.conNum].Action1 ) ) {
+		
 				print (switchNum);
 				flippedSwitch = true;
 				if (switchNum == 1) {
