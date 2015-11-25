@@ -79,7 +79,7 @@ public class Movement : MonoBehaviour {
 
         if (human.alive)
         {
-			if (Input.GetKey(detectiveMode) && dModeTotal > -50f){
+			if ((Input.GetKey(detectiveMode) || setDevice.RightBumper ) && dModeTotal > -50f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					//print("Currently in D-Mode");
@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour {
 				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
-			if (Input.GetKeyUp(detectiveMode)){
+			if (Input.GetKeyUp(detectiveMode) || !setDevice.DPadRight ){
 				inDetectiveMode = false;
 				//print("Left D-Mode");
 			}
@@ -122,11 +122,11 @@ public class Movement : MonoBehaviour {
                 }
             }
 
-			if (Input.GetKey(rightKey) && isDetective && Input.GetKey(boostKey))
+			if ((Input.GetKey(rightKey) || setDevice.DPadRight ) && isDetective && (Input.GetKey(boostKey) || setDevice.RightTrigger))
 			{
 				transform.Translate(Vector3.right * Time.deltaTime * speed * 1.5f);
 			}
-			if (Input.GetKey(leftKey) && isDetective && Input.GetKey(boostKey))
+			if ((Input.GetKey(leftKey)|| setDevice.DPadLeft ) && isDetective && (Input.GetKey(boostKey)|| setDevice.RightTrigger))
 			{
 				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
 			}

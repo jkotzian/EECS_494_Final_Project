@@ -25,8 +25,9 @@ public class Detective : Human {
 
     void Update()
     {
-        if (Input.GetKeyDown(arrestKey) && !currentGhostHitObj)
+		if ((Input.GetKeyDown(arrestKey) || InputManager.Devices[conNum].Action1) && !currentGhostHitObj)
         {
+			print("I'm here. I'm being pressed!");
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
             Vector3 ghostHitObjOffset;
@@ -50,7 +51,7 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-        if (Input.GetKeyUp(arrestKey) && currentGhostHitObj)
+		if (!InputManager.Devices[conNum].Action1 && currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);
         }
