@@ -25,7 +25,7 @@ public class Detective : Human {
 
     void Update()
     {
-		if ((Input.GetKeyDown(arrestKey) || InputManager.Devices[conNum].Action1) && !currentGhostHitObj)
+		if ((Input.GetKeyDown(arrestKey) /*|| InputManager.Devices[conNum].Action1 */) && !currentGhostHitObj)
         {
 			print("I'm here. I'm being pressed!");
             Vector3 ghostHitObjPos = transform.position;
@@ -51,7 +51,7 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if (!InputManager.Devices[conNum].Action1 && currentGhostHitObj)
+		if (/*!InputManager.Devices[conNum].Action1 */ !Input.GetKeyDown(arrestKey) && currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);
         }
@@ -62,11 +62,11 @@ public class Detective : Human {
         Door door = collider.GetComponent<Door>();
         if (door)
         {
-			if ((Input.GetKeyDown(movement.upKey) || InputManager.Devices[conNum].DPadUp) && door.above)
+			if ((Input.GetKeyDown(movement.upKey) /* || InputManager.Devices[conNum].DPadUp*/) && door.above)
             {
                 door.MoveUp(gameObject);    
             }
-			else if ((Input.GetKeyDown(movement.downKey) || InputManager.Devices[conNum].DPadDown) && door.below)
+			else if ((Input.GetKeyDown(movement.downKey) /* || InputManager.Devices[conNum].DPadDown*/) && door.below)
             {
                 door.MoveDown(gameObject);
             }

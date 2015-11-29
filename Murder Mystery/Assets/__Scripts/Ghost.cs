@@ -43,7 +43,7 @@ public class Ghost : Human
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(possessKey) || InputManager.Devices[conNum].RightTrigger)  && !currentPossessionObj)
+        if ((Input.GetKeyDown(possessKey) /*|| InputManager.Devices[conNum].RightTrigger */)  && !currentPossessionObj)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
             OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
@@ -68,7 +68,7 @@ public class Ghost : Human
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
             possess.ghostOwner = this;
         }
-		if ((Input.GetKeyUp(possessKey) || !InputManager.Devices[conNum].RightTrigger) && currentPossessionObj)
+		if ((Input.GetKeyUp(possessKey) /* || !InputManager.Devices[conNum].RightTrigger */) && currentPossessionObj)
         {
             Destroy(currentPossessionObj);
         }

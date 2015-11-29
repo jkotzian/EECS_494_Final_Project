@@ -23,7 +23,7 @@ public class TotalGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ((Input.GetKeyDown(KeyCode.Space) || ControllerManager.S.allControllers.Count == ControllerManager.S.setPlayers.Count)
+        if ((Input.GetKeyDown(KeyCode.Space) /*|| ControllerManager.S.allControllers.Count == ControllerManager.S.setPlayers.Count*/ )
 		    && inMainMenu)
         {
             inMainMenu = false;
