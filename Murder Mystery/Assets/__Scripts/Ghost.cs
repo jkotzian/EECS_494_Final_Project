@@ -20,6 +20,7 @@ public class Ghost : Human
     GameObject currentPossessionObj;
 
     bool tracked;
+    float startTime;
 
     public bool possessing;
 
@@ -32,7 +33,7 @@ public class Ghost : Human
     {
         // Default murder key
         setPossessKey(KeyCode.Space);
-		newInterval = 7;
+        startTime = Time.time;
     }
 
     void Start()
@@ -75,8 +76,9 @@ public class Ghost : Human
     }
 
     void FixedUpdate() { 
-		if(Time.time % newInterval == 0f){
+		if(Time.time - startTime > newInterval){
 			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+            startTime = Time.time;
 		}
     }
 

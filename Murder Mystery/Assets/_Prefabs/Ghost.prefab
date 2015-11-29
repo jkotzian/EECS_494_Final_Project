@@ -52,7 +52,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -123,7 +125,8 @@ MonoBehaviour:
   possessKey: 0
   bloodDropTimeMax: 0
   bloodDropInterval: 0
-  newInterval: 0
+  newInterval: 1
+  conNum: 0
   possessionObjRef: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
   possessing: 0
 --- !u!114 &11488832
@@ -158,6 +161,7 @@ MonoBehaviour:
     width: 0
     height: 0
   playerNum: 
+  conNum: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -225,6 +229,10 @@ Prefab:
       propertyPath: possessionObjRef
       value: 
       objectReference: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
+    - target: {fileID: 0}
+      propertyPath: newInterval
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183882}
