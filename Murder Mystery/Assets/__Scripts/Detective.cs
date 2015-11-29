@@ -8,6 +8,7 @@ public class Detective : Human {
 
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
+    public Light aura;
 
     public void setArrestKey(KeyCode key)
     {

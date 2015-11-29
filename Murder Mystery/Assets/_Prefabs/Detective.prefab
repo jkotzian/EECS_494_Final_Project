@@ -191,8 +191,8 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 8
+  m_Intensity: 1
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -262,6 +262,7 @@ MonoBehaviour:
   delayPerSecond: 0
   trackerPrefab: {fileID: 0}
   ghostHitObjRef: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
+  aura: {fileID: 10811676}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -283,7 +284,7 @@ Prefab:
       objectReference: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Range
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
@@ -291,8 +292,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Intensity
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: aura
+      value: 
+      objectReference: {fileID: 10811676}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 142670}

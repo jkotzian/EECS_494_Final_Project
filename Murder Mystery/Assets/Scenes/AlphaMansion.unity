@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e97985226a18c14fa17fe91d979c3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 0}
-  light2: {fileID: 0}
+  light: {fileID: 10811676, guid: d1aba372954ef0f4a8cda193198e7b9a, type: 2}
+  light2: {fileID: 10811676, guid: d1aba372954ef0f4a8cda193198e7b9a, type: 2}
   alwaysHidden: 1
 --- !u!4 &77863791 stripped
 Transform:

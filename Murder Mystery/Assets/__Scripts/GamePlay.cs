@@ -97,8 +97,8 @@ public class GamePlay : MonoBehaviour {
 		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement>().isDetective = true;
         Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
-        // Hide the light from the detectives from the ghost camera
-        ghostCamera.light = Detectives[0].GetComponent<Light>();
+        // Hide the light from the ghost
+        ghostCamera.light = Detectives[0].GetComponent<Detective>().aura;
         ++locationIndex;
         
         if (numPlayers == 4)
@@ -111,7 +111,7 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().isDetective = true;
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
             // Hide the light from the ghost
-            ghostCamera.light2 = Detectives[1].GetComponent<Light>();
+            ghostCamera.light2 = Detectives[1].GetComponent<Detective>().aura;
             ++locationIndex;
         }
 
