@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
-//using InControl;
+using InControl;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
@@ -38,6 +38,7 @@ public class GamePlay : MonoBehaviour {
 
     private int[] targetIndices;
     private float starttime;
+    private int roundtime;
 
     void Awake()
     {
@@ -68,6 +69,10 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
+        Ghosts[0].GetComponent<Ghost>().conNum = ControllerManager.S.ghostOne;
+		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
+		Ghosts[0].GetComponent<Movement>().conNum = ControllerManager.S.ghostOne;
+		
         ++locationIndex;
 
         if (numPlayers == 4)
@@ -76,6 +81,9 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
             Ghosts[1].GetComponent<Ghost>().alive = true;
             Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+       		Ghosts[1].GetComponent<Ghost>().conNum = ControllerManager.S.ghostTwo;
+			//Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
+			Ghosts[1].GetComponent<Movement>().conNum = ControllerManager.S.ghostTwo;
             ++locationIndex;
         }
         // Randomely possess one of the NPCs
@@ -96,9 +104,15 @@ public class GamePlay : MonoBehaviour {
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement>().isDetective = true;
-        Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+
         // Hide the light from the ghost
         ghostCamera.light = Detectives[0].GetComponent<Detective>().aura;
+
+		//Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
+		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+		Detectives[0].GetComponent<Movement>().conNum = ControllerManager.S.detectiveOne;
+		Detectives[0].GetComponent<Detective>().conNum = ControllerManager.S.detectiveOne;
+		
         ++locationIndex;
         
         if (numPlayers == 4)
@@ -110,6 +124,9 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().setLabel(765, 400, "Player 2 Detective Mode: ");
             Detectives[1].GetComponent<Movement>().isDetective = true;
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
+			//Detectives[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveTwo];
+			Detectives[1].GetComponent<Movement>().conNum = ControllerManager.S.detectiveTwo;
+			Detectives[1].GetComponent<Detective>().conNum = ControllerManager.S.detectiveTwo;
             // Hide the light from the ghost
             ghostCamera.light2 = Detectives[1].GetComponent<Detective>().aura;
             ++locationIndex;
@@ -161,21 +178,33 @@ public class GamePlay : MonoBehaviour {
 
         starttime = Time.time;
         TotalGame.S.round++;
+        roundtime = 30;
+        if (TotalGame.S.round > 2)
+        {
+            roundtime += 90;
+        }
+        for (int i = 2; i < 4; i++)
+        {
+            texts[i].text = "";
+        }
     }
 
     void Update()
     {
         for (int i = 0; i < 2; i++)
         {
-            texts[i].text = (120 - (int)(Time.time - starttime)).ToString();
+            texts[i].text = (roundtime - (int)(Time.time - starttime)).ToString();
         }
-        for (int i = 2; i < 4; i++)
+        if(TotalGame.S.round > 2)
         {
-            texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 1];
+            for (int i = 2; i < 4; i++)
+            {
+                texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 3];
+            }
         }
         //for (int j = 0; j < texts.Count; j++)
         //    print (texts [j].text);
-        if (Time.time > 120 + starttime || checkForDetectiveWin())
+        if (Time.time > roundtime + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
         }

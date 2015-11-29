@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 
 public class Detective : Human {
     private KeyCode         arrestKey;
@@ -9,6 +10,8 @@ public class Detective : Human {
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
     public Light aura;
+
+	public int conNum;
 
     public void setArrestKey(KeyCode key)
     {
@@ -23,8 +26,9 @@ public class Detective : Human {
 
     void Update()
     {
-        if (Input.GetKeyDown(arrestKey) && !currentGhostHitObj)
+		if ((Input.GetKeyDown(arrestKey) /*|| InputManager.Devices[conNum].Action1 */) && !currentGhostHitObj)
         {
+			print("I'm here. I'm being pressed!");
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
             Vector3 ghostHitObjOffset;
@@ -48,7 +52,7 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-        if (Input.GetKeyUp(arrestKey) && currentGhostHitObj)
+		if (/*!InputManager.Devices[conNum].Action1 */ !Input.GetKeyDown(arrestKey) && currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);
         }
@@ -59,11 +63,11 @@ public class Detective : Human {
         Door door = collider.GetComponent<Door>();
         if (door)
         {
-            if (Input.GetKeyDown(movement.upKey) && door.above)
+			if ((Input.GetKeyDown(movement.upKey) /* || InputManager.Devices[conNum].DPadUp*/) && door.above)
             {
                 door.MoveUp(gameObject);    
             }
-            else if (Input.GetKeyDown(movement.downKey) && door.below)
+			else if ((Input.GetKeyDown(movement.downKey) /* || InputManager.Devices[conNum].DPadDown*/) && door.below)
             {
                 door.MoveDown(gameObject);
             }

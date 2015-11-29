@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using InControl;
 
 public class TotalGame : MonoBehaviour {
     public static TotalGame S;
@@ -22,7 +23,8 @@ public class TotalGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && inMainMenu)
+        if ((Input.GetKeyDown(KeyCode.Space) /*|| ControllerManager.S.allControllers.Count == ControllerManager.S.setPlayers.Count*/ )
+		    && inMainMenu)
         {
             inMainMenu = false;
             Application.LoadLevel("AlphaMansion");

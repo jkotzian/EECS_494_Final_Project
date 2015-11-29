@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class Movement : MonoBehaviour {
     public float           speed;
@@ -23,6 +24,8 @@ public class Movement : MonoBehaviour {
 	public Rect label;
 	public string playerNum;
 
+	public InputDevice inputDevice;
+	public int conNum;
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
@@ -50,9 +53,13 @@ public class Movement : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		
-		GUI.Label (label, playerNum + Mathf.RoundToInt(dModeTotal) + "%");
-		
+		if (dModeTotal > 0) {
+			GUI.Label (label, playerNum + Mathf.RoundToInt (dModeTotal) + "%");
+		}
+
+		if(dModeTotal < 0){
+			GUI.Label (label, playerNum + "0%");
+		}
 	}
 
     void Awake() {
@@ -65,9 +72,18 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		//var setDevice = ControllerManager.S.allControllers[0];
+		//var setDevice = InputManager.Devices[conNum];
+		
+		//print ("My controller in Movement.Script is : " + setDevice.Name);
+//
+//		if(setDevice.Action1){
+//			print ("I was pressed!");
+//		}
+
         if (human.alive)
         {
-			if (Input.GetKey(detectiveMode) && dModeTotal > -50f){
+			if ((Input.GetKey(detectiveMode) /*|| setDevice.RightBumper*/ ) && dModeTotal > -25f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					//print("Currently in D-Mode");
@@ -75,7 +91,8 @@ public class Movement : MonoBehaviour {
 				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
-			if (Input.GetKeyUp(detectiveMode)){
+			if (Input.GetKeyUp(detectiveMode) /*|| !setDevice.DPadRight*/ )
+            {
 				inDetectiveMode = false;
 				//print("Left D-Mode");
 			}
@@ -85,7 +102,7 @@ public class Movement : MonoBehaviour {
 				//print("D - Total: " + dModeTotal);
 			}
 
-            if (Input.GetKey(rightKey))
+			if (Input.GetKey(rightKey) /*|| setDevice.DPadRight */)
             {
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
                 // If the human is facing right, then flip
@@ -97,7 +114,7 @@ public class Movement : MonoBehaviour {
                     human.facingRight = true;
                 }
             }
-            if (Input.GetKey(leftKey))
+			if (Input.GetKey(leftKey) /*|| setDevice.DPadLeft */)
             {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
                 // If the human is facing right, then flip
@@ -110,21 +127,21 @@ public class Movement : MonoBehaviour {
                 }
             }
 
-			if (Input.GetKey(rightKey) && isDetective && Input.GetKey(boostKey))
+			if ((Input.GetKey(rightKey) /*|| setDevice.DPadRight */ ) && isDetective && (Input.GetKey(boostKey) /* || setDevice.RightTrigger */))
 			{
 				transform.Translate(Vector3.right * Time.deltaTime * speed * 1.5f);
 			}
-			if (Input.GetKey(leftKey) && isDetective && Input.GetKey(boostKey))
+			if ((Input.GetKey(leftKey) /*|| setDevice.DPadLeft */ ) && isDetective && (Input.GetKey(boostKey) /* || setDevice.RightTrigger */))
 			{
 				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
 			}
             // Move up for ghosts
-            if (Input.GetKey(upKey) && isGhost)
+            if ((Input.GetKey(upKey) /*|| setDevice.DPadUp */) && isGhost)
             {
                 transform.Translate(Vector3.up * Time.deltaTime * speed);
             }
             // Move up for ghosts
-            if (Input.GetKey(downKey) && isGhost)
+			if ((Input.GetKey(downKey) /*|| setDevice.DPadDown */) && isGhost)
             {
                 transform.Translate(Vector3.down * Time.deltaTime * speed);
             }
@@ -132,13 +149,15 @@ public class Movement : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
+		//var setDevice = InputManager.Devices[conNum];
 		if (other.gameObject.name == "Stairs") {
 			//print("Stairs");
 
-			if (Input.GetKey (upKey)) {
+			if (Input.GetKey (upKey) /*|| InputManager.Devices[conNum].DPadUp*/) {
 				transform.Translate(Vector3.up*Time.deltaTime*speed);
 			}
-			if (Input.GetKey (downKey)) {
+			if (Input.GetKey (downKey) /*|| InputManager.Devices[conNum].DPadDown*/)
+            {
 				transform.Translate(Vector3.down*Time.deltaTime*speed);
 			}
 		}

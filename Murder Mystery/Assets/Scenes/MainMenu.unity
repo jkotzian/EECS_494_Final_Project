@@ -85,6 +85,51 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &817931921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 817931923}
+  - 114: {fileID: 817931922}
+  m_Layer: 0
+  m_Name: InControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &817931922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817931921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logDebugInfo: 1
+  invertYAxis: 0
+  enableXInput: 0
+  useFixedUpdate: 0
+  dontDestroyOnLoad: 0
+  customProfiles: []
+--- !u!4 &817931923
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817931921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &1063376162
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +213,14 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'A Spooky Night In!
+
+
+    Press X to be Ghost One
+
+    Press Y to be Ghost Two
+
+
+    or
 
 
     Press Space
@@ -270,6 +323,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1340596133}
   - 114: {fileID: 1340596132}
+  - 114: {fileID: 1340596134}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -302,6 +356,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1340596134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1340596131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2221dc2bf5bd4678a61edbf12346cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setPlayers: 
+  buttonsPressed: 
+  detectiveOne: 0
+  detectiveTwo: 0
+  ghostOne: 0
+  ghostTwo: 0
 --- !u!1 &1423452778
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +533,14 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'A Spooky Night In!
+
+
+    Press A to be Detective One
+
+    Press B to be Detective Two
+
+
+    or
 
 
     Press Space

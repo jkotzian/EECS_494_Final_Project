@@ -48,8 +48,10 @@ public class Human : MonoBehaviour {
 				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
             alive = false;
-
-            TotalGame.S.bodyCount[TotalGame.S.round - 1]++;
+            if(TotalGame.S.round > 2)
+            {
+                TotalGame.S.bodyCount[TotalGame.S.round - 3]++;
+            }  
         }
         // If it's a Ghost 
         Ghost GhostToKill = GetComponent<Ghost>();
