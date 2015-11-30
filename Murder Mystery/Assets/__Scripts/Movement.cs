@@ -107,8 +107,30 @@ public class Movement : MonoBehaviour {
 				//print("D - Total: " + dModeTotal);
 			}*/
             moveVec = Vector3.zero;
-            //print("Left stick x = " + setDevice.LeftStickX);
+            
+            // Set the move vector in the direction of the left analog stick
             moveVec += new Vector3(setDevice.LeftStick.Vector.x, setDevice.LeftStick.Vector.y, 0.0f);
+            // Check if the character changed direction using the analog stick
+            if (setDevice.LeftStickX > 0 && !human.facingRight)
+            {
+                Vector3 newScale = this.gameObject.transform.localScale;
+                newScale.x *= -1;
+                this.gameObject.transform.localScale = newScale;
+                human.facingRight = true;
+            }
+            else if (setDevice.LeftStickX < 0 && human.facingRight)
+            {
+                Vector3 newScale = this.gameObject.transform.localScale;
+                newScale.x *= -1;
+                this.gameObject.transform.localScale = newScale;
+                human.facingRight = false;
+            }
+
+            // Only allow upward and dowward movement for the ghost
+            if (!isGhost)
+            {
+                moveVec.y = 0;
+            }
 
             if (Input.GetKey(rightKey) || setDevice.DPadRight)
             {
@@ -160,26 +182,27 @@ public class Movement : MonoBehaviour {
 
     // Door movement
     public void checkForDoorInput(Collider collider)
-    {
-        
+    {  
         Door door = collider.GetComponent<Door>();
-        Vector2 stickUp = new Vector2(1.0f, 1.0f);
-        Vector2 stickDown = new Vector2(1.0f, -1.0f);
+        float analogAngleLeeway = .3f;
+        float analogThrustThreshold = .9f;
         if (door)
         {
             // TODO TELL ME (JAMES KOTZIAN) TO CLEAN THIS UP
             if ((Input.GetKeyDown(upKey) ||
-               (InputManager.Devices[conNum].LeftStick.Vector.x > -.3 && 
-               InputManager.Devices[conNum].LeftStick.Vector.x < .3 &&
-               InputManager.Devices[conNum].LeftStick.Vector.y > 0) ||
+               (InputManager.Devices[conNum].LeftStick.Vector.x > -analogAngleLeeway && 
+               InputManager.Devices[conNum].LeftStick.Vector.x < analogAngleLeeway &&
+               InputManager.Devices[conNum].LeftStick.Vector.y > 0 &&
+               InputManager.Devices[conNum].LeftStickY > analogThrustThreshold) ||
                InputManager.Devices[conNum].DPadUp) && door.above)
             {
                 door.MoveUp(gameObject);
             }
             else if ((Input.GetKeyDown(downKey) ||
-                     (InputManager.Devices[conNum].LeftStick.Vector.x > -.3 &&
-                      InputManager.Devices[conNum].LeftStick.Vector.x < .3 &&
-                      InputManager.Devices[conNum].LeftStick.Vector.y < 0) ||
+                     (InputManager.Devices[conNum].LeftStick.Vector.x > -analogAngleLeeway &&
+                      InputManager.Devices[conNum].LeftStick.Vector.x < analogAngleLeeway &&
+                      InputManager.Devices[conNum].LeftStick.Vector.y < 0 &&
+                      InputManager.Devices[conNum].LeftStickY < -analogThrustThreshold) ||
                       InputManager.Devices[conNum].DPadDown) && door.below)
             {
                 door.MoveDown(gameObject);

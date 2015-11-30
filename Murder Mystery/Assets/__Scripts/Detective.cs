@@ -11,8 +11,6 @@ public class Detective : Human {
     GameObject currentGhostHitObj;
     public Light aura;
 
-	public int conNum;
-
     public void setArrestKey(KeyCode key)
     {
         arrestKey = key;
@@ -26,7 +24,7 @@ public class Detective : Human {
 
     void Update()
     {
-		if ((Input.GetKeyDown(arrestKey) || InputManager.Devices[conNum].Action1) && !currentGhostHitObj)
+		if ((Input.GetKeyDown(arrestKey) || InputManager.Devices[movement.conNum].Action1.WasPressed) && !currentGhostHitObj)
         {
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
@@ -51,7 +49,7 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if ((!Input.GetKeyDown(arrestKey) || !InputManager.Devices[conNum].Action1) && currentGhostHitObj)
+		if ((Input.GetKeyUp(arrestKey) || InputManager.Devices[movement.conNum].Action1.WasReleased) && currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);
         }

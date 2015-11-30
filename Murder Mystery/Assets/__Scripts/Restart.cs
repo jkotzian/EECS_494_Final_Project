@@ -12,10 +12,10 @@ public class Restart : MonoBehaviour {
         switch (TotalGame.S.round)
         {
             case 1:
-                message = "Now switch roles (Swap controllers and monitors).";
+                message = "Now switch roles \n(Swap controllers and monitors).";
                 break;
             case 2:
-                message = "Switch roles (Swap controllers and monitors).\n\nWe're going to keep score now!";
+                message = "Switch roles \n(Swap controllers and monitors).\n\nWe're going to keep score now!";
                 break;
             case 3:
                 message = "Round 1 Body Count: " + TotalGame.S.bodyCount[0] + "\n\nPress Space for Round 2";

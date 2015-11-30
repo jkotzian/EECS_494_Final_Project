@@ -44,44 +44,30 @@ public class Switch : MonoBehaviour {
 		}
 	}
 
-	void OnTrigger(Collider other)
-	{
-		NPC computer = other.GetComponent<NPC> ();
-		print ("Hello");
-		if (computer != null) {
-			print ("Hey");
-			if (computer.possessed){
-				GamePlay.S.texts [4].text = "press 'X' to activate trap";
-				//print ("Who just triggered me? " + computer.name);
-				//print ("And what's their controller #? " + computer.NPCMovement.conNum);
-				
-				if(/*InputManager.Devices[computer.NPCMovement.conNum].Action1*/ Input.GetKeyDown(KeyCode.C)){
-					//if a possessed npc is within field of activation, press A to activate
-					//print ("PossessedNPC triggering trap by pressing A");
-				}
-				//GamePlay.S.texts [5].text = "press 'X' to activate trap";
-			}
-		}
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        NPC npc = other.GetComponent<NPC>();
+        if (npc && npc.possessed)
+        {
+            GamePlay.S.texts[4].text = "press 'A' to activate trap";
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        NPC npc = other.GetComponent<NPC>();
+        if (npc && npc.possessed)
+        {
+            GamePlay.S.texts[4].text = "";
+        }
+    }
 
 	void OnTriggerStay(Collider other){
-
-
 		NPC computer = other.GetComponent<NPC> ();
 		bool pressed = Input.GetKeyDown (KeyCode.Q);
-		if(computer != null){
-			//print ("Who just triggered me? " + computer.name);
-			// ("And what's their controller #? " + computer.NPCMovement.conNum);
-
-			//if(InputManager.Devices[computer.NPCMovement.conNum].Action1){
-				//if a possessed npc is within field of activation, press A to activate
-				//print ("PossessedNPC triggering trap by pressing A");
-			//}
-		}
 
 		if (computer != null) {
-			if (computer.possessed && (pressed /*|| InputManager.Devices[computer.NPCMovement.conNum].Action1 */ ) ) {
-		
+			if (computer.possessed && (pressed || InputManager.Devices[computer.NPCMovement.conNum].Action1) ) {
 				//print (switchNum);
 				flippedSwitch = true;
 				if (switchNum == 1) {
@@ -123,11 +109,6 @@ public class Switch : MonoBehaviour {
 				}
 			}
 		}
-	}
-
-	void OnTriggerExit(Collider other){
-		GamePlay.S.texts [4].text = "";
-		//GamePlay.S.texts [5].text = "";
 	}
 
 	void resetEnvironment(){
