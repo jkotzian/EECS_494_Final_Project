@@ -48,6 +48,10 @@ public class Human : MonoBehaviour {
 				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
             alive = false;
+            foreach(GameObject npc in GamePlay.S.NPCs)
+            {
+                npc.GetComponent<NPC>().speed += 0.5f;
+            }
             if(TotalGame.S.round > 2)
             {
                 TotalGame.S.bodyCount[TotalGame.S.round - 3]++;

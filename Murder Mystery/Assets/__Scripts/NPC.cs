@@ -173,11 +173,11 @@ public class NPC : Human {
         Door door = collider.GetComponent<Door>();
         if (door)
         {
-            if ((Input.GetKeyDown(possessorMovement.upKey) || InputManager.Devices[possessionOwner.conNum].DPadUp ) && door.above)
+            if ((Input.GetKeyDown(possessorMovement.upKey) /*|| InputManager.Devices[possessionOwner.conNum].DPadUp*/ ) && door.above)
             {
                 door.MoveUp(gameObject);
             }
-			else if ((Input.GetKeyDown(possessorMovement.downKey) || InputManager.Devices[possessionOwner.conNum].DPadDown) && door.below)
+			else if ((Input.GetKeyDown(possessorMovement.downKey) /*|| InputManager.Devices[possessionOwner.conNum].DPadDown*/) && door.below)
             {
                 door.MoveDown(gameObject);
             }
