@@ -20,11 +20,13 @@ public class Detective : Human {
         // Set default arrest key
         setArrestKey(KeyCode.RightShift);
         movement = transform.GetComponent<Movement>();
+        facingRight = true;
     }
 
     void Update()
     {
-		if ((Input.GetKeyDown(arrestKey) || InputManager.Devices[movement.conNum].Action1.WasPressed) && !currentGhostHitObj)
+		if ((Input.GetKeyDown(arrestKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+            !currentGhostHitObj)
         {
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
@@ -49,7 +51,8 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if ((Input.GetKeyUp(arrestKey) || InputManager.Devices[movement.conNum].Action1.WasReleased) && currentGhostHitObj)
+		if ((Input.GetKeyUp(arrestKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+            currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);
         }

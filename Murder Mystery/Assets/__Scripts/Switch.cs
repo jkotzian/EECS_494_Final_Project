@@ -64,10 +64,10 @@ public class Switch : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
 		NPC computer = other.GetComponent<NPC> ();
-		bool pressed = Input.GetKeyDown (KeyCode.Q);
-
+		bool keyboardPressed = Input.GetKeyDown (KeyCode.Q);
+        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
 		if (computer != null) {
-			if (computer.possessed && (pressed || InputManager.Devices[computer.NPCMovement.conNum].Action1) ) {
+			if (computer.possessed && (keyboardPressed || controllerPressed)) {
 				//print (switchNum);
 				flippedSwitch = true;
 				if (switchNum == 1) {

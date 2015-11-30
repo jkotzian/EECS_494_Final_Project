@@ -19,6 +19,7 @@ public class Ghost : Human
     GameObject currentPossessionObj;
 
     bool tracked;
+    float startTime;
 
     public bool possessing;
     public Movement movement;
@@ -32,18 +33,20 @@ public class Ghost : Human
     {
         // Default murder key
         setPossessKey(KeyCode.Space);
-		newInterval = 7;
+        startTime = Time.time;
     }
 
     void Start()
     {
         movement = GetComponent<Movement>();
+        facingRight = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(possessKey) || InputManager.Devices[movement.conNum].RightTrigger.WasPressed)  && !currentPossessionObj && !possessing)
+        if ((Input.GetKeyDown(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasPressed)) && 
+            !currentPossessionObj && !possessing)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
             OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
@@ -68,7 +71,8 @@ public class Ghost : Human
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
             possess.ghostOwner = this;
         }
-		if ((Input.GetKeyUp(possessKey) || InputManager.Devices[movement.conNum].RightTrigger.WasReleased) && currentPossessionObj)
+		if ((Input.GetKeyUp(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasReleased)) && 
+            currentPossessionObj)
         {
             Destroy(currentPossessionObj);
             currentPossessionObj = null;
@@ -76,8 +80,9 @@ public class Ghost : Human
     }
 
     void FixedUpdate() { 
-		if(Time.time % newInterval == 0f){
+		if(Time.time - startTime > newInterval){
 			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+            startTime = Time.time;
 		}
     }
 

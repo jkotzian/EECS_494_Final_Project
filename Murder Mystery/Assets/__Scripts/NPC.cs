@@ -43,6 +43,7 @@ public class NPC : Human {
         target = false;
         rigidbody = GetComponent<Rigidbody>();
         NPCMovement = GetComponent<Movement>();
+        facingRight = true;
     }
 
 	// Update is called once per frame
@@ -67,14 +68,29 @@ public class NPC : Human {
                 {
                     moving = true;
                     movingRight = false;
-                    facingRight = false;
+                    // TODO THIS CODE IS DUPLICATED IN MOVEMENT, CONSIDER CONSOLIDATING INTO HUMAN
+                    // Flip the scale of the image if they are switching direction
+                    if (facingRight)
+                    {
+                        Vector3 newScale = this.gameObject.transform.localScale;
+                        newScale.x *= -1;
+                        this.gameObject.transform.localScale = newScale;
+                        facingRight = false;
+                    }
                 }
                 // Go right
                 else
                 {
                     moving = true;
                     movingRight = true;
-                    facingRight = true;
+                    // DUPLICATE CODE
+                    if (!facingRight)
+                    {
+                        Vector3 newScale = this.gameObject.transform.localScale;
+                        newScale.x *= -1;
+                        this.gameObject.transform.localScale = newScale;
+                        facingRight = true;
+                    }
                 }
                 // Randomely set the next time the NPC will check its direction between the min and the max
                 checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
@@ -94,7 +110,8 @@ public class NPC : Human {
             }
         }
 
-        if (possessed && (Input.GetKeyDown(possessionOwner.possessKey) || InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed))
+        if (possessed && (Input.GetKeyDown(possessionOwner.possessKey) || 
+           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
         {
 			dispossess();
         }
@@ -163,6 +180,7 @@ public class NPC : Human {
     {
         if (!possessed)
             return;
+
         NPCMovement.checkForDoorInput(collider);
     }
 }

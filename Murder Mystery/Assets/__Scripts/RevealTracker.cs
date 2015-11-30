@@ -14,6 +14,8 @@ public class RevealTracker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        float diameter = (interval - (Time.time - timeTrack)) * 0.01f;
+        gameObject.transform.localScale = new Vector3(diameter, diameter, 1);
 		//for only a given interval, the tracks can be found
 		if (Time.time - timeTrack > interval) {
 			//print ("TimeTrack: " + timeTrack);
@@ -21,6 +23,14 @@ public class RevealTracker : MonoBehaviour {
 			isTrackable = false;
 			gameObject.SetActive (false);
 		}
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        foreach (GameObject detective in GamePlay.S.Detectives)
+        {
+            if(Mathf.Abs(detective.transform.position.x - transform.position.x) < 3 && Mathf.Abs(detective.transform.position.y - transform.position.y) < 1)
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+            }    
+        }
 	
 	}
 

@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
 	public int conNum;
 
     Vector3 moveVec;
+    InputDevice controller;
 
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
@@ -68,19 +69,26 @@ public class Movement : MonoBehaviour {
         setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
     }
 
-	void Start() {
+    void Start()
+    {
         human = gameObject.GetComponent<Human>();
-	}
-	
+        if (InputManager.Devices.Count > 0)
+        {
+            controller = InputManager.Devices[conNum];
+        }
+        else
+        {
+            controller = null;
+        }
+    }
 	// Update is called once per frame
 	void FixedUpdate () {
         //print(InputManager.Devices[conNum].LeftStick.Vector);
-        //var setDevice = ControllerManager.S.allControllers[0];
-        var setDevice = InputManager.Devices[conNum];
-        
-        //print("My controller in Movement.Script is : " + setDevice.Name);
+        //var controller = ControllerManager.S.allControllers[0];
 
-        /*if (setDevice.Action1 || setDevice.DPadUp)
+        //print("My controller in Movement.Script is : " + controller.Name);
+
+        /*if (controller.Action1 || controller.DPadUp)
         {
             print("I was pressed!");
         }*/
@@ -88,7 +96,7 @@ public class Movement : MonoBehaviour {
         if (human.alive)
         {
             // DETECTIVE MODE AND BOOST NOT OFFICIALLY ACCEPTED BY THE DESIGN
-			/*if ((Input.GetKey(detectiveMode) || setDevice.RightBumper) && dModeTotal > -25f){
+			/*if ((Input.GetKey(detectiveMode) || controller.RightBumper) && dModeTotal > -25f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					//print("Currently in D-Mode");
@@ -96,7 +104,7 @@ public class Movement : MonoBehaviour {
 				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
-			if (Input.GetKeyUp(detectiveMode) || !setDevice.DPadRight)
+			if (Input.GetKeyUp(detectiveMode) || !controller.DPadRight)
             {
 				inDetectiveMode = false;
 				//print("Left D-Mode");
@@ -108,22 +116,26 @@ public class Movement : MonoBehaviour {
 			}*/
             moveVec = Vector3.zero;
             
-            // Set the move vector in the direction of the left analog stick
-            moveVec += new Vector3(setDevice.LeftStick.Vector.x, setDevice.LeftStick.Vector.y, 0.0f);
-            // Check if the character changed direction using the analog stick
-            if (setDevice.LeftStickX > 0 && !human.facingRight)
+            // Controller specific stuff
+            if (controller != null)
             {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = true;
-            }
-            else if (setDevice.LeftStickX < 0 && human.facingRight)
-            {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = false;
+                // Set the move vector in the direction of the left analog stick
+                moveVec += new Vector3(controller.LeftStick.Vector.x, controller.LeftStick.Vector.y, 0.0f);
+                // Check if the character changed direction using the analog stick
+                if (controller.LeftStickX > 0 && !human.facingRight)
+                {
+                    Vector3 newScale = this.gameObject.transform.localScale;
+                    newScale.x *= -1;
+                    this.gameObject.transform.localScale = newScale;
+                    human.facingRight = true;
+                }
+                else if (controller.LeftStickX < 0 && human.facingRight)
+                {
+                    Vector3 newScale = this.gameObject.transform.localScale;
+                    newScale.x *= -1;
+                    this.gameObject.transform.localScale = newScale;
+                    human.facingRight = false;
+                }
             }
 
             // Only allow upward and dowward movement for the ghost
@@ -132,7 +144,7 @@ public class Movement : MonoBehaviour {
                 moveVec.y = 0;
             }
 
-            if (Input.GetKey(rightKey) || setDevice.DPadRight)
+            if (Input.GetKey(rightKey) || (controller != null && controller.DPadRight))
             {
                 moveVec += Vector3.right;
                 // If the human is facing right, then flip
@@ -145,7 +157,7 @@ public class Movement : MonoBehaviour {
                 }
             }
 
-			if (Input.GetKey(leftKey) || setDevice.DPadLeft)
+			if (Input.GetKey(leftKey) || (controller != null && controller.DPadLeft))
             {
                 moveVec += Vector3.left;
                 // If the human is facing right, then flip
@@ -157,21 +169,21 @@ public class Movement : MonoBehaviour {
                     human.facingRight = false;
                 }
             }
-			/*if ((Input.GetKey(rightKey) || setDevice.DPadRight ) && isDetective && (Input.GetKey(boostKey) || setDevice.RightTrigger))
+			/*if ((Input.GetKey(rightKey) || controller.DPadRight ) && isDetective && (Input.GetKey(boostKey) || controller.RightTrigger))
 			{
 				transform.Translate(Vector3.right * Time.deltaTime * speed * 1.5f);
 			}
-			if ((Input.GetKey(leftKey) || setDevice.DPadLeft) && isDetective && (Input.GetKey(boostKey) || setDevice.RightTrigger))
+			if ((Input.GetKey(leftKey) || controller.DPadLeft) && isDetective && (Input.GetKey(boostKey) || controller.RightTrigger))
 			{
 				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
 			}*/
             // Move up for ghosts
-            if ((Input.GetKey(upKey) || setDevice.DPadUp) && isGhost)
+            if ((Input.GetKey(upKey) || (controller != null && controller.DPadUp)) && isGhost)
             {
                 moveVec += Vector3.up;
             }
             // Move up for ghosts
-			if ((Input.GetKey(downKey) || setDevice.DPadDown) && isGhost)
+			if ((Input.GetKey(downKey) || (controller != null && controller.DPadDown)) && isGhost)
             {
                 moveVec += Vector3.down;
             }
@@ -189,21 +201,23 @@ public class Movement : MonoBehaviour {
         if (door)
         {
             // TODO TELL ME (JAMES KOTZIAN) TO CLEAN THIS UP
-            if ((Input.GetKeyDown(upKey) ||
-               (InputManager.Devices[conNum].LeftStick.Vector.x > -analogAngleLeeway && 
-               InputManager.Devices[conNum].LeftStick.Vector.x < analogAngleLeeway &&
-               InputManager.Devices[conNum].LeftStick.Vector.y > 0 &&
-               InputManager.Devices[conNum].LeftStickY > analogThrustThreshold) ||
-               InputManager.Devices[conNum].DPadUp) && door.above)
+            if ((Input.GetKeyDown(upKey) || 
+               (controller != null && ((controller.LeftStick.Vector.x > -analogAngleLeeway && 
+               controller.LeftStick.Vector.x < analogAngleLeeway &&
+               controller.LeftStick.Vector.y > 0 &&
+               controller.LeftStickY > analogThrustThreshold) ||
+               controller.DPadUp))) && 
+               door.above)
             {
                 door.MoveUp(gameObject);
             }
             else if ((Input.GetKeyDown(downKey) ||
-                     (InputManager.Devices[conNum].LeftStick.Vector.x > -analogAngleLeeway &&
-                      InputManager.Devices[conNum].LeftStick.Vector.x < analogAngleLeeway &&
-                      InputManager.Devices[conNum].LeftStick.Vector.y < 0 &&
-                      InputManager.Devices[conNum].LeftStickY < -analogThrustThreshold) ||
-                      InputManager.Devices[conNum].DPadDown) && door.below)
+                     (controller != null && ((controller.LeftStick.Vector.x > -analogAngleLeeway &&
+                      controller.LeftStick.Vector.x < analogAngleLeeway &&
+                      controller.LeftStick.Vector.y < 0 &&
+                      controller.LeftStickY < -analogThrustThreshold) ||
+                      controller.DPadDown))) && 
+                      door.below)
             {
                 door.MoveDown(gameObject);
             }

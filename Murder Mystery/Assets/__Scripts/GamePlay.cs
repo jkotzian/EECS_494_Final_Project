@@ -40,6 +40,8 @@ public class GamePlay : MonoBehaviour {
     private float starttime;
     private int roundtime;
 
+    public bool usingControllers;
+
     void Awake()
     {
         S = this;
@@ -50,6 +52,7 @@ public class GamePlay : MonoBehaviour {
 		EnvironmentalObjects = new List<GameObject> ();
         startLoc = generateStartLoc();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
+        usingControllers = false;
     }
     
     void Start () {
@@ -63,7 +66,11 @@ public class GamePlay : MonoBehaviour {
             NPCs[locationIndex].gameObject.name = "NPC " + locationIndex.ToString();
             ++locationIndex;
         }
-
+        // See if the players are using the controllers
+        if (InputManager.Devices.Count > 0)
+        {
+            usingControllers = true;
+        }
         // Place Ghosts
         Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
@@ -97,14 +104,15 @@ public class GamePlay : MonoBehaviour {
         //Ghosts[1].GetComponent<Ghost>().possess(NPCs[2].GetComponent<NPC>());
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-        Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
+        // THIS MESSESS STUFF UP RIGHT NOW
+        //Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
 		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement>().isDetective = true;
 
         // Hide the light from the ghost
-        ghostCamera.light = Detectives[0].GetComponent<Detective>().aura;
+        ghostCamera.light1 = Detectives[0].GetComponent<Detective>().aura;
 
 		//Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
 		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
@@ -115,7 +123,8 @@ public class GamePlay : MonoBehaviour {
         if (numPlayers == 4)
         {
             Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-            Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
+            // THIS MESSESS STUFF UP RIGHT NOW
+            //Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
             Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
             Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
             Detectives[1].GetComponent<Movement>().setLabel(765, 400, "Player 2 Detective Mode: ");
