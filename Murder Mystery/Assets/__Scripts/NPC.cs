@@ -41,19 +41,12 @@ public class NPC : Human {
         moving = false;
         movingRight = false;
         target = false;
-        rigidbody = gameObject.GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
         NPCMovement = GetComponent<Movement>();
     }
 
 	// Update is called once per frame
-	void Update () {
-		if (possessionOwner != null) {
-			//if the npc is possessed, just checking controllers
-			print ("Posseser Controller #: " + possessionOwner.conNum);
-			NPCMovement.conNum = possessionOwner.conNum;
-			print ("NPC Movement  #: " + NPCMovement.conNum);
-		}
-		
+	void Update () {		
         if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
@@ -101,7 +94,7 @@ public class NPC : Human {
             }
         }
 
-        if (possessed && Input.GetKeyDown(possessionOwner.possessKey))
+        if (possessed && (Input.GetKeyDown(possessionOwner.possessKey) || InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed))
         {
 			dispossess();
         }
@@ -121,6 +114,8 @@ public class NPC : Human {
         possessor.gameObject.SetActive(false);
         // Set the velocity to 0
         rigidbody.velocity = Vector3.zero;
+        // Give it the same controls as the ghost
+        NPCMovement.conNum = possessor.movement.conNum;
     }
 
     public void block(bool right)
@@ -167,20 +162,7 @@ public class NPC : Human {
     void OnTriggerStay(Collider collider)
     {
         if (!possessed)
-        {
             return;
-        }
-        Door door = collider.GetComponent<Door>();
-        if (door)
-        {
-            if ((Input.GetKeyDown(possessorMovement.upKey) || InputManager.Devices[possessionOwner.conNum].DPadUp ) && door.above)
-            {
-                door.MoveUp(gameObject);
-            }
-			else if ((Input.GetKeyDown(possessorMovement.downKey) || InputManager.Devices[possessionOwner.conNum].DPadDown) && door.below)
-            {
-                door.MoveDown(gameObject);
-            }
-        }
+        NPCMovement.checkForDoorInput(collider);
     }
 }

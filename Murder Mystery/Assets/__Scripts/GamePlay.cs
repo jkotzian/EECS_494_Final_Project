@@ -69,9 +69,8 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
-        Ghosts[0].GetComponent<Ghost>().conNum = ControllerManager.S.ghostOne;
+        Ghosts[0].GetComponent<Movement>().conNum = 0;//ControllerManager.S.ghostOne;
 		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
-		Ghosts[0].GetComponent<Movement>().conNum = ControllerManager.S.ghostOne;
 		
         ++locationIndex;
 
@@ -81,9 +80,8 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
             Ghosts[1].GetComponent<Ghost>().alive = true;
             Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
-       		Ghosts[1].GetComponent<Ghost>().conNum = ControllerManager.S.ghostTwo;
+       		Ghosts[1].GetComponent<Movement>().conNum = ControllerManager.S.ghostTwo;
 			//Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
-			Ghosts[1].GetComponent<Movement>().conNum = ControllerManager.S.ghostTwo;
             ++locationIndex;
         }
         // Randomely possess one of the NPCs
@@ -110,8 +108,7 @@ public class GamePlay : MonoBehaviour {
 
 		//Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
 		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
-		Detectives[0].GetComponent<Movement>().conNum = ControllerManager.S.detectiveOne;
-		Detectives[0].GetComponent<Detective>().conNum = ControllerManager.S.detectiveOne;
+        Detectives[0].GetComponent<Movement>().conNum = 1;
 		
         ++locationIndex;
         
@@ -126,7 +123,6 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
 			//Detectives[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveTwo];
 			Detectives[1].GetComponent<Movement>().conNum = ControllerManager.S.detectiveTwo;
-			Detectives[1].GetComponent<Detective>().conNum = ControllerManager.S.detectiveTwo;
             // Hide the light from the ghost
             ghostCamera.light2 = Detectives[1].GetComponent<Detective>().aura;
             ++locationIndex;
@@ -178,10 +174,10 @@ public class GamePlay : MonoBehaviour {
 
         starttime = Time.time;
         TotalGame.S.round++;
-        roundtime = 30;
+        roundtime = 60;
         if (TotalGame.S.round > 2)
         {
-            roundtime += 90;
+            roundtime += 60;
         }
         for (int i = 2; i < 4; i++)
         {

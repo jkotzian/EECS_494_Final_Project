@@ -12,7 +12,6 @@ public class Ghost : Human
     int bloodDropTimer;
 
     public int newInterval;
-	public int conNum;
 
     List<GameObject> bloodTrail;
 
@@ -22,6 +21,7 @@ public class Ghost : Human
     bool tracked;
 
     public bool possessing;
+    public Movement movement;
 
     public void setPossessKey(KeyCode key)
     {
@@ -37,13 +37,13 @@ public class Ghost : Human
 
     void Start()
     {
-
+        movement = GetComponent<Movement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(possessKey) /*|| InputManager.Devices[conNum].RightTrigger */)  && !currentPossessionObj)
+        if ((Input.GetKeyDown(possessKey) || InputManager.Devices[movement.conNum].RightTrigger.WasPressed)  && !currentPossessionObj && !possessing)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
             OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
@@ -68,9 +68,10 @@ public class Ghost : Human
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
             possess.ghostOwner = this;
         }
-		if ((Input.GetKeyUp(possessKey) /* || !InputManager.Devices[conNum].RightTrigger */) && currentPossessionObj)
+		if ((Input.GetKeyUp(possessKey) || InputManager.Devices[movement.conNum].RightTrigger.WasReleased) && currentPossessionObj)
         {
             Destroy(currentPossessionObj);
+            currentPossessionObj = null;
         }
     }
 

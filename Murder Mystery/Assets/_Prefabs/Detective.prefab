@@ -245,6 +245,7 @@ MonoBehaviour:
     width: 0
     height: 0
   playerNum: 
+  conNum: 0
 --- !u!114 &11464432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,6 +264,7 @@ MonoBehaviour:
   trackerPrefab: {fileID: 0}
   ghostHitObjRef: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
   aura: {fileID: 10811676}
+  conNum: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

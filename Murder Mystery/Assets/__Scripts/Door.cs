@@ -9,14 +9,12 @@ public class Door : MonoBehaviour {
 
     public void MoveUp(GameObject passenger)
     {
-        print("up elevator");
         Vector3 dest = new Vector3(above.transform.position.x, above.transform.position.y, -0.2f);
         passenger.transform.position = dest;
     }
 
     public void MoveDown(GameObject passenger)
     {
-        print("down elevator");
         Vector3 dest = new Vector3(below.transform.position.x, below.transform.position.y, -0.2f);
         passenger.transform.position = dest;
     }

@@ -27,6 +27,8 @@ public class Movement : MonoBehaviour {
 	public InputDevice inputDevice;
 	public int conNum;
 
+    Vector3 moveVec;
+
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
         downKey = down;
@@ -72,18 +74,21 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//var setDevice = ControllerManager.S.allControllers[0];
-		//var setDevice = InputManager.Devices[conNum];
-		
-		//print ("My controller in Movement.Script is : " + setDevice.Name);
-//
-//		if(setDevice.Action1){
-//			print ("I was pressed!");
-//		}
+        //print(InputManager.Devices[conNum].LeftStick.Vector);
+        //var setDevice = ControllerManager.S.allControllers[0];
+        var setDevice = InputManager.Devices[conNum];
+        
+        //print("My controller in Movement.Script is : " + setDevice.Name);
 
+        /*if (setDevice.Action1 || setDevice.DPadUp)
+        {
+            print("I was pressed!");
+        }*/
+        
         if (human.alive)
         {
-			if ((Input.GetKey(detectiveMode) /*|| setDevice.RightBumper*/ ) && dModeTotal > -25f){
+            // DETECTIVE MODE AND BOOST NOT OFFICIALLY ACCEPTED BY THE DESIGN
+			/*if ((Input.GetKey(detectiveMode) || setDevice.RightBumper) && dModeTotal > -25f){
 				if(dModeTotal > 0f){
 					inDetectiveMode = true;
 					//print("Currently in D-Mode");
@@ -91,7 +96,7 @@ public class Movement : MonoBehaviour {
 				dModeTotal -= Time.deltaTime * dModeLoss;
 			}
 			
-			if (Input.GetKeyUp(detectiveMode) /*|| !setDevice.DPadRight*/ )
+			if (Input.GetKeyUp(detectiveMode) || !setDevice.DPadRight)
             {
 				inDetectiveMode = false;
 				//print("Left D-Mode");
@@ -100,11 +105,14 @@ public class Movement : MonoBehaviour {
 			if(dModeTotal < 100f){
 				dModeTotal += Time.deltaTime * dModeRegain;
 				//print("D - Total: " + dModeTotal);
-			}
+			}*/
+            moveVec = Vector3.zero;
+            //print("Left stick x = " + setDevice.LeftStickX);
+            moveVec += new Vector3(setDevice.LeftStick.Vector.x, setDevice.LeftStick.Vector.y, 0.0f);
 
-			if (Input.GetKey(rightKey) /*|| setDevice.DPadRight */)
+            if (Input.GetKey(rightKey) || setDevice.DPadRight)
             {
-                transform.Translate(Vector3.right * Time.deltaTime * speed);
+                moveVec += Vector3.right;
                 // If the human is facing right, then flip
                 if (!human.facingRight)
                 {
@@ -114,9 +122,10 @@ public class Movement : MonoBehaviour {
                     human.facingRight = true;
                 }
             }
-			if (Input.GetKey(leftKey) /*|| setDevice.DPadLeft */)
+
+			if (Input.GetKey(leftKey) || setDevice.DPadLeft)
             {
-                transform.Translate(Vector3.left * Time.deltaTime * speed);
+                moveVec += Vector3.left;
                 // If the human is facing right, then flip
                 if (human.facingRight)
                 {
@@ -126,40 +135,55 @@ public class Movement : MonoBehaviour {
                     human.facingRight = false;
                 }
             }
-
-			if ((Input.GetKey(rightKey) /*|| setDevice.DPadRight */ ) && isDetective && (Input.GetKey(boostKey) /* || setDevice.RightTrigger */))
+			/*if ((Input.GetKey(rightKey) || setDevice.DPadRight ) && isDetective && (Input.GetKey(boostKey) || setDevice.RightTrigger))
 			{
 				transform.Translate(Vector3.right * Time.deltaTime * speed * 1.5f);
 			}
-			if ((Input.GetKey(leftKey) /*|| setDevice.DPadLeft */ ) && isDetective && (Input.GetKey(boostKey) /* || setDevice.RightTrigger */))
+			if ((Input.GetKey(leftKey) || setDevice.DPadLeft) && isDetective && (Input.GetKey(boostKey) || setDevice.RightTrigger))
 			{
 				transform.Translate(Vector3.left * Time.deltaTime * speed * 1.5f);
-			}
+			}*/
             // Move up for ghosts
-            if ((Input.GetKey(upKey) /*|| setDevice.DPadUp */) && isGhost)
+            if ((Input.GetKey(upKey) || setDevice.DPadUp) && isGhost)
             {
-                transform.Translate(Vector3.up * Time.deltaTime * speed);
+                moveVec += Vector3.up;
             }
             // Move up for ghosts
-			if ((Input.GetKey(downKey) /*|| setDevice.DPadDown */) && isGhost)
+			if ((Input.GetKey(downKey) || setDevice.DPadDown) && isGhost)
             {
-                transform.Translate(Vector3.down * Time.deltaTime * speed);
+                moveVec += Vector3.down;
             }
+
+            transform.Translate(moveVec * Time.deltaTime * speed);
         }
 	}
 
-	void OnCollisionEnter(Collision other){
-		//var setDevice = InputManager.Devices[conNum];
-		if (other.gameObject.name == "Stairs") {
-			//print("Stairs");
-
-			if (Input.GetKey (upKey) /*|| InputManager.Devices[conNum].DPadUp*/) {
-				transform.Translate(Vector3.up*Time.deltaTime*speed);
-			}
-			if (Input.GetKey (downKey) /*|| InputManager.Devices[conNum].DPadDown*/)
+    // Door movement
+    public void checkForDoorInput(Collider collider)
+    {
+        
+        Door door = collider.GetComponent<Door>();
+        Vector2 stickUp = new Vector2(1.0f, 1.0f);
+        Vector2 stickDown = new Vector2(1.0f, -1.0f);
+        if (door)
+        {
+            // TODO TELL ME (JAMES KOTZIAN) TO CLEAN THIS UP
+            if ((Input.GetKeyDown(upKey) ||
+               (InputManager.Devices[conNum].LeftStick.Vector.x > -.3 && 
+               InputManager.Devices[conNum].LeftStick.Vector.x < .3 &&
+               InputManager.Devices[conNum].LeftStick.Vector.y > 0) ||
+               InputManager.Devices[conNum].DPadUp) && door.above)
             {
-				transform.Translate(Vector3.down*Time.deltaTime*speed);
-			}
-		}
-	}
+                door.MoveUp(gameObject);
+            }
+            else if ((Input.GetKeyDown(downKey) ||
+                     (InputManager.Devices[conNum].LeftStick.Vector.x > -.3 &&
+                      InputManager.Devices[conNum].LeftStick.Vector.x < .3 &&
+                      InputManager.Devices[conNum].LeftStick.Vector.y < 0) ||
+                      InputManager.Devices[conNum].DPadDown) && door.below)
+            {
+                door.MoveDown(gameObject);
+            }
+        }
+    }
 }

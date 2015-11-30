@@ -212,15 +212,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'A Spooky Night In!
-
-
-    Press X to be Ghost One
-
-    Press Y to be Ghost Two
-
-
-    or
+  m_Text: 'Ghost Player
 
 
     Press Space
@@ -532,15 +524,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'A Spooky Night In!
-
-
-    Press A to be Detective One
-
-    Press B to be Detective Two
-
-
-    or
+  m_Text: 'Detective Player
 
 
     Press Space

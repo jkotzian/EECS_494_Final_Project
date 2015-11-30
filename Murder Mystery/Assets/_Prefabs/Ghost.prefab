@@ -124,6 +124,7 @@ MonoBehaviour:
   bloodDropTimeMax: 0
   bloodDropInterval: 0
   newInterval: 0
+  conNum: 1
   possessionObjRef: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
   possessing: 0
 --- !u!114 &11488832
@@ -137,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de13190d26b94e87b50ff2ecab2351e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.20000005
   upKey: 0
   downKey: 0
   leftKey: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
     width: 0
     height: 0
   playerNum: 
+  conNum: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -195,7 +197,7 @@ Prefab:
       objectReference: {fileID: 131168, guid: e855535dd7d46974e80b57d28bfc046b, type: 2}
     - target: {fileID: 0}
       propertyPath: speed
-      value: 1
+      value: 1.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
@@ -225,6 +227,10 @@ Prefab:
       propertyPath: possessionObjRef
       value: 
       objectReference: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
+    - target: {fileID: 0}
+      propertyPath: conNum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183882}
