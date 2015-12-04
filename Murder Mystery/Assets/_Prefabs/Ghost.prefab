@@ -113,6 +113,9 @@ MonoBehaviour:
   possessionObjRef: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
   possessing: 0
   movement: {fileID: 0}
+  tryingToPossess: 0
+  growthRate: 1.20000005
+  maxGrowthX: 3.29999995
 --- !u!114 &11488832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +263,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 24e4e48f8b748b149929ae5ba41a152a,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: growthRate
+      value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxGrowthX
+      value: 3.29999995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183882}

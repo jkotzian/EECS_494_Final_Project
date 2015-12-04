@@ -30,9 +30,11 @@ public class PossessHit : MonoBehaviour
         NPC target = collision.gameObject.GetComponent<NPC>();
         if (target)
         {
-            target.possess(ghostOwner);
-            ghostOwner.possessing = true;
-            Destroy(this.gameObject);
+            if (!ghostOwner.possessing)
+            {
+                target.possess(ghostOwner);
+                Destroy(this.gameObject);
+            }
         }
     }
 }

@@ -110,7 +110,9 @@ public class NPC : Human {
             }
         }
 
-        if (possessed && (Input.GetKeyDown(possessionOwner.possessKey) || 
+        // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, AND they hit the
+        // possession key, then dispossess them
+        if (possessed && !possessionOwner.shrinkingIntoBody && (Input.GetKeyDown(possessionOwner.possessKey) || 
            (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
         {
 			dispossess();
@@ -123,16 +125,22 @@ public class NPC : Human {
         possessionOwner = possessor;
         possessorMovement = possessor.GetComponent<Movement>();
         
-        // Enable the NPC's movement with the Ghost's controls
-        NPCMovement.enabled = true;
-        NPCMovement.setUDLRKeys(possessorMovement.upKey, possessorMovement.downKey,
-                                possessorMovement.leftKey, possessorMovement.rightKey);
-        // Disable the ghost
-        possessor.gameObject.SetActive(false);
+        possessor.possessing = true;
+        possessor.possessedNPC = this;
+
+        possessor.ShrinkIntoBody(transform.position);
         // Set the velocity to 0
         rigidbody.velocity = Vector3.zero;
-        // Give it the same controls as the ghost
+        // Give it the same controller and controls as the ghost
+        NPCMovement.setUDLRKeys(possessorMovement.upKey, possessorMovement.downKey,
+                        possessorMovement.leftKey, possessorMovement.rightKey);
         NPCMovement.conNum = possessor.movement.conNum;
+    }
+
+    public void turnOnMovement()
+    {
+        // Enable the NPC's movement with the Ghost's controls
+        NPCMovement.enabled = true;
     }
 
     public void block(bool right)

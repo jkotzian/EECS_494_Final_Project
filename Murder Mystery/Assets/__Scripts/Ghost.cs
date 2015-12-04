@@ -23,28 +23,85 @@ public class Ghost : Human
 
     public bool possessing;
     public Movement movement;
+    public SpriteRenderer srend;
+
+    bool growing;
+    bool shrinking;
+    public bool tryingToPossess;
+    public float growthRate;
+    public float maxGrowthY;
+    public float normalY;
+
+    public float growthVal;
+
+    public float shrinkingIntoBodySpeed;
+    public bool shrinkingIntoBody;
+    Vector3 targetPossessionPosition;
+
+    public NPC possessedNPC;
 
     public void setPossessKey(KeyCode key)
     {
         possessKey = key;
     }
 
-    void Awake()
-    {
-        // Default murder key
-        setPossessKey(KeyCode.Space);
-        startTime = Time.time;
-    }
-
     void Start()
     {
+        startTime = Time.time;
+        normalY = transform.position.y;
+
+        possessing = false;
+        currentPossessionObj = null;
+
         movement = GetComponent<Movement>();
         facingRight = true;
+        srend = GetComponent<SpriteRenderer>();
+        tryingToPossess = false;
+        growing = false;
+        shrinking = false;
+        shrinkingIntoBody = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (shrinkingIntoBody)
+        {
+            float min = .1f;
+            Vector3 dir = (targetPossessionPosition - transform.position);
+            transform.Translate(dir * shrinkingIntoBodySpeed * Time.deltaTime);
+
+            if ((targetPossessionPosition - transform.position).magnitude < min)
+            {
+                // Re-enable the Ghost's movement
+                movement.enabled = true;
+                // Turn on the NPC's movement
+                possessedNPC.turnOnMovement();
+                // Turn off the Ghost object
+                gameObject.SetActive(false);
+                shrinkingIntoBody = false;
+                // Reset the Ghost
+                transform.localScale /= growthVal;
+                srend.color = Color.white;
+            }
+        }
+        // COULDNT GET THIS CRAP WORKING
+        /*if (growing)
+        {
+            transform.localScale += Vector3.one * growthRate;
+            if (transform.localScale.y > maxGrowthY)
+            {
+                growing = false;
+            }
+        }
+        else if (shrinking)
+        {
+            transform.localScale -= Vector3.one * growthRate;
+            if (transform.localScale.y < normalY)
+            {
+                shrinking = false;
+            }
+        }*/
         if ((Input.GetKeyDown(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasPressed)) && 
             !currentPossessionObj && !possessing)
         {
@@ -66,21 +123,35 @@ public class Ghost : Human
             // Make sure to set its offset!!!
             possess.offset = possessionObjOffset;*/
             currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
-
             // Get the possession object
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
             possess.ghostOwner = this;
+
+            tryingToPossess = true;
+            srend.color = Color.red;
+            transform.localScale *= growthVal;
         }
 		if ((Input.GetKeyUp(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasReleased)) && 
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);
             currentPossessionObj = null;
+            srend.color = Color.white;
+            tryingToPossess = false;
+            transform.localScale /= growthVal;
         }
     }
 
+    public void ShrinkIntoBody(Vector3 targetPos)
+    {
+        shrinkingIntoBody = true;
+        targetPossessionPosition = targetPos;
+        // Turn off the movement to play the animation
+        movement.enabled = false;
+    }
+
     void FixedUpdate() { 
-		if(Time.time - startTime > newInterval){
+		if (Time.time - startTime > newInterval){
 			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
             startTime = Time.time;
 		}
