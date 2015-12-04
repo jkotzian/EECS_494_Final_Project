@@ -8,32 +8,16 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 491114}
-  - 33: {fileID: 3351990}
-  - 23: {fileID: 2361658}
   - 114: {fileID: 11488832}
   - 54: {fileID: 5493664}
   - 65: {fileID: 6595096}
   - 114: {fileID: 11431540}
   - 65: {fileID: 6587044}
+  - 212: {fileID: 21219084}
+  - 95: {fileID: 9587184}
   m_Layer: 11
   m_Name: Ghost
   m_TagString: Murderer
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &191946
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 492168}
-  - 212: {fileID: 21246594}
-  m_Layer: 11
-  m_Name: Sprite
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,55 +29,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.02631092, y: -.698920608, z: -1.15145564}
-  m_LocalScale: {x: .5, y: 1, z: .300000012}
-  m_Children:
-  - {fileID: 492168}
+  m_LocalPosition: {x: -6.21593714, y: .947799981, z: -1.15145564}
+  m_LocalScale: {x: 2.34967518, y: 2.34967756, z: 2.34967756}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &492168
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191946}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 3, z: 3.33333325}
-  m_Children: []
-  m_Father: {fileID: 491114}
-  m_RootOrder: 0
---- !u!23 &2361658
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183882}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: fd7f371f54d8c4e85b0e0ccb00acbbe4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &3351990
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183882}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &5493664
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -119,7 +59,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .300000012, y: .5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6595096
 BoxCollider:
@@ -131,8 +71,25 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .300000012, y: .5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9587184
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183882}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c29bb38ea26ee144bbb06822cb4ab3b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11431540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,12 +146,12 @@ MonoBehaviour:
     height: 0
   playerNum: 
   conNum: 0
---- !u!212 &21246594
+--- !u!212 &21219084
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191946}
+  m_GameObject: {fileID: 183882}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -213,8 +170,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7456eab547ae0452f9d2e8aa7dc1e858, type: 3}
-  m_Color: {r: .492647052, g: 1, b: .529952466, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 24e4e48f8b748b149929ae5ba41a152a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: .684000015}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -298,6 +255,11 @@ Prefab:
       propertyPath: m_Color.b
       value: .529952466
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24e4e48f8b748b149929ae5ba41a152a,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183882}

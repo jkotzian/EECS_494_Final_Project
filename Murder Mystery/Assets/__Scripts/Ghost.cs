@@ -84,6 +84,9 @@ public class Ghost : Human
 			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
             startTime = Time.time;
 		}
+        float divider = 2.5f;
+        float multiplier = 7f;
+        transform.Translate((Vector3.up * Time.deltaTime * Mathf.Cos(Time.time * multiplier))/divider);
     }
 
     void OnTriggerExit(Collider collider)
