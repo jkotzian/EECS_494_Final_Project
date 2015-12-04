@@ -63,10 +63,10 @@ public class Switch : MonoBehaviour {
     }
 
 	void OnTriggerStay(Collider other){
-		NPC computer = other.GetComponent<NPC> ();
+		NPC computer = other.GetComponent<NPC>();
 		bool keyboardPressed = Input.GetKeyDown (KeyCode.Q);
-        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
 		if (computer != null) {
+            bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
 			if (computer.possessed && (keyboardPressed || controllerPressed)) {
 				//print (switchNum);
 				flippedSwitch = true;
@@ -77,6 +77,7 @@ public class Switch : MonoBehaviour {
 				} else if (switchNum == 2) {
 					other.GetComponent<BoxCollider> ().enabled = false;
 					computer.dispossess();
+                    computer.Kill();
 				} else if (switchNum == 3) {
 					Color tmpColor = GamePlay.S.EnvironmentalObjects [1].GetComponent<Renderer> ().material.color;
 					tmpColor.a = 0.5f;

@@ -67,7 +67,7 @@ public class MansionEnvironment : MonoBehaviour {
 		if (first)
 		{
 			first = false;
-			nextTurnOnTime = 500;
+            nextTurnOnTime = turnOnTimeMax * 2;
 		}
 		else
 			nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
