@@ -71,10 +71,14 @@ public class Switch : MonoBehaviour {
         }
     }
 
-	void OnTriggerStay(Collider other){
-		NPC computer = other.GetComponent<NPC>();
-		bool keyboardPressed = Input.GetKeyDown (KeyCode.Q);
-		if (computer != null) {
+	void OnTriggerStay(Collider other){                          
+		NPC computer = other.GetComponent<NPC> ();     
+		if (computer != null) {      
+            bool keyboardPressed = false;
+            if (computer.possessed)
+            {
+                keyboardPressed = Input.GetKeyDown(computer.possessionOwner.actionKey);
+            }
             bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
 			if (computer.possessed && (keyboardPressed || controllerPressed)) {
 				AText.SetActive(false);

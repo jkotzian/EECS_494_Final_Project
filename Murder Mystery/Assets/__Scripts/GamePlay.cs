@@ -92,7 +92,7 @@ public class GamePlay : MonoBehaviour {
         Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
-        Ghosts[0].GetComponent<Ghost>().setPossessKey(KeyCode.E);
+        Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
         Ghosts[0].GetComponent<Movement>().conNum = 0;//ControllerManager.S.ghostOne;
 		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
 		
@@ -103,7 +103,7 @@ public class GamePlay : MonoBehaviour {
             Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
             Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
             Ghosts[1].GetComponent<Ghost>().alive = true;
-            Ghosts[1].GetComponent<Ghost>().setPossessKey(KeyCode.Y);
+            Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
        		Ghosts[1].GetComponent<Movement>().conNum = ControllerManager.S.ghostTwo;
 			//Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
             ++locationIndex;
@@ -128,8 +128,7 @@ public class GamePlay : MonoBehaviour {
 		Detectives[0].GetComponent<Movement>().isDetective = true;
         // Set the art/animation
         Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
-
-		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
+		Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
         Detectives[0].GetComponent<Movement>().conNum = 1;
 		
         ++locationIndex;
@@ -140,8 +139,8 @@ public class GamePlay : MonoBehaviour {
 
             Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
             Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
-            Detectives[1].GetComponent<Movement>().isDetective = true;
-            Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
+            Detectives[1].GetComponent<Movement>().isDetective = true;                      
+            Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);     
 			Detectives[1].GetComponent<Movement>().conNum = ControllerManager.S.detectiveTwo;
             // Set the art/animation
             Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;

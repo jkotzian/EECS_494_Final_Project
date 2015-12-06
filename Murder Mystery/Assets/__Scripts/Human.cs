@@ -8,10 +8,16 @@ public class Human : MonoBehaviour {
     public bool 		isStabbed;
 	public float        delayPerSecond; 
 	public	 GameObject	trackerPrefab;
+    public KeyCode actionKey;
+
+    public void setActionKey(KeyCode key)
+    {
+        actionKey = key;
+    }
 
     // NOTE: NOTHING HAPPENS IN THE START FUNCTION FOR A BASE CLASS LIKE THIS
 
-	void FixedUpdate() {
+    void FixedUpdate() {
 		if (isStabbed)
         {
             Kill();

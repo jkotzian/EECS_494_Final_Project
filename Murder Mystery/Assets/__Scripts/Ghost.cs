@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using InControl;
 
 public class Ghost : Human
-{
-    public KeyCode possessKey;
+{                               
     public RaycastHit hitInfo;
     public int bloodDropTimeMax;
     public int bloodDropInterval;
@@ -40,13 +39,9 @@ public class Ghost : Human
 
     public NPC possessedNPC;
 
-    public void setPossessKey(KeyCode key)
+    void Awake()
     {
-        possessKey = key;
-    }
-
-    void Start()
-    {
+        setActionKey(KeyCode.Q);   
         startTime = Time.time;
         normalY = transform.position.y;
 
@@ -64,7 +59,7 @@ public class Ghost : Human
 
     // Update is called once per frame
     void Update()
-    {
+    {                    
         if (shrinkingIntoBody)
         {
             float min = .1f;
@@ -102,7 +97,8 @@ public class Ghost : Human
                 shrinking = false;
             }
         }*/
-        if ((Input.GetKeyDown(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasPressed)) && 
+        if ((Input.GetKeyDown(actionKey) ||
+            (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
@@ -131,7 +127,7 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);
