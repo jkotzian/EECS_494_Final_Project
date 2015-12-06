@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9ad17afe49be2a74b8154d2dd6378637
-timeCreated: 1449360178
+timeCreated: 1449380912
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,8 +59,8 @@ TextureImporter:
         y: 7
         width: 21
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .449999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Guest2_Idle_Right_1
       rect:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 7
         width: 21
         height: 47
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .449999988}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

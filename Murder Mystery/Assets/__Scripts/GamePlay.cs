@@ -42,8 +42,12 @@ public class GamePlay : MonoBehaviour {
 
     public bool usingControllers;
 
+    public RuntimeAnimatorController detective1AnimationController;
+    public RuntimeAnimatorController detective2AnimationController;
+
     public RuntimeAnimatorController guest1AnimationController;
     public RuntimeAnimatorController guest2AnimationController;
+    public RuntimeAnimatorController guest3AnimationController;
 
     void Awake()
     {
@@ -69,11 +73,13 @@ public class GamePlay : MonoBehaviour {
             // Add an order in layer so it's not weird when NPCs overlap
             newNPC.GetComponent<SpriteRenderer>().sortingOrder = locationIndex;
             // Randomely assign a party guest to them
-            int animationNum = Random.Range(0, 2);
+            int animationNum = Random.Range(0, 3);
             if (animationNum == 1)
                 newNPC.GetComponent<Animator>().runtimeAnimatorController = guest1AnimationController;
-            else
+            else if (animationNum == 2)
                 newNPC.GetComponent<Animator>().runtimeAnimatorController = guest2AnimationController;
+            else
+                newNPC.GetComponent<Animator>().runtimeAnimatorController = guest3AnimationController;
             NPCs.Add(newNPC);
             ++locationIndex;
         }
@@ -119,13 +125,10 @@ public class GamePlay : MonoBehaviour {
         //Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
         Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
         Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
-		Detectives[0].GetComponent<Movement>().setLabel(765,380, "Player 1 Detective Mode: ");
 		Detectives[0].GetComponent<Movement>().isDetective = true;
+        // Set the art/animation
+        Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
 
-        // Hide the light from the ghost
-        ghostCamera.light1 = Detectives[0].GetComponent<Detective>().aura;
-
-		//Detectives[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveOne];
 		Detectives[0].GetComponent<Detective>().setArrestKey(KeyCode.RightShift);
         Detectives[0].GetComponent<Movement>().conNum = 1;
 		
@@ -134,17 +137,15 @@ public class GamePlay : MonoBehaviour {
         if (numPlayers == 4)
         {
             Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-            // THIS MESSESS STUFF UP RIGHT NOW
-            //Detectives[1].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
+
             Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
             Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
-            Detectives[1].GetComponent<Movement>().setLabel(765, 400, "Player 2 Detective Mode: ");
             Detectives[1].GetComponent<Movement>().isDetective = true;
             Detectives[1].GetComponent<Detective>().setArrestKey(KeyCode.U);
-			//Detectives[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.detectiveTwo];
 			Detectives[1].GetComponent<Movement>().conNum = ControllerManager.S.detectiveTwo;
-            // Hide the light from the ghost
-            ghostCamera.light2 = Detectives[1].GetComponent<Detective>().aura;
+            // Set the art/animation
+            Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
+
             ++locationIndex;
         }
 

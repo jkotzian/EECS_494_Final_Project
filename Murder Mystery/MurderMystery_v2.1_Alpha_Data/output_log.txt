@@ -1,0 +1,94 @@
+Initialize engine version: 5.2.2f1 (3757309da7e7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.142 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v2.1_Alpha_Data\Managed\System.dll (this message is harmless)
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Number of Devices: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1d8 -> priority: 1 
+  Thread -> id: dd8 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 8.008074 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.933910 ms (FindLiveObjects: 0.061576 ms CreateObjectMapping: 0.076301 ms MarkObjects: 0.781308 ms  DeleteObjects: 0.014278 ms)
+
+Torch (UnityEngine.ParticleSystem)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.753441 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 484.
+Total: 0.989686 ms (FindLiveObjects: 0.078978 ms CreateObjectMapping: 0.073177 ms MarkObjects: 0.812096 ms  DeleteObjects: 0.024541 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.758551 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.961129 ms (FindLiveObjects: 0.059791 ms CreateObjectMapping: 0.067377 ms MarkObjects: 0.767922 ms  DeleteObjects: 0.065592 ms)
+
+Torch (UnityEngine.ParticleSystem)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.346997 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 484.
+Total: 0.779077 ms (FindLiveObjects: 0.050421 ms CreateObjectMapping: 0.046851 ms MarkObjects: 0.659939 ms  DeleteObjects: 0.020525 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.775953 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 739.
+Total: 0.994148 ms (FindLiveObjects: 0.062468 ms CreateObjectMapping: 0.070500 ms MarkObjects: 0.822805 ms  DeleteObjects: 0.037927 ms)
+
+Torch (UnityEngine.ParticleSystem)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.588791 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 484.
+Total: 0.883043 ms (FindLiveObjects: 0.078086 ms CreateObjectMapping: 0.054883 ms MarkObjects: 0.726870 ms  DeleteObjects: 0.022310 ms)
+

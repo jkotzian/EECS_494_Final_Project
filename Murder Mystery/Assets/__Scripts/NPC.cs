@@ -41,7 +41,9 @@ public class NPC : Human {
     }
 
 	// Update is called once per frame
-	void Update () {		
+	void Update () {
+        if (!alive)
+            return;
         if (checkMoveTimer > 0 && !possessed)
         {
             --checkMoveTimer;
