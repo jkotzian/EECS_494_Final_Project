@@ -21,6 +21,7 @@ public class GamePlay : MonoBehaviour {
 	public GameObject		poisonWaterPrefab;
 	public GameObject		pianoTopPrefab;
 	public GameObject		pianoBottomPrefab;
+    public GameObject       detectiveCameraObj;
     public GameObject       ghostCameraObj;
     HideLight               ghostCamera;
 
@@ -39,6 +40,8 @@ public class GamePlay : MonoBehaviour {
     private int[] targetIndices;
     private float starttime;
     private int roundtime;
+    private Rect leftScreen;
+    private Rect rightScreen;
 
     public bool usingControllers;
 
@@ -57,6 +60,8 @@ public class GamePlay : MonoBehaviour {
         Detectives = new List<GameObject>();
         targetIndices = Enumerable.Repeat(-1, 4).ToArray();
 		EnvironmentalObjects = new List<GameObject> ();
+        leftScreen = new Rect(0, 0, 0.5f, 1);
+        rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         startLoc = generateStartLoc();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         usingControllers = false;
@@ -194,6 +199,20 @@ public class GamePlay : MonoBehaviour {
 
         starttime = Time.time;
         TotalGame.S.round++;
+        // set detective and ghost cameras to correct side.
+        if (TotalGame.S.round % 2 == 0)
+        {
+            print("Detective left, Ghost right");
+            detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
+            ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
+        }
+        else
+        {
+            print("Detective right, Ghost left");
+            detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
+            ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
+        }
+
         roundtime = 60;
         if (TotalGame.S.round > 2)
         {
@@ -203,6 +222,8 @@ public class GamePlay : MonoBehaviour {
         {
             texts[i].text = "";
         }
+
+        
     }
 
     void Update()
