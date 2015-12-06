@@ -26,14 +26,7 @@ public class NPC : Human {
 
     Rigidbody rigidbody;
 
-	// Awake might not be the best place for initialization
-	void Awake () {
-        // Set default timer values
-        //setTimerValues(40, 70, 150);
-        // Set default values
-        //moving = false;
-        //movingRight = false;
-	}
+    Animator animator;
 
     void Start()
     {
@@ -43,6 +36,7 @@ public class NPC : Human {
         target = false;
         rigidbody = GetComponent<Rigidbody>();
         NPCMovement = GetComponent<Movement>();
+        animator = GetComponent<Animator>();
         facingRight = true;
     }
 
@@ -117,6 +111,10 @@ public class NPC : Human {
         {
 			dispossess();
         }
+
+        // If the NPC is possessed, the movement script will determine the walking animation
+        if (!possessed)
+            animator.SetBool("Moving", moving);
 	}
 
     public void possess(Ghost possessor)

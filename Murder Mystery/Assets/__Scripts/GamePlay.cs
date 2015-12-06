@@ -42,6 +42,9 @@ public class GamePlay : MonoBehaviour {
 
     public bool usingControllers;
 
+    public RuntimeAnimatorController guest1AnimationController;
+    public RuntimeAnimatorController guest2AnimationController;
+
     void Awake()
     {
         S = this;
@@ -61,9 +64,17 @@ public class GamePlay : MonoBehaviour {
         int locationIndex = 0;
         while (locationIndex < numNPCs)
         {
-            NPCs.Add(Instantiate(npcPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-            NPCs[locationIndex].GetComponent<Renderer>().material = disguises[0];
-            NPCs[locationIndex].gameObject.name = "NPC " + locationIndex.ToString();
+            GameObject newNPC = Instantiate(npcPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject;
+            newNPC.gameObject.name = "NPC " + locationIndex.ToString();
+            // Add an order in layer so it's not weird when NPCs overlap
+            newNPC.GetComponent<SpriteRenderer>().sortingOrder = locationIndex;
+            // Randomely assign a party guest to them
+            int animationNum = Random.Range(0, 2);
+            if (animationNum == 1)
+                newNPC.GetComponent<Animator>().runtimeAnimatorController = guest1AnimationController;
+            else
+                newNPC.GetComponent<Animator>().runtimeAnimatorController = guest2AnimationController;
+            NPCs.Add(newNPC);
             ++locationIndex;
         }
         // See if the players are using the controllers
