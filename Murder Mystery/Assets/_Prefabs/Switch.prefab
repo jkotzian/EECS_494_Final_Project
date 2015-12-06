@@ -88,6 +88,8 @@ MonoBehaviour:
   emptyMaterial: {fileID: 2100000, guid: d02dee9df19b24574810bc74c9fe607d, type: 2}
   poisonMaterial: {fileID: 2100000, guid: 67c219cfd57e741fe8cc9d9394dfea63, type: 2}
   switchNum: 0
+  pressA: {fileID: 176952, guid: 70870b5e5644f497cbb0455defd420df, type: 2}
+  AText: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -116,6 +118,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5831156731824cf381f8d89d6bf1fdf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: pressA
+      value: 
+      objectReference: {fileID: 176952, guid: 70870b5e5644f497cbb0455defd420df, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190644}

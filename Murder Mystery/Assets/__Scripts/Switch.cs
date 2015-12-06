@@ -7,6 +7,8 @@ public class Switch : MonoBehaviour {
 	
 	public Material			emptyMaterial, poisonMaterial;
 	public int				switchNum;
+	public GameObject 		pressA;
+	public GameObject 		AText;
 	Light					lightObject;
 
 	GameObject				murderer;
@@ -27,6 +29,10 @@ public class Switch : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lightObject = GameObject.Find ("Directional Light").GetComponent<Light>();
+		AText = Instantiate(pressA) as GameObject;
+		AText.transform.localScale = new Vector3 (.5f, .5f, .5f);
+		AText.transform.position = new Vector3 (transform.position.x + 1f, transform.position.y + .25f, transform.position.z - .25f);
+		AText.SetActive (false);;
 	}
 	
 	// Update is called once per frame
@@ -50,6 +56,7 @@ public class Switch : MonoBehaviour {
         if (npc && npc.possessed)
         {
             GamePlay.S.texts[4].text = "press 'A' to activate trap";
+			AText.SetActive(true);
         }
     }
 
@@ -59,6 +66,8 @@ public class Switch : MonoBehaviour {
         if (npc && npc.possessed)
         {
             GamePlay.S.texts[4].text = "";
+			AText.SetActive(false);
+			
         }
     }
 
@@ -68,6 +77,7 @@ public class Switch : MonoBehaviour {
 		if (computer != null) {
             bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
 			if (computer.possessed && (keyboardPressed || controllerPressed)) {
+				AText.SetActive(false);
 				//print (switchNum);
 				flippedSwitch = true;
 				if (switchNum == 1) {
