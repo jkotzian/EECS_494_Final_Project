@@ -39,6 +39,14 @@ public class Ghost : Human
 
     public NPC possessedNPC;
 
+	public GameObject healthBarPrefab;
+	public GameObject healthBar;
+	public int currentLife;
+	public int ghostLives;
+	public bool losingLife;
+	Vector3 reserve;
+	float timer;
+
     void Awake()
     {
         setActionKey(KeyCode.Q);   
@@ -55,11 +63,38 @@ public class Ghost : Human
         growing = false;
         shrinking = false;
         shrinkingIntoBody = false;
+
+		healthBar = Instantiate (healthBarPrefab) as GameObject;
+		healthBar.transform.parent = gameObject.transform;
+		healthBar.transform.position = gameObject.transform.position;
+		healthBar.transform.position = new Vector3 (transform.position.x, transform.position.y + .8f, transform.position.z - 1f);
+		healthBar.GetComponent<MeshRenderer>().enabled = false;
+		reserve = healthBar.transform.localScale;
+		ghostLives = 3;
+		currentLife = 3;
     }
 
     // Update is called once per frame
     void Update()
-    {                    
+    {                 
+		if (currentLife != ghostLives) {
+			healthBar.GetComponent<MeshRenderer>().enabled = true;
+			timer = Time.time;
+			losingLife = true;
+			Vector3 shrink = healthBar.transform.localScale;
+			shrink.x = reserve.x*.33f*currentLife;
+			healthBar.transform.localScale = shrink;
+			ghostLives = currentLife;
+			if(currentLife == 2)
+				healthBar.GetComponent<Renderer>().material.color = Color.yellow;
+			if(currentLife == 1)
+				healthBar.GetComponent<Renderer>().material.color = Color.red;
+		}
+
+		if((Time.time - timer) > 1f){
+			healthBar.GetComponent<MeshRenderer>().enabled = false;
+		}
+
         if (shrinkingIntoBody)
         {
             float min = .1f;
