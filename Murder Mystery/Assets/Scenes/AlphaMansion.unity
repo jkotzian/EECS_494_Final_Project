@@ -814,7 +814,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
       propertyPath: m_Name
-      value: InsideWalls (2)
+      value: Bookshelf (2)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6579602, guid: 273cb671b0383413fad62f291e9571df, type: 2}
@@ -1124,7 +1124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
       propertyPath: m_Name
-      value: InsideWalls (1)
+      value: Bookshelf (1)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6584358, guid: 273cb671b0383413fad62f291e9571df, type: 2}
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchPrefab: {fileID: 190644, guid: 1c2684c8d8ce941d8aedf71bdbb21bba, type: 2}
+  bookshelfPrefab: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
   npcPrefab: {fileID: 175744, guid: ed7d543e9f45ea54ca6b7b861ff3f63e, type: 2}
   ghostPrefab: {fileID: 183882, guid: 7a2720660cf3c479081324abcfccfad4, type: 2}
   detectivePrefab: {fileID: 142670, guid: d1aba372954ef0f4a8cda193198e7b9a, type: 2}
@@ -1989,7 +1990,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22428728, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490720, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
@@ -1997,55 +1998,55 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22490720, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22437936, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 252
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22437936, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22478604, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 252
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22478604, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22419060, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 426
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22419060, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22439270, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 629
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22439270, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 74
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22451454, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22451454, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470148, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22470148, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11434006, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_Text

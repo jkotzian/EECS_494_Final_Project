@@ -7,8 +7,9 @@ using InControl;
 
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
-    
-	public GameObject		switchPrefab;
+
+    public GameObject       switchPrefab;
+    public GameObject       bookshelfPrefab;
     public GameObject       npcPrefab;
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
@@ -36,10 +37,13 @@ public class GamePlay : MonoBehaviour {
 	public List<GameObject> Switches;
 
     private List<Vector3> startLoc;
+    private List<Vector3> bookshelfLoc;
+    private List<bool> bookshelfPresent;
 
     private int[] targetIndices;
     private float starttime;
     private int roundtime;
+    private float bookshelfSpawnTime;
     private Rect leftScreen;
     private Rect rightScreen;
 
@@ -63,6 +67,7 @@ public class GamePlay : MonoBehaviour {
         leftScreen = new Rect(0, 0, 0.5f, 1);
         rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         startLoc = generateStartLoc();
+        bookshelfLoc = generateBookshelfLoc();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         usingControllers = false;
     }
@@ -198,6 +203,7 @@ public class GamePlay : MonoBehaviour {
 		Switches [6].GetComponent<Switch> ().switchNum = 7;
 
         starttime = Time.time;
+        bookshelfSpawnTime = Time.time;     
         TotalGame.S.round++;
         // set detective and ghost cameras to correct side.
         if (TotalGame.S.round % 2 == 0)
@@ -239,11 +245,17 @@ public class GamePlay : MonoBehaviour {
                 texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 3];
             }
         }
-        //for (int j = 0; j < texts.Count; j++)
-        //    print (texts [j].text);
+        // check for round end
         if (Time.time > roundtime + starttime || checkForDetectiveWin())
         {
             Application.LoadLevel("RoundEnd");
+        }
+        // spawn bookshelves
+        if (Time.time > bookshelfSpawnTime + 10)
+        {
+            bookshelfSpawnTime = Time.time;
+            int i = UnityEngine.Random.Range(0, 3);    
+            Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
         }
     }
 
@@ -251,7 +263,7 @@ public class GamePlay : MonoBehaviour {
     {
         int numPeople = numNPCs + numPlayers;
         List<Vector3> sL = new List<Vector3>();
-        int numPerFloor = (int)Mathf.Ceil((float)((numPeople) / numFloors));
+        int numPerFloor = (int)Mathf.Ceil(numPeople / (float)numFloors);
         // Fill the top floor with any remaining people
         // EXAMPLE: 10 people, 4 floors
         // numPerFloor will be 2
@@ -308,6 +320,15 @@ public class GamePlay : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    List<Vector3> generateBookshelfLoc()
+    {
+        List<Vector3> bl = new List<Vector3>();
+        bl.Add(new Vector3(-3.6f, 1f, 0));     
+        bl.Add(new Vector3(1.27f, -1.5f, 0)); 
+        bl.Add(new Vector3(-0.5f, -4f, 0));   
+        return bl;
     }
 
     //bool checkForMurdererWin()

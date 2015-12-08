@@ -37,5 +37,10 @@ public class GhostHit : MonoBehaviour {
         {
             npc.dispossess();
         }
+        Bookshelf bookshelf = other.gameObject.GetComponent<Bookshelf>();
+        if (bookshelf)
+        {
+            bookshelf.hp -= 50;
+        }
     }
 }
