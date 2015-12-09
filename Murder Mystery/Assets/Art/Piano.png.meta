@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: 608f08313cf2397458bb922bbb05a919
+timeCreated: 1449428877
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Piano_0
+    21300002: Piano_1
+    21300004: Piano_2
+    21300006: Piano_3
+    21300008: Piano_4
+    21300010: Piano_5
+    21300012: Piano_6
+    21300014: Piano_7
+    21300016: Piano_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Piano_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_3
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_4
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_5
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_6
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_7
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Piano_8
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

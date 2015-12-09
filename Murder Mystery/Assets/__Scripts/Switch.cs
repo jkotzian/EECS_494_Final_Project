@@ -4,12 +4,8 @@ using UnityEngine.UI;
 using InControl;
 
 public class Switch : MonoBehaviour {
-	
-	public Material			emptyMaterial, poisonMaterial;
-	public int				switchNum;
-	Light					lightObject;
+	public Trap             trap;
 
-	GameObject				murderer;
 	Rigidbody               rigidbody2Dimensional;
 	float 					moveSpeed = 1f;
 	float					rotationAmount = 90f;
@@ -22,19 +18,13 @@ public class Switch : MonoBehaviour {
 	float 			resetPerSecond = 0.2f;
 	bool			flippedSwitch = false;
 
-	//static public int		howManyTimes = 0;
-
-	// Use this for initialization
-	void Start () {
-		lightObject = GameObject.Find ("Directional Light").GetComponent<Light>();
-	}
+    void Start()
+    {
+        trap = GetComponent<Trap>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (isInfected && MansionEnvironment.E.lightsOn) {
-			murderer.GetComponent<Human> ().Kill ();
-			isInfected = false;
-		}
 		if (flippedSwitch) {
 			if (reset < 2) {
 				reset += resetPerSecond * Time.deltaTime;
@@ -62,82 +52,90 @@ public class Switch : MonoBehaviour {
         }
     }
 
-	void OnTriggerStay(Collider other){
-		NPC computer = other.GetComponent<NPC>();
-		bool keyboardPressed = Input.GetKeyDown (KeyCode.Q);
-		if (computer != null) {
-            bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[computer.NPCMovement.conNum].Action1);
-			if (computer.possessed && (keyboardPressed || controllerPressed)) {
-				//print (switchNum);
-				flippedSwitch = true;
-				if (switchNum == 1) {
-					rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects [0].GetComponent<Rigidbody> ();
-					rigidbody2Dimensional.useGravity = true;
-					//computer.dispossess();
-				} else if (switchNum == 2) {
-					other.GetComponent<BoxCollider> ().enabled = false;
-					computer.dispossess();
-                    computer.Kill();
-				} else if (switchNum == 3) {
-					Color tmpColor = GamePlay.S.EnvironmentalObjects [1].GetComponent<Renderer> ().material.color;
-					tmpColor.a = 0.5f;
-					GamePlay.S.EnvironmentalObjects [1].GetComponent<Renderer> ().material.color = tmpColor;
-					Vector3 tmpPos = GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position;
-					tmpPos.z = 0;
-					GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position = tmpPos;
-					other.gameObject.GetComponent<Human> ().Kill ();
-					//computer.dispossess();
-				} else if (switchNum == 4) {
-					GamePlay.S.EnvironmentalObjects [2].GetComponent<Flamethrower> ().flameOn = true;
-					//computer.dispossess();
-				} else if (switchNum == 5) {
-					this.GetComponent<Renderer> ().material = emptyMaterial;
-					murderer = other.gameObject;
-					isInfected = true;
-					//computer.dispossess();
-				} else if (switchNum == 6 && !isChopped) {
-					GamePlay.S.EnvironmentalObjects [3].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, 90));
-					other.gameObject.GetComponent<Human> ().Kill ();
-					isChopped = true;
-					//computer.dispossess();
-				} else if (switchNum == 7 && !droppedLid) {
-					print ("Got in");
-					GamePlay.S.EnvironmentalObjects [4].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, 320));
-					this.transform.Rotate (new Vector3 (0, 0, -60));
-					other.gameObject.GetComponent<Human> ().Kill ();
-					droppedLid = true;
-					//computer.dispossess();
-				}
-			}
-		}
+	void OnTriggerStay(Collider other) {
+		NPC npc = other.GetComponent<NPC>();
+        if (npc == null || !npc.possessed)
+            return;
+
+        bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.possessKey);
+        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
+        if (keyboardPressed || controllerPressed)
+        {
+            // Say that the NPC is no longer possessed, so when the "unpossess" key is pressed, it kills
+            // the NPC instead of dispossessing them.
+            //npc.possessed = false;
+
+            //print (switchNum);
+            flippedSwitch = true;
+            trap.activate(npc, 20, 25);
+            
+            /*if (switchNum == 1)
+            {
+                rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects[0].GetComponent<Rigidbody>();
+                rigidbody2Dimensional.useGravity = true;
+            }
+            else if (switchNum == 2)
+            {
+                other.GetComponent<BoxCollider>().enabled = false;
+                npc.Kill();
+            }
+            else if (switchNum == 3)
+            {
+                Color tmpColor = GamePlay.S.EnvironmentalObjects[1].GetComponent<Renderer>().material.color;
+                tmpColor.a = 0.5f;
+                GamePlay.S.EnvironmentalObjects[1].GetComponent<Renderer>().material.color = tmpColor;
+                Vector3 tmpPos = GamePlay.S.EnvironmentalObjects[1].GetComponent<Transform>().position;
+                tmpPos.z = 0;
+                GamePlay.S.EnvironmentalObjects[1].GetComponent<Transform>().position = tmpPos;
+                npc.Kill();
+            }
+            else if (switchNum == 4)
+            {
+                GamePlay.S.EnvironmentalObjects[2].GetComponent<FlameTrap>().flameOn = true;
+            }
+            else if (switchNum == 5)
+            {
+                isInfected = true;
+            }
+            else if (switchNum == 6 && !isChopped)
+            {
+                GamePlay.S.EnvironmentalObjects[3].GetComponent<Transform>().Rotate(new Vector3(0, 0, 90));
+                npc.Kill();
+                isChopped = true;
+            }
+            else if (switchNum == 7 && !droppedLid)
+            {
+                print("Got in");
+                GamePlay.S.EnvironmentalObjects[4].GetComponent<Transform>().Rotate(new Vector3(0, 0, 320));
+                this.transform.Rotate(new Vector3(0, 0, -60));
+                npc.Kill();
+                droppedLid = true;
+            }*/
+        }
 	}
 
 	void resetEnvironment(){
-		if (switchNum == 1) {
+		/*if (switchNum == 1) {
 			rigidbody2Dimensional = GamePlay.S.EnvironmentalObjects [0].GetComponent<Rigidbody> ();
 			rigidbody2Dimensional.useGravity = false;
 			Vector3 tmpPos = rigidbody2Dimensional.position;
 			tmpPos.y = 2.059f;
 			rigidbody2Dimensional.position = tmpPos;
-			//computer.dispossess();
 		} else if (switchNum == 3) {
 			Vector3 tmpPos = GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position;
 			tmpPos.z = 1;
 			GamePlay.S.EnvironmentalObjects [1].GetComponent<Transform> ().position = tmpPos;
-			//computer.dispossess();
 		} else if (switchNum == 5) {
-			this.GetComponent<Renderer> ().material = poisonMaterial;
+
 		} else if (switchNum == 6 && isChopped) {
 			GamePlay.S.EnvironmentalObjects [3].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, -90));
 			isChopped = false;
-			//computer.dispossess();
 		} else if (switchNum == 7 && droppedLid) {
 			//print ("Got in");
 			GamePlay.S.EnvironmentalObjects [4].GetComponent<Transform> ().Rotate (new Vector3 (0, 0, -320));
 			this.transform.Rotate (new Vector3 (0, 0, 60));
 			droppedLid = false;
-			//computer.dispossess();
-		}
+		}*/
 		flippedSwitch = false;
 	}
 }

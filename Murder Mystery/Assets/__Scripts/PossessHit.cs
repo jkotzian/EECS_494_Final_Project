@@ -30,7 +30,9 @@ public class PossessHit : MonoBehaviour
         NPC target = collision.gameObject.GetComponent<NPC>();
         if (target)
         {
-            if (!ghostOwner.possessing)
+            // If the ghost is not currently possessing someone,
+            // and the target is alive
+            if (!ghostOwner.possessing && target.alive)
             {
                 target.possess(ghostOwner);
                 Destroy(this.gameObject);

@@ -16,18 +16,6 @@ public class Human : MonoBehaviour {
         {
             Kill();
             isStabbed = false;
-            /*if (delayKill < 1)
-			{
-				delayKill += delayPerSecond * Time.deltaTime;
-			}
-			else
-			{
-				Kill();
-				delayKill = 0;
-				print("Killed");
-				isStabbed = false;
-				CancelInvoke();
-			}*/
         }
 	}
 	

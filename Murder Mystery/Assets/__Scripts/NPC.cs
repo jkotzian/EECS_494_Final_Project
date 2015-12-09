@@ -108,10 +108,13 @@ public class NPC : Human {
 
         // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, AND they hit the
         // possession key, then dispossess them
-        if (possessed && !possessionOwner.shrinkingIntoBody && (Input.GetKeyDown(possessionOwner.possessKey) || 
-           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
+        if (possessed && !possessionOwner.shrinkingIntoBody && 
+            (Input.GetKeyDown(possessionOwner.possessKey) || (GamePlay.S.usingControllers && 
+            InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
         {
-			dispossess();
+			/* WE'RE GOING TO EXPERIMENT WITH THE GHOST ONLY BEING ABLE TO DISPOSSESS WHEN THEY KILL
+              SOMEONE. NOTE, THERE IS A RACE CONDITION THAT YOU MUST DEAL WITH IF YOU UNCOMMENT THIS LINE
+             dispossess();*/
         }
 
         // If the NPC is possessed, the movement script will determine the walking animation

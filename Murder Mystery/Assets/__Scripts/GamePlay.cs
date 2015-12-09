@@ -19,8 +19,7 @@ public class GamePlay : MonoBehaviour {
 	public GameObject		toxicAreaPrefab;
 	public GameObject		flamethrowerPrefab;
 	public GameObject		poisonWaterPrefab;
-	public GameObject		pianoTopPrefab;
-	public GameObject		pianoBottomPrefab;
+	public GameObject		pianoPrefab;
     public GameObject       ghostCameraObj;
     HideLight               ghostCamera;
 
@@ -161,16 +160,16 @@ public class GamePlay : MonoBehaviour {
         }*/
 
 		//Place Environmental Objects
-		EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
+		/*EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(toxicAreaPrefab, new Vector3(-4.64f, -3.77f, 1), Quaternion.identity) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(flamethrowerPrefab, new Vector3(1.46f	, -1.37f, 0), Quaternion.Euler (0,0,90)) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(knightAxePrefab, new Vector3(-4.06f, 0.95f, 0), Quaternion.identity) as GameObject);
-		EnvironmentalObjects.Add (Instantiate(pianoTopPrefab, new Vector3(-0.4f, 3.7f, 0), Quaternion.Euler (0,0,-50)) as GameObject);
+		EnvironmentalObjects.Add (Instantiate(pianoPrefab, new Vector3(-0.4f, 3.7f, 0), Quaternion.Euler (0,0,-50)) as GameObject);*/
 		//print (EnvironmentalObjects [0]);
 
 		// Place switches
 		//Chandelier Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
+		/*Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
 		Switches [0].GetComponent<Switch> ().switchNum = 1;
 		//Hole in ground Switch
 		Switches.Add (Instantiate(switchPrefab, new Vector3(0.05f, -3.91f, 0), Quaternion.identity) as GameObject);
@@ -188,10 +187,9 @@ public class GamePlay : MonoBehaviour {
 		//Knight axe Switch
 		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.83f, 1.2f, 0), Quaternion.identity) as GameObject);
 		Switches [5].GetComponent<Switch> ().switchNum = 6;
-		//Piano bottom Switch
-		//Switches.Add (Instantiate(pianoBottomPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
+		//Piano Switch
 		Switches.Add (Instantiate(switchPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
-		Switches [6].GetComponent<Switch> ().switchNum = 7;
+		Switches [6].GetComponent<Switch> ().switchNum = 7;*/
 
         starttime = Time.time;
         TotalGame.S.round++;
