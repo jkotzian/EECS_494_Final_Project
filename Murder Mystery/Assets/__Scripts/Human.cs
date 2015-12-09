@@ -29,7 +29,7 @@ public class Human : MonoBehaviour {
     {
         // If it's an NPC that is killed
         NPC NPCToKill = GetComponent<NPC>();
-        if (NPCToKill)
+        if (NPCToKill && NPCToKill.alive)
         {
             //Knock the murderer over
             if (NPCToKill.possessed)
@@ -37,7 +37,7 @@ public class Human : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, 90));
             foreach(GameObject npc in GamePlay.S.NPCs)
             {
-                npc.GetComponent<NPC>().speed += 0.5f;
+                //npc.GetComponent<NPC>().speed += 0.5f;
             }
             if(TotalGame.S.round > 2 && alive)
             {

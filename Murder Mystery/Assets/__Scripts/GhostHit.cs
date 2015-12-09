@@ -10,18 +10,18 @@ public class GhostHit : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        //lifetime = lifetimeMax;
+        lifetime = lifetimeMax;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.position = detectiveOwner.transform.position + offset;
-        /*lifetime--;
+        lifetime--;
         if (lifetime == 0)
         {
-            this.gameObject.SetActive(false);
-        }*/
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -33,9 +33,12 @@ public class GhostHit : MonoBehaviour {
             human.Kill();
         }
         NPC npc = other.gameObject.GetComponent<NPC>();
-        if (npc && npc.possessed)
+        if (npc)
         {
-            npc.dispossess();
+            if (npc.possessed)
+                npc.dispossess();
+            // Kill the party guest :o
+            npc.Kill();
         }
         Bookshelf bookshelf = other.gameObject.GetComponent<Bookshelf>();
         if (bookshelf)

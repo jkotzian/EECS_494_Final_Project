@@ -32,6 +32,10 @@ public class Movement : MonoBehaviour {
     InputDevice controller;
     Animator animator;
 
+    public Transform flashlightRightObj;
+    public Transform flashlightLeftObj;
+    public Transform weaponEffectObj;
+
     public void setUDLRKeys(KeyCode up, KeyCode down, KeyCode left, KeyCode right) {
         upKey = up;
         downKey = down;
@@ -63,8 +67,14 @@ public class Movement : MonoBehaviour {
 
     void Start()
     {
+        if (isDetective)
+        {
+            flashlightLeftObj.gameObject.SetActive(false);
+        }
+
         human = gameObject.GetComponent<Human>();
         animator = GetComponent<Animator>();
+        
         if (InputManager.Devices.Count > 0)
         {
             controller = InputManager.Devices[conNum];
@@ -92,17 +102,11 @@ public class Movement : MonoBehaviour {
             // Check if the character changed direction using the analog stick
             if (controller.LeftStickX > 0 && !human.facingRight)
             {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = true;
+                flip(true);
             }
             else if (controller.LeftStickX < 0 && human.facingRight)
             {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = false;
+                flip(false);
             }
         }
 
@@ -119,10 +123,7 @@ public class Movement : MonoBehaviour {
             // If the human is facing right, then flip
             if (!human.facingRight)
             {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = true;
+                flip(true);
             }
         }
 
@@ -133,10 +134,7 @@ public class Movement : MonoBehaviour {
             // If the human is facing right, then flip
             if (human.facingRight)
             {
-                Vector3 newScale = this.gameObject.transform.localScale;
-                newScale.x *= -1;
-                this.gameObject.transform.localScale = newScale;
-                human.facingRight = false;
+                flip(false);
             }
         }
         // Move up for ghosts
@@ -155,6 +153,32 @@ public class Movement : MonoBehaviour {
         transform.Translate(moveVec * Time.deltaTime * speed);
         animator.SetBool("Moving", moving);
 	}
+
+    void flip (bool right)
+    {
+        Vector3 newScale = this.gameObject.transform.localScale;
+        newScale.x *= -1;
+        this.gameObject.transform.localScale = newScale;
+        human.facingRight = right;
+        // Manage flashlights
+        if (isDetective)
+        {
+            if (right)
+            {
+                flashlightRightObj.gameObject.SetActive(true);
+                flashlightLeftObj.gameObject.SetActive(false);
+                Vector3 newRot = new Vector3(0, 180f, 0);
+                weaponEffectObj.Rotate(newRot);
+            }
+            else
+            {
+                flashlightRightObj.gameObject.SetActive(false);
+                flashlightLeftObj.gameObject.SetActive(true);
+                Vector3 newRot = new Vector3(0, -180f, 0);
+                weaponEffectObj.Rotate(newRot);
+            }
+        }
+    }
 
     // Door movement
     public void checkForDoorInput(Collider collider)
@@ -187,7 +211,6 @@ public class Movement : MonoBehaviour {
             {
                 door.MoveDown(gameObject);
 				//gameObject.GetComponent<SpriteRenderer>().enabled = false;
-				
             }
         }
     }

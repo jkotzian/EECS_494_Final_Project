@@ -249,12 +249,12 @@ public class GamePlay : MonoBehaviour {
             Application.LoadLevel("RoundEnd");
         }
         // spawn bookshelves
-        if (Time.time > bookshelfSpawnTime + 10)
+        /*if (Time.time > bookshelfSpawnTime + 10)
         {
             bookshelfSpawnTime = Time.time;
             int i = UnityEngine.Random.Range(0, 3);    
             Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
-        }
+        }*/
     }
 
     List<Vector3> generateStartLoc()

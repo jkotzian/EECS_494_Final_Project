@@ -9,10 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 427814}
   - 33: {fileID: 3369712}
-  - 65: {fileID: 6593798}
   - 23: {fileID: 2366782}
   - 114: {fileID: 11427358}
-  - 54: {fileID: 5421976}
+  - 65: {fileID: 6572522}
   m_Layer: 0
   m_Name: GhostFindHit
   m_TagString: Untagged
@@ -27,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.64648914, y: -3.96099997, z: 5.84326172}
-  m_LocalScale: {x: .84811759, y: 1.70624411, z: 1.35698807}
+  m_LocalPosition: {x: 2.74000001, y: 3.06999993, z: 0}
+  m_LocalScale: {x: 1.63669395, y: 1.63669372, z: 1.63669372}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -38,7 +37,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -63,22 +62,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131168}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5421976
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131168}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!65 &6593798
+--- !u!65 &6572522
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,7 +88,7 @@ MonoBehaviour:
   lifetimeMax: 15
   detectiveOwner: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
-  lifetime: 0
+  lifetime: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -144,6 +128,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 623457cabd817894b9a27f73561f8979, type: 2}
+    - target: {fileID: 0}
+      propertyPath: lifetime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131168}

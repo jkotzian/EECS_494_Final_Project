@@ -8,32 +8,57 @@ public class Detective : Human {
 
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
-    public Light aura;                                 
+    public Light aura;
+    public Transform weaponFireSoundObj;
+    AudioSource weaponFireSound;
+    public Transform weaponEffect;
+    int weaponFireTimer;
+    public int weaponFireTimeMax;
+    bool canFire;
     
 	void Start () {
         // Set default arrest key
-        setActionKey(KeyCode.RightShift);
         movement = transform.GetComponent<Movement>();
         facingRight = true;
+        weaponFireSound = weaponFireSoundObj.GetComponent<AudioSource>();
+        weaponFireTimer = 0;
+        canFire = true;
     }
 
+    void FixedUpdate()
+    {
+        if (weaponFireTimer > 0)
+        {
+            --weaponFireTimer;
+            if (weaponFireTimer == 0)
+            {
+                weaponEffect.gameObject.SetActive(false);
+                canFire = true;
+            }
+        }
+    }
     void Update()
     {
-		if ((Input.GetKeyDown(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+		if (canFire && (Input.GetKeyDown(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentGhostHitObj)
         {
+            weaponFireSound.Play();
+            weaponEffect.gameObject.SetActive(true);
+            weaponFireTimer = weaponFireTimeMax;
+            canFire = false;
+
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
             Vector3 ghostHitObjOffset;
             if (facingRight)
             {
-                ghostHitObjOffset = Vector3.right / 1.3f;
+                ghostHitObjOffset = Vector3.right;
             }
             else
             {
-                ghostHitObjOffset = Vector3.left / 1.3f;
+                ghostHitObjOffset = Vector3.left;
             }
-            ghostHitObjOffset += Vector3.up / 2.0f;
+            //ghostHitObjOffset += Vector3.up;
 
             ghostHitObjPos += ghostHitObjOffset;
 
