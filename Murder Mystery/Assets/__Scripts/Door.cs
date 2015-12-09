@@ -6,18 +6,31 @@ public class Door : MonoBehaviour {
 
     public Door above;
     public Door below;
+	public float reappear;
 
     public void MoveUp(GameObject passenger)
     {
         Vector3 dest = new Vector3(above.transform.position.x, above.transform.position.y, -0.2f);
         passenger.transform.position = dest;
+		passenger.SetActive (false);
+		StartCoroutine (EnableSprite(passenger));		
     }
 
     public void MoveDown(GameObject passenger)
     {
         Vector3 dest = new Vector3(below.transform.position.x, below.transform.position.y, -0.2f);
         passenger.transform.position = dest;
+		passenger.SetActive (false);
+		StartCoroutine (EnableSprite(passenger));
     }
+
+	IEnumerator EnableSprite(GameObject passenger){
+		yield return new WaitForSeconds (.5f);
+//		if (passenger.GetComponent<SpriteRenderer> ().enabled == false) {
+//			passenger.GetComponent<SpriteRenderer> ().enabled = true;
+//		}
+		passenger.SetActive (true);
+	}
 
     void OnTriggerStay(Collider other){
         Movement movement = other.GetComponent<Movement>();

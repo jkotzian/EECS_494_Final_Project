@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using InControl;
 
 public class Ghost : Human
-{
-    public KeyCode possessKey;
+{                               
     public RaycastHit hitInfo;
     public int bloodDropTimeMax;
     public int bloodDropInterval;
@@ -40,13 +39,17 @@ public class Ghost : Human
 
     public NPC possessedNPC;
 
-    public void setPossessKey(KeyCode key)
-    {
-        possessKey = key;
-    }
+	public GameObject healthBarPrefab;
+	public GameObject healthBar;
+	public int currentLife;
+	public int ghostLives;
+	public bool losingLife;
+	Vector3 reserve;
+	float timer;
 
-    void Start()
+    void Awake()
     {
+        setActionKey(KeyCode.Q);   
         startTime = Time.time;
         normalY = transform.position.y;
 
@@ -60,11 +63,39 @@ public class Ghost : Human
         growing = false;
         shrinking = false;
         shrinkingIntoBody = false;
+
+		/*healthBar = Instantiate (healthBarPrefab) as GameObject;
+		healthBar.transform.parent = gameObject.transform;
+		healthBar.transform.position = gameObject.transform.position;
+		healthBar.transform.position = new Vector3 (transform.position.x, transform.position.y + .8f, transform.position.z - 1f);
+		healthBar.GetComponent<MeshRenderer>().enabled = false;
+		reserve = healthBar.transform.localScale;*/
+		ghostLives = 3;
+		currentLife = 3;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {       
+        /*  
+		if (currentLife != ghostLives) {
+			healthBar.GetComponent<MeshRenderer>().enabled = true;
+			timer = Time.time;
+			losingLife = true;
+			Vector3 shrink = healthBar.transform.localScale;
+			shrink.x = reserve.x*.33f*currentLife;
+			healthBar.transform.localScale = shrink;
+			ghostLives = currentLife;
+			if(currentLife == 2)
+				healthBar.GetComponent<Renderer>().material.color = Color.yellow;
+			if(currentLife == 1)
+				healthBar.GetComponent<Renderer>().material.color = Color.red;
+		}
+
+		if((Time.time - timer) > 1f){
+			healthBar.GetComponent<MeshRenderer>().enabled = false;
+		}*/
+
         if (shrinkingIntoBody)
         {
             float min = .1f;
@@ -102,7 +133,8 @@ public class Ghost : Human
                 shrinking = false;
             }
         }*/
-        if ((Input.GetKeyDown(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasPressed)) && 
+        if ((Input.GetKeyDown(actionKey) ||
+            (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
@@ -131,7 +163,7 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(possessKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].RightTrigger.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);

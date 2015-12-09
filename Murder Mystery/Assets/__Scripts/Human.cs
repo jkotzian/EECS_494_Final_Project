@@ -7,11 +7,17 @@ public class Human : MonoBehaviour {
     public bool 		facingRight;
     public bool 		isStabbed;
 	public float        delayPerSecond; 
-	public	 GameObject	trackerPrefab;
+	public GameObject	trackerPrefab;
+    public KeyCode actionKey;
+
+    public void setActionKey(KeyCode key)
+    {
+        actionKey = key;
+    }
 
     // NOTE: NOTHING HAPPENS IN THE START FUNCTION FOR A BASE CLASS LIKE THIS
 
-	void FixedUpdate() {
+    void FixedUpdate() {
 		if (isStabbed)
         {
             Kill();
@@ -29,15 +35,15 @@ public class Human : MonoBehaviour {
             if (NPCToKill.possessed)
 				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
-            alive = false;
             foreach(GameObject npc in GamePlay.S.NPCs)
             {
                 npc.GetComponent<NPC>().speed += 0.5f;
             }
-            if(TotalGame.S.round > 2)
+            if(TotalGame.S.round > 2 && alive)
             {
                 TotalGame.S.bodyCount[TotalGame.S.round - 3]++;
-            }  
+            }
+            alive = false;
         }
         // If it's a Ghost 
         Ghost GhostToKill = GetComponent<Ghost>();

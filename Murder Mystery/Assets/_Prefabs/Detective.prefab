@@ -188,6 +188,7 @@ MonoBehaviour:
   isStabbed: 0
   delayPerSecond: 0
   trackerPrefab: {fileID: 0}
+  actionKey: 0
   ghostHitObjRef: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
   aura: {fileID: 10811676}
 --- !u!212 &21243648
@@ -208,7 +209,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

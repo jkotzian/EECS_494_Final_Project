@@ -814,7 +814,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
       propertyPath: m_Name
-      value: InsideWalls (2)
+      value: Bookshelf (2)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6579602, guid: 273cb671b0383413fad62f291e9571df, type: 2}
@@ -1124,7 +1124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
       propertyPath: m_Name
-      value: InsideWalls (1)
+      value: Bookshelf (1)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6584358, guid: 273cb671b0383413fad62f291e9571df, type: 2}
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchPrefab: {fileID: 190644, guid: 1c2684c8d8ce941d8aedf71bdbb21bba, type: 2}
+  bookshelfPrefab: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
   npcPrefab: {fileID: 175744, guid: ed7d543e9f45ea54ca6b7b861ff3f63e, type: 2}
   ghostPrefab: {fileID: 183882, guid: 7a2720660cf3c479081324abcfccfad4, type: 2}
   detectivePrefab: {fileID: 142670, guid: d1aba372954ef0f4a8cda193198e7b9a, type: 2}
@@ -1652,6 +1653,7 @@ MonoBehaviour:
   poisonWaterPrefab: {fileID: 169498, guid: 3978427f9fe514e05bf434129fcf2cf3, type: 2}
   pianoTopPrefab: {fileID: 192360, guid: 65d04a0aa98dc4a61b4e7b87de917763, type: 2}
   pianoBottomPrefab: {fileID: 105576, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+  detectiveCameraObj: {fileID: 1563453289}
   ghostCameraObj: {fileID: 74105195}
   numNPCs: 8
   numFloors: 4
@@ -1836,7 +1838,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -2143,7 +2147,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

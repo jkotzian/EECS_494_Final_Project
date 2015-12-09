@@ -4,28 +4,22 @@ using System.Collections.Generic;
 using InControl;
 
 public class Detective : Human {
-    private KeyCode         arrestKey;
     private Movement        movement;
 
     public GameObject ghostHitObjRef;
     GameObject currentGhostHitObj;
-    public Light aura;
-
-    public void setArrestKey(KeyCode key)
-    {
-        arrestKey = key;
-    }
+    public Light aura;                                 
     
 	void Start () {
         // Set default arrest key
-        setArrestKey(KeyCode.RightShift);
+        setActionKey(KeyCode.RightShift);
         movement = transform.GetComponent<Movement>();
         facingRight = true;
     }
 
     void Update()
     {
-		if ((Input.GetKeyDown(arrestKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+		if ((Input.GetKeyDown(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentGhostHitObj)
         {
             Vector3 ghostHitObjPos = transform.position;
@@ -51,7 +45,7 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if ((Input.GetKeyUp(arrestKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
             currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);

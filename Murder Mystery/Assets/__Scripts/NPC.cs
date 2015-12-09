@@ -105,12 +105,11 @@ public class NPC : Human {
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
             }
         }
-
+                        
         // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, AND they hit the
         // possession key, then dispossess them
-        if (possessed && !possessionOwner.shrinkingIntoBody && 
-            (Input.GetKeyDown(possessionOwner.possessKey) || (GamePlay.S.usingControllers && 
-            InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
+        if (possessed && !possessionOwner.shrinkingIntoBody && (Input.GetKeyDown(possessionOwner.actionKey) || 
+           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
         {
 			/* WE'RE GOING TO EXPERIMENT WITH THE GHOST ONLY BEING ABLE TO DISPOSSESS WHEN THEY KILL
               SOMEONE. NOTE, THERE IS A RACE CONDITION THAT YOU MUST DEAL WITH IF YOU UNCOMMENT THIS LINE
@@ -119,7 +118,10 @@ public class NPC : Human {
 
         // If the NPC is possessed, the movement script will determine the walking animation
         if (!possessed)
+        {
             animator.SetBool("Moving", moving);
+        }
+                     
 	}
 
     public void possess(Ghost possessor)
@@ -180,8 +182,8 @@ public class NPC : Human {
 		// Disable the movement
 		NPCMovement.enabled = false;
 		// Re-enable the possession owner wherever the NPC is with an offset
-		Vector3 offset = new Vector3(0, .3f, 0);
-		possessionOwner.transform.position = gameObject.transform.position + offset;
+		Vector3 offset = new Vector3(0, .3f, 0);    
+        possessionOwner.transform.position = gameObject.transform.position + offset;
 		possessionOwner.gameObject.SetActive(true);
         possessionOwner.possessing = false;
 		possessionOwner = null;

@@ -4,7 +4,10 @@ using UnityEngine.UI;
 using InControl;
 
 public class Switch : MonoBehaviour {
-	public Trap             trap;
+	public int				switchNum;
+	public GameObject 		pressA;
+	public GameObject 		AText;
+	Light					lightObject;
 
 	Rigidbody               rigidbody2Dimensional;
 	float 					moveSpeed = 1f;
@@ -18,10 +21,16 @@ public class Switch : MonoBehaviour {
 	float 			resetPerSecond = 0.2f;
 	bool			flippedSwitch = false;
 
-    void Start()
-    {
-        trap = GetComponent<Trap>();
-    }
+	//static public int		howManyTimes = 0;
+
+	// Use this for initialization
+	void Start () {
+		lightObject = GameObject.Find ("Directional Light").GetComponent<Light>();
+		AText = Instantiate(pressA) as GameObject;
+		AText.transform.localScale = new Vector3 (.5f, .5f, .5f);
+		AText.transform.position = new Vector3 (transform.position.x + 1f, transform.position.y + .25f, transform.position.z - .25f);
+		AText.SetActive (false);;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,6 +49,7 @@ public class Switch : MonoBehaviour {
         if (npc && npc.possessed)
         {
             GamePlay.S.texts[4].text = "press 'A' to activate trap";
+			AText.SetActive(true);
         }
     }
 
@@ -49,6 +59,8 @@ public class Switch : MonoBehaviour {
         if (npc && npc.possessed)
         {
             GamePlay.S.texts[4].text = "";
+			AText.SetActive(false);
+			
         }
     }
 
@@ -57,7 +69,7 @@ public class Switch : MonoBehaviour {
         if (npc == null || !npc.possessed)
             return;
 
-        bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.possessKey);
+        bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.actionKey);
         bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
         if (keyboardPressed || controllerPressed)
         {
@@ -66,8 +78,8 @@ public class Switch : MonoBehaviour {
             //npc.possessed = false;
 
             //print (switchNum);
-            flippedSwitch = true;
-            trap.activate(npc, 20, 25);
+            //flippedSwitch = true;
+            //trap.activate(npc, 20, 25);
             
             /*if (switchNum == 1)
             {

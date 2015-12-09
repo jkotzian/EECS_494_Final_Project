@@ -174,6 +174,8 @@ public class Movement : MonoBehaviour {
                door.above)
             {
                 door.MoveUp(gameObject);
+				//gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
             }
             else if ((Input.GetKeyDown(downKey) ||
                      (controller != null && ((controller.LeftStick.Vector.x > -analogAngleLeeway &&
@@ -184,6 +186,8 @@ public class Movement : MonoBehaviour {
                       door.below)
             {
                 door.MoveDown(gameObject);
+				//gameObject.GetComponent<SpriteRenderer>().enabled = false;
+				
             }
         }
     }
