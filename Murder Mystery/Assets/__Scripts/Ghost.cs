@@ -200,12 +200,6 @@ public class Ghost : Human
             GamePlay.S.texts[4].text = "";
             GamePlay.S.texts[5].text = "";
         }
-    }
-    
-    public void possess(NPC target)
-    {
-        target.possess(this);
-        possessing = true;
-    }
+    } 
 }
 
