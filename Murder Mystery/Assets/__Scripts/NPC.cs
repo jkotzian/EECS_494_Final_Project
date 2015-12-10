@@ -31,6 +31,26 @@ public class NPC : Human {
     public GameObject glowObject;
     private Component glow;
 
+    // Percentage chance (1 - 100) that an NPC will
+    // take an elevator if they land on one
+    public int chanceToTakeElevator;
+    // Chance that they would take an elevator twice in
+    // a row (1 - 100)
+    public int chanceToTakeElevatorAgain;
+    bool canTakeElevator;
+    bool justTookElevator;
+    Door availableElevator;
+
+    public void setElevator(Door elevator)
+    {
+        availableElevator = elevator;
+        canTakeElevator = true;
+    }
+    public void unsetElevator()
+    {
+        availableElevator = null;
+        canTakeElevator = false;
+    }
 
     void Start()
     {
@@ -59,38 +79,103 @@ public class NPC : Human {
                 if (moving)
                 {
                     moving = false;
+
                     checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
                     return;
                 }
-                // Randomely decide the direction of the NPC
-                int moveNextRandNum = Random.Range(0, 2);
-                // Go left
-                if (blockedRight || moveNextRandNum == 0)
+                bool takeElevator = false;
+                if (canTakeElevator)
                 {
-                    moving = true;
-                    movingRight = false;
-                    // TODO THIS CODE IS DUPLICATED IN MOVEMENT, CONSIDER CONSOLIDATING INTO HUMAN
-                    // Flip the scale of the image if they are switching direction
-                    if (facingRight)
+                    int takeElevatorNum = Random.Range(0, 101);
+                    if (justTookElevator)
                     {
-                        Vector3 newScale = this.gameObject.transform.localScale;
-                        newScale.x *= -1;
-                        this.gameObject.transform.localScale = newScale;
-                        facingRight = false;
+                        if (takeElevatorNum <= chanceToTakeElevatorAgain)
+                        {
+                            takeElevator = true;
+                        }
+                    }
+                    else
+                    {
+                        if (takeElevatorNum <= chanceToTakeElevator)
+                        {
+                            takeElevator = true;
+                        }
                     }
                 }
-                // Go right
+                // If the NPC is going to take an elevator, choose
+                // whether to go up or down
+                if (takeElevator)
+                {
+                    bool canTakeAbove = true;
+                    bool canTakeBelow = true;
+                    if (!availableElevator.above)
+                    {
+                        canTakeAbove = false;
+                    }
+                    if (!availableElevator.below)
+                    {
+                        canTakeBelow = false;
+                    }
+                    // If the NPC can take the above AND below elevator, then
+                    // randomley choose
+                    if (canTakeAbove && canTakeBelow)
+                    {
+                        int chooseElevatorNum = Random.Range(0, 2);
+                        if (chooseElevatorNum == 1)
+                        {
+                            availableElevator.MoveUp(gameObject);
+                            checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
+                            justTookElevator = true;
+                            return;
+                        }
+                        else
+                        {
+                            availableElevator.MoveDown(gameObject);
+                            checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
+                            justTookElevator = true;
+                            return;
+                        }
+                    }
+                    else if (canTakeAbove)
+                    {
+                        availableElevator.MoveUp(gameObject);
+                        checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
+                        justTookElevator = true;
+                        return;
+                    }
+                    else if (canTakeBelow)
+                    {
+                        availableElevator.MoveDown(gameObject);
+                        checkMoveTimer = Random.Range(standingTimeMin, standingTimeMax + 1);
+                        justTookElevator = true;
+                        return;
+                    }
+                }
+                justTookElevator = false;
+                // Go right if blocked left
+                if (blockedLeft)
+                {
+                    turnRight();
+                }
+                // Go left if blocked right
+                else if (blockedRight)
+                {
+                    turnLeft();
+                }
+                // If the NPC is not blocked, then randomely determine the direction
                 else
                 {
-                    moving = true;
-                    movingRight = true;
-                    // DUPLICATE CODE
-                    if (!facingRight)
+                    // Randomely decide the direction of the NPC
+                    int moveNextRandNum = Random.Range(0, 2);
+                    // Go left
+                    if (moveNextRandNum == 0)
                     {
-                        Vector3 newScale = this.gameObject.transform.localScale;
-                        newScale.x *= -1;
-                        this.gameObject.transform.localScale = newScale;
-                        facingRight = true;
+                        turnLeft();
+                    }
+                    // Go right
+                    else
+                    {
+                        turnRight();
                     }
                 }
                 // Randomely set the next time the NPC will check its direction between the min and the max
@@ -114,7 +199,7 @@ public class NPC : Human {
         // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, AND they hit the
         // possession key, then dispossess them
         if (possessed && !possessionOwner.shrinkingIntoBody && (Input.GetKeyDown(possessionOwner.actionKey) || 
-           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].RightTrigger.WasPressed)))
+           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].Action1.WasPressed)))
         {
 			/* WE'RE GOING TO EXPERIMENT WITH THE GHOST ONLY BEING ABLE TO DISPOSSESS WHEN THEY KILL
               SOMEONE. NOTE, THERE IS A RACE CONDITION THAT YOU MUST DEAL WITH IF YOU UNCOMMENT THIS LINE
@@ -128,6 +213,37 @@ public class NPC : Human {
         }
                      
 	}
+
+    void turnLeft()
+    {
+        //print("NPC " + name + " moving left");
+        moving = true;
+        movingRight = false;
+        // TODO THIS CODE IS DUPLICATED IN MOVEMENT, CONSIDER CONSOLIDATING INTO HUMAN
+        // Flip the scale of the image if they are switching direction
+        if (facingRight)
+        {
+            Vector3 newScale = this.gameObject.transform.localScale;
+            newScale.x *= -1;
+            this.gameObject.transform.localScale = newScale;
+            facingRight = false;
+        }
+    }
+
+    void turnRight()
+    {
+        //print("NPC " + name + " moving right");
+        moving = true;
+        movingRight = true;
+        // DUPLICATE CODE
+        if (!facingRight)
+        {
+            Vector3 newScale = this.gameObject.transform.localScale;
+            newScale.x *= -1;
+            this.gameObject.transform.localScale = newScale;
+            facingRight = true;
+        }
+    }
 
     public void possess(Ghost possessor)
     {
@@ -159,10 +275,12 @@ public class NPC : Human {
         if (right)
         {
             blockedRight = true;
+            //print("NPC " + name + "blocked right");
         }
         else
         {
             blockedLeft = true;
+            //print("NPC " + name + "blocked left");
         }
 
         // Have the NPC recalculate it's next move (
@@ -177,10 +295,12 @@ public class NPC : Human {
         if (right)
         {
             blockedRight = false;
+            //print("NPC " + name + "UNblocked right");
         }
         else
         {
             blockedLeft = false;
+            //print("NPC " + name + "UNblocked left");
         }
     }
 	public void dispossess() {

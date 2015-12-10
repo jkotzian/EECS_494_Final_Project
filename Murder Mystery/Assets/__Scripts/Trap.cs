@@ -61,7 +61,7 @@ public class Trap : MonoBehaviour {
             return;
 
         bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.actionKey);
-        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
+        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1.WasPressed);
         if (keyboardPressed || controllerPressed)
         {
             activate(npc);

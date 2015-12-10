@@ -154,32 +154,16 @@ public class Door : MonoBehaviour {
             // Activate glow
             ActivateDetectiveGlow(true);
         }
-        if (npc && npc.possessed)
+        if (npc)
         {
-            // Activate glow
-            ActivateNPCGlow(true);
+            if (npc.possessed)
+            {
+                // Activate glow
+                ActivateNPCGlow(true);
+            }
+            // Tell the NPC that they could take this elevator
+            npc.setElevator(this);
         }                                           
-        if (detective || (npc && npc.possessed)) {
-
-			//Elevator Kill is glitchy (fix this)
-//			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown (KeyCode.E)){
-//				pickKeyCode = Random.Range (1, 10);
-//				print (pickKeyCode);
-//				if (pickKeyCode >= 1 && pickKeyCode <= 5 && gameObject.name != "TopDoor"){
-//					print ("Going up 1");
-//					Vector3 temp = other.transform.position;
-//					temp.y += 1.25f;
-//					other.transform.position = temp;
-//				}
-//				if (pickKeyCode >= 6 && pickKeyCode <= 10 && gameObject.name != "BottomDoor"){
-//					print ("Going down 1");
-//					Vector3 temp = other.transform.position;
-//					temp.y -= 1.25f;
-//					other.transform.position = temp;
-//				}
-//				other.GetComponent<Murderer>().Kill();
-//			}
-		}
 	}
 
     void OnTriggerExit(Collider other)
@@ -195,6 +179,8 @@ public class Door : MonoBehaviour {
         {
             // Activate glow
             DeactivateNPCGlow(true);
+            // Tell the NPC they can no longer take this elevator
+            npc.unsetElevator();
         }
     }
 }

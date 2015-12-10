@@ -41,7 +41,9 @@ public class GamePlay : MonoBehaviour {
 
     private int[] targetIndices;
     private float starttime;
-    private int roundtime;
+    int roundTime;
+    public int regularRoundTime;
+    public int practiceRoundTime;
     private float bookshelfSpawnTime;
     private Rect leftScreen;
     private Rect rightScreen;
@@ -73,6 +75,8 @@ public class GamePlay : MonoBehaviour {
     }
     
     void Start () {
+        roundTime = practiceRoundTime;
+        print("Num controllers " + InputManager.Devices.Count);
         //print("Num of devices " + InputManager.Devices.Count);
         // Place NPCs
         int locationIndex = 0;
@@ -205,38 +209,39 @@ public class GamePlay : MonoBehaviour {
         starttime = Time.time;
         bookshelfSpawnTime = Time.time;     
         TotalGame.S.round++;
+
         // set detective and ghost cameras to correct side.
         if (TotalGame.S.round % 2 == 0)
         {
-            print("Detective left, Ghost right");
+            //print("Detective left, Ghost right");
             detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
             ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
+            // This doesnt work yet!!!
+            //switchControllers();
         }
         else
         {
-            print("Detective right, Ghost left");
+            //print("Detective right, Ghost left");
             detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
             ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
+            //switchControllers();
         }
 
-        roundtime = 60;
         if (TotalGame.S.round > 2)
         {
-            roundtime += 60;
+            roundTime = regularRoundTime;
         }
         for (int i = 2; i < 4; i++)
         {
             texts[i].text = "";
         }
-
-        
     }
 
     void Update()
     {
         for (int i = 0; !gameOver && i < 2; i++)
         {
-            texts[i].text = (roundtime - (int)(Time.time - starttime)).ToString();
+            texts[i].text = (roundTime - (int)(Time.time - starttime)).ToString();
         }
         if(TotalGame.S.round > 2)
         {
@@ -246,7 +251,7 @@ public class GamePlay : MonoBehaviour {
             }
         }
         // check for round end
-        if (Time.time > roundtime + starttime || checkForDetectiveWin())
+        if (Time.time > roundTime + starttime || checkForDetectiveWin())
         {
             gameOver = true;
             StartCoroutine(roundEndSequence());
@@ -257,6 +262,21 @@ public class GamePlay : MonoBehaviour {
             bookshelfSpawnTime = Time.time;
             int i = UnityEngine.Random.Range(0, 7);    
             Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
+        }
+    }
+
+    void switchControllers()
+    {
+        // Switch the detective and ghost controls
+        int oldGhostConNum = Ghosts[0].GetComponent<Movement>().conNum;
+        Ghosts[0].GetComponent<Movement>().conNum = Detectives[0].GetComponent<Movement>().conNum;
+        Detectives[0].GetComponent<Movement>().conNum = oldGhostConNum;
+        if (numPlayers > 2)
+        {
+            // Switch the detective and ghost controls
+            int oldGhostConNum2 = Ghosts[0].GetComponent<Movement>().conNum;
+            Ghosts[1].GetComponent<Movement>().conNum = Detectives[1].GetComponent<Movement>().conNum;
+            Detectives[1].GetComponent<Movement>().conNum = oldGhostConNum2;
         }
     }
 

@@ -691,6 +691,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
+--- !u!1001 &304651427
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.0299999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443918, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11437626, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: cameraToHideObj
+      value: 
+      objectReference: {fileID: 1268137532}
+    - target: {fileID: 11437626, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: nightVisionObject
+      value: 
+      objectReference: {fileID: 567835950}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[0]
+      value: 
+      objectReference: {fileID: 266289142}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[1]
+      value: 
+      objectReference: {fileID: 1641976471}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[2]
+      value: 
+      objectReference: {fileID: 1676604117}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[3]
+      value: 
+      objectReference: {fileID: 205642812}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1699719971}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: texts.Array.data[5]
+      value: 
+      objectReference: {fileID: 1699719972}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: knightAxePrefab
+      value: 
+      objectReference: {fileID: 112908, guid: f16ebd07891f04a3099325fcf01c5628, type: 2}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: detectiveCameraObj
+      value: 
+      objectReference: {fileID: 1563453289}
+    - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: ghostCameraObj
+      value: 
+      objectReference: {fileID: 74105195}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &317246964 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11451906, guid: 1a0fb4437950141ff8d69f92954f81c0,
@@ -2230,187 +2316,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1379286211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1379286214}
-  - 114: {fileID: 1379286213}
-  - 114: {fileID: 1379286212}
-  - 81: {fileID: 1379286215}
-  - 82: {fileID: 1379286216}
-  m_Layer: 0
-  m_Name: Main
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1379286212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1379286211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba9f40f2dd3dc14dbd016d8c54c0c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnOffTimeMin: 300
-  turnOffTimeMax: 800
-  turnOnTimeMin: 200
-  turnOnTimeMax: 450
-  cameraToHideObj: {fileID: 1268137532}
-  nightVisionObject: {fileID: 567835950}
-  lightsOn: 1
---- !u!114 &1379286213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1379286211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fab3881f64244ba49a79f3c9bcfea89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchPrefab: {fileID: 190644, guid: 1c2684c8d8ce941d8aedf71bdbb21bba, type: 2}
-  bookshelfPrefab: {fileID: 157246, guid: 273cb671b0383413fad62f291e9571df, type: 2}
-  npcPrefab: {fileID: 175744, guid: ed7d543e9f45ea54ca6b7b861ff3f63e, type: 2}
-  ghostPrefab: {fileID: 183882, guid: 7a2720660cf3c479081324abcfccfad4, type: 2}
-  detectivePrefab: {fileID: 142670, guid: d1aba372954ef0f4a8cda193198e7b9a, type: 2}
-  disguises:
-  - {fileID: 2100000, guid: b4cc9ac098da870438172904d8a0b6e0, type: 2}
-  - {fileID: 2100000, guid: cf0c00ca5592a4c8bb21470f08b867d7, type: 2}
-  - {fileID: 2100000, guid: de7cabbf19a2140e8b92485593230bf8, type: 2}
-  - {fileID: 2100000, guid: da026bb59bda34a24991a4f463b347ea, type: 2}
-  texts:
-  - {fileID: 266289142}
-  - {fileID: 1641976471}
-  - {fileID: 1676604117}
-  - {fileID: 205642812}
-  - {fileID: 1699719971}
-  - {fileID: 1699719972}
-  chandelierPrefab: {fileID: 170272, guid: 0281beb36b405418cab310d4dc12f440, type: 2}
-  knightAxePrefab: {fileID: 112908, guid: f16ebd07891f04a3099325fcf01c5628, type: 2}
-  toxicAreaPrefab: {fileID: 169240, guid: 619154f2ffffd4db78e93e063eab7d72, type: 2}
-  flamethrowerPrefab: {fileID: 185438, guid: 9819e711961e94e11ad64ce053766f32, type: 2}
-  poisonWaterPrefab: {fileID: 169498, guid: 3978427f9fe514e05bf434129fcf2cf3, type: 2}
-  pianoPrefab: {fileID: 0}
-  detectiveCameraObj: {fileID: 1563453289}
-  ghostCameraObj: {fileID: 74105195}
-  numNPCs: 12
-  numFloors: 4
-  numPlayers: 4
-  NPCs: []
-  Ghosts: []
-  Detectives: []
-  EnvironmentalObjects: []
-  Switches: []
-  usingControllers: 0
-  detective1AnimationController: {fileID: 9100000, guid: 474e423e2e321ef4396e2d7fd2c5bbb0,
-    type: 2}
-  detective2AnimationController: {fileID: 9100000, guid: 4916ff20972fe6b4fa56eeb220ed04c2,
-    type: 2}
-  guest1AnimationController: {fileID: 9100000, guid: 02bd97de5958e1a4eb5e9684e7c0e1f3,
-    type: 2}
-  guest2AnimationController: {fileID: 9100000, guid: 168fbf8012f51824495ee4caf3f1e109,
-    type: 2}
-  guest3AnimationController: {fileID: 9100000, guid: 2a23451fc9947d641b4018ad5b1d9a1d,
-    type: 2}
---- !u!4 &1379286214
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1379286211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.0299999993, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
---- !u!81 &1379286215
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1379286211}
-  m_Enabled: 1
---- !u!82 &1379286216
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1379286211}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 42f6ebbb455d86e46823c03bbe380388, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!1001 &1486259722
 Prefab:
   m_ObjectHideFlags: 0
