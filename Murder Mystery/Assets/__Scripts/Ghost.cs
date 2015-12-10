@@ -197,8 +197,8 @@ public class Ghost : Human
         Switch s = collider.GetComponent<Switch>();
         if (s)
         {
-            GamePlay.S.texts[4].text = "";
-            GamePlay.S.texts[5].text = "";
+            //GamePlay.S.texts[4].text = "";
+            //GamePlay.S.texts[5].text = "";
         }
     } 
 }

@@ -5,7 +5,8 @@ using InControl;
 public class Trap : MonoBehaviour {
 
     public bool activated;
-    public GameObject popUpPrefab;
+    public GameObject hint;
+    public GameObject scorePrefab;
     public Camera ghostCamera;
     Vector3 offset;
     int timer;
@@ -19,6 +20,7 @@ public class Trap : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        hint.SetActive(false);
         offset = new Vector3(0, 0.8f, -3);
         activated = false;
         timer = 0;
@@ -33,7 +35,8 @@ public class Trap : MonoBehaviour {
             if (timer == deathTime)
             {
                 target.Kill();
-                StartCoroutine(PopUp());
+                hint.SetActive(false);
+                StartCoroutine(PopUpScore());
             }
             if (timer == animOverTime)
             {
@@ -59,7 +62,8 @@ public class Trap : MonoBehaviour {
         NPC npc = other.GetComponent<NPC>();
         if (npc == null || !npc.possessed)
             return;
-
+                      
+        hint.SetActive(true);
         bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.actionKey);
         bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1.WasPressed);
         if (keyboardPressed || controllerPressed)
@@ -68,9 +72,18 @@ public class Trap : MonoBehaviour {
         }
     }
 
-    IEnumerator PopUp()
+    void OnTriggerExit(Collider other)
     {
-        GameObject popUp = Instantiate(popUpPrefab, ghostCamera.WorldToViewportPoint(transform.position + offset), Quaternion.identity) as GameObject;
+        NPC npc = other.GetComponent<NPC>();
+        if(npc && npc.possessed)
+        {                         
+            hint.SetActive(false);
+        }
+    }
+
+    IEnumerator PopUpScore()
+    {
+        GameObject popUp = Instantiate(scorePrefab, ghostCamera.WorldToViewportPoint(transform.position + offset), Quaternion.identity) as GameObject;
         popUp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, .05f);
         yield return new WaitForSeconds(1f);
         DestroyObject(popUp);
