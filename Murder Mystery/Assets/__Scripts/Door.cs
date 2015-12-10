@@ -8,11 +8,15 @@ public class Door : MonoBehaviour {
     public Door below;
 	public float reappear;
 
-    private Component glow;
+    public GameObject detectiveGlowObj;
+    public GameObject possessedNPCGlowObj;
+    private Component detectiveGlow;
+    private Component possessedNPCGlow;
 
     public void Awake()
     {
-        glow = GetComponent("Halo");  
+        detectiveGlow = detectiveGlowObj.GetComponent("Halo");
+        possessedNPCGlow = possessedNPCGlowObj.GetComponent("Halo");
     }
 
     public void MoveUp(GameObject passenger)
@@ -21,7 +25,8 @@ public class Door : MonoBehaviour {
         passenger.transform.position = dest;
 		passenger.SetActive (false);
 		StartCoroutine (EnableSprite(passenger));
-        DeactivateGlow(true);		
+        DeactivateDetectiveGlow(true);
+        DeactivateNPCGlow(true);
     }
 
     public void MoveDown(GameObject passenger)
@@ -30,37 +35,70 @@ public class Door : MonoBehaviour {
         passenger.transform.position = dest;
 		passenger.SetActive (false);
 		StartCoroutine (EnableSprite(passenger));
-        DeactivateGlow(true);
+        DeactivateDetectiveGlow(true);
+        DeactivateNPCGlow(true);
     }
 
-    public void ActivateGlow(bool source = false)
+    public void ActivateDetectiveGlow(bool source = false)
     {
-        glow.GetType().GetProperty("enabled").SetValue(glow, true, null);
+        detectiveGlow.GetType().GetProperty("enabled").SetValue(detectiveGlow, true, null);
         if (source)
         {
             if (above)
             {
-                above.ActivateGlow();
+                above.ActivateDetectiveGlow();
             }
             if (below)
             {
-                below.ActivateGlow();
+                below.ActivateDetectiveGlow();
             }
         }
     }
 
-    public void DeactivateGlow(bool source = false)
+    public void DeactivateDetectiveGlow(bool source = false)
     {
-        glow.GetType().GetProperty("enabled").SetValue(glow, false, null);
+        detectiveGlow.GetType().GetProperty("enabled").SetValue(detectiveGlow, false, null);
         if (source)
         {
             if (above)
             {
-                above.DeactivateGlow();
+                above.DeactivateDetectiveGlow();
             }
             if (below)
             {
-                below.DeactivateGlow();
+                below.DeactivateDetectiveGlow();
+            }
+        }
+    }
+
+    public void ActivateNPCGlow(bool source = false)
+    {
+        possessedNPCGlow.GetType().GetProperty("enabled").SetValue(possessedNPCGlow, true, null);
+        if (source)
+        {
+            if (above)
+            {
+                above.ActivateNPCGlow();
+            }
+            if (below)
+            {
+                below.ActivateNPCGlow();
+            }
+        }
+    }
+
+    public void DeactivateNPCGlow(bool source = false)
+    {
+        possessedNPCGlow.GetType().GetProperty("enabled").SetValue(possessedNPCGlow, false, null);
+        if (source)
+        {
+            if (above)
+            {
+                above.DeactivateNPCGlow();
+            }
+            if (below)
+            {
+                below.DeactivateNPCGlow();
             }
         }
     }
@@ -76,10 +114,17 @@ public class Door : MonoBehaviour {
     void OnTriggerStay(Collider other){
         Detective detective = other.GetComponent<Detective>();
         NPC npc = other.GetComponent<NPC>();
-        //sending the characters up and down a level 
-        if (detective || (npc && npc.possessed)) {
+        if (detective)
+        {
             // Activate glow
-            ActivateGlow(true);
+            ActivateDetectiveGlow(true);
+        }
+        if (npc && npc.possessed)
+        {
+            // Activate glow
+            ActivateNPCGlow(true);
+        }                                           
+        if (detective || (npc && npc.possessed)) {
 
 			//Elevator Kill is glitchy (fix this)
 //			if (other.GetComponent<Movement> ().isMurderer == true && Input.GetKeyDown (KeyCode.E)){
@@ -105,11 +150,16 @@ public class Door : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         Detective detective = other.GetComponent<Detective>();
-        NPC npc = other.GetComponent<NPC>();
-        if (detective || (npc && npc.possessed))
+        NPC npc = other.GetComponent<NPC>();       
+        if (detective)
         {
             // Activate glow
-            DeactivateGlow(true);
+            DeactivateDetectiveGlow(true);
+        }
+        if (npc && npc.possessed)
+        {
+            // Activate glow
+            DeactivateNPCGlow(true);
         }
     }
 }

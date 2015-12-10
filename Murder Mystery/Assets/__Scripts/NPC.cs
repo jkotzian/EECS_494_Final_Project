@@ -24,9 +24,13 @@ public class NPC : Human {
     public Movement NPCMovement;
     public Movement possessorMovement;
 
-    Rigidbody rigidbody;
+    Rigidbody rb;
 
     Animator animator;
+
+    public GameObject glowObject;
+    private Component glow;
+
 
     void Start()
     {
@@ -34,10 +38,11 @@ public class NPC : Human {
         moving = false;
         movingRight = false;
         target = false;
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         NPCMovement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         facingRight = true;
+        glow = glowObject.GetComponent("Halo");
     }
 
 	// Update is called once per frame
@@ -135,11 +140,12 @@ public class NPC : Human {
 
         possessor.ShrinkIntoBody(transform.position);
         // Set the velocity to 0
-        rigidbody.velocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
         // Give it the same controller and controls as the ghost
         NPCMovement.setUDLRKeys(possessorMovement.upKey, possessorMovement.downKey,
                         possessorMovement.leftKey, possessorMovement.rightKey);
         NPCMovement.conNum = possessor.movement.conNum;
+        glow.GetType().GetProperty("enabled").SetValue(glow, true, null);
     }
 
     public void turnOnMovement()
@@ -187,7 +193,8 @@ public class NPC : Human {
 		possessionOwner.gameObject.SetActive(true);
         possessionOwner.possessing = false;
 		possessionOwner = null;
-	}
+        glow.GetType().GetProperty("enabled").SetValue(glow, false, null);
+    }
 
     void OnTriggerStay(Collider collider)
     {

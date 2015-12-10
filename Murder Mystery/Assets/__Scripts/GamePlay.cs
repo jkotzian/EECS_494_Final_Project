@@ -45,6 +45,7 @@ public class GamePlay : MonoBehaviour {
     private float bookshelfSpawnTime;
     private Rect leftScreen;
     private Rect rightScreen;
+    private bool gameOver;
 
     public bool usingControllers;
 
@@ -168,17 +169,17 @@ public class GamePlay : MonoBehaviour {
             NPCs[i].GetComponent<NPC>().target = true;
         }*/
 
-		//Place Environmental Objects
-		/*EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
+        //Place Environmental Objects
+        /*EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(toxicAreaPrefab, new Vector3(-4.64f, -3.77f, 1), Quaternion.identity) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(flamethrowerPrefab, new Vector3(1.46f	, -1.37f, 0), Quaternion.Euler (0,0,90)) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(knightAxePrefab, new Vector3(-4.06f, 0.95f, 0), Quaternion.identity) as GameObject);
 		EnvironmentalObjects.Add (Instantiate(pianoPrefab, new Vector3(-0.4f, 3.7f, 0), Quaternion.Euler (0,0,-50)) as GameObject);*/
-		//print (EnvironmentalObjects [0]);
+        //print (EnvironmentalObjects [0]);
 
-		// Place switches
-		//Chandelier Switch
-		/*Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
+        // Place switches
+        //Chandelier Switch
+        /*Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
 		Switches [0].GetComponent<Switch> ().switchNum = 1;
 		//Hole in ground Switch
 		Switches.Add (Instantiate(switchPrefab, new Vector3(0.05f, -3.91f, 0), Quaternion.identity) as GameObject);
@@ -200,6 +201,7 @@ public class GamePlay : MonoBehaviour {
 		Switches.Add (Instantiate(switchPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
 		Switches [6].GetComponent<Switch> ().switchNum = 7;*/
 
+        gameOver = false;
         starttime = Time.time;
         bookshelfSpawnTime = Time.time;     
         TotalGame.S.round++;
@@ -232,7 +234,7 @@ public class GamePlay : MonoBehaviour {
 
     void Update()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; !gameOver && i < 2; i++)
         {
             texts[i].text = (roundtime - (int)(Time.time - starttime)).ToString();
         }
@@ -246,15 +248,22 @@ public class GamePlay : MonoBehaviour {
         // check for round end
         if (Time.time > roundtime + starttime || checkForDetectiveWin())
         {
-            Application.LoadLevel("RoundEnd");
+            gameOver = true;
+            StartCoroutine(roundEndSequence());
         }
         // spawn bookshelves
-        if (Time.time > bookshelfSpawnTime + 5)
+        if (!gameOver && Time.time > bookshelfSpawnTime + 5)
         {
             bookshelfSpawnTime = Time.time;
             int i = UnityEngine.Random.Range(0, 7);    
             Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
         }
+    }
+
+    IEnumerator roundEndSequence()
+    {
+        yield return new WaitForSeconds(3f);
+        Application.LoadLevel("RoundEnd");
     }
 
     List<Vector3> generateStartLoc()
@@ -354,6 +363,7 @@ public class GamePlay : MonoBehaviour {
                 return false;
             }
         }
+
         return true;
     }
 
