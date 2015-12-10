@@ -14,8 +14,9 @@ public class GamePlay : MonoBehaviour {
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
     public List<Material>   disguises;
-    public List<Text>       texts;
-	public GameObject		chandelierPrefab;
+    public GUIText          timerText;
+    public GUIText          scoreText;
+    public GameObject		chandelierPrefab;
 	public GameObject		knightAxePrefab;
 	public GameObject		toxicAreaPrefab;
 	public GameObject		flamethrowerPrefab;
@@ -224,26 +225,19 @@ public class GamePlay : MonoBehaviour {
         {
             roundtime += 60;
         }
-        for (int i = 2; i < 4; i++)
-        {
-            texts[i].text = "";
-        }
-
-        
+        timerText.text = "";
+        scoreText.text = "";   
     }
 
     void Update()
     {
-        for (int i = 0; !gameOver && i < 2; i++)
+        if(!gameOver)
         {
-            texts[i].text = (roundtime - (int)(Time.time - starttime)).ToString();
+            timerText.text = "Time: " + (roundtime - (int)(Time.time - starttime)).ToString();
         }
-        if(TotalGame.S.round > 2)
+        if(TotalGame.S.round > 2 && !gameOver)
         {
-            for (int i = 2; i < 4; i++)
-            {
-                texts[i].text = "Body Count: " + TotalGame.S.bodyCount[TotalGame.S.round - 3];
-            }
+            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 3] * 100).ToString();        
         }
         // check for round end
         if (Time.time > roundtime + starttime || checkForDetectiveWin())

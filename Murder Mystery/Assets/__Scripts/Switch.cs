@@ -48,7 +48,7 @@ public class Switch : MonoBehaviour {
         NPC npc = other.GetComponent<NPC>();
         if (npc && npc.possessed)
         {
-            GamePlay.S.texts[4].text = "press 'A' to activate trap";
+            //GamePlay.S.texts[4].text = "press 'A' to activate trap";
 			AText.SetActive(true);
         }
     }
@@ -58,7 +58,7 @@ public class Switch : MonoBehaviour {
         NPC npc = other.GetComponent<NPC>();
         if (npc && npc.possessed)
         {
-            GamePlay.S.texts[4].text = "";
+            //GamePlay.S.texts[4].text = "";
 			AText.SetActive(false);
 			
         }
