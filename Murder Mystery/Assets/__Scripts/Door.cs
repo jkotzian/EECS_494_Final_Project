@@ -12,31 +12,66 @@ public class Door : MonoBehaviour {
     public GameObject possessedNPCGlowObj;
     private Component detectiveGlow;
     private Component possessedNPCGlow;
+    Animator animator;
+    bool openingClosing;
+    int timer;
+    public int openCloseTime;
+    public int delay;
 
     public void Awake()
     {
         detectiveGlow = detectiveGlowObj.GetComponent("Halo");
         possessedNPCGlow = possessedNPCGlowObj.GetComponent("Halo");
+        animator = GetComponent<Animator>();
+        openingClosing = false;
     }
 
+    void FixedUpdate()
+    {
+        if (timer > 0)
+        {
+            if (timer == openCloseTime)
+            {
+                // Play the open close animation
+                animator.SetTrigger("OpenClose");
+            }
+            --timer;
+            if (timer == 0)
+            {
+                animator.SetTrigger("Done");
+            }
+        }
+    }
     public void MoveUp(GameObject passenger)
     {
-        Vector3 dest = new Vector3(above.transform.position.x, above.transform.position.y, -0.2f);
-        passenger.transform.position = dest;
-		passenger.SetActive (false);
-		StartCoroutine (EnableSprite(passenger));
-        DeactivateDetectiveGlow(true);
-        DeactivateNPCGlow(true);
+        
+        MoveHelper(passenger, above);
     }
 
     public void MoveDown(GameObject passenger)
     {
-        Vector3 dest = new Vector3(below.transform.position.x, below.transform.position.y, -0.2f);
+        MoveHelper(passenger, below);
+    }
+
+    void MoveHelper(GameObject passenger, Door destDoor)
+    {
+        Vector3 dest = new Vector3(destDoor.transform.position.x, destDoor.transform.position.y, -0.2f);
         passenger.transform.position = dest;
-		passenger.SetActive (false);
-		StartCoroutine (EnableSprite(passenger));
+        passenger.SetActive(false);
+        StartCoroutine(EnableSprite(passenger));
         DeactivateDetectiveGlow(true);
         DeactivateNPCGlow(true);
+        // Only play the animation if it's not already playing
+        if (timer == 0)
+            timer = openCloseTime;
+        // Play a delayed animation for destination elevator
+        destDoor.PlayOpenCloseAnimationWithDelay();
+    }
+
+    public void PlayOpenCloseAnimationWithDelay()
+    {
+        if (timer == 0)
+            timer = openCloseTime + delay;
     }
 
     public void ActivateDetectiveGlow(bool source = false)
