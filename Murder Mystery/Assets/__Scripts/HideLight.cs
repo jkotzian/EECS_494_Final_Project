@@ -5,8 +5,17 @@ public class HideLight : MonoBehaviour {
 
     public Light light1;
     public Light light2;
+    public Light lightning;
+    public AudioSource lightningSound;
+    public AudioSource lightSwitchSound;
+    public AudioSource voltageSound;
     public bool alwaysHidden;
     bool hidden = false;
+
+    void Awake()
+    {
+        lightning.enabled = false;
+    }
 
     void OnPreCull()
     {
@@ -32,10 +41,52 @@ public class HideLight : MonoBehaviour {
     }
 
     public void hideLight() {
-        hidden = true;
+        StartCoroutine(flashDown());
     }
 
     public void unhideLight() {
+        StartCoroutine(flashUp());
+    }
+
+    IEnumerator flashDown()
+    {
+        lightningSound.Play();
+        yield return new WaitForSeconds(0.2f);
+        hidden = true;
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.1f);
+        lightning.enabled = false;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.2f);
+        lightning.enabled = false;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = false;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = false;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.05f);
+        lightning.enabled = false;
+    }
+
+    IEnumerator flashUp()
+    {
+        lightSwitchSound.Play();
+        yield return new WaitForSeconds(.3f);
+        voltageSound.Play();
+        yield return new WaitForSeconds(.8f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.1f);
+        lightning.enabled = false;
+        yield return new WaitForSeconds(.1f);
+        lightning.enabled = true;
+        yield return new WaitForSeconds(.4f);
+        lightning.enabled = false;
         hidden = false;
     }
 }

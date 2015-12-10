@@ -60,10 +60,10 @@ public class MansionEnvironment : MonoBehaviour {
 		// to the forefront
 		turnedOff = true;
 		cameraToHide.hideLight();
-		nightVisionObject.gameObject.SetActive(true);
-		// Reset the timer and figure out when to turn the lights
-		// back on
-		lightTimer = 0;
+        StartCoroutine(delayActivateNightVision());
+        // Reset the timer and figure out when to turn the lights
+        // back on
+        lightTimer = 0;
 		if (first)
 		{
 			first = false;
@@ -81,14 +81,25 @@ public class MansionEnvironment : MonoBehaviour {
 		// in the background
 		turnedOff = false;
 		cameraToHide.unhideLight();
-		nightVisionObject.gameObject.SetActive(false);
-		// Reset the timer and figure out when to turn the lights
-		// back off
-		lightTimer = 0;
+        StartCoroutine(delayDeactivateNightVision());
+        // Reset the timer and figure out when to turn the lights
+        // back off
+        lightTimer = 0;
 		nextTurnOffTime = Random.Range(turnOffTimeMin, turnOffTimeMax + 1);
 		lightsOn = true;
 		//Debug.Log(nextTurnOffTime);
 	}
+    IEnumerator delayActivateNightVision()
+    {
+        yield return new WaitForSeconds(1f);
+        nightVisionObject.gameObject.SetActive(true);
+    }
+
+    IEnumerator delayDeactivateNightVision()
+    {
+        yield return new WaitForSeconds(1.1f);
+        nightVisionObject.gameObject.SetActive(false);
+    }
 	
 	//void OnTriggerStay(Collider other) {
 	//    //print (other.gameObject.tag);
