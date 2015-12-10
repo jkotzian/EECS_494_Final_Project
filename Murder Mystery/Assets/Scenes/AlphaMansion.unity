@@ -2771,9 +2771,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -2923,7 +2921,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22428728, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 22490720, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
@@ -2931,55 +2929,55 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22490720, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 22437936, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 252
       objectReference: {fileID: 0}
     - target: {fileID: 22437936, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 22478604, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 252
       objectReference: {fileID: 0}
     - target: {fileID: 22478604, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 22419060, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 426
       objectReference: {fileID: 0}
     - target: {fileID: 22419060, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 22439270, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 629
       objectReference: {fileID: 0}
     - target: {fileID: 22439270, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 22451454, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 22451454, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 22470148, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 22470148, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 11434006, guid: e67e70d4acc2934409043facd55c3c07, type: 2}
       propertyPath: m_Text
@@ -3080,9 +3078,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
