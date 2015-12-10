@@ -25,8 +25,8 @@ public class GamePlay : MonoBehaviour {
     public GameObject       ghostCameraObj;
     HideLight               ghostCamera;
 
-    public int numNPCs = 8;
-    public int numFloors = 4;
+    public int numNPCs;
+    public int numFloors;
     // As of now, this value can only be 2 or 4
     public int numPlayers;
     public List<GameObject> NPCs;
@@ -249,12 +249,12 @@ public class GamePlay : MonoBehaviour {
             Application.LoadLevel("RoundEnd");
         }
         // spawn bookshelves
-        /*if (Time.time > bookshelfSpawnTime + 10)
+        if (Time.time > bookshelfSpawnTime + 5)
         {
             bookshelfSpawnTime = Time.time;
-            int i = UnityEngine.Random.Range(0, 3);    
+            int i = UnityEngine.Random.Range(0, 7);    
             Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
-        }*/
+        }
     }
 
     List<Vector3> generateStartLoc()
@@ -323,9 +323,13 @@ public class GamePlay : MonoBehaviour {
     List<Vector3> generateBookshelfLoc()
     {
         List<Vector3> bl = new List<Vector3>();
-        bl.Add(new Vector3(-3.6f, 1f, 0));     
-        bl.Add(new Vector3(1.27f, -1.5f, 0)); 
-        bl.Add(new Vector3(-0.5f, -4f, 0));   
+        bl.Add(new Vector3(-1f, 3.5f, 0)); 
+        bl.Add(new Vector3(-4f, 1f, 0));     
+        bl.Add(new Vector3(3.5f, 1f, 0));
+        bl.Add(new Vector3(-6.5f, -1.5f, 0));
+        bl.Add(new Vector3(1.5f, -1.5f, 0));
+        bl.Add(new Vector3(-4f, -4f, 0));
+        bl.Add(new Vector3(4f, -4f, 0));
         return bl;
     }
 

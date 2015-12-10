@@ -43,7 +43,13 @@ public class GhostHit : MonoBehaviour {
         Bookshelf bookshelf = other.gameObject.GetComponent<Bookshelf>();
         if (bookshelf)
         {
-            bookshelf.hp -= 50;
+            bookshelf.hp -= 100;
         }
+        print(other);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {   
+        
     }
 }

@@ -1897,7 +1897,7 @@ MonoBehaviour:
   pianoPrefab: {fileID: 0}
   detectiveCameraObj: {fileID: 1563453289}
   ghostCameraObj: {fileID: 74105195}
-  numNPCs: 8
+  numNPCs: 12
   numFloors: 4
   numPlayers: 4
   NPCs: []
