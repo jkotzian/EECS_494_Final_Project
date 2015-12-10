@@ -184,7 +184,7 @@ public class Ghost : Human
 
     void FixedUpdate() { 
 		if (Time.time - startTime > newInterval){
-			GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
+			//GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
             startTime = Time.time;
 		}
         float divider = 2.5f;

@@ -188,6 +188,10 @@ Prefab:
       propertyPath: m_Name
       value: Piano (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -354,6 +358,11 @@ Prefab:
 --- !u!1 &74105195 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 127022, guid: c7bb78b0c457fb44b93f761ce8802335, type: 2}
+  m_PrefabInternal: {fileID: 74105194}
+--- !u!20 &74105196 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2038568, guid: c7bb78b0c457fb44b93f761ce8802335,
+    type: 2}
   m_PrefabInternal: {fileID: 74105194}
 --- !u!4 &77863791 stripped
 Transform:
@@ -949,6 +958,10 @@ Prefab:
       propertyPath: m_Name
       value: Piano (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -1049,6 +1062,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -1149,6 +1166,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
   m_IsPrefabParent: 0
@@ -1253,6 +1274,10 @@ Prefab:
       propertyPath: m_Name
       value: Knight (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
   m_IsPrefabParent: 0
@@ -1952,12 +1977,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468846, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 105576, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_Name
       value: Piano (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -2144,6 +2173,10 @@ Prefab:
       propertyPath: m_Name
       value: Knight (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
   m_IsPrefabParent: 0
@@ -2184,12 +2217,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468846, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 105576, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_Name
       value: Piano (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -2296,7 +2333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
 --- !u!81 &1379286215
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2417,6 +2454,10 @@ Prefab:
       propertyPath: m_Name
       value: Piano (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -2463,6 +2504,10 @@ Prefab:
       propertyPath: m_Name
       value: Piano (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -2807,7 +2852,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!114 &1641976471 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11480644, guid: e67e70d4acc2934409043facd55c3c07,
@@ -3272,12 +3317,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468846, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 105576, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_Name
       value: Piano (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -3367,12 +3416,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468846, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 105576, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
       propertyPath: m_Name
       value: Piano (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d58cd7a186f7848f48362f2fde65c805, type: 2}
   m_IsPrefabParent: 0
@@ -3469,6 +3522,10 @@ Prefab:
       propertyPath: m_Name
       value: Knight (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 11419332, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 74105196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33a620bdaf28626479169806e06aa41c, type: 2}
   m_IsPrefabParent: 0

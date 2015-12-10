@@ -72,6 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
+  popUpPrefab: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
+  ghostCamera: {fileID: 2038568, guid: c7bb78b0c457fb44b93f761ce8802335, type: 2}
   deathTime: 10
   animOverTime: 14
 --- !u!212 &21282338
@@ -92,7 +94,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -136,6 +140,14 @@ Prefab:
       propertyPath: animOverTime
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: popUpPrefab
+      value: 
+      objectReference: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: ghostCamera
+      value: 
+      objectReference: {fileID: 2038568, guid: c7bb78b0c457fb44b93f761ce8802335, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105576}
