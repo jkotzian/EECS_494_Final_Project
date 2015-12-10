@@ -15,8 +15,8 @@ Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\Mu
 Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.0_Beta_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.0_Beta_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.0_Beta_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.137 seconds
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+- Completed reload, in  0.161 seconds
+desktop: 1024x768 60Hz; virtual: 2048x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
@@ -30,17 +30,17 @@ Number of Devices: 0
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: aa8 -> priority: 1 
-  Thread -> id: 30cc -> priority: 1 
+  Thread -> id: 28a4 -> priority: 1 
+  Thread -> id: 27f8 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.841335 ms
+UnloadTime: 12.542256 ms
 InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
 
 Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 783.
-Total: 1.292689 ms (FindLiveObjects: 0.127617 ms CreateObjectMapping: 0.160637 ms MarkObjects: 0.988816 ms  DeleteObjects: 0.014725 ms)
+Total: 1.571128 ms (FindLiveObjects: 0.109323 ms CreateObjectMapping: 0.138327 ms MarkObjects: 1.308753 ms  DeleteObjects: 0.013832 ms)
 
 Detective right, Ghost left
  

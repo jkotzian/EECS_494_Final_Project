@@ -13,7 +13,7 @@ GameObject:
   - 95: {fileID: 9598272}
   - 114: {fileID: 11419332}
   m_Layer: 16
-  m_Name: Piano
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.76556587, y: 1.49019659, z: 0}
+  m_LocalPosition: {x: -5.15999985, y: 1.09000003, z: 0}
   m_LocalScale: {x: 3.61671233, y: 3.61671233, z: 3.61671233}
   m_Children: []
   m_Father: {fileID: 0}
@@ -41,8 +41,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .400000006, y: .449999988, z: 1}
-  m_Center: {x: -.0700000003, y: 0, z: 0}
+  m_Size: {x: .25, y: .449999988, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9598272
 Animator:
   serializedVersion: 3
@@ -52,7 +52,7 @@ Animator:
   m_GameObject: {fileID: 105576}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3a9cf3de9dd03b448c94ab84d103a85, type: 2}
+  m_Controller: {fileID: 9100000, guid: c67fcb8a94f106d4d9284dfb7a4d1778, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  deathTime: 20
-  animOverTime: 25
+  deathTime: 10
+  animOverTime: 14
 --- !u!212 &21282338
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 608f08313cf2397458bb922bbb05a919, type: 3}
+  m_Sprite: {fileID: 21300006, guid: b7331c69a5e4f4a4b98f684d20bb9927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -124,12 +124,17 @@ Prefab:
       value: 
       objectReference: {fileID: 2100000, guid: a508de7cfa0c1fd42a3b2c80943e5335, type: 2}
     - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c1968718290bc64d95f0b6897c18fba,
+        type: 3}
+    - target: {fileID: 0}
       propertyPath: deathTime
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: animOverTime
-      value: 25
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

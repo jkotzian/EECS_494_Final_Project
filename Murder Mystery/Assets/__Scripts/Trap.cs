@@ -36,10 +36,8 @@ public class Trap : MonoBehaviour {
         }
 	}
 
-    public void activate(NPC npc, int newDeathTime, int newAnimOverTime)
+    public void activate(NPC npc)
     {
-        deathTime = newDeathTime;
-        animOverTime = newAnimOverTime;
         activated = true;
         target = npc;
         animator.SetTrigger("Kill");
@@ -60,7 +58,7 @@ public class Trap : MonoBehaviour {
         bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
         if (keyboardPressed || controllerPressed)
         {
-            activate(npc, 20, 25);
+            activate(npc);
         }
     }
 }
