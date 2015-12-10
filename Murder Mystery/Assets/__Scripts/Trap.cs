@@ -5,6 +5,9 @@ using InControl;
 public class Trap : MonoBehaviour {
 
     public bool activated;
+    public GameObject popUpPrefab;
+    public Camera ghostCamera;
+    Vector3 offset;
     int timer;
     // The time at which the NPC is killed
     public int deathTime;
@@ -12,9 +15,11 @@ public class Trap : MonoBehaviour {
     public int animOverTime;
     NPC target;
     Animator animator;
+
     // Use this for initialization
     void Start()
     {
+        offset = new Vector3(0, 0.8f, -3);
         activated = false;
         timer = 0;
         animator = GetComponent<Animator>();
@@ -28,6 +33,7 @@ public class Trap : MonoBehaviour {
             if (timer == deathTime)
             {
                 target.Kill();
+                StartCoroutine(PopUp());
             }
             if (timer == animOverTime)
             {
@@ -60,5 +66,13 @@ public class Trap : MonoBehaviour {
         {
             activate(npc);
         }
+    }
+
+    IEnumerator PopUp()
+    {
+        GameObject popUp = Instantiate(popUpPrefab, ghostCamera.WorldToViewportPoint(transform.position + offset), Quaternion.identity) as GameObject;
+        popUp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, .05f);
+        yield return new WaitForSeconds(1f);
+        DestroyObject(popUp);
     }
 }
