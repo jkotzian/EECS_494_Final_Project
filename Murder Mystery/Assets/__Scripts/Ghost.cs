@@ -76,7 +76,11 @@ public class Ghost : Human
 
     // Update is called once per frame
     void Update()
-    {       
+    {      
+        if (TotalGame.S.inMainMenu)
+        {
+            return;
+        } 
         /*  
 		if (currentLife != ghostLives) {
 			healthBar.GetComponent<MeshRenderer>().enabled = true;
@@ -160,7 +164,7 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);
