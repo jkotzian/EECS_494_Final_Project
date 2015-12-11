@@ -199,7 +199,7 @@ public class NPC : Human {
         // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, AND they hit the
         // possession key, then dispossess them
         if (possessed && !possessionOwner.shrinkingIntoBody && (Input.GetKeyDown(possessionOwner.actionKey) || 
-           (GamePlay.S.usingControllers && InputManager.Devices[NPCMovement.conNum].Action1.WasPressed)))
+           (NPCMovement.conNum < GamePlay.S.numControllers && InputManager.Devices[NPCMovement.conNum].Action1.WasPressed)))
         {
 			/* WE'RE GOING TO EXPERIMENT WITH THE GHOST ONLY BEING ABLE TO DISPOSSESS WHEN THEY KILL
               SOMEONE. NOTE, THERE IS A RACE CONDITION THAT YOU MUST DEAL WITH IF YOU UNCOMMENT THIS LINE

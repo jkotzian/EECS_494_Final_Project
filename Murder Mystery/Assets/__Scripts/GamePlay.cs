@@ -50,7 +50,7 @@ public class GamePlay : MonoBehaviour {
     private Rect rightScreen;
     private bool gameOver;
 
-    public bool usingControllers;
+    public int numControllers;
 
     public RuntimeAnimatorController detective1AnimationController;
     public RuntimeAnimatorController detective2AnimationController;
@@ -72,7 +72,7 @@ public class GamePlay : MonoBehaviour {
         startLoc = generateStartLoc();
         bookshelfLoc = generateBookshelfLoc();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
-        usingControllers = false;
+        numControllers = 0;
     }
     
     void Start () {
@@ -99,16 +99,13 @@ public class GamePlay : MonoBehaviour {
             ++locationIndex;
         }
         // See if the players are using the controllers
-        if (InputManager.Devices.Count > 0)
-        {
-            usingControllers = true;
-        }
+        numControllers = InputManager.Devices.Count;    
         // Place Ghosts
         Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
         Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
-        Ghosts[0].GetComponent<Movement>().conNum = 1;//ControllerManager.S.ghostOne;
+        Ghosts[0].GetComponent<Movement>().conNum = 0;//ControllerManager.S.ghostOne;
 		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
 		
         ++locationIndex;
@@ -144,7 +141,7 @@ public class GamePlay : MonoBehaviour {
         // Set the art/animation
         Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
 		Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
-        Detectives[0].GetComponent<Movement>().conNum = 3;
+        Detectives[0].GetComponent<Movement>().conNum = 1;
 		
         ++locationIndex;
         
@@ -156,7 +153,7 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
             Detectives[1].GetComponent<Movement>().isDetective = true;                      
             Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);     
-			Detectives[1].GetComponent<Movement>().conNum = 0;
+			Detectives[1].GetComponent<Movement>().conNum = 3;
             // Set the art/animation
             Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
 
@@ -213,19 +210,15 @@ public class GamePlay : MonoBehaviour {
 
         // set detective and ghost cameras to correct side.
         if (TotalGame.S.round % 2 == 0)
-        {
-            //print("Detective left, Ghost right");
+        {                                           
             detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
             ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
-            // This doesnt work yet!!!
-            //switchControllers();
+            switchControllers();
         }
         else
-        {
-            //print("Detective right, Ghost left");
+        {                                            
             detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
             ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
-            //switchControllers();
         }
 
         if (TotalGame.S.round > 2)
@@ -265,14 +258,25 @@ public class GamePlay : MonoBehaviour {
     {
         // Switch the detective and ghost controls
         int oldGhostConNum = Ghosts[0].GetComponent<Movement>().conNum;
+        print("Old Ghost Controller Number: " + oldGhostConNum);
         Ghosts[0].GetComponent<Movement>().conNum = Detectives[0].GetComponent<Movement>().conNum;
         Detectives[0].GetComponent<Movement>().conNum = oldGhostConNum;
         if (numPlayers > 2)
         {
             // Switch the detective and ghost controls
-            int oldGhostConNum2 = Ghosts[0].GetComponent<Movement>().conNum;
+            int oldGhostConNum2 = Ghosts[1].GetComponent<Movement>().conNum;
             Ghosts[1].GetComponent<Movement>().conNum = Detectives[1].GetComponent<Movement>().conNum;
             Detectives[1].GetComponent<Movement>().conNum = oldGhostConNum2;
+        }
+        print("Ghost 0 Controller: " + Ghosts[0].GetComponent<Movement>().conNum);
+        if(numPlayers > 2)
+        {
+            print("Ghost 1 Controller: " + Ghosts[1].GetComponent<Movement>().conNum);
+        }
+        print("Detective 0 Controller: " + Detectives[0].GetComponent<Movement>().conNum);
+        if (numPlayers > 2)
+        {
+            print("Detective 1 Controller: " + Detectives[1].GetComponent<Movement>().conNum);
         }
     }
 
