@@ -76,7 +76,11 @@ public class Ghost : Human
 
     // Update is called once per frame
     void Update()
-    {       
+    {      
+        if (TotalGame.S.inMainMenu)
+        {
+            return;
+        } 
         /*  
 		if (currentLife != ghostLives) {
 			healthBar.GetComponent<MeshRenderer>().enabled = true;
@@ -134,12 +138,10 @@ public class Ghost : Human
             }
         }*/
         if ((Input.GetKeyDown(actionKey) ||
-            (movement.controller != null && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+            (movement.conNum < GamePlay.S.numControllers && 
+            InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
-        {
-            /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
-            OBJECT BECAUSE IT'S ONCOLLISION FUNCTION WILL NOT FIRE IF IT'S PARENT'S
-            LAYER IS NOT SUPPOSED TO COLLIDE*/
+        {   
             Vector3 possessionObjPos = transform.position;
             // Not having an offset for now, might want one laters
             /*Vector3 possessionObjOffset;
@@ -163,8 +165,8 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(actionKey) || (movement.controller != null && 
-            InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
+            InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);

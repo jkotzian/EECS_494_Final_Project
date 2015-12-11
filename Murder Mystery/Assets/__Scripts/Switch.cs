@@ -70,7 +70,7 @@ public class Switch : MonoBehaviour {
             return;
 
         bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.actionKey);
-        bool controllerPressed = (GamePlay.S.usingControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
+        bool controllerPressed = (npc.NPCMovement.conNum < GamePlay.S.numControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1);
         if (keyboardPressed || controllerPressed)
         {
             // Say that the NPC is no longer possessed, so when the "unpossess" key is pressed, it kills

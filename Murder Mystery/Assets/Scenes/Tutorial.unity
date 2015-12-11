@@ -240,7 +240,7 @@ MonoBehaviour:
   Switches: []
   regularRoundTime: 0
   practiceRoundTime: 0
-  usingControllers: 0
+  numControllers: 0
   detective1AnimationController: {fileID: 9100000, guid: 474e423e2e321ef4396e2d7fd2c5bbb0,
     type: 2}
   detective2AnimationController: {fileID: 9100000, guid: 4916ff20972fe6b4fa56eeb220ed04c2,

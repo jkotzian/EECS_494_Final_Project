@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour {
     }
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (!human.alive)
+        if (!human.alive || TotalGame.S.inMainMenu)
             return;
 
         moveVec = Vector3.zero;
@@ -143,7 +143,7 @@ public class Movement : MonoBehaviour {
             moveVec += Vector3.up;
             moving = true;
         }
-        // Move up for ghosts
+        // Move down for ghosts
 		if ((Input.GetKey(downKey) || (controller != null && controller.DPadDown)) && isGhost)
         {
             moveVec += Vector3.down;
