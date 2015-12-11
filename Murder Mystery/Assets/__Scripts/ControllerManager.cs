@@ -20,9 +20,8 @@ public class ControllerManager : MonoBehaviour {
 		print ("Number of Devices: " + InputManager.Devices.Count);
 		for(int i = 0; i < InputManager.Devices.Count; i++){
 			allControllers.Add(InputManager.Devices[i]);
-			print("Name of controller: " + allControllers[i].Name);
+			//print("Name of controller: " + allControllers[i].Name);
 		}
-
 	}
 
 	void Update () {

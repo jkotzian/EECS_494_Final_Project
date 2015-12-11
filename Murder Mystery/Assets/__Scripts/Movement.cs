@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour {
 	public int conNum;
 
     Vector3 moveVec;
-    InputDevice controller;
+    public InputDevice controller;
     Animator animator;
 
     public Transform flashlightRightObj;

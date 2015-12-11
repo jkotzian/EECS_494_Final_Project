@@ -134,7 +134,7 @@ public class Ghost : Human
             }
         }*/
         if ((Input.GetKeyDown(actionKey) ||
-            (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+            (movement.controller != null && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
         {
             /* NOTE: I USED THIS METHOD INSTEAD OF CREATING A KNIFE AS A CHILD
@@ -163,7 +163,8 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (movement.controller != null && 
+            InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
             currentPossessionObj)
         {
             Destroy(currentPossessionObj);

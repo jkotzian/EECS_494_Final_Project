@@ -39,8 +39,8 @@ public class Detective : Human {
     }
     void Update()
     {
-		if (canFire && (Input.GetKeyDown(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
-            !currentGhostHitObj)
+		if (canFire && (Input.GetKeyDown(actionKey) || (movement.controller != null && 
+            InputManager.Devices[movement.conNum].Action1.WasPressed)) && !currentGhostHitObj)
         {
             weaponFireSound.Play();
             weaponEffect.gameObject.SetActive(true);
@@ -70,7 +70,8 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if ((Input.GetKeyUp(actionKey) || (GamePlay.S.usingControllers && InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
+		if ((Input.GetKeyUp(actionKey) || (movement.controller != null && 
+            InputManager.Devices[movement.conNum].Action1.WasReleased)) && 
             currentGhostHitObj)
         {
             Destroy(currentGhostHitObj);

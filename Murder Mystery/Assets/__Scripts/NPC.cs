@@ -5,6 +5,7 @@ using InControl;
 
 public class NPC : Human {
 
+    public bool         active;
     // These things should most definitely be kept public!
     public int         checkMoveTimerMin;
     public int         checkMoveTimerMax;
@@ -67,7 +68,7 @@ public class NPC : Human {
 
 	// Update is called once per frame
 	void Update () {
-        if (!alive)
+        if (!alive || !active)
             return;
         if (checkMoveTimer > 0 && !possessed)
         {

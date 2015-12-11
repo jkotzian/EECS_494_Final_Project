@@ -2598,6 +2598,8 @@ MonoBehaviour:
   Detectives: []
   EnvironmentalObjects: []
   Switches: []
+  regularRoundTime: 120
+  practiceRoundTime: 120
   usingControllers: 0
   detective1AnimationController: {fileID: 9100000, guid: 474e423e2e321ef4396e2d7fd2c5bbb0,
     type: 2}
@@ -3126,9 +3128,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -3231,9 +3231,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
