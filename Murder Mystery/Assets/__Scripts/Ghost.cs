@@ -40,10 +40,9 @@ public class Ghost : Human
     public NPC possessedNPC;
 
 	public GameObject healthBarPrefab;
-	public GameObject healthBar;
+	GameObject healthBar;
 	public int currentLife;
-	public int ghostLives;
-	public bool losingLife;
+	int ghostLives;
 	Vector3 reserve;
 	float timer;
 
