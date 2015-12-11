@@ -9,6 +9,10 @@ public class Human : MonoBehaviour {
 	public float        delayPerSecond; 
 	public GameObject	trackerPrefab;
     public KeyCode actionKey;
+    public bool tutorialNPC;
+    // Number 1 - 0 of the the objective number this completes for the
+    // tutorial
+    public int objectiveNum;
 
     public void setActionKey(KeyCode key)
     {
@@ -31,7 +35,7 @@ public class Human : MonoBehaviour {
         NPC NPCToKill = GetComponent<NPC>();
         if (NPCToKill && NPCToKill.alive)
         {
-            //Knock the murderer over
+            // Dispossess the NPC and knock them over
             if (NPCToKill.possessed)
 				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
@@ -44,6 +48,11 @@ public class Human : MonoBehaviour {
                 TotalGame.S.bodyCount[TotalGame.S.round - 3]++;
             }
             alive = false;
+            // If it was a tutorial NPC, complete the objective
+            if (tutorialNPC)
+            {
+                GamePlay.S.completedObjective(objectiveNum);
+            }
         }
         // If it's a Ghost 
         Ghost GhostToKill = GetComponent<Ghost>();

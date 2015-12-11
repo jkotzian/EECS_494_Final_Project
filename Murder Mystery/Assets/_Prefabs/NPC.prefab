@@ -160,6 +160,7 @@ MonoBehaviour:
   delayPerSecond: 0
   trackerPrefab: {fileID: 0}
   actionKey: 0
+  active: 1
   checkMoveTimerMin: 2
   checkMoveTimerMax: 100
   standingTimeMin: 20
@@ -306,6 +307,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: chanceToTakeElevatorAgain
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: active
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -8,6 +8,8 @@ using InControl;
 public class GamePlay : MonoBehaviour {
     public static GamePlay S;
 
+    public bool             tutorial;
+
     public GameObject       switchPrefab;
     public GameObject       bookshelfPrefab;
     public GameObject       npcPrefab;
@@ -59,6 +61,25 @@ public class GamePlay : MonoBehaviour {
     public RuntimeAnimatorController guest2AnimationController;
     public RuntimeAnimatorController guest3AnimationController;
 
+    public Transform tutorialStartLocGhost1;
+    public Transform tutorialStartLocGhost2;
+    public Transform tutorialStartLocDetective1;
+    public Transform tutorialStartLocDetective2;
+
+    public GameObject doneTextGhost1;
+    public GameObject doneText2Ghost1;
+    public GameObject doneTextGhost2;
+    public GameObject doneText2Ghost2;
+    public GameObject doneTextDetective1;
+    public GameObject doneText2Detective1;
+    public GameObject doneTextDetective2;
+    public GameObject doneText2Detective2;
+
+    public GameObject completedText1;
+    public GameObject completedText2;
+
+    int tutorialObjectivesCompleted;
+
     void Awake()
     {
         S = this;
@@ -73,11 +94,180 @@ public class GamePlay : MonoBehaviour {
         bookshelfLoc = generateBookshelfLoc();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         numControllers = 0;
+        tutorialObjectivesCompleted = 0;
     }
     
     void Start () {
+        if (tutorial)
+        {
+            manageTutorialGamePlay();
+        }
+        else
+        {
+            manageRegularGamePlay();
+        }
+    }
+
+    void Update()
+    {
+        if (tutorial)
+        {
+            tutorialGameUpdate();
+        }
+        else
+        {
+            regularGameUpdate();
+        }
+    }
+
+    void createGhostsAndDetectives(Vector3 ghostPos1, Vector3 ghostPos2,
+                                   Vector3 detectivePos1, Vector3 detectivePos2)
+    {
+        // Place Ghosts
+        Ghosts.Add(Instantiate(ghostPrefab, ghostPos1, Quaternion.identity) as GameObject);
+        Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        Ghosts[0].GetComponent<Ghost>().alive = true;
+        Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
+        Ghosts[0].GetComponent<Movement>().conNum = 0;
+
+        if (numPlayers == 4)
+        {
+            Ghosts.Add(Instantiate(ghostPrefab, ghostPos2, Quaternion.identity) as GameObject);
+            Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
+            Ghosts[1].GetComponent<Ghost>().alive = true;
+            Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
+            Ghosts[1].GetComponent<Movement>().conNum = 2;
+        }
+        // Place Detectives
+        Detectives.Add(Instantiate(detectivePrefab, detectivePos1, Quaternion.identity) as GameObject);
+
+        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
+        Detectives[0].GetComponent<Movement>().isDetective = true;
+        // Set the art/animation
+        Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
+        Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
+        Detectives[0].GetComponent<Movement>().conNum = 1;
+
+        if (numPlayers == 4)
+        {
+            Detectives.Add(Instantiate(detectivePrefab, detectivePos2, Quaternion.identity) as GameObject);
+
+            Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
+            Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
+            Detectives[1].GetComponent<Movement>().isDetective = true;
+            Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);
+            Detectives[1].GetComponent<Movement>().conNum = 3;
+            // Set the art/animation
+            Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
+        }
+    }
+
+    void tutorialGameUpdate()
+    {
+        // Check for the 4 completed actions
+    }
+
+    public void completedObjective(int objectiveNum)
+    {
+        if (!tutorial)
+            return;
+
+        if (objectiveNum == 0)
+        {
+            print("Objective 1 completed");
+            doneTextGhost1.SetActive(true);
+            doneText2Ghost1.SetActive(true);
+        }
+        else if (objectiveNum == 1)
+        {
+            print("Objective 2 completed");
+            doneTextGhost2.SetActive(true);
+            doneText2Ghost2.SetActive(true);
+        }
+        else if (objectiveNum == 2)
+        {
+            print("Objective 3 completed");
+            doneTextDetective1.SetActive(true);
+            doneText2Detective1.SetActive(true);
+        }
+        else if (objectiveNum == 3)
+        {
+            print("Objective 4 completed");
+            doneTextDetective2.SetActive(true);
+            doneText2Detective2.SetActive(true);
+        }
+
+        tutorialObjectivesCompleted++;
+
+        if (tutorialObjectivesCompleted == 2 && numPlayers == 2)
+        {
+            completedText1.SetActive(true);
+            completedText2.SetActive(true);
+            StartCoroutine(tutorialEndSequence());
+        }
+        else if (tutorialObjectivesCompleted == 4 && numPlayers == 4)
+        {
+            completedText1.SetActive(true);
+            completedText2.SetActive(true);
+            StartCoroutine(tutorialEndSequence());
+        }
+    }
+
+    void regularGameUpdate()
+    {
+        if (!gameOver)
+        {
+            timerText.text = "Time: " + (roundTime - (int)(Time.time - starttime)).ToString();
+        }
+        if (TotalGame.S.round > 2 && !gameOver)
+        {
+            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 3] * 100).ToString();
+        }
+        // check for round end
+        if (Time.time > roundTime + starttime || checkForDetectiveWin())
+        {
+            gameOver = true;
+            StartCoroutine(roundEndSequence());
+        }
+        // spawn bookshelves
+        if (!gameOver && Time.time > bookshelfSpawnTime + 5)
+        {
+            bookshelfSpawnTime = Time.time;
+            int i = UnityEngine.Random.Range(0, 7);
+            Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);
+        }
+    }
+
+    void manageTutorialGamePlay()
+    {
+        // See if the players are using the controllers
+        numControllers = InputManager.Devices.Count;
+        createGhostsAndDetectives(tutorialStartLocGhost1.position, tutorialStartLocGhost2.position,
+                                  tutorialStartLocDetective1.position, tutorialStartLocDetective2.position);
+        TotalGame.S.round++;
+
+        // NOTE MAKE THIS INTO A FUNCITON AND CALL IT IN REGULAR GAMEPLAY
+        // set detective and ghost cameras to correct side.
+        if (TotalGame.S.round == 2)
+        {
+            detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
+            ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
+            switchControllers();
+        }
+        else
+        {
+            detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
+            ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
+        }
+    }
+
+    void manageRegularGamePlay()
+    {
         roundTime = practiceRoundTime;
         print("Num controllers " + InputManager.Devices.Count);
+        // See if the players are using the controllers
+        numControllers = InputManager.Devices.Count;
         //print("Num of devices " + InputManager.Devices.Count);
         // Place NPCs
         int locationIndex = 0;
@@ -98,125 +288,37 @@ public class GamePlay : MonoBehaviour {
             NPCs.Add(newNPC);
             ++locationIndex;
         }
-        // See if the players are using the controllers
-        numControllers = InputManager.Devices.Count;    
-        // Place Ghosts
-        Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-        Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
-        Ghosts[0].GetComponent<Ghost>().alive = true;
-        Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
-        Ghosts[0].GetComponent<Movement>().conNum = 0;//ControllerManager.S.ghostOne;
-		//Ghosts[0].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostOne];
-		
-        ++locationIndex;
 
+        // If it's 4 players, then there will be enough start locs to pass in with 4 increments
         if (numPlayers == 4)
         {
-            Ghosts.Add(Instantiate(ghostPrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-            Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
-            Ghosts[1].GetComponent<Ghost>().alive = true;
-            Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
-       		Ghosts[1].GetComponent<Movement>().conNum = 2;
-			//Ghosts[1].GetComponent<Movement>().inputDevice = ControllerManager.S.allControllers[ControllerManager.S.ghostTwo];
-            ++locationIndex;
+            createGhostsAndDetectives(startLoc[locationIndex++], startLoc[locationIndex++],
+                                        startLoc[locationIndex++], startLoc[locationIndex++]);
         }
-        // Randomely possess one of the NPCs
-        //int randPossessNum = Random.Range(0, numNPCs);
-        //Ghost ghost1 = Ghosts[0].GetComponent<Ghost>();
-        //NPC npc1 = NPCs[1].GetComponent<NPC>();
-        //ghost1.possess(npc1);
-        //int randPossessNum2 = Random.Range(0, numNPCs);
-        //while (randPossessNum2 == randPossessNum)
-        //{
-        //    randPossessNum2 = Random.Range(0, numNPCs);
-        //}
-        //Ghosts[1].GetComponent<Ghost>().possess(NPCs[2].GetComponent<NPC>());
-        // Place Detectives
-        Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-        // THIS MESSESS STUFF UP RIGHT NOW
-        //Detectives[0].transform.GetChild(0).GetComponent<Renderer>().material = disguises[0];
-        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
-		Detectives[0].GetComponent<Movement>().isDetective = true;
-        // Set the art/animation
-        Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
-		Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
-        Detectives[0].GetComponent<Movement>().conNum = 1;
-		
-        ++locationIndex;
-        
-        if (numPlayers == 4)
+        // Otherwise, you can't increment and access that far in the startLoc array or else you'll
+        // get access errors
+        else
         {
-            Detectives.Add(Instantiate(detectivePrefab, startLoc[locationIndex], Quaternion.identity) as GameObject);
-
-            Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
-            Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
-            Detectives[1].GetComponent<Movement>().isDetective = true;                      
-            Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);     
-			Detectives[1].GetComponent<Movement>().conNum = 3;
-            // Set the art/animation
-            Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
-
-            ++locationIndex;
+            createGhostsAndDetectives(startLoc[locationIndex++], startLoc[locationIndex++],
+                                      Vector3.zero, Vector3.zero);
         }
 
-        //Set targets
-        /*for (int i = 0; i < 4; i++)
-        {
-            int newIndex = UnityEngine.Random.Range(0, 8);
-            while (Array.Exists(targetIndices, element => element == newIndex)) {
-                newIndex = UnityEngine.Random.Range(0, 8);
-            }
-            targetIndices[i] = newIndex;
-            NPCs[i].GetComponent<NPC>().target = true;
-        }*/
-
-        //Place Environmental Objects
-        /*EnvironmentalObjects.Add (Instantiate(chandelierPrefab, new Vector3(4.9f, 2.059f, 0), Quaternion.Euler (0,0,90)) as GameObject);
-		EnvironmentalObjects.Add (Instantiate(toxicAreaPrefab, new Vector3(-4.64f, -3.77f, 1), Quaternion.identity) as GameObject);
-		EnvironmentalObjects.Add (Instantiate(flamethrowerPrefab, new Vector3(1.46f	, -1.37f, 0), Quaternion.Euler (0,0,90)) as GameObject);
-		EnvironmentalObjects.Add (Instantiate(knightAxePrefab, new Vector3(-4.06f, 0.95f, 0), Quaternion.identity) as GameObject);
-		EnvironmentalObjects.Add (Instantiate(pianoPrefab, new Vector3(-0.4f, 3.7f, 0), Quaternion.Euler (0,0,-50)) as GameObject);*/
-        //print (EnvironmentalObjects [0]);
-
-        // Place switches
-        //Chandelier Switch
-        /*Switches.Add (Instantiate(switchPrefab, new Vector3(4.91f, 1.12f, 0), Quaternion.identity) as GameObject);
-		Switches [0].GetComponent<Switch> ().switchNum = 1;
-		//Hole in ground Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(0.05f, -3.91f, 0), Quaternion.identity) as GameObject);
-		Switches [1].GetComponent<Switch> ().switchNum = 2;
-		//Toxic air Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.32f, -3.85f, 0), Quaternion.identity) as GameObject);
-		Switches [2].GetComponent<Switch> ().switchNum = 3;
-		//Flamethrower Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(2.5f, -1.37f, 0), Quaternion.identity) as GameObject);
-		Switches [3].GetComponent<Switch> ().switchNum = 4;
-		//Poison water Switch
-		Switches.Add (Instantiate(poisonWaterPrefab, new Vector3(-4.23f, -1.29f, 0), Quaternion.identity) as GameObject);
-		Instantiate (switchPrefab, new Vector3 (-4.23f, -1.29f, 0), Quaternion.identity);
-		Switches [4].GetComponent<Switch> ().switchNum = 5;
-		//Knight axe Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(-4.83f, 1.2f, 0), Quaternion.identity) as GameObject);
-		Switches [5].GetComponent<Switch> ().switchNum = 6;
-		//Piano Switch
-		Switches.Add (Instantiate(switchPrefab, new Vector3(0.08f, 3.62f, 0), Quaternion.Euler (0,0,20)) as GameObject);
-		Switches [6].GetComponent<Switch> ().switchNum = 7;*/
+        locationIndex += 4;
 
         gameOver = false;
         starttime = Time.time;
-        bookshelfSpawnTime = Time.time;     
+        bookshelfSpawnTime = Time.time;
         TotalGame.S.round++;
 
         // set detective and ghost cameras to correct side.
         if (TotalGame.S.round % 2 == 0)
-        {                                           
+        {
             detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
             ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
             switchControllers();
         }
         else
-        {                                            
+        {
             detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
             ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
         }
@@ -228,32 +330,6 @@ public class GamePlay : MonoBehaviour {
         timerText.text = "";
         scoreText.text = "";   
     }
-
-    void Update()
-    {
-        if(!gameOver)
-        {
-            timerText.text = "Time: " + (roundTime - (int)(Time.time - starttime)).ToString();
-        }
-        if(TotalGame.S.round > 2 && !gameOver)
-        {
-            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 3] * 100).ToString();        
-        }
-        // check for round end
-        if (Time.time > roundTime + starttime || checkForDetectiveWin())
-        {
-            gameOver = true;
-            StartCoroutine(roundEndSequence());
-        }
-        // spawn bookshelves
-        if (!gameOver && Time.time > bookshelfSpawnTime + 5)
-        {
-            bookshelfSpawnTime = Time.time;
-            int i = UnityEngine.Random.Range(0, 7);    
-            Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);      
-        }
-    }
-
     void switchControllers()
     {
         // Switch the detective and ghost controls
@@ -284,6 +360,15 @@ public class GamePlay : MonoBehaviour {
     {
         yield return new WaitForSeconds(3f);
         Application.LoadLevel("RoundEnd");
+    }
+
+    IEnumerator tutorialEndSequence()
+    {
+        yield return new WaitForSeconds(3f);
+        //if (TotalGame.S.round == 2)
+            Application.LoadLevel("MainMenu");
+        //else
+            //Application.LoadLevel("Tutorial");
     }
 
     List<Vector3> generateStartLoc()
@@ -361,18 +446,6 @@ public class GamePlay : MonoBehaviour {
         bl.Add(new Vector3(4f, -4f, 0));
         return bl;
     }
-
-    //bool checkForMurdererWin()
-    //{
-    //    foreach (int i in targetIndices)
-    //    {
-    //        if (NPCs[i].GetComponent<NPC>().alive)
-    //        {
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
 
     bool checkForDetectiveWin()
     {

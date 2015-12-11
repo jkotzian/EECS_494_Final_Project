@@ -16,6 +16,8 @@ public class Trap : MonoBehaviour {
     public int animOverTime;
     NPC target;
     Animator animator;
+    public bool tutorialTrap;
+    public int objectiveNum;
 
     // Use this for initialization
     void Start()
@@ -41,6 +43,10 @@ public class Trap : MonoBehaviour {
             if (timer == animOverTime)
             {
                 animator.SetTrigger("Done");
+                if (tutorialTrap)
+                {
+                    GamePlay.S.completedObjective(objectiveNum);
+                }
             }
         }
 	}

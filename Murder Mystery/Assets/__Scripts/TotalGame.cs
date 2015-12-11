@@ -67,6 +67,15 @@ public class TotalGame : MonoBehaviour {
                     downPressed = true;
                 }
             }
+            // Keyboard selection
+            if (Input.GetKeyDown(KeyCode.UpArrow)) 
+            {
+                upPressed = true;
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                downPressed = true;
+            }
             if (upPressed && selected == 1)
             {
                 NGDetective.SetActive(true);
@@ -114,8 +123,8 @@ public class TotalGame : MonoBehaviour {
         AudioSource weaponFireSound = TDetective.GetComponent<Detective>().weaponFireSoundObj.GetComponent<AudioSource>();
         weaponFireSound.Play();
         TDetective.GetComponent<Detective>().weaponEffect.gameObject.SetActive(true);
-        //inMainMenu = false;
         yield return new WaitForSeconds(1f);
-        //Application.LoadLevel("AlphaMansion");
+        inMainMenu = false;
+        Application.LoadLevel("Tutorial");
     }
 }

@@ -45,11 +45,6 @@ public class GhostHit : MonoBehaviour {
         {
             bookshelf.hp -= 100;
         }
-        print(other);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {   
-        
+        //print(other);
     }
 }
