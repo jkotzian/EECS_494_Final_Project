@@ -98,19 +98,27 @@ public class Movement : MonoBehaviour {
         {
             // Set the move vector in the direction of the left analog stick
             moveVec += new Vector3(controller.LeftStick.Vector.x, controller.LeftStick.Vector.y, 0.0f);
-            moving = true;
+
             // Check if the character changed direction using the analog stick
-            if (controller.LeftStickX > 0 && !human.facingRight)
+            if (controller.LeftStickX > 0)
             {
-                flip(true);
+                if (!human.facingRight)
+                {
+                    flip(true);
+                } 
+                moving = true;
             }
-            else if (controller.LeftStickX < 0 && human.facingRight)
+            else if (controller.LeftStickX < 0)
             {
-                flip(false);
+                if (human.facingRight)
+                {
+                    flip(false);
+                }
+                moving = true;
             }
         }
 
-        // Only allow upward and dowward movement for the ghost
+        // Only allow upward and downward movement for the ghost
         if (!isGhost)
         {
             moveVec.y = 0;

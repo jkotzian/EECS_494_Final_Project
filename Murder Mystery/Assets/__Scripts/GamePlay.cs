@@ -80,6 +80,9 @@ public class GamePlay : MonoBehaviour {
 
     int tutorialObjectivesCompleted;
 
+    public AudioSource WindDown;
+	bool invoked;
+
     void Awake()
     {
         S = this;
@@ -219,6 +222,11 @@ public class GamePlay : MonoBehaviour {
         if (!gameOver)
         {
             timerText.text = "Time: " + (roundTime - (int)(Time.time - starttime)).ToString();
+			if((roundTime - (int)(Time.time - starttime)) ==  5f && !invoked ){
+				//playing wind down sound
+				InvokeRepeating("PlayWindDown", 0f, 1f);
+				invoked = true;
+			}
         }
         if (TotalGame.S.round > 2 && !gameOver)
         {
@@ -330,6 +338,14 @@ public class GamePlay : MonoBehaviour {
         timerText.text = "";
         scoreText.text = "";   
     }
+
+	void PlayWindDown(){
+		WindDown.Play ();
+		if((roundTime - (int)(Time.time - starttime)) <= 0.5f){
+			CancelInvoke();
+			WindDown.Stop();
+		}
+	}
     void switchControllers()
     {
         // Switch the detective and ghost controls

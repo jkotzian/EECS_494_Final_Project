@@ -1,0 +1,96 @@
+Initialize engine version: 5.2.2f1 (3757309da7e7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.468 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.2_Beta_Data\Managed\System.dll (this message is harmless)
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Number of Devices: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: e74 -> priority: 1 
+  Thread -> id: 16e0 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.888727 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1025.
+Total: 0.991935 ms (FindLiveObjects: 0.081657 ms CreateObjectMapping: 0.087904 ms MarkObjects: 0.800955 ms  DeleteObjects: 0.020972 ms)
+
+Num controllers 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.164521 ms
+NullReferenceException: Object reference not set to an instance of an object
+  at HideLight.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 515.
+Total: 1.008891 ms (FindLiveObjects: 0.035697 ms CreateObjectMapping: 0.081211 ms MarkObjects: 0.496190 ms  DeleteObjects: 0.395346 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 8.715464 ms
+NullReferenceException: Object reference not set to an instance of an object
+  at HideLight.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 515.
+Total: 0.638979 ms (FindLiveObjects: 0.040605 ms CreateObjectMapping: 0.050868 ms MarkObjects: 0.530549 ms  DeleteObjects: 0.016509 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.803632 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1030.
+Total: 1.032986 ms (FindLiveObjects: 0.082103 ms CreateObjectMapping: 0.077195 ms MarkObjects: 0.834421 ms  DeleteObjects: 0.038820 ms)
+
+Num controllers 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Old Ghost Controller Number: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Ghost 0 Controller: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Detective 0 Controller: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+

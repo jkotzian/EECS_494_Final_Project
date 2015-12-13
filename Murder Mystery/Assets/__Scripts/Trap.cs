@@ -74,7 +74,15 @@ public class Trap : MonoBehaviour {
             hint.SetActive(true);
         }        
         bool keyboardPressed = Input.GetKeyDown(npc.possessionOwner.actionKey);
-        bool controllerPressed = (npc.NPCMovement.conNum < GamePlay.S.numControllers && InputManager.Devices[npc.NPCMovement.conNum].Action1.WasPressed);
+        // Say that the controller was pressed if there are available controllers
+        bool controllerPressed = (npc.NPCMovement.conNum < GamePlay.S.numControllers && 
+                                  InputManager.Devices[npc.NPCMovement.conNum].Action1.WasPressed);
+        // If the ghost is in the middle of possessing and shrinking into the body,
+        // then don't say the controller button was pressed
+        if (npc.possessed && npc.possessionOwner.shrinkingIntoBody)
+        {
+            controllerPressed = false;
+        }
         if (keyboardPressed || controllerPressed)
         {
             activate(npc);

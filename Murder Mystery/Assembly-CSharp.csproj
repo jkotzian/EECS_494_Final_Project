@@ -156,13 +156,14 @@
      <Compile Include="Assets\InControl\InControl\Source\XInput\XInputDotNetPure\Utils.cs" />
      <Compile Include="Assets\InControl\InControl\Test\TestInputManager.cs" />
      <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
+     <Compile Include="Assets\__Scripts\Bookshelf.cs" />
      <Compile Include="Assets\__Scripts\Chandelier.cs" />
      <Compile Include="Assets\__Scripts\ClimbScript.cs" />
      <Compile Include="Assets\__Scripts\ControllerManager.cs" />
      <Compile Include="Assets\__Scripts\Detective.cs" />
      <Compile Include="Assets\__Scripts\Door.cs" />
      <Compile Include="Assets\__Scripts\FlameCollider.cs" />
-     <Compile Include="Assets\__Scripts\Flamethrower.cs" />
+     <Compile Include="Assets\__Scripts\FlameTrap.cs" />
      <Compile Include="Assets\__Scripts\GamePlay.cs" />
      <Compile Include="Assets\__Scripts\Ghost.cs" />
      <Compile Include="Assets\__Scripts\GhostHit.cs" />
@@ -179,7 +180,10 @@
      <Compile Include="Assets\__Scripts\RevealTracker.cs" />
      <Compile Include="Assets\__Scripts\Switch.cs" />
      <Compile Include="Assets\__Scripts\TotalGame.cs" />
+     <Compile Include="Assets\__Scripts\Trap.cs" />
      <None Include="Assets\InControl\InControl\README\README.txt" />
+     <None Include="Assets\Fonts\Bosox.txt" />
+     <None Include="Assets\Sounds\Credit.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
