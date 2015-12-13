@@ -162,6 +162,7 @@
      <Compile Include="Assets\__Scripts\ControllerManager.cs" />
      <Compile Include="Assets\__Scripts\Detective.cs" />
      <Compile Include="Assets\__Scripts\Door.cs" />
+     <Compile Include="Assets\__Scripts\EaseLightsOff.cs" />
      <Compile Include="Assets\__Scripts\FlameCollider.cs" />
      <Compile Include="Assets\__Scripts\FlameTrap.cs" />
      <Compile Include="Assets\__Scripts\GamePlay.cs" />

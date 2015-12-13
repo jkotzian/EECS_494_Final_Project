@@ -50,7 +50,7 @@ public class GamePlay : MonoBehaviour {
     private float bookshelfSpawnTime;
     private Rect leftScreen;
     private Rect rightScreen;
-    private bool gameOver;
+    public bool gameOver;
 
     public int numControllers;
 

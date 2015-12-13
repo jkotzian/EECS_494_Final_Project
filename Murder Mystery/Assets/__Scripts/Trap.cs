@@ -8,6 +8,7 @@ public class Trap : MonoBehaviour {
     public GameObject hint;
     public GameObject scorePrefab;
     public Camera ghostCamera;
+	public AudioSource TrapMusic;
     Vector3 offset;
     int timer;
     // The time at which the NPC is killed
@@ -18,6 +19,7 @@ public class Trap : MonoBehaviour {
     Animator animator;
     public bool tutorialTrap;
     public int objectiveNum;
+
 
     // Use this for initialization
     void Start()
@@ -85,6 +87,7 @@ public class Trap : MonoBehaviour {
         }
         if (keyboardPressed || controllerPressed)
         {
+			TrapMusic.Play();
             activate(npc);
         }
     }
