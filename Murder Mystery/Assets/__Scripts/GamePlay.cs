@@ -381,10 +381,10 @@ public class GamePlay : MonoBehaviour {
     IEnumerator tutorialEndSequence()
     {
         yield return new WaitForSeconds(3f);
-        //if (TotalGame.S.round == 2)
+        if (TotalGame.S.round == 2)
             Application.LoadLevel("MainMenu");
-        //else
-            //Application.LoadLevel("Tutorial");
+        else
+            Application.LoadLevel("Tutorial");
     }
 
     List<Vector3> generateStartLoc()
