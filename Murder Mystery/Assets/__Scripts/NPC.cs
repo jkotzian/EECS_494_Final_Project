@@ -24,6 +24,7 @@ public class NPC : Human {
     public Ghost possessionOwner;
     public Movement NPCMovement;
     public Movement possessorMovement;
+    public GameObject hint;
 
     Rigidbody rb;
 
@@ -55,6 +56,7 @@ public class NPC : Human {
 
     void Start()
     {
+        hint.SetActive(false);
         checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
         moving = false;
         movingRight = false;
@@ -248,7 +250,8 @@ public class NPC : Human {
 
     public void possess(Ghost possessor)
     {
-        possessed = true;
+        possessed = true;      
+        hint.SetActive(false);
         possessionOwner = possessor;
         possessorMovement = possessor.GetComponent<Movement>();
         
@@ -320,8 +323,35 @@ public class NPC : Human {
     void OnTriggerStay(Collider collider)
     {
         if (!possessed)
-            return;
+        { 
+            GhostCollider ghost = collider.GetComponent<GhostCollider>();
+            if (ghost)
+            {
+                if (alive)
+                {
+                    hint.SetActive(true);
+                }
+                Ghost ghostScript = ghost.GetComponentInParent<Ghost>();
+                if (ghostScript && ghostScript.possessing)
+                {
+                    hint.SetActive(false);
+                }
+            }
 
-        NPCMovement.checkForDoorInput(collider);
+        }            
+        else
+        {
+            hint.SetActive(false);
+            NPCMovement.checkForDoorInput(collider);
+        }     
     }
+
+    void OnTriggerExit(Collider collider)
+    {
+        GhostCollider ghost = collider.GetComponent<GhostCollider>();
+        if (ghost)
+        {
+            hint.SetActive(false);
+        }
+    }   
 }

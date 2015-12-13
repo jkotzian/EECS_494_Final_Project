@@ -192,7 +192,7 @@ public class Ghost : Human
         float divider = 2.5f;
         float multiplier = 7f;
         transform.Translate((Vector3.up * Time.deltaTime * Mathf.Cos(Time.time * multiplier))/divider);
-    }
+    }        
 
     void OnTriggerExit(Collider collider)
     {
@@ -202,6 +202,6 @@ public class Ghost : Human
             //GamePlay.S.texts[4].text = "";
             //GamePlay.S.texts[5].text = "";
         }
-    } 
+    }
 }
 
