@@ -1,11 +1,19 @@
 fileFormatVersion: 2
 guid: 4fb76a3dc1efa1d4186d112bc512abfb
-timeCreated: 1450029117
+timeCreated: 1450040193
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Boar_Fireplace_0
     21300002: Boar_Fireplace_1
+    21300004: Boar_Fireplace_2
+    21300006: Boar_Fireplace_3
+    21300008: Boar_Fireplace_4
+    21300010: Boar_Fireplace_5
+    21300012: Boar_Fireplace_6
+    21300014: Boar_Fireplace_7
+    21300016: Boar_Fireplace_8
+    21300018: Boar_Fireplace_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,6 +74,86 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 104
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_2
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_3
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_4
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_5
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_6
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_7
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_8
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 0
+        width: 70
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boar_Fireplace_9
+      rect:
+        serializedVersion: 2
+        x: 829
         y: 0
         width: 70
         height: 80

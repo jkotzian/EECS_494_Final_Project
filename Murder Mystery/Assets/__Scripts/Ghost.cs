@@ -202,6 +202,12 @@ public class Ghost : Human
             //GamePlay.S.texts[4].text = "";
             //GamePlay.S.texts[5].text = "";
         }
-    } 
+    }
+
+    public IEnumerator enableGameObjectWithDelay()
+    {
+        yield return new WaitForSeconds(.5f);
+        gameObject.SetActive(true);
+    }
 }
 
