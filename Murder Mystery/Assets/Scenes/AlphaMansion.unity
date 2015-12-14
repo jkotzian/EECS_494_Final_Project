@@ -864,6 +864,10 @@ Prefab:
       propertyPath: scorePrefab
       value: 
       objectReference: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
+    - target: {fileID: 11419332, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
+      propertyPath: hint
+      value: 
+      objectReference: {fileID: 100002, guid: eba8db44550484229b7013a0f244b221, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
   m_IsPrefabParent: 0
@@ -1451,6 +1455,10 @@ Prefab:
       propertyPath: scorePrefab
       value: 
       objectReference: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
+    - target: {fileID: 11419332, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
+      propertyPath: hint
+      value: 
+      objectReference: {fileID: 100002, guid: eba8db44550484229b7013a0f244b221, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
   m_IsPrefabParent: 0
@@ -2968,9 +2976,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -3073,9 +3079,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -3526,6 +3530,10 @@ Prefab:
       propertyPath: scorePrefab
       value: 
       objectReference: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
+    - target: {fileID: 11419332, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
+      propertyPath: hint
+      value: 
+      objectReference: {fileID: 100002, guid: eba8db44550484229b7013a0f244b221, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf07410fb8b8b8744ab199de09318b9a, type: 2}
   m_IsPrefabParent: 0
