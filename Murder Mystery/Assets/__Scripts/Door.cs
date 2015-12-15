@@ -43,8 +43,7 @@ public class Door : MonoBehaviour {
         }
     }
     public void MoveUp(GameObject passenger)
-    {
-        
+    {                                
         MoveHelper(passenger, above);
     }
 
@@ -55,8 +54,13 @@ public class Door : MonoBehaviour {
 
     void MoveHelper(GameObject passenger, Door destDoor)
     {
+        NPC npc = passenger.GetComponent<NPC>();
         Vector3 dest = new Vector3(destDoor.transform.position.x, destDoor.transform.position.y, -0.2f);
         passenger.transform.position = dest;
+        if (npc)
+        {
+            npc.hint.SetActive(false);
+        }
         passenger.SetActive(false);
         StartCoroutine(EnableSprite(passenger));
         DeactivateDetectiveGlow(true);

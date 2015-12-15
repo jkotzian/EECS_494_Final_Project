@@ -375,7 +375,14 @@ public class GamePlay : MonoBehaviour {
     IEnumerator roundEndSequence()
     {
         yield return new WaitForSeconds(3f);
-        Application.LoadLevel("RoundEnd");
+        if(TotalGame.S.round < 2)
+        {
+            Application.LoadLevel("RoundEnd");
+        }
+        else
+        {
+            Application.LoadLevel("GameEnd");
+        }
     }
 
     IEnumerator tutorialEndSequence()

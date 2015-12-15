@@ -3,10 +3,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Unity Web Player | Murder Mystery</title>
-		<script type='text/javascript' src='jquery.min.js'></script>
+		<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
 		<script type="text/javascript">
 		<!--
-		var unityObjectUrl = "UnityObject2.js";
+		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
 		if (document.location.protocol == 'https:')
 			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
 		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
@@ -15,7 +15,7 @@
 		<script type="text/javascript">
 		<!--
 			var config = {
-				width: 1800, 
+				width: 960, 
 				height: 600,
 				params: { enableDebugging:"0" }
 				
@@ -85,7 +85,7 @@
 		}
 		div.content {
 			margin: auto;
-			width: 1800px;
+			width: 960px;
 		}
 		div.broken,
 		div.missing {
@@ -110,7 +110,7 @@
 		div#unityPlayer {
 			cursor: default;
 			height: 600px;
-			width: 1800px;
+			width: 960px;
 		}
 		-->
 		</style>
@@ -132,23 +132,5 @@
 			</div>
 		</div>
 		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
-        <h1>Ghost Controls</h1><br>
-        <a>Ghost 1:</a><br>
-        <a>Movement: WASD</a><br>
-        <a>Possess/Leave: E</a><br>
-        <a>Hit Switch When Possessing: Q</a><br><br>
-        <a>Ghost 2:</a><br>
-        <a>Movement: TFGH</a><br>
-        <a>Possess/Leave: Y</a><br>
-        <a>Hit Switch When Possessing: R</a><br><br>
-        <h1>Detective Controls</h1><br>
-        <a>Detective 1:</a><br>
-        <a>Movement: Arrow Keys</a><br>
-        <a>Arrest: Shift</a><br>
-        <a>Track: N</a><br><br>
-        <a>Detective 2:</a><br>
-        <a>Movement: IJKL</a><br>
-        <a>Arrest: U</a><br>
-        <a>Track: O</a><br>
 	</body>
 </html>
