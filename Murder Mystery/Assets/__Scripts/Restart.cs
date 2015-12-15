@@ -11,17 +11,19 @@ public class Restart : MonoBehaviour {
         string message;
         switch (TotalGame.S.round)
         {
-            case 1:
+            /*case 1:
                 message = "Now switch roles \n(Swap controllers and monitors).\nPress Space to continue.";
                 break;
             case 2:
                 message = "Switch roles \n(Swap controllers and monitors).\n\nWe're going to keep score now!\nPress Space to continue.";
-                break;
-            case 3:
+                break;*/
+            //case 3:
+            case 1:
                 message = "Round 1 Body Count: " + TotalGame.S.bodyCount[0] + "\n\nPress Space for Round 2";
                 break;
 
-            case 4:
+            //case 4:
+            case 2:
                 string winner = "No winner";
                 if (TotalGame.S.bodyCount[0] > TotalGame.S.bodyCount[1])
                 {
@@ -50,7 +52,7 @@ public class Restart : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(TotalGame.S.round < 4)
+            if(TotalGame.S.round < 2)
             {
                 Application.LoadLevel("AlphaMansion");
             }

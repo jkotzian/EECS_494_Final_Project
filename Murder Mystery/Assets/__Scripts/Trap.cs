@@ -71,7 +71,7 @@ public class Trap : MonoBehaviour {
         if (npc == null || !npc.possessed)
             return;
 
-        if (!activated)
+        if (!activated && npc.alive)
         {
             hint.SetActive(true);
         }        

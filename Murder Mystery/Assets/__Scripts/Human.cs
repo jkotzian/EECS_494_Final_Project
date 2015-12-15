@@ -43,10 +43,7 @@ public class Human : MonoBehaviour {
             {
                 //npc.GetComponent<NPC>().speed += 0.5f;
             }
-            if(TotalGame.S.round > 2 && alive)
-            {
-                TotalGame.S.bodyCount[TotalGame.S.round - 3]++;
-            }
+            TotalGame.S.bodyCount[TotalGame.S.round - 1]++;
             alive = false;
             // If it was a tutorial NPC, complete the objective
             if (tutorialNPC)
@@ -58,6 +55,7 @@ public class Human : MonoBehaviour {
         Ghost GhostToKill = GetComponent<Ghost>();
         if (GhostToKill && alive)
         {
+            TotalGame.S.bodyCount[TotalGame.S.round - 1]--;
             transform.Rotate(new Vector3(0, 0, 90));
             alive = false;
         }

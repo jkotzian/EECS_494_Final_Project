@@ -333,6 +333,8 @@ MonoBehaviour:
   possessorMovement: {fileID: 0}
   hint: {fileID: 148586}
   glowObject: {fileID: 135564}
+  negativeScorePrefab: {fileID: 173650, guid: c66f038b321eb834ba0a2a976428efce, type: 2}
+  detectiveCamera: {fileID: 0}
   chanceToTakeElevator: 10
   chanceToTakeElevatorAgain: 5
 --- !u!114 &11476112
@@ -499,6 +501,14 @@ Prefab:
       propertyPath: hint
       value: 
       objectReference: {fileID: 148586}
+    - target: {fileID: 0}
+      propertyPath: detectiveCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: negativeScorePrefab
+      value: 
+      objectReference: {fileID: 173650, guid: c66f038b321eb834ba0a2a976428efce, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 175744}
