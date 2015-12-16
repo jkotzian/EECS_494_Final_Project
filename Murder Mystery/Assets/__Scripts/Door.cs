@@ -151,6 +151,27 @@ public class Door : MonoBehaviour {
 	}
 
     void OnTriggerStay(Collider other){
+        //Detective detective = other.GetComponent<Detective>();
+        //NPC npc = other.GetComponent<NPC>();
+        //if (detective)
+        //{
+        //    // Activate glow
+        //    ActivateDetectiveGlow(true);
+        //}
+        //if (npc)
+        //{
+        //    if (npc.possessed)
+        //    {
+        //        // Activate glow
+        //        ActivateNPCGlow(true);
+        //    }
+        //    // Tell the NPC that they could take this elevator
+        //    npc.setElevator(this);
+        //}                                           
+	}
+
+    void OnTriggerEnter(Collider other)
+    {
         Detective detective = other.GetComponent<Detective>();
         NPC npc = other.GetComponent<NPC>();
         if (detective)
@@ -167,8 +188,8 @@ public class Door : MonoBehaviour {
             }
             // Tell the NPC that they could take this elevator
             npc.setElevator(this);
-        }                                           
-	}
+        }   
+    }
 
     void OnTriggerExit(Collider other)
     {
@@ -179,12 +200,15 @@ public class Door : MonoBehaviour {
             // Activate glow
             DeactivateDetectiveGlow(true);
         }
-        if (npc && npc.possessed)
+        if (npc)
         {
-            // Activate glow
-            DeactivateNPCGlow(true);
             // Tell the NPC they can no longer take this elevator
             npc.unsetElevator();
+            if (npc.possessed)
+            {
+                // Activate glow
+                DeactivateNPCGlow(true);
+            }
         }
     }
 }

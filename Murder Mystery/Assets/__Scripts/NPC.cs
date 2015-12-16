@@ -43,7 +43,7 @@ public class NPC : Human {
     // Chance that they would take an elevator twice in
     // a row (1 - 100)
     public int chanceToTakeElevatorAgain;
-    bool canTakeElevator;
+    public bool canTakeElevator;
     bool justTookElevator;
     Door availableElevator;
 

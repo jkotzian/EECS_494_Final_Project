@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalPosition: {x: 9.57999992, y: 0, z: 0}
   m_LocalScale: {x: .5, y: 10, z: 1}
   m_Children:
   - {fileID: 466026}
@@ -74,7 +74,7 @@ Transform:
   m_GameObject: {fileID: 109440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.145999908, y: 0, z: -.5}
-  m_LocalScale: {x: 5.43999863, y: 1.04067457, z: 1.44526231}
+  m_LocalScale: {x: -5.4399991, y: 1.04067457, z: 1.44526231}
   m_Children: []
   m_Father: {fileID: 439422}
   m_RootOrder: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: .100000001, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
 --- !u!65 &6563188
@@ -144,7 +144,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 1}
+  m_Size: {x: 2.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6576760
 BoxCollider:
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: a508de7cfa0c1fd42a3b2c80943e5335, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -201,7 +201,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a508de7cfa0c1fd42a3b2c80943e5335, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107630}
