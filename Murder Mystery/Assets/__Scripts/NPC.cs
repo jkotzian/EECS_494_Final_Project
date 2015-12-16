@@ -33,6 +33,10 @@ public class NPC : Human {
     public GameObject glowObject;
     private Component glow;
 
+    public GameObject negativeScorePrefab;
+    Vector3 offset;
+    public Camera detectiveCamera;
+
     // Percentage chance (1 - 100) that an NPC will
     // take an elevator if they land on one
     public int chanceToTakeElevator;
@@ -66,6 +70,8 @@ public class NPC : Human {
         animator = GetComponent<Animator>();
         facingRight = true;
         glow = glowObject.GetComponent("Halo");
+        offset = new Vector3(0, 0.8f, -3);
+        detectiveCamera = GameObject.Find("DetectiveCamera").GetComponent<Camera>();
     }
 
 	// Update is called once per frame
@@ -359,5 +365,13 @@ public class NPC : Human {
         {
             hint.SetActive(false);
         }
-    }   
+    }
+
+    public IEnumerator PopUpNegativeScore()
+    {
+        GameObject popUp = Instantiate(negativeScorePrefab, detectiveCamera.WorldToViewportPoint(transform.position + offset), Quaternion.identity) as GameObject;
+        popUp.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -.05f);          
+        yield return new WaitForSeconds(1f);    
+        DestroyObject(popUp);
+    }
 }

@@ -4,38 +4,44 @@ using System.Collections.Generic;
 
 public class Restart : MonoBehaviour {
     public List<Text> texts;
+    public List<Text> endTexts;
 
 
 	void Start()
     {
-        string message;
+        string message = "";
+        string winScore = "";
+        string loseScore = "";
         switch (TotalGame.S.round)
         {
-            case 1:
+            /*case 1:
                 message = "Now switch roles \n(Swap controllers and monitors).\nPress Space to continue.";
                 break;
             case 2:
                 message = "Switch roles \n(Swap controllers and monitors).\n\nWe're going to keep score now!\nPress Space to continue.";
-                break;
-            case 3:
-                message = "Round 1 Body Count: " + TotalGame.S.bodyCount[0] + "\n\nPress Space for Round 2";
+                break;*/
+            //case 3:
+            case 1:
+                message = (TotalGame.S.bodyCount[0] * 100).ToString();
                 break;
 
-            case 4:
-                string winner = "No winner";
+            //case 4:
+            case 2:                        
                 if (TotalGame.S.bodyCount[0] > TotalGame.S.bodyCount[1])
                 {
-                    winner = "Team 1 Wins!\n";
+                    winScore = (TotalGame.S.bodyCount[0] * 100).ToString();
+                    loseScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                 }
                 else if (TotalGame.S.bodyCount[1] > TotalGame.S.bodyCount[0])
                 {
-                    winner = "Team 2 Wins!\n";
+                    winScore = (TotalGame.S.bodyCount[1] * 100).ToString();
+                    loseScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                 }
                 else
                 {
-                    winner = "It's a tie!\n";
+                    winScore = (TotalGame.S.bodyCount[0] * 100).ToString();
+                    loseScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                 }
-                message = winner + "\nRound 1 Body Count: " + TotalGame.S.bodyCount[0] + "\nRound 2 Body Count: " + TotalGame.S.bodyCount[1];
                 break;
             default:
                 message = "invalid round number";
@@ -45,12 +51,23 @@ public class Restart : MonoBehaviour {
         {
             t.text = message;
         }
+        for (int i = 0; i < endTexts.Count; i++)
+        {
+            if(i % 2 == 0)
+            {
+                endTexts[i].text = winScore;
+            }
+            else
+            {
+                endTexts[i].text = loseScore;
+            }
+        }
     }
 
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(TotalGame.S.round < 4)
+            if(TotalGame.S.round < 2)
             {
                 Application.LoadLevel("AlphaMansion");
             }

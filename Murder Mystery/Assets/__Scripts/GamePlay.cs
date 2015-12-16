@@ -228,9 +228,9 @@ public class GamePlay : MonoBehaviour {
 				invoked = true;
 			}
         }
-        if (TotalGame.S.round > 2 && !gameOver)
+        if (!gameOver)
         {
-            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 3] * 100).ToString();
+            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 1] * 100).ToString();
         }
         // check for round end
         if (Time.time > roundTime + starttime || checkForDetectiveWin())
@@ -331,10 +331,10 @@ public class GamePlay : MonoBehaviour {
             ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
         }
 
-        if (TotalGame.S.round > 2)
-        {
+        //if (TotalGame.S.round > 2)
+        //{
             roundTime = regularRoundTime;
-        }
+        //}
         timerText.text = "";
         scoreText.text = "";   
     }
@@ -375,7 +375,14 @@ public class GamePlay : MonoBehaviour {
     IEnumerator roundEndSequence()
     {
         yield return new WaitForSeconds(3f);
-        Application.LoadLevel("RoundEnd");
+        if(TotalGame.S.round < 2)
+        {
+            Application.LoadLevel("RoundEnd");
+        }
+        else
+        {
+            Application.LoadLevel("GameEnd");
+        }
     }
 
     IEnumerator tutorialEndSequence()
