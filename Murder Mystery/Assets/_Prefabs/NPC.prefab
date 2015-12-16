@@ -66,7 +66,7 @@ GameObject:
   - 95: {fileID: 9535268}
   - 114: {fileID: 11442696}
   m_Layer: 14
-  m_Name: NPC
+  m_Name: Guest1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,7 +11,7 @@ public class Trap : MonoBehaviour {
     public Camera ghostCamera;
 	public AudioSource TrapMusic;
     Vector3 offset;
-    int timer;
+    int activatedTimer;
     // The time at which the NPC is killed
     public int deathTime;
     // The time at which the animation is over
@@ -22,21 +22,17 @@ public class Trap : MonoBehaviour {
     public int objectiveNum;
 
     public bool fallingTrap;
-    public bool swordTrap;
 
+    public bool swordTrap;
     public Transform sword1;
     public Transform sword2;
-
     public Sprite bloodySword;
-
-    public int startingRot1;
-    public int endingRot1;
-
-    public int startingRot2;
-    public int endingot2;
+    public int swordSwingLimit;
+    bool swordMovedUp;
 
     public Rigidbody rigidbody;
     bool rotating;
+    public int swordTimer;
     // Use this for initialization
     void Start()
     {
@@ -44,27 +40,49 @@ public class Trap : MonoBehaviour {
         offset = new Vector3(0, 0.8f, -3);
         activated = false;
         rotating = false;
-        timer = 0;
         animator = GetComponent<Animator>();
+        swordMovedUp = false;
+        activatedTimer = 0;
+        swordTimer = 0;
         if (fallingTrap)
             rigidbody = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        if (swordTrap)
+        {
+            ++swordTimer;
+            if (swordTimer % 15 == 0)
+            {
+                float move = 0.0f;
+                if (swordMovedUp)
+                {
+                    swordMovedUp = false;
+                    move = .03f;
+                }
+                else
+                {
+                    swordMovedUp = true;
+                    move = -.03f;
+                }
+                transform.position += new Vector3(0, move, 0);
+            }
+        }
         if (rotating)
         {
             sword1.Rotate(Vector3.forward, -500.0f * Time.deltaTime);
             sword2.Rotate(Vector3.forward, 500.0f * Time.deltaTime);
 
-            if (sword1.rotation.eulerAngles.z <= 118.0f) {
+            if (sword1.rotation.eulerAngles.z <= swordSwingLimit) {
                 rotating = false;
             }
         }
         if (activated)
         {
-            ++timer;
-            if (timer == deathTime)
+            ++activatedTimer;
+            if (activatedTimer == deathTime)
             {
                 target.dispossess(true);
                 target.Kill();
@@ -73,12 +91,11 @@ public class Trap : MonoBehaviour {
                 {
                     sword1.GetComponent<SpriteRenderer>().sprite = bloodySword;
                     sword2.GetComponent<SpriteRenderer>().sprite = bloodySword;
-                    target.GetComponent<Shatter>().shatter();
                 }
                 hint.SetActive(false);
                 StartCoroutine(PopUpScore());
             }
-            if (timer == animOverTime)
+            if (activatedTimer == animOverTime)
             {
                 if (!swordTrap)
                     animator.SetTrigger("Done");
