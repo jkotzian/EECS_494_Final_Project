@@ -36,7 +36,7 @@ public class GhostHit : MonoBehaviour {
         if (npc)
         {
             if (npc.possessed)
-                npc.dispossess();
+                npc.dispossess(false);
             // Kill the party guest :o
             npc.Kill();
         }

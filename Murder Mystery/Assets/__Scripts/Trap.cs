@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using SpriteShatter;
 using InControl;
 
 public class Trap : MonoBehaviour {
@@ -20,34 +21,75 @@ public class Trap : MonoBehaviour {
     public bool tutorialTrap;
     public int objectiveNum;
 
+    public bool fallingTrap;
+    public bool swordTrap;
 
+    public Transform sword1;
+    public Transform sword2;
+
+    public Sprite bloodySword;
+
+    public int startingRot1;
+    public int endingRot1;
+
+    public int startingRot2;
+    public int endingot2;
+
+    public Rigidbody rigidbody;
+    bool rotating;
     // Use this for initialization
     void Start()
     {
         hint.SetActive(false);
         offset = new Vector3(0, 0.8f, -3);
         activated = false;
+        rotating = false;
         timer = 0;
         animator = GetComponent<Animator>();
+        if (fallingTrap)
+            rigidbody = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if (rotating)
+        {
+            sword1.Rotate(Vector3.forward, -500.0f * Time.deltaTime);
+            sword2.Rotate(Vector3.forward, 500.0f * Time.deltaTime);
+
+            if (sword1.rotation.eulerAngles.z <= 118.0f) {
+                rotating = false;
+            }
+        }
         if (activated)
         {
             ++timer;
             if (timer == deathTime)
             {
+                target.dispossess(true);
                 target.Kill();
+                // If it's a sword kill, make them bloody
+                if (swordTrap)
+                {
+                    sword1.GetComponent<SpriteRenderer>().sprite = bloodySword;
+                    sword2.GetComponent<SpriteRenderer>().sprite = bloodySword;
+                    target.GetComponent<Shatter>().shatter();
+                }
                 hint.SetActive(false);
                 StartCoroutine(PopUpScore());
             }
             if (timer == animOverTime)
             {
-                animator.SetTrigger("Done");
+                if (!swordTrap)
+                    animator.SetTrigger("Done");
                 if (tutorialTrap)
                 {
                     GamePlay.S.completedObjective(objectiveNum);
+                }
+                if (fallingTrap)
+                {
+                    rigidbody.velocity = Vector3.zero;
+                    rigidbody.useGravity = false;
                 }
             }
         }
@@ -55,9 +97,22 @@ public class Trap : MonoBehaviour {
 
     public void activate(NPC npc)
     {
+        // Only activate if it is not activated
+        if (activated)
+            return;
         activated = true;
         target = npc;
-        animator.SetTrigger("Kill");
+        if (!swordTrap)
+            animator.SetTrigger("Kill");
+        // If it's a falling trap, have it fall by enabling gravity
+        if (fallingTrap)
+        {
+            rigidbody.useGravity = true;
+        }
+        if (swordTrap)
+        {
+            rotating = true;
+        }
     }
 
     public void reset(NPC npc, int newDeathTime, int newAnimOverTime)

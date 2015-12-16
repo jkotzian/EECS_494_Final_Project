@@ -307,14 +307,20 @@ public class NPC : Human {
             //print("NPC " + name + "UNblocked left");
         }
     }
-	public void dispossess() {
+	public void dispossess(bool delay) {
 		possessed = false;
 		// Disable the movement
 		NPCMovement.enabled = false;
 		// Re-enable the possession owner wherever the NPC is with an offset
 		Vector3 offset = new Vector3(0, .3f, 0);    
         possessionOwner.transform.position = gameObject.transform.position + offset;
-        StartCoroutine(possessionOwner.enableGameObjectWithDelay());
+        // Delay the ghost coming out of the body for trap kills
+        if (delay)
+            StartCoroutine(possessionOwner.enableGameObjectWithDelay());
+        else
+        {
+            possessionOwner.gameObject.SetActive(true);
+        }
         possessionOwner.possessing = false;
 		possessionOwner = null;
         glow.GetType().GetProperty("enabled").SetValue(glow, false, null);

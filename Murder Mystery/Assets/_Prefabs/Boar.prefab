@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  hint: {fileID: 124124}
-  scorePrefab: {fileID: 0}
+  hint: {fileID: 100002, guid: eba8db44550484229b7013a0f244b221, type: 3}
+  scorePrefab: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
   ghostCamera: {fileID: 0}
   TrapMusic: {fileID: 0}
   deathTime: 20
@@ -303,7 +303,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: hint
       value: 
-      objectReference: {fileID: 124124}
+      objectReference: {fileID: 100002, guid: eba8db44550484229b7013a0f244b221, type: 3}
+    - target: {fileID: 0}
+      propertyPath: scorePrefab
+      value: 
+      objectReference: {fileID: 112378, guid: d7206838c6b983e4fa5bd91b36fc21b9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105576}

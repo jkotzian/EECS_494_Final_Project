@@ -33,11 +33,8 @@ public class Human : MonoBehaviour {
     {
         // If it's an NPC that is killed
         NPC NPCToKill = GetComponent<NPC>();
-        if (NPCToKill && NPCToKill.alive)
+        if (NPCToKill != null && NPCToKill.alive)
         {
-            // Dispossess the NPC and knock them over
-            if (NPCToKill.possessed)
-				NPCToKill.dispossess();
             transform.Rotate(new Vector3(0, 0, 90));
             foreach(GameObject npc in GamePlay.S.NPCs)
             {
