@@ -308,16 +308,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shatterDetails:
-    horizontalCuts: 1
-    verticalCuts: 1
+    horizontalCuts: 8
+    verticalCuts: 14
     randomizeAtRunTime: 0
     randomSeed: 0
-    randomness: .305999994
-    zigzagFrequency: 0
-    zigzagAmplitude: 0
-    colliderType: 2
-    explodeFrom: {x: .5, y: .5}
-    explosionForce: {x: 0, y: 5}
+    randomness: .75
+    zigzagFrequency: .899999976
+    zigzagAmplitude: 1
+    colliderType: 1
+    explodeFrom: {x: .5, y: -1}
+    explosionForce: {x: 5, y: 5}
 --- !u!114 &11459128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -352,6 +352,8 @@ MonoBehaviour:
   possessorMovement: {fileID: 0}
   hint: {fileID: 148586}
   glowObject: {fileID: 135564}
+  negativeScorePrefab: {fileID: 0}
+  detectiveCamera: {fileID: 0}
   chanceToTakeElevator: 10
   chanceToTakeElevatorAgain: 5
 --- !u!114 &11476112
@@ -518,27 +520,35 @@ Prefab:
       objectReference: {fileID: 148586}
     - target: {fileID: 0}
       propertyPath: shatterDetails.verticalCuts
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.horizontalCuts
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.randomness
-      value: .305999994
+      value: .75
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.zigzagFrequency
-      value: 0
+      value: .899999976
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.zigzagAmplitude
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.colliderType
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.explodeFrom.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.explosionForce.x
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
