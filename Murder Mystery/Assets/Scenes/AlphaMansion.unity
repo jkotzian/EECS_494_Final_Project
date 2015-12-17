@@ -492,6 +492,23 @@ Camera:
   m_PrefabParentObject: {fileID: 2038568, guid: c7bb78b0c457fb44b93f761ce8802335,
     type: 2}
   m_PrefabInternal: {fileID: 74105194}
+--- !u!114 &74105197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 74105195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01c9e677ec4de6489745dbbcec3abca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light1: {fileID: 1262013723}
+  alwaysHidden: 0
+--- !u!4 &74105199 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 493232, guid: c7bb78b0c457fb44b93f761ce8802335, type: 2}
+  m_PrefabInternal: {fileID: 74105194}
 --- !u!4 &77863791 stripped
 Transform:
   m_PrefabParentObject: {fileID: 430462, guid: 4ae9d1ceed84345f1adc9f6f2eb5ca19, type: 2}
@@ -2993,6 +3010,10 @@ Prefab:
       propertyPath: gIndicatorPrefab1
       value: 
       objectReference: {fileID: 132364, guid: 075668a163edf3345b37d345f12b0751, type: 2}
+    - target: {fileID: 11437626, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: cameraToDimObj
+      value: 
+      objectReference: {fileID: 74105199}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
   m_IsPrefabParent: 0
@@ -3686,7 +3707,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: .956862748, b: .839215696, a: 1}
-  m_Intensity: 2
+  m_Intensity: 3.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10

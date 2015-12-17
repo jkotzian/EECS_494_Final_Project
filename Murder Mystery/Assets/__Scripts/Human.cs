@@ -52,7 +52,9 @@ public class Human : MonoBehaviour {
         Ghost GhostToKill = GetComponent<Ghost>();
         if (GhostToKill && alive)
         {
-            TotalGame.S.bodyCount[TotalGame.S.round - 1]--;
+            if (TotalGame.S.bodyCount[TotalGame.S.round - 1] > 0) {
+                TotalGame.S.bodyCount[TotalGame.S.round - 1]--;
+            }
             transform.Rotate(new Vector3(0, 0, 90));
             alive = false;
         }

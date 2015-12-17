@@ -20,9 +20,11 @@ public class MansionEnvironment : MonoBehaviour {
 	// go on next
 	int                     nextTurnOnTime;
     int                     nextFlashTime;
-	public Transform        cameraToHideObj;
-	HideLight               cameraToHide;
-	public Transform        nightVisionObject;
+    public Transform cameraToHideObj;
+    public Transform cameraToDimObj;
+    HideLight cameraToHide;
+    DimLight cameraToDim;
+    public Transform        nightVisionObject;
 	public bool lightsOn = true;
 	bool first;
 	
@@ -36,9 +38,10 @@ public class MansionEnvironment : MonoBehaviour {
 		// Set it so the lights start turned off
 		lightTimer = nextTurnOffTime - 1;
 		turnedOff = false;
-		//nightVisionObject.gameObject.SetActive(false);
-		cameraToHide = cameraToHideObj.GetComponent<HideLight>();
-		first = true;
+        //nightVisionObject.gameObject.SetActive(false);          
+        cameraToHide = cameraToHideObj.GetComponent<HideLight>();
+        cameraToDim = cameraToDimObj.GetComponent<DimLight>();
+        first = true;
 	}
 	
 	// Update is called once per frame
@@ -65,6 +68,7 @@ public class MansionEnvironment : MonoBehaviour {
 		// to the forefront
 		turnedOff = true;
 		cameraToHide.hideLight();
+        cameraToDim.dimLight();
         StartCoroutine(delayActivateNightVision());
         // Reset the timer and figure out when to turn the lights
         // back on
@@ -89,6 +93,7 @@ public class MansionEnvironment : MonoBehaviour {
 		// in the background
 		turnedOff = false;
 		cameraToHide.unhideLight();
+        cameraToDim.undimLight();
         StartCoroutine(delayDeactivateNightVision());
         // Reset the timer and figure out when to turn the lights
         // back off

@@ -20,7 +20,9 @@ public class HideLight : MonoBehaviour {
     void OnPreCull()
     {
         if (light1 != null && (hidden || alwaysHidden))
+        {                        
             light1.enabled = false;
+        }
         //if (light2 != null && (hidden || alwaysHidden))
             //light2.enabled = false;
     }
@@ -28,14 +30,18 @@ public class HideLight : MonoBehaviour {
     void OnPreRender()
     {
         if (light1 != null && (hidden || alwaysHidden))
+        {                          
             light1.enabled = false;
+        }
         //if (light2 != null && (hidden || alwaysHidden))
             //light2.enabled = false;
     }
     void OnPostRender()
     {
         if (light1 != null && (hidden || alwaysHidden))
+        {                          
             light1.enabled = true;
+        }
         //if (light2 != null && (hidden || alwaysHidden))
             //light2.enabled = true;
     }
