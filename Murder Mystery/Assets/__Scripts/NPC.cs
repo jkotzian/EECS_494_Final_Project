@@ -339,14 +339,14 @@ public class NPC : Human {
             GhostCollider ghost = collider.GetComponent<GhostCollider>();
             if (ghost)
             {
-                if (alive)
-                {
-                    hint.SetActive(true);
-                }
                 Ghost ghostScript = ghost.GetComponentInParent<Ghost>();
                 if (ghostScript && ghostScript.possessing)
                 {
                     hint.SetActive(false);
+                }
+                if (alive && ghostScript && ghostScript.alive)
+                {
+                    hint.SetActive(true);
                 }
             }
 

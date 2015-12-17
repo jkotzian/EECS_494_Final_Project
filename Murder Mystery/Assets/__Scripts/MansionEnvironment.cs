@@ -19,6 +19,7 @@ public class MansionEnvironment : MonoBehaviour {
 	// The amount of time when the lights will
 	// go on next
 	int                     nextTurnOnTime;
+    int                     nextFlashTime;
 	public Transform        cameraToHideObj;
 	HideLight               cameraToHide;
 	public Transform        nightVisionObject;
@@ -52,6 +53,10 @@ public class MansionEnvironment : MonoBehaviour {
 		{
 			turnOn();
 		}
+        if (turnedOff && lightTimer == nextFlashTime)
+        {
+            StartCoroutine(cameraToHide.flashDown());
+        }
 	}
 	
 	void turnOff()
@@ -70,7 +75,10 @@ public class MansionEnvironment : MonoBehaviour {
             nextTurnOnTime = turnOnTimeMax * 2;
 		}
 		else
-			nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
+        {
+            nextTurnOnTime = Random.Range(turnOnTimeMin, turnOnTimeMax + 1);
+        }
+        nextFlashTime = nextTurnOnTime / 2;
 		lightsOn = false;
 		//Debug.Log(nextTurnOnTime);
 	}

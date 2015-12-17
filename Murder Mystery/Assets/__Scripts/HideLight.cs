@@ -48,7 +48,7 @@ public class HideLight : MonoBehaviour {
         StartCoroutine(flashUp());
     }
 
-    IEnumerator flashDown()
+    public IEnumerator flashDown()
     {
         lightningSound.Play();
         yield return new WaitForSeconds(0.2f);
@@ -74,7 +74,7 @@ public class HideLight : MonoBehaviour {
         lightning.enabled = false;
     }
 
-    IEnumerator flashUp()
+    public IEnumerator flashUp()
     {
         lightSwitchSound.Play();
         yield return new WaitForSeconds(.3f);

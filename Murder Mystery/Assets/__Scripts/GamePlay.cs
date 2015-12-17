@@ -15,6 +15,10 @@ public class GamePlay : MonoBehaviour {
     public GameObject       npcPrefab;
     public GameObject       ghostPrefab;
     public GameObject       detectivePrefab;
+    public GameObject       gIndicatorPrefab1;
+    public GameObject       gIndicatorPrefab2;
+    public GameObject       dIndicatorPrefab1;
+    public GameObject       dIndicatorPrefab2;
     public List<Material>   disguises;
     public GUIText          timerText;
     public GUIText          scoreText;
@@ -132,6 +136,9 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Ghost>().alive = true;
         Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
         Ghosts[0].GetComponent<Movement>().conNum = 0;
+        GameObject gInd1 = Instantiate(gIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
+        gInd1.transform.parent = Ghosts[0].transform;
+        gInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
 
         if (numPlayers == 4)
         {
@@ -140,6 +147,9 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Ghost>().alive = true;
             Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
             Ghosts[1].GetComponent<Movement>().conNum = 2;
+            GameObject gInd2 = Instantiate(gIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
+            gInd2.transform.parent = Ghosts[1].transform;
+            gInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
         }
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, detectivePos1, Quaternion.identity) as GameObject);
@@ -151,6 +161,9 @@ public class GamePlay : MonoBehaviour {
         Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
         Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
         Detectives[0].GetComponent<Movement>().conNum = 1;
+        GameObject dInd1 = Instantiate(dIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
+        dInd1.transform.parent = Detectives[0].transform;
+        dInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
 
         if (numPlayers == 4)
         {
@@ -163,6 +176,9 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Movement>().conNum = 3;
             // Set the art/animation
             Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
+            GameObject dInd2 = Instantiate(dIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
+            dInd2.transform.parent = Detectives[1].transform;
+            dInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
         }
     }
 

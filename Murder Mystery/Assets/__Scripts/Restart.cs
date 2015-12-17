@@ -39,6 +39,11 @@ public class Restart : MonoBehaviour {
                 }
                 else
                 {
+                    if(endTexts.Count > 5)
+                    {
+                        endTexts[4].text = "TIE!";
+                        endTexts[5].text = "TIE!";
+                    }
                     winScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                     loseScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                 }
@@ -51,7 +56,7 @@ public class Restart : MonoBehaviour {
         {
             t.text = message;
         }
-        for (int i = 0; i < endTexts.Count; i++)
+        for (int i = 0; i < 4 && i < endTexts.Count; i++)
         {
             if(i % 2 == 0)
             {
