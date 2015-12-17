@@ -16,7 +16,7 @@ Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder
 Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.3_Beta_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.3_Beta_Data\Managed\System.Core.dll (this message is harmless)
 - Completed reload, in  0.144 seconds
-desktop: 1280x720 60Hz; virtual: 2560x720 at 0,0
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
@@ -25,101 +25,104 @@ InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Number of Devices: 2
+Number of Devices: 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 165c -> priority: 1 
-  Thread -> id: 38d4 -> priority: 1 
-X was pressed by controller number: 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
+  Thread -> id: 2034 -> priority: 1 
+  Thread -> id: 1a98 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.015006 ms
+UnloadTime: 5.057910 ms
 InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1317.
+Total: 1.127599 ms (FindLiveObjects: 0.126726 ms CreateObjectMapping: 0.091029 ms MarkObjects: 0.883963 ms  DeleteObjects: 0.024542 ms)
+
+Num controllers 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1091.
-Total: 1.037002 ms (FindLiveObjects: 0.082995 ms CreateObjectMapping: 0.137434 ms MarkObjects: 0.793815 ms  DeleteObjects: 0.022310 ms)
-
-Num controllers 2
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.710654 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
+hit3
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 525.
-Total: 1.123568 ms (FindLiveObjects: 0.040605 ms CreateObjectMapping: 0.073179 ms MarkObjects: 0.515377 ms  DeleteObjects: 0.493959 ms)
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 48.148544 ms
+
+Unloading 197 unused Assets to reduce memory usage. Loaded Objects now: 557.
+Total: 1.506440 ms (FindLiveObjects: 0.070056 ms CreateObjectMapping: 0.075857 ms MarkObjects: 0.576963 ms  DeleteObjects: 0.782670 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.511130 ms
+UnloadTime: 7.879364 ms
 InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 1319.
+Total: 1.219520 ms (FindLiveObjects: 0.125834 ms CreateObjectMapping: 0.079873 ms MarkObjects: 0.967406 ms  DeleteObjects: 0.045514 ms)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1096.
-Total: 1.101703 ms (FindLiveObjects: 0.088796 ms CreateObjectMapping: 0.080764 ms MarkObjects: 0.891090 ms  DeleteObjects: 0.040159 ms)
-
-Num controllers 2
+Num controllers 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
@@ -135,392 +138,175 @@ Detective 0 Controller: 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.083756 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 527.
-Total: 1.298930 ms (FindLiveObjects: 0.068717 ms CreateObjectMapping: 0.128956 ms MarkObjects: 0.612206 ms  DeleteObjects: 0.488158 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.880827 ms
-InControl (version 1.4.4 build 3776)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1096.
-Total: 1.178452 ms (FindLiveObjects: 0.090581 ms CreateObjectMapping: 0.084334 ms MarkObjects: 0.962931 ms  DeleteObjects: 0.040159 ms)
-
-Num controllers 2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.110082 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 527.
-Total: 1.191393 ms (FindLiveObjects: 0.043729 ms CreateObjectMapping: 0.072732 ms MarkObjects: 0.573832 ms  DeleteObjects: 0.499314 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.760795 ms
-InControl (version 1.4.4 build 3776)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1096.
-Total: 1.126691 ms (FindLiveObjects: 0.087458 ms CreateObjectMapping: 0.079872 ms MarkObjects: 0.917863 ms  DeleteObjects: 0.041051 ms)
-
-Num controllers 2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Old Ghost Controller Number: 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Ghost 0 Controller: 1
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Detective 0 Controller: 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.816473 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 527.
-Total: 1.181130 ms (FindLiveObjects: 0.042836 ms CreateObjectMapping: 0.070055 ms MarkObjects: 0.624254 ms  DeleteObjects: 0.443091 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.753210 ms
-InControl (version 1.4.4 build 3776)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 605.
-Total: 1.000859 ms (FindLiveObjects: 0.059346 ms CreateObjectMapping: 0.069609 ms MarkObjects: 0.839329 ms  DeleteObjects: 0.032127 ms)
-
-Number of Devices: 2
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.914293 ms
+UnloadTime: 4.926721 ms
+
+Unloading 197 unused Assets to reduce memory usage. Loaded Objects now: 585.
+Total: 1.568911 ms (FindLiveObjects: 0.066040 ms CreateObjectMapping: 0.080319 ms MarkObjects: 0.623816 ms  DeleteObjects: 0.797842 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.091455 ms
 InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 611.
+Total: 1.028538 ms (FindLiveObjects: 0.073180 ms CreateObjectMapping: 0.070502 ms MarkObjects: 0.838894 ms  DeleteObjects: 0.045514 ms)
+
+Number of Devices: 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1100.
-Total: 1.134723 ms (FindLiveObjects: 0.086119 ms CreateObjectMapping: 0.080764 ms MarkObjects: 0.945528 ms  DeleteObjects: 0.020972 ms)
-
-Num controllers 2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.609876 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 531.
-Total: 1.197640 ms (FindLiveObjects: 0.046406 ms CreateObjectMapping: 0.070501 ms MarkObjects: 0.632286 ms  DeleteObjects: 0.447553 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.762134 ms
+UnloadTime: 1.025414 ms
 InControl (version 1.4.4 build 3776)
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1323.
+Total: 1.253879 ms (FindLiveObjects: 0.127172 ms CreateObjectMapping: 0.081212 ms MarkObjects: 1.020060 ms  DeleteObjects: 0.023649 ms)
+
+Num controllers 0
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 1 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Device 2 matched profile Xbox360WinProfile (XBox 360 Controller)
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1100.
-Total: 1.179345 ms (FindLiveObjects: 0.095936 ms CreateObjectMapping: 0.080318 ms MarkObjects: 0.967393 ms  DeleteObjects: 0.034804 ms)
-
-Num controllers 2
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Old Ghost Controller Number: 0
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Ghost 0 Controller: 1
+hit2
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Detective 0 Controller: 0
+hit3
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.530896 ms
-NullReferenceException: Object reference not set to an instance of an object
-  at HideLight.Awake () [0x00000] in <filename unknown>:0 
+hit2
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
 
-Unloading 83 unused Assets to reduce memory usage. Loaded Objects now: 531.
-Total: 1.163281 ms (FindLiveObjects: 0.041497 ms CreateObjectMapping: 0.073625 ms MarkObjects: 0.605513 ms  DeleteObjects: 0.442198 ms)
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+hit2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 31.365290 ms
+
+Unloading 197 unused Assets to reduce memory usage. Loaded Objects now: 563.
+Total: 1.608179 ms (FindLiveObjects: 0.069164 ms CreateObjectMapping: 0.079427 ms MarkObjects: 0.657729 ms  DeleteObjects: 0.800519 ms)
 

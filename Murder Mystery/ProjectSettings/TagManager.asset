@@ -50,3 +50,6 @@ TagManager:
   - name: Detective
     uniqueID: 1842046881
     locked: 0
+  - name: Bear
+    uniqueID: 3964476529
+    locked: 0

@@ -276,11 +276,9 @@ MonoBehaviour:
   sword1: {fileID: 481934}
   sword2: {fileID: 409374}
   bloodySword: {fileID: 21300002, guid: 86f67385ffaf72c4aa0f1eb701124880, type: 3}
-  startingRot1: 0
-  endingRot1: 0
-  startingRot2: 0
-  endingot2: 0
+  swordSwingLimit: 218
   rigidbody: {fileID: 0}
+  swordTimer: 0
 --- !u!114 &11497020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,6 +364,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a508de7cfa0c1fd42a3b2c80943e5335, type: 2}
+    - target: {fileID: 0}
+      propertyPath: swordSwingLimit
+      value: 218
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109266}

@@ -42,6 +42,10 @@ public class GhostHit : MonoBehaviour {
                     StartCoroutine(npc.PopUpNegativeScore());
                 }
             }
+            else
+            {
+                npc.dispossess(false);
+            }
             // Kill the party guest :o
             npc.Kill();
         }

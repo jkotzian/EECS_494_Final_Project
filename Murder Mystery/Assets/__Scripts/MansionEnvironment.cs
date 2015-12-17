@@ -35,7 +35,7 @@ public class MansionEnvironment : MonoBehaviour {
 		// Set it so the lights start turned off
 		lightTimer = nextTurnOffTime - 1;
 		turnedOff = false;
-		nightVisionObject.gameObject.SetActive(false);
+		//nightVisionObject.gameObject.SetActive(false);
 		cameraToHide = cameraToHideObj.GetComponent<HideLight>();
 		first = true;
 	}
@@ -92,13 +92,13 @@ public class MansionEnvironment : MonoBehaviour {
     IEnumerator delayActivateNightVision()
     {
         yield return new WaitForSeconds(1f);
-        nightVisionObject.gameObject.SetActive(true);
+        //nightVisionObject.gameObject.SetActive(true);
     }
 
     IEnumerator delayDeactivateNightVision()
     {
         yield return new WaitForSeconds(1.1f);
-        nightVisionObject.gameObject.SetActive(false);
+        //nightVisionObject.gameObject.SetActive(false);
     }
 	
 	//void OnTriggerStay(Collider other) {
