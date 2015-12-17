@@ -76,7 +76,7 @@ public class Ghost : Human
     // Update is called once per frame
     void Update()
     {      
-        if (TotalGame.S.inMainMenu)
+        if (TotalGame.S.inMainMenu || TotalGame.S.inReady)
         {
             return;
         } 

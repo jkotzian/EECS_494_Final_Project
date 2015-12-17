@@ -74,7 +74,8 @@ public class Restart : MonoBehaviour {
         {
             if(TotalGame.S.round < 2)
             {
-                Application.LoadLevel("AlphaMansion");
+                TotalGame.S.inReady = true;
+                Application.LoadLevel("ReadyScreen2");
             }
             else
             {

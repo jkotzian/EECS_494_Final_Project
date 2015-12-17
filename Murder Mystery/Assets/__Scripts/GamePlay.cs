@@ -453,19 +453,19 @@ public class GamePlay : MonoBehaviour {
         // if there's two players, just check the ghost pos vs. the detective pos.
         if(numPlayers < 4)
         {
-            return (Mathf.Abs(loc[0].x - loc[1].x) < 4);
+            return (Mathf.Abs(loc[0].x - loc[1].x) < 6);
         }
         // if there's four players, check ghost 1 pos vs detective 1 & 2 pos
         // then check ghost 2 pos vs detective 1 & 2 pos 
         else
         {
-            if(((Mathf.Abs(loc[0].x - loc[2].x) < 7) && (Mathf.Abs(loc[0].y - loc[2].y) < 1))
-                || ((Mathf.Abs(loc[0].x - loc[3].x) < 7) && (Mathf.Abs(loc[0].y - loc[3].y) < 1)))
+            if(((Mathf.Abs(loc[0].x - loc[2].x) < 6) /*&& (Mathf.Abs(loc[0].y - loc[2].y) < 1)*/)
+                || ((Mathf.Abs(loc[0].x - loc[3].x) < 6) /*&& (Mathf.Abs(loc[0].y - loc[3].y) < 1)*/))
             {
                 return true;
             }
-            if(((Mathf.Abs(loc[1].x - loc[2].x) < 7) && (Mathf.Abs(loc[1].y - loc[2].y) < 1))
-                || ((Mathf.Abs(loc[1].x - loc[3].x) < 7) && (Mathf.Abs(loc[1].y - loc[3].y) < 1)))
+            if(((Mathf.Abs(loc[1].x - loc[2].x) < 6) /*&& (Mathf.Abs(loc[1].y - loc[2].y) < 1)*/)
+                || ((Mathf.Abs(loc[1].x - loc[3].x) < 6) /*&& (Mathf.Abs(loc[1].y - loc[3].y) < 1)*/))
             {
                 return true;
             }

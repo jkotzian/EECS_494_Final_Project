@@ -39,7 +39,7 @@ public class Detective : Human {
     }
     void Update()
     {
-        if (TotalGame.S.inMainMenu)
+        if (TotalGame.S.inMainMenu || TotalGame.S.inReady)
         {
             return;
         }

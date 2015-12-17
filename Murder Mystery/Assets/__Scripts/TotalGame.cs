@@ -16,10 +16,12 @@ public class TotalGame : MonoBehaviour {
     int selected;
 
     public bool inMainMenu;
+    public bool inReady;
 
     void Awake()
     {
         inMainMenu = true;
+        inReady = false;
         S = this;
         round = 0;
         bodyCount[0] = 0;
@@ -114,8 +116,9 @@ public class TotalGame : MonoBehaviour {
         weaponFireSound.Play();
         NGDetective.GetComponent<Detective>().weaponEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
+        inReady = true;
         inMainMenu = false;
-        Application.LoadLevel("AlphaMansion");
+        Application.LoadLevel("ReadyScreen1");
     }
 
     IEnumerator startTutorial()
@@ -124,6 +127,7 @@ public class TotalGame : MonoBehaviour {
         weaponFireSound.Play();
         TDetective.GetComponent<Detective>().weaponEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
+        inReady = true;
         inMainMenu = false;
         Application.LoadLevel("Tutorial");
     }

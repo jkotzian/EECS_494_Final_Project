@@ -60,7 +60,10 @@ public class NPC : Human {
 
     void Start()
     {
-        hint.SetActive(false);
+        if(!TotalGame.S.inReady)
+        {
+            hint.SetActive(false);
+        }
         checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
         moving = false;
         movingRight = false;
@@ -216,7 +219,7 @@ public class NPC : Human {
         }
 
         // If the NPC is possessed, the movement script will determine the walking animation
-        if (!possessed)
+        if (!possessed && !TotalGame.S.inReady)
         {
             animator.SetBool("Moving", moving);
         }
@@ -340,11 +343,11 @@ public class NPC : Human {
             if (ghost)
             {
                 Ghost ghostScript = ghost.GetComponentInParent<Ghost>();
-                if (ghostScript && ghostScript.possessing)
+                if (ghostScript && ghostScript.possessing && !TotalGame.S.inReady)
                 {
                     hint.SetActive(false);
                 }
-                if (alive && ghostScript && ghostScript.alive)
+                if (alive && ghostScript && ghostScript.alive && !TotalGame.S.inReady)
                 {
                     hint.SetActive(true);
                 }
