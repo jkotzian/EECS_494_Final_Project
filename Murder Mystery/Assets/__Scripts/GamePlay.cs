@@ -85,7 +85,8 @@ public class GamePlay : MonoBehaviour {
     int tutorialObjectivesCompleted;
 
     public AudioSource WindDown;
-	bool invoked;
+    public AudioSource wilhelm;
+    bool invoked;
 
     void Awake()
     {
@@ -293,7 +294,7 @@ public class GamePlay : MonoBehaviour {
         Ghosts[0].GetComponent<Movement>().conNum = 0;
         GameObject gInd1 = Instantiate(gIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
         gInd1.transform.parent = Ghosts[0].transform;
-        gInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
+        gInd1.transform.localPosition = new Vector3(-0.03f, 0.15f, 0);
 
         if (numPlayers == 4)
         {
@@ -304,7 +305,7 @@ public class GamePlay : MonoBehaviour {
             Ghosts[1].GetComponent<Movement>().conNum = 2;
             GameObject gInd2 = Instantiate(gIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
             gInd2.transform.parent = Ghosts[1].transform;
-            gInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
+            gInd2.transform.localPosition = new Vector3(-0.03f, 0.15f, 0);
         }
         // Place Detectives
         Detectives.Add(Instantiate(detectivePrefab, detectivePos1, Quaternion.identity) as GameObject);
@@ -318,7 +319,7 @@ public class GamePlay : MonoBehaviour {
         Detectives[0].GetComponent<Movement>().conNum = 1;
         GameObject dInd1 = Instantiate(dIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
         dInd1.transform.parent = Detectives[0].transform;
-        dInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
+        dInd1.transform.localPosition = new Vector3(-0.03f, 0.2f, 0);
 
         if (numPlayers == 4)
         {
@@ -333,7 +334,7 @@ public class GamePlay : MonoBehaviour {
             Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
             GameObject dInd2 = Instantiate(dIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
             dInd2.transform.parent = Detectives[1].transform;
-            dInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
+            dInd2.transform.localPosition = new Vector3(-0.03f, 0.2f, 0);
         }
     }
 
@@ -547,6 +548,11 @@ public class GamePlay : MonoBehaviour {
             }
         }
         return true;
+    }
+                 
+    public void PlayWilhelm()
+    {                                         
+        wilhelm.Play();
     }
 
 }

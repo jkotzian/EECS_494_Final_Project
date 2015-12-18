@@ -164,7 +164,7 @@ public class Trap : MonoBehaviour {
         }
         if (keyboardPressed || controllerPressed)
         {
-			//TrapMusic.Play();
+			TrapMusic.Play();
             activate(npc);
         }
     }
