@@ -7,18 +7,21 @@ public class Detective : Human {
     private Movement        movement;
 
     public GameObject ghostHitObjRef;
-    GameObject currentGhostHitObj;
+    public GameObject currentGhostHitObj;
     public Light aura;
     public Transform weaponFireSoundObj;
     public AudioSource weaponFireSound;
     public Transform weaponEffect;
     int weaponFireTimer;
     public int weaponFireTimeMax;
-    bool canFire;
-    
-	void Start () {
-        // Set default arrest key
+    public bool canFire;
+
+    void Awake()
+    {
         movement = transform.GetComponent<Movement>();
+    }
+
+	void Start () {
         facingRight = true;
         weaponFireSound = weaponFireSoundObj.GetComponent<AudioSource>();
         weaponFireTimer = 0;
@@ -43,9 +46,9 @@ public class Detective : Human {
         {
             return;
         }
-		if (canFire && (Input.GetKeyDown(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
-            !currentGhostHitObj)
+		if (canFire && !currentGhostHitObj && 
+            (Input.GetKeyDown(actionKey) || (GamePlay.S != null && movement.conNum < GamePlay.S.numControllers && 
+            InputManager.Devices[movement.conNum].Action1.WasPressed)))
         {
             weaponFireSound.Play();
             weaponEffect.gameObject.SetActive(true);
@@ -54,15 +57,18 @@ public class Detective : Human {
 
             Vector3 ghostHitObjPos = transform.position;
             // Not having an offset for now, might want one laters
-            Vector3 ghostHitObjOffset;
+            Vector3 ghostHitObjOffset = Vector3.zero;
+            Vector3 horizontalOffset = Vector3.zero;
             if (facingRight)
             {
-                ghostHitObjOffset = Vector3.right;
+                horizontalOffset = new Vector3(1.2f, 0, 0);
             }
             else
             {
-                ghostHitObjOffset = Vector3.left;
+                horizontalOffset = new Vector3(-1.2f, 0, 0);
             }
+            Vector3 verticalOffset = new Vector3(0, .2f, 0);
+            ghostHitObjOffset += (horizontalOffset + verticalOffset);
             //ghostHitObjOffset += Vector3.up;
 
             ghostHitObjPos += ghostHitObjOffset;
@@ -75,9 +81,9 @@ public class Detective : Human {
             // Make sure to set its offset!!!
             ghostHit.offset = ghostHitObjOffset;
         }
-		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
-            currentGhostHitObj)
+        if ((Input.GetKeyUp(actionKey) && currentGhostHitObj || 
+            (GamePlay.S != null && movement.conNum < GamePlay.S.numControllers && 
+            InputManager.Devices[movement.conNum].Action1.WasReleased)))
         {
             Destroy(currentGhostHitObj);
         }

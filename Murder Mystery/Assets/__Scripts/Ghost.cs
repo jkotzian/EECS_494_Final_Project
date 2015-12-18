@@ -119,42 +119,12 @@ public class Ghost : Human
                 srend.color = Color.white;
             }
         }
-        // COULDNT GET THIS CRAP WORKING
-        /*if (growing)
-        {
-            transform.localScale += Vector3.one * growthRate;
-            if (transform.localScale.y > maxGrowthY)
-            {
-                growing = false;
-            }
-        }
-        else if (shrinking)
-        {
-            transform.localScale -= Vector3.one * growthRate;
-            if (transform.localScale.y < normalY)
-            {
-                shrinking = false;
-            }
-        }*/
         if ((Input.GetKeyDown(actionKey) ||
             (movement.conNum < GamePlay.S.numControllers && 
             InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
         {   
             Vector3 possessionObjPos = transform.position;
-            // Not having an offset for now, might want one laters
-            /*Vector3 possessionObjOffset;
-            if (facingRight)
-            {
-                possessionObjOffset = Vector3.right / 1.7f;
-            }
-            else
-            {
-                possessionObjOffset = Vector3.left / 1.7f;
-            }
-            possessionObjPos += possessionObjOffset;
-            // Make sure to set its offset!!!
-            possess.offset = possessionObjOffset;*/
             currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
             // Get the possession object
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
