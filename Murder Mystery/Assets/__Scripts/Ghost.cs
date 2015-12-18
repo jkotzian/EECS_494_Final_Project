@@ -119,8 +119,6 @@ public class Ghost : Human
                 srend.color = Color.white;
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         // COULDNT GET THIS CRAP WORKING
         /*if (growing)
         {
@@ -141,22 +139,12 @@ public class Ghost : Human
 		if (Input.GetKeyDown (actionKey)) {
 			print ("hey");
 		}
-        if ((Input.GetKeyDown(actionKey) ||
-            (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
-            !currentPossessionObj && !possessing)
-=======
-=======
->>>>>>> fa5f63e5130cf5514283ee368dfa40880ebc29b4
+
         bool possessActivated = (Input.GetKeyDown(actionKey) ||
                                 (movement.conNum < GamePlay.S.numControllers && 
                                 InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
                                 !currentPossessionObj && !possessing;
         if (possessActivated)
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> fa5f63e5130cf5514283ee368dfa40880ebc29b4
         {   
 			print ("hey2");
             Vector3 possessionObjPos = transform.position;
