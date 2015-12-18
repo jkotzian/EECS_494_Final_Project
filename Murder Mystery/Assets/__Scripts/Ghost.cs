@@ -119,10 +119,11 @@ public class Ghost : Human
                 srend.color = Color.white;
             }
         }
-        if ((Input.GetKeyDown(actionKey) ||
-            (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
-            !currentPossessionObj && !possessing)
+        bool possessActivated = (Input.GetKeyDown(actionKey) ||
+                                (movement.conNum < GamePlay.S.numControllers && 
+                                InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+                                !currentPossessionObj && !possessing;
+        if (possessActivated)
         {   
             Vector3 possessionObjPos = transform.position;
             currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
@@ -134,9 +135,10 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
-            currentPossessionObj)
+        bool possessDeactivated = (Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
+                                   InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
+                                   currentPossessionObj;
+		if (possessDeactivated)
         {
             Destroy(currentPossessionObj);
             currentPossessionObj = null;
@@ -163,16 +165,6 @@ public class Ghost : Human
         float multiplier = 7f;
         transform.Translate((Vector3.up * Time.deltaTime * Mathf.Cos(Time.time * multiplier))/divider);
     }        
-
-    void OnTriggerExit(Collider collider)
-    {
-        Switch s = collider.GetComponent<Switch>();
-        if (s)
-        {
-            //GamePlay.S.texts[4].text = "";
-            //GamePlay.S.texts[5].text = "";
-        }
-    }
 
     public IEnumerator enableGameObjectWithDelay()
     {

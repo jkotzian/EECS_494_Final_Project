@@ -3060,7 +3060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: practiceRoundTime
-      value: 30
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: m_Enabled
@@ -3072,7 +3072,7 @@ Prefab:
       objectReference: {fileID: 1549593357}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: regularRoundTime
-      value: 30
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: dIndicatorPrefab1

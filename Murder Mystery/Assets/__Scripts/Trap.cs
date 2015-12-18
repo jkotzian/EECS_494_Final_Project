@@ -172,9 +172,20 @@ public class Trap : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         NPC npc = other.GetComponent<NPC>();
-        if(npc && npc.possessed)
-        {                         
-            hint.SetActive(false);
+        if (npc)
+        {
+            npc.setWalkedOverTrap(false);
+            if (npc.possessed)  
+                hint.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        NPC npc = other.GetComponent<NPC>();
+        if (npc)
+        {
+            npc.setWalkedOverTrap(true);
         }
     }
 

@@ -43,7 +43,7 @@ public class GamePlay : MonoBehaviour {
 	public List<GameObject> Switches;
 
     private List<Vector3> startLoc;
-    private List<Vector3> bookshelfLoc;
+    private Dictionary<Vector3, bool> bookshelfDic;
     private List<bool> bookshelfPresent;
 
     private int[] targetIndices;
@@ -98,7 +98,7 @@ public class GamePlay : MonoBehaviour {
         leftScreen = new Rect(0, 0, 0.5f, 1);
         rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         startLoc = generateStartLoc();
-        bookshelfLoc = generateBookshelfLoc();
+        bookshelfDic = generateBookshelfDic();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         numControllers = 0;
         tutorialObjectivesCompleted = 0;
@@ -251,7 +251,34 @@ public class GamePlay : MonoBehaviour {
         {
             bookshelfSpawnTime = Time.time;
             int i = UnityEngine.Random.Range(0, 7);
-            Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);
+            List<Vector3> locs = Enumerable.ToList(bookshelfDic.Keys);
+            int tries = 0;
+            bool foundGoodLocation = false;
+            // If you found a good location, use it
+            if (bookshelfDic[locs[i]] == false)
+            {
+                foundGoodLocation = true;
+            }
+            // If the place is taken, try two more times to get an unvisited place
+            while (bookshelfDic[locs[i]] == true && tries < 2)
+            {
+                ++tries;
+                i = UnityEngine.Random.Range(0, 7);
+                // See if the new place is taken
+                if (bookshelfDic[locs[i]] == false)
+                {
+                    foundGoodLocation = true;
+                    break;
+                }
+            }
+            if (foundGoodLocation)
+            {
+                // Set that location as visited
+                bookshelfDic[locs[i]] = true;
+                GameObject bookshelf = Instantiate(bookshelfPrefab, locs[i], Quaternion.identity) as GameObject;
+                bookshelf.GetComponent<Bookshelf>().index = i;
+            }
+            print("foundgoodlocation = " + foundGoodLocation);
         }
     }
 
@@ -474,17 +501,26 @@ public class GamePlay : MonoBehaviour {
         return false;
     }
 
-    List<Vector3> generateBookshelfLoc()
+    Dictionary<Vector3, bool> generateBookshelfDic()
     {
-        List<Vector3> bl = new List<Vector3>();
-        bl.Add(new Vector3(-1f, 3.5f, 0)); 
-        bl.Add(new Vector3(-4f, 1f, 0));     
-        bl.Add(new Vector3(3.5f, 1f, 0));
-        bl.Add(new Vector3(-6.5f, -1.5f, 0));
-        bl.Add(new Vector3(1.5f, -1.5f, 0));
-        bl.Add(new Vector3(-4f, -4f, 0));
-        bl.Add(new Vector3(4f, -4f, 0));
-        return bl;
+        Dictionary<Vector3, bool> plantLocs = new Dictionary<Vector3, bool>();
+        plantLocs.Add(new Vector3(-1f, 3.5f, 0), false);
+        plantLocs.Add(new Vector3(-4f, 1f, 0), false);
+        plantLocs.Add(new Vector3(3.5f, 1f, 0), false);
+        plantLocs.Add(new Vector3(-6.5f, -1.5f, 0), false);
+        plantLocs.Add(new Vector3(1.5f, -1.5f, 0), false);
+        plantLocs.Add(new Vector3(-4f, -4f, 0), false);
+        plantLocs.Add(new Vector3(4f, -4f, 0), false);
+        return plantLocs;
+    }
+
+    // Say that a bookshelf can now be spawned in the location
+    // of that index
+    public void addBackBookshelfLoc(int index)
+    {
+        // Get the locations from the dictionary
+        List<Vector3> locs = Enumerable.ToList(bookshelfDic.Keys);
+        bookshelfDic[locs[index]] = false;
     }
 
     bool checkForDetectiveWin()
@@ -496,7 +532,6 @@ public class GamePlay : MonoBehaviour {
                 return false;
             }
         }
-
         return true;
     }
 

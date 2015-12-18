@@ -14,6 +14,8 @@ GameObject:
   - 54: {fileID: 5469130}
   - 212: {fileID: 21224066}
   - 65: {fileID: 6505020}
+  - 114: {fileID: 11441244}
+  - 95: {fileID: 9587626}
   m_Layer: 13
   m_Name: PlantWall
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.4533634, y: -3.31014395, z: 3.16979504}
+  m_LocalPosition: {x: -2.81276417, y: 1.23307991, z: 3.16979504}
   m_LocalScale: {x: 3.5999999, y: 3.5999999, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,8 +72,47 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .400000006, y: .600000024, z: 1}
+  m_Size: {x: .5, y: .600000024, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9587626
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157246}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc2f05681e0422c4c966ff94e021d238, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11441244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af4a3c86d70be54a8fce0a4283aec09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shatterDetails:
+    horizontalCuts: 8
+    verticalCuts: 5
+    randomizeAtRunTime: 0
+    randomSeed: 0
+    randomness: .189999998
+    zigzagFrequency: .737999976
+    zigzagAmplitude: .689999998
+    colliderType: 0
+    explodeFrom: {x: .5, y: .5}
+    explosionForce: {x: 0, y: 5}
 --- !u!114 &11448520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  index: 0
 --- !u!114 &11491714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,15 +155,13 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85331df743897cd438ea52b7ddfe608d, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 85331df743897cd438ea52b7ddfe608d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -141,7 +181,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 85331df743897cd438ea52b7ddfe608d,
+      objectReference: {fileID: 21300010, guid: 85331df743897cd438ea52b7ddfe608d,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
@@ -155,6 +195,22 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a508de7cfa0c1fd42a3b2c80943e5335, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.zigzagFrequency
+      value: .737999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.zigzagAmplitude
+      value: .689999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.randomness
+      value: .189999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.verticalCuts
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157246}
