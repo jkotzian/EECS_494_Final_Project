@@ -250,7 +250,7 @@ public class GamePlay : MonoBehaviour {
         if (!gameOver && Time.time > bookshelfSpawnTime + 5)
         {
             bookshelfSpawnTime = Time.time;
-            int i = UnityEngine.Random.Range(0, 7);
+            int i = UnityEngine.Random.Range(0, 6);
             List<Vector3> locs = Enumerable.ToList(bookshelfDic.Keys);
             int tries = 0;
             bool foundGoodLocation = false;
@@ -505,7 +505,6 @@ public class GamePlay : MonoBehaviour {
     {
         Dictionary<Vector3, bool> plantLocs = new Dictionary<Vector3, bool>();
         plantLocs.Add(new Vector3(-1f, 3.5f, 0), false);
-        plantLocs.Add(new Vector3(-4f, 1f, 0), false);
         plantLocs.Add(new Vector3(3.5f, 1f, 0), false);
         plantLocs.Add(new Vector3(-6.5f, -1.5f, 0), false);
         plantLocs.Add(new Vector3(1.5f, -1.5f, 0), false);

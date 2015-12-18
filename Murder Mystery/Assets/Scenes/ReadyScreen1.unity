@@ -5095,6 +5095,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1526263430}
   - 131: {fileID: 1526263429}
+  - 82: {fileID: 1526263431}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -5134,6 +5135,76 @@ Transform:
   - {fileID: 379624071}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &1526263431
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526263428}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1529165073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,11 +6384,13 @@ MonoBehaviour:
   tutorialNPC: 0
   objectiveNum: 0
   ghostHitObjRef: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
+  currentGhostHitObj: {fileID: 0}
   aura: {fileID: 0}
   weaponFireSoundObj: {fileID: 1542324988}
   weaponFireSound: {fileID: 0}
   weaponEffect: {fileID: 1295583068}
   weaponFireTimeMax: 50
+  canFire: 0
 --- !u!114 &2071360953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7714,11 +7787,13 @@ MonoBehaviour:
   tutorialNPC: 0
   objectiveNum: 0
   ghostHitObjRef: {fileID: 131168, guid: 00e23b4c807cf43468f7a12b78ecef45, type: 2}
+  currentGhostHitObj: {fileID: 0}
   aura: {fileID: 0}
   weaponFireSoundObj: {fileID: 1284645980}
   weaponFireSound: {fileID: 0}
   weaponEffect: {fileID: 2103717586}
   weaponFireTimeMax: 50
+  canFire: 0
 --- !u!114 &2146022590
 MonoBehaviour:
   m_ObjectHideFlags: 0

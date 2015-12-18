@@ -170,8 +170,14 @@ public class NPC : Human {
                     }
                 }
                 justTookElevator = false;
+                // If for some reason the NPC is blocked both right and left,
+                // randomely choose a direction
+                if (blockedLeft && blockedRight)
+                {
+                    randomelyChooseDirection();
+                }
                 // Go right if blocked left
-                if (blockedLeft)
+                else if (blockedLeft)
                 {
                     turnRight();
                 }
@@ -183,18 +189,7 @@ public class NPC : Human {
                 // If the NPC is not blocked, then randomely determine the direction
                 else
                 {
-                    // Randomely decide the direction of the NPC
-                    int moveNextRandNum = Random.Range(0, 2);
-                    // Go left
-                    if (moveNextRandNum == 0)
-                    {
-                        turnLeft();
-                    }
-                    // Go right
-                    else
-                    {
-                        turnRight();
-                    }
+                    randomelyChooseDirection();
                 }
                 // Randomely set the next time the NPC will check its direction between the min and the max
                 checkMoveTimer = Random.Range(checkMoveTimerMin, checkMoveTimerMax + 1);
@@ -221,7 +216,7 @@ public class NPC : Human {
                              InputManager.Devices[NPCMovement.conNum].Action1.WasPressed));
         if (canDispossess)
         {
-             dispossess(false);
+             //dispossess(false);
         }
 
         // If the NPC is possessed, the movement script will determine the walking animation
@@ -231,6 +226,22 @@ public class NPC : Human {
         }
                      
 	}
+
+    void randomelyChooseDirection()
+    {
+        // Randomely decide the direction of the NPC
+        int moveNextRandNum = Random.Range(0, 2);
+        // Go left
+        if (moveNextRandNum == 0)
+        {
+            turnLeft();
+        }
+        // Go right
+        else
+        {
+            turnRight();
+        }
+    }
 
     void turnLeft()
     {

@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/Scenes/ReadyScreen1.unity
   - enabled: 1
     path: Assets/Scenes/ReadyScreen2.unity
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
