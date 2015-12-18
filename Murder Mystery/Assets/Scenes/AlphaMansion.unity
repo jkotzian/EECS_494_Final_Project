@@ -2977,6 +2977,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11494754, guid: 58fa916033200c64691c1c1353ef2fd9, type: 2}
+      propertyPath: swordSwingLimit
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58fa916033200c64691c1c1353ef2fd9, type: 2}
   m_IsPrefabParent: 0
@@ -3169,7 +3173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: practiceRoundTime
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: m_Enabled
@@ -3181,7 +3185,7 @@ Prefab:
       objectReference: {fileID: 1549593357}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: regularRoundTime
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: dIndicatorPrefab1
@@ -3206,7 +3210,7 @@ Prefab:
     - target: {fileID: 8258460, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 42f6ebbb455d86e46823c03bbe380388, type: 3}
+      objectReference: {fileID: 8300000, guid: fbbe2d464ce371b40b7b844b42b9573c, type: 3}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: numNPCs
       value: 14
@@ -3215,6 +3219,10 @@ Prefab:
       propertyPath: wilhelm
       value: 
       objectReference: {fileID: 170880672}
+    - target: {fileID: 8258460, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
   m_IsPrefabParent: 0
@@ -5752,6 +5760,10 @@ Prefab:
     - target: {fileID: 409722, guid: 58fa916033200c64691c1c1353ef2fd9, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494754, guid: 58fa916033200c64691c1c1353ef2fd9, type: 2}
+      propertyPath: swordSwingLimit
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58fa916033200c64691c1c1353ef2fd9, type: 2}
