@@ -14,7 +14,6 @@ public class NegativePointsPopUp : MonoBehaviour {
 	void Update () {
 	    if(Time.time > t + 1)
         {
-            print("hit");
             Destroy(this.gameObject);
         }
 	}

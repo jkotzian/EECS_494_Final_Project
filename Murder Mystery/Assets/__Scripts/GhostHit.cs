@@ -52,7 +52,7 @@ public class GhostHit : MonoBehaviour {
         Bookshelf bookshelf = other.gameObject.GetComponent<Bookshelf>();
         if (bookshelf)
         {
-            bookshelf.hp -= 100;
+            bookshelf.destroyPlant();
         }
         //print(other);
     }

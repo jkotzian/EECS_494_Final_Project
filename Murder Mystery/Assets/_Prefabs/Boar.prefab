@@ -53,6 +53,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &135954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426420}
+  - 122: {fileID: 12277710}
+  m_Layer: 9
+  m_Name: Glow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &152204
 GameObject:
   m_ObjectHideFlags: 1
@@ -70,6 +86,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &426420
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135954}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 468846}
+  m_RootOrder: 1
 --- !u!4 &449662
 Transform:
   m_ObjectHideFlags: 1
@@ -91,10 +119,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.38400006, y: -1.398, z: -.0142419403}
+  m_LocalPosition: {x: -4.41417551, y: 1.20409513, z: -.0142419403}
   m_LocalScale: {x: 2.29450035, y: 2.29449964, z: 2.29449964}
   m_Children:
   - {fileID: 449662}
+  - {fileID: 426420}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &483934
@@ -237,11 +266,10 @@ MonoBehaviour:
   sword1: {fileID: 0}
   sword2: {fileID: 0}
   bloodySword: {fileID: 0}
-  startingRot1: 0
-  endingRot1: 0
-  startingRot2: 0
-  endingot2: 0
+  swordSwingLimit: 0
   rigidbody: {fileID: 0}
+  swordTimer: 0
+  glow: {fileID: 135954}
 --- !u!114 &11467160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,6 +292,17 @@ Halo:
     serializedVersion: 2
     rgba: 4286611584
   m_Size: .400000006
+--- !u!122 &12277710
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135954}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278245119
+  m_Size: 2
 --- !u!212 &21282338
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -303,7 +342,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: d02dee9df19b24574810bc74c9fe607d, type: 2}
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 16
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: poisonMaterial
@@ -346,6 +385,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: glow
+      value: 
+      objectReference: {fileID: 135954}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105576}

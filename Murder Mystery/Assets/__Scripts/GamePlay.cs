@@ -43,7 +43,7 @@ public class GamePlay : MonoBehaviour {
 	public List<GameObject> Switches;
 
     private List<Vector3> startLoc;
-    private List<Vector3> bookshelfLoc;
+    private Dictionary<Vector3, bool> bookshelfDic;
     private List<bool> bookshelfPresent;
 
     private int[] targetIndices;
@@ -98,7 +98,7 @@ public class GamePlay : MonoBehaviour {
         leftScreen = new Rect(0, 0, 0.5f, 1);
         rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         startLoc = generateStartLoc();
-        bookshelfLoc = generateBookshelfLoc();
+        bookshelfDic = generateBookshelfDic();
         ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         numControllers = 0;
         tutorialObjectivesCompleted = 0;
@@ -107,11 +107,11 @@ public class GamePlay : MonoBehaviour {
     void Start () {
         if (tutorial)
         {
-            manageTutorialGamePlay();
+            tutorialGamePlayStart();
         }
         else
         {
-            manageRegularGamePlay();
+            regularGamePlayStart();
         }
     }
 
@@ -127,143 +127,7 @@ public class GamePlay : MonoBehaviour {
         }
     }
 
-    void createGhostsAndDetectives(Vector3 ghostPos1, Vector3 ghostPos2,
-                                   Vector3 detectivePos1, Vector3 detectivePos2)
-    {
-        // Place Ghosts
-        Ghosts.Add(Instantiate(ghostPrefab, ghostPos1, Quaternion.identity) as GameObject);
-        Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
-        Ghosts[0].GetComponent<Ghost>().alive = true;
-        Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
-        Ghosts[0].GetComponent<Movement>().conNum = 0;
-        GameObject gInd1 = Instantiate(gIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
-        gInd1.transform.parent = Ghosts[0].transform;
-        gInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
-
-        if (numPlayers == 4)
-        {
-            Ghosts.Add(Instantiate(ghostPrefab, ghostPos2, Quaternion.identity) as GameObject);
-            Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
-            Ghosts[1].GetComponent<Ghost>().alive = true;
-            Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
-            Ghosts[1].GetComponent<Movement>().conNum = 2;
-            GameObject gInd2 = Instantiate(gIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
-            gInd2.transform.parent = Ghosts[1].transform;
-            gInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
-        }
-        // Place Detectives
-        Detectives.Add(Instantiate(detectivePrefab, detectivePos1, Quaternion.identity) as GameObject);
-
-        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
-        Detectives[0].GetComponent<Movement>().isDetective = true;
-        // Set the art/animation
-        Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
-        Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
-        Detectives[0].GetComponent<Movement>().conNum = 1;
-        GameObject dInd1 = Instantiate(dIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
-        dInd1.transform.parent = Detectives[0].transform;
-        dInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
-
-        if (numPlayers == 4)
-        {
-            Detectives.Add(Instantiate(detectivePrefab, detectivePos2, Quaternion.identity) as GameObject);
-
-            Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
-            Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
-            Detectives[1].GetComponent<Movement>().isDetective = true;
-            Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);
-            Detectives[1].GetComponent<Movement>().conNum = 3;
-            // Set the art/animation
-            Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
-            GameObject dInd2 = Instantiate(dIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
-            dInd2.transform.parent = Detectives[1].transform;
-            dInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
-        }
-    }
-
-    void tutorialGameUpdate()
-    {
-        // Check for the 4 completed actions
-    }
-
-    public void completedObjective(int objectiveNum)
-    {
-        if (!tutorial)
-            return;
-
-        if (objectiveNum == 0)
-        {
-            print("Objective 1 completed");
-            doneTextGhost1.SetActive(true);
-            doneText2Ghost1.SetActive(true);
-        }
-        else if (objectiveNum == 1)
-        {
-            print("Objective 2 completed");
-            doneTextGhost2.SetActive(true);
-            doneText2Ghost2.SetActive(true);
-        }
-        else if (objectiveNum == 2)
-        {
-            print("Objective 3 completed");
-            doneTextDetective1.SetActive(true);
-            doneText2Detective1.SetActive(true);
-        }
-        else if (objectiveNum == 3)
-        {
-            print("Objective 4 completed");
-            doneTextDetective2.SetActive(true);
-            doneText2Detective2.SetActive(true);
-        }
-
-        tutorialObjectivesCompleted++;
-
-        if (tutorialObjectivesCompleted == 2 && numPlayers == 2)
-        {
-            completedText1.SetActive(true);
-            completedText2.SetActive(true);
-            StartCoroutine(tutorialEndSequence());
-        }
-        else if (tutorialObjectivesCompleted == 4 && numPlayers == 4)
-        {
-            completedText1.SetActive(true);
-            completedText2.SetActive(true);
-            StartCoroutine(tutorialEndSequence());
-        }
-    }
-
-    void regularGameUpdate()
-    {
-        if (!gameOver)
-        {
-            timerText.text = "Time: " + (roundTime - (int)(Time.time - starttime)).ToString();
-			if((roundTime - (int)(Time.time - starttime)) ==  5f && !invoked ){
-				//playing wind down sound
-				InvokeRepeating("PlayWindDown", 0f, 1f);
-				invoked = true;
-			}
-        }
-        if (!gameOver)
-        {
-            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 1] * 100).ToString();
-        }
-        // check for round end
-        if (Time.time > roundTime + starttime || checkForDetectiveWin())
-        {
-            gameOver = true;
-            StartCoroutine(roundEndSequence());
-        }
-        // spawn bookshelves
-        if (!gameOver && Time.time > bookshelfSpawnTime + 5)
-        {
-            bookshelfSpawnTime = Time.time;
-            int i = UnityEngine.Random.Range(0, 7);
-            Instantiate(bookshelfPrefab, bookshelfLoc[i], Quaternion.identity);
-        }
-    }
-
-    void manageTutorialGamePlay()
+    void tutorialGamePlayStart()
     {
         // See if the players are using the controllers
         numControllers = InputManager.Devices.Count;
@@ -286,7 +150,7 @@ public class GamePlay : MonoBehaviour {
         }
     }
 
-    void manageRegularGamePlay()
+    void regularGamePlayStart()
     {
         roundTime = practiceRoundTime;
         print("Num controllers " + InputManager.Devices.Count);
@@ -349,10 +213,174 @@ public class GamePlay : MonoBehaviour {
 
         //if (TotalGame.S.round > 2)
         //{
-            roundTime = regularRoundTime;
+        roundTime = regularRoundTime;
         //}
         timerText.text = "";
-        scoreText.text = "";   
+        scoreText.text = "";
+    }
+
+    void tutorialGameUpdate()
+    {
+        
+    }
+
+    void regularGameUpdate()
+    {
+        if (!gameOver)
+        {
+            timerText.text = "Time: " + (roundTime - (int)(Time.time - starttime)).ToString();
+            if ((roundTime - (int)(Time.time - starttime)) == 5f && !invoked)
+            {
+                //playing wind down sound
+                InvokeRepeating("PlayWindDown", 0f, 1f);
+                invoked = true;
+            }
+        }
+        if (!gameOver)
+        {
+            scoreText.text = "Score: " + (TotalGame.S.bodyCount[TotalGame.S.round - 1] * 100).ToString();
+        }
+        // check for round end
+        if (Time.time > roundTime + starttime || checkForDetectiveWin())
+        {
+            gameOver = true;
+            StartCoroutine(roundEndSequence());
+        }
+        // spawn bookshelves
+        if (!gameOver && Time.time > bookshelfSpawnTime + 5)
+        {
+            bookshelfSpawnTime = Time.time;
+            int i = UnityEngine.Random.Range(0, 7);
+            List<Vector3> locs = Enumerable.ToList(bookshelfDic.Keys);
+            int tries = 0;
+            bool foundGoodLocation = false;
+            // If you found a good location, use it
+            if (bookshelfDic[locs[i]] == false)
+            {
+                foundGoodLocation = true;
+            }
+            // If the place is taken, try two more times to get an unvisited place
+            while (bookshelfDic[locs[i]] == true && tries < 2)
+            {
+                ++tries;
+                i = UnityEngine.Random.Range(0, 7);
+                // See if the new place is taken
+                if (bookshelfDic[locs[i]] == false)
+                {
+                    foundGoodLocation = true;
+                    break;
+                }
+            }
+            if (foundGoodLocation)
+            {
+                // Set that location as visited
+                bookshelfDic[locs[i]] = true;
+                GameObject bookshelf = Instantiate(bookshelfPrefab, locs[i], Quaternion.identity) as GameObject;
+                bookshelf.GetComponent<Bookshelf>().index = i;
+            }
+            print("foundgoodlocation = " + foundGoodLocation);
+        }
+    }
+
+    void createGhostsAndDetectives(Vector3 ghostPos1, Vector3 ghostPos2,
+                                   Vector3 detectivePos1, Vector3 detectivePos2)
+    {
+        // Place Ghosts
+        Ghosts.Add(Instantiate(ghostPrefab, ghostPos1, Quaternion.identity) as GameObject);
+        Ghosts[0].GetComponent<Movement>().setUDLRKeys(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        Ghosts[0].GetComponent<Ghost>().alive = true;
+        Ghosts[0].GetComponent<Ghost>().setActionKey(KeyCode.Q);
+        Ghosts[0].GetComponent<Movement>().conNum = 0;
+        GameObject gInd1 = Instantiate(gIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
+        gInd1.transform.parent = Ghosts[0].transform;
+        gInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
+
+        if (numPlayers == 4)
+        {
+            Ghosts.Add(Instantiate(ghostPrefab, ghostPos2, Quaternion.identity) as GameObject);
+            Ghosts[1].GetComponent<Movement>().setUDLRKeys(KeyCode.T, KeyCode.G, KeyCode.F, KeyCode.H);
+            Ghosts[1].GetComponent<Ghost>().alive = true;
+            Ghosts[1].GetComponent<Ghost>().setActionKey(KeyCode.R);
+            Ghosts[1].GetComponent<Movement>().conNum = 2;
+            GameObject gInd2 = Instantiate(gIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
+            gInd2.transform.parent = Ghosts[1].transform;
+            gInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
+        }
+        // Place Detectives
+        Detectives.Add(Instantiate(detectivePrefab, detectivePos1, Quaternion.identity) as GameObject);
+
+        Detectives[0].GetComponent<Movement>().setUDLRKeys(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
+        Detectives[0].GetComponent<Movement>().setBoostKey(KeyCode.M, KeyCode.N);
+        Detectives[0].GetComponent<Movement>().isDetective = true;
+        // Set the art/animation
+        Detectives[0].GetComponent<Animator>().runtimeAnimatorController = detective1AnimationController;
+        Detectives[0].GetComponent<Detective>().setActionKey(KeyCode.RightShift);
+        Detectives[0].GetComponent<Movement>().conNum = 1;
+        GameObject dInd1 = Instantiate(dIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
+        dInd1.transform.parent = Detectives[0].transform;
+        dInd1.transform.localPosition = new Vector3(0, 0.1f, 0);
+
+        if (numPlayers == 4)
+        {
+            Detectives.Add(Instantiate(detectivePrefab, detectivePos2, Quaternion.identity) as GameObject);
+
+            Detectives[1].GetComponent<Movement>().setUDLRKeys(KeyCode.I, KeyCode.K, KeyCode.J, KeyCode.L);
+            Detectives[1].GetComponent<Movement>().setBoostKey(KeyCode.H, KeyCode.O);
+            Detectives[1].GetComponent<Movement>().isDetective = true;
+            Detectives[1].GetComponent<Detective>().setActionKey(KeyCode.U);
+            Detectives[1].GetComponent<Movement>().conNum = 3;
+            // Set the art/animation
+            Detectives[1].GetComponent<Animator>().runtimeAnimatorController = detective2AnimationController;
+            GameObject dInd2 = Instantiate(dIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
+            dInd2.transform.parent = Detectives[1].transform;
+            dInd2.transform.localPosition = new Vector3(0, 0.1f, 0);
+        }
+    }
+
+    public void completedObjective(int objectiveNum)
+    {
+        if (!tutorial)
+            return;
+
+        if (objectiveNum == 0)
+        {
+            print("Objective 1 completed");
+            doneTextGhost1.SetActive(true);
+            doneText2Ghost1.SetActive(true);
+        }
+        else if (objectiveNum == 1)
+        {
+            print("Objective 2 completed");
+            doneTextGhost2.SetActive(true);
+            doneText2Ghost2.SetActive(true);
+        }
+        else if (objectiveNum == 2)
+        {
+            print("Objective 3 completed");
+            doneTextDetective1.SetActive(true);
+            doneText2Detective1.SetActive(true);
+        }
+        else if (objectiveNum == 3)
+        {
+            print("Objective 4 completed");
+            doneTextDetective2.SetActive(true);
+            doneText2Detective2.SetActive(true);
+        }
+
+        tutorialObjectivesCompleted++;
+
+        if (tutorialObjectivesCompleted == 2 && numPlayers == 2)
+        {
+            completedText1.SetActive(true);
+            completedText2.SetActive(true);
+            StartCoroutine(tutorialEndSequence());
+        }
+        else if (tutorialObjectivesCompleted == 4 && numPlayers == 4)
+        {
+            completedText1.SetActive(true);
+            completedText2.SetActive(true);
+            StartCoroutine(tutorialEndSequence());
+        }
     }
 
 	void PlayWindDown(){
@@ -473,17 +501,26 @@ public class GamePlay : MonoBehaviour {
         return false;
     }
 
-    List<Vector3> generateBookshelfLoc()
+    Dictionary<Vector3, bool> generateBookshelfDic()
     {
-        List<Vector3> bl = new List<Vector3>();
-        bl.Add(new Vector3(-1f, 3.5f, 0)); 
-        bl.Add(new Vector3(-4f, 1f, 0));     
-        bl.Add(new Vector3(3.5f, 1f, 0));
-        bl.Add(new Vector3(-6.5f, -1.5f, 0));
-        bl.Add(new Vector3(1.5f, -1.5f, 0));
-        bl.Add(new Vector3(-4f, -4f, 0));
-        bl.Add(new Vector3(4f, -4f, 0));
-        return bl;
+        Dictionary<Vector3, bool> plantLocs = new Dictionary<Vector3, bool>();
+        plantLocs.Add(new Vector3(-1f, 3.5f, 0), false);
+        plantLocs.Add(new Vector3(-4f, 1f, 0), false);
+        plantLocs.Add(new Vector3(3.5f, 1f, 0), false);
+        plantLocs.Add(new Vector3(-6.5f, -1.5f, 0), false);
+        plantLocs.Add(new Vector3(1.5f, -1.5f, 0), false);
+        plantLocs.Add(new Vector3(-4f, -4f, 0), false);
+        plantLocs.Add(new Vector3(4f, -4f, 0), false);
+        return plantLocs;
+    }
+
+    // Say that a bookshelf can now be spawned in the location
+    // of that index
+    public void addBackBookshelfLoc(int index)
+    {
+        // Get the locations from the dictionary
+        List<Vector3> locs = Enumerable.ToList(bookshelfDic.Keys);
+        bookshelfDic[locs[index]] = false;
     }
 
     bool checkForDetectiveWin()
@@ -495,7 +532,6 @@ public class GamePlay : MonoBehaviour {
                 return false;
             }
         }
-
         return true;
     }
 

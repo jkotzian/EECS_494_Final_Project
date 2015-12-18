@@ -119,6 +119,7 @@ public class Ghost : Human
                 srend.color = Color.white;
             }
         }
+<<<<<<< HEAD
         // COULDNT GET THIS CRAP WORKING
         /*if (growing)
         {
@@ -136,25 +137,23 @@ public class Ghost : Human
                 shrinking = false;
             }
         }*/
+		if (Input.GetKeyDown (actionKey)) {
+			print ("hey");
+		}
         if ((Input.GetKeyDown(actionKey) ||
             (movement.conNum < GamePlay.S.numControllers && 
             InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
             !currentPossessionObj && !possessing)
+=======
+        bool possessActivated = (Input.GetKeyDown(actionKey) ||
+                                (movement.conNum < GamePlay.S.numControllers && 
+                                InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
+                                !currentPossessionObj && !possessing;
+        if (possessActivated)
+>>>>>>> origin/master
         {   
+			print ("hey2");
             Vector3 possessionObjPos = transform.position;
-            // Not having an offset for now, might want one laters
-            /*Vector3 possessionObjOffset;
-            if (facingRight)
-            {
-                possessionObjOffset = Vector3.right / 1.7f;
-            }
-            else
-            {
-                possessionObjOffset = Vector3.left / 1.7f;
-            }
-            possessionObjPos += possessionObjOffset;
-            // Make sure to set its offset!!!
-            possess.offset = possessionObjOffset;*/
             currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
             // Get the possession object
             PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
@@ -164,9 +163,10 @@ public class Ghost : Human
             srend.color = Color.red;
             transform.localScale *= growthVal;
         }
-		if ((Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
-            InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
-            currentPossessionObj)
+        bool possessDeactivated = (Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
+                                   InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
+                                   currentPossessionObj;
+		if (possessDeactivated)
         {
             Destroy(currentPossessionObj);
             currentPossessionObj = null;
@@ -193,16 +193,6 @@ public class Ghost : Human
         float multiplier = 7f;
         transform.Translate((Vector3.up * Time.deltaTime * Mathf.Cos(Time.time * multiplier))/divider);
     }        
-
-    void OnTriggerExit(Collider collider)
-    {
-        Switch s = collider.GetComponent<Switch>();
-        if (s)
-        {
-            //GamePlay.S.texts[4].text = "";
-            //GamePlay.S.texts[5].text = "";
-        }
-    }
 
     public IEnumerator enableGameObjectWithDelay()
     {

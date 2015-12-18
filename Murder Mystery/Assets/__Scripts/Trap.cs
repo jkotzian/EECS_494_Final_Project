@@ -33,6 +33,8 @@ public class Trap : MonoBehaviour {
     public Rigidbody rigidbody;
     bool rotating;
     public int swordTimer;
+
+    public GameObject glow;
     // Use this for initialization
     void Start()
     {
@@ -97,6 +99,9 @@ public class Trap : MonoBehaviour {
             }
             if (activatedTimer == animOverTime)
             {
+                // Remove the glow
+                glow.SetActive(false);
+                // The sword trap doesn't have an animation state
                 if (!swordTrap)
                     animator.SetTrigger("Done");
                 if (tutorialTrap)
@@ -167,9 +172,20 @@ public class Trap : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         NPC npc = other.GetComponent<NPC>();
-        if(npc && npc.possessed)
-        {                         
-            hint.SetActive(false);
+        if (npc)
+        {
+            npc.setWalkedOverTrap(false);
+            if (npc.possessed)  
+                hint.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        NPC npc = other.GetComponent<NPC>();
+        if (npc)
+        {
+            npc.setWalkedOverTrap(true);
         }
     }
 

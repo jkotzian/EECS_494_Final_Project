@@ -177,8 +177,6 @@ public class Door : MonoBehaviour {
         NPC npc = other.GetComponent<NPC>();
         if (detective)
         {
-            // Activate glow
-            print("hit2");
             ActivateDetectiveGlow(true);
         }
         if (npc)
@@ -199,8 +197,6 @@ public class Door : MonoBehaviour {
         NPC npc = other.GetComponent<NPC>();       
         if (detective)
         {
-            // Activate glow
-            print("hit3");
             DeactivateDetectiveGlow(true);
         }
         if (npc)

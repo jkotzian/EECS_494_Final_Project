@@ -17,7 +17,7 @@ TagManager:
   - 
   - 
   - Detective
-  - MurdererThings
+  - GhostThings
   - DetectiveThings
   - Ghost
   - OuterBoundary
@@ -25,8 +25,8 @@ TagManager:
   - NPC
   - Possess
   - EnvironmentalTraps
-  - 
-  - 
+  - InvisibleMarkers
+  - DInvisibleMarkers
   - 
   - 
   - 

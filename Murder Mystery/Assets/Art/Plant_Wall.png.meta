@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 85331df743897cd438ea52b7ddfe608d
-timeCreated: 1449726602
+timeCreated: 1450411842
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Plant_Wall_0
+    21300002: Plant_Wall_1
+    21300004: Plant_Wall_2
+    21300006: Plant_Wall_3
+    21300008: Plant_Wall_4
+    21300010: Plant_Wall_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,7 +25,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -54,12 +59,62 @@ TextureImporter:
     - name: Plant_Wall_0
       rect:
         serializedVersion: 2
-        x: 13
+        x: 3
         y: 0
-        width: 29
+        width: 28
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plant_Wall_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plant_Wall_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 0
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plant_Wall_3
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plant_Wall_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Plant_Wall_5
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
