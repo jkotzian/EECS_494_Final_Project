@@ -22,7 +22,12 @@ public class ReadyScreen : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {        
-        int numControllers = InputManager.Devices.Count;      
+        int numControllers = InputManager.Devices.Count;
+        if (Input.GetKeyDown(KeyCode.Space) || (ready[0] && ready[1] && ready[2] && ready[3]))
+        {
+            TotalGame.S.inReady = false;
+            Application.LoadLevel("AlphaMansion");
+        }  
         for (int i = 0; i < numControllers; i++)
         {
             InputDevice controller = InputManager.Devices[i];     
@@ -33,18 +38,13 @@ public class ReadyScreen : MonoBehaviour {
             if (ready[i])
             {
                 pressTexts[i].enabled = false;
-                readyTexts[i].enabled = true;
+                //readyTexts[i].enabled = true;
             }
             else
             {
-                readyTexts[i].enabled = false;
+                //readyTexts[i].enabled = false;
                 pressTexts[i].enabled = true;
             }
-        }                 
-        if (Input.GetKeyDown(KeyCode.Space) || (ready[0] && ready[1] && ready[2] && ready[3]))
-        {
-            TotalGame.S.inReady = false;
-            Application.LoadLevel("AlphaMansion");
         }  
     }              
 }

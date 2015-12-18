@@ -1,1 +1,1 @@
-MurderMystery_v1.3_Beta.exe -popupwindow -screen-width 4160
+MurderMystery_v1.4_Beta.exe -popupwindow -screen-width 4160
