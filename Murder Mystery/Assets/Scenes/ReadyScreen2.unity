@@ -5465,7 +5465,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Posess          and Kill with        \n  \nAvoid         "
+  m_Text: "Possess          and Kill with        \n  \nAvoid         "
 --- !u!222 &1660444796
 CanvasRenderer:
   m_ObjectHideFlags: 0
