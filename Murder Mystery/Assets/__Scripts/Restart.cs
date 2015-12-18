@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using InControl;
 
 public class Restart : MonoBehaviour {
     public List<Text> texts;
@@ -70,9 +71,26 @@ public class Restart : MonoBehaviour {
     }
 
 	void Update () {
+        bool actionPressed = false;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(TotalGame.S.round < 2)
+            actionPressed = true;
+        }
+
+        int numControllers = InputManager.Devices.Count;
+
+        for (int i = 0; i < numControllers; i++)
+        {
+            InputDevice controller = InputManager.Devices[i];
+            if (controller.Action1.WasPressed)
+            {
+                actionPressed = true;
+            }
+        }
+
+        if (actionPressed)
+        {
+            if (TotalGame.S.round < 2)
             {
                 TotalGame.S.inReady = true;
                 Application.LoadLevel("ReadyScreen2");

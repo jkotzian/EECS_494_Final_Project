@@ -1011,7 +1011,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 7
 --- !u!114 &387046115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,7 +1311,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
 --- !u!1001 &504186761
 Prefab:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ Transform:
   m_Children:
   - {fileID: 1513474218}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
 --- !u!95 &707051110
 Animator:
   serializedVersion: 3
@@ -2411,7 +2411,7 @@ Transform:
   - {fileID: 235675514}
   - {fileID: 1816945780}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!122 &958913409
 Halo:
   m_ObjectHideFlags: 0
@@ -2703,7 +2703,7 @@ GameObject:
   - 114: {fileID: 1007999397}
   - 114: {fileID: 1007999396}
   m_Layer: 10
-  m_Name: Press1
+  m_Name: Press3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2854,7 +2854,7 @@ GameObject:
   - 114: {fileID: 1029448014}
   - 114: {fileID: 1029448013}
   m_Layer: 10
-  m_Name: Ready1
+  m_Name: Ready3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5636,7 +5636,7 @@ GameObject:
   - 114: {fileID: 1818927516}
   - 114: {fileID: 1818927515}
   m_Layer: 10
-  m_Name: Ready2
+  m_Name: Ready4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6141,7 +6141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
 --- !u!1 &1930131899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6296,7 +6296,7 @@ Transform:
   - {fileID: 1612710240}
   - {fileID: 1501496705}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!1 &2071360949
 GameObject:
   m_ObjectHideFlags: 0
@@ -7606,7 +7606,7 @@ GameObject:
   - 114: {fileID: 2139024600}
   - 114: {fileID: 2139024599}
   m_Layer: 10
-  m_Name: Press2
+  m_Name: Press4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
