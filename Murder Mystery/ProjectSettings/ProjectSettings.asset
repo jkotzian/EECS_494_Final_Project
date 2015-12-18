@@ -245,7 +245,10 @@ PlayerSettings:
 =======
   ps4UseAudio3dBackend: 0
   ps4Audio3dVirtualSpeakerCount: 14
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> fa5f63e5130cf5514283ee368dfa40880ebc29b4
   ps4attribUserManagement: 0
   ps4attribMoveSupport: 0
   ps4attrib3DSupport: 0

@@ -2993,9 +2993,13 @@ MonoBehaviour:
   inMainMenu: 0
   inReady: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   inCredits: 0
 >>>>>>> origin/master
+=======
+  inCredits: 0
+>>>>>>> fa5f63e5130cf5514283ee368dfa40880ebc29b4
 --- !u!4 &1340596133
 Transform:
   m_ObjectHideFlags: 0
