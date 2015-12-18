@@ -72,7 +72,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .5, y: .600000024, z: 1}
+  m_Size: {x: .400000006, y: .600000024, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &9587626
 Animator:
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shatterDetails:
-    horizontalCuts: 8
-    verticalCuts: 5
+    horizontalCuts: 1
+    verticalCuts: 1
     randomizeAtRunTime: 0
     randomSeed: 0
     randomness: .189999998
@@ -124,8 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462d84900e83348438ba64f6dc2c3725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
   index: 0
+  shatterTime: 0
+  collider: {fileID: 0}
 --- !u!114 &11491714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +210,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shatterDetails.verticalCuts
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shatterDetails.horizontalCuts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: .400000006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
