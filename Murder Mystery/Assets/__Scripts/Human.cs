@@ -12,7 +12,7 @@ public class Human : MonoBehaviour {
     public bool tutorialNPC;
     // Number 1 - 0 of the the objective number this completes for the
     // tutorial
-    public int objectiveNum;
+    public int objectiveNum;      
 
     public void setActionKey(KeyCode key)
     {
@@ -47,6 +47,7 @@ public class Human : MonoBehaviour {
             {
                 GamePlay.S.completedObjective(objectiveNum);
             }
+            StartCoroutine(PlayCannon(NPCToKill));
         }
         // If it's a Ghost 
         Ghost GhostToKill = GetComponent<Ghost>();
@@ -70,5 +71,11 @@ public class Human : MonoBehaviour {
         }
 
         return layerMask;
+    }
+
+    IEnumerator PlayCannon(NPC npc)
+    {
+        yield return new WaitForSeconds(1f);
+        npc.drum.Play();  
     }
 }

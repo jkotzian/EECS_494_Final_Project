@@ -39,6 +39,7 @@ public class GhostHit : MonoBehaviour {
             {
                 if (npc.alive)
                 {
+                    GamePlay.S.PlayWilhelm();
                     StartCoroutine(npc.PopUpNegativeScore());
                 }
             }

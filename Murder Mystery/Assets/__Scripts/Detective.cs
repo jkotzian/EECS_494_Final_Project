@@ -92,4 +92,5 @@ public class Detective : Human {
     {
         movement.checkForDoorInput(collider);
     }
+
 }

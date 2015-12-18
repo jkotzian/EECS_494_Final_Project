@@ -25,6 +25,7 @@ public class NPC : Human {
     public Movement NPCMovement;
     public Movement possessorMovement;
     public GameObject hint;
+    public AudioSource drum;
 
     Rigidbody rb;
 
@@ -32,6 +33,7 @@ public class NPC : Human {
 
     public GameObject glowObject;
     private Component glow;
+    private GameObject indicator;
 
     public GameObject negativeScorePrefab;
     Vector3 offset;
@@ -292,6 +294,19 @@ public class NPC : Human {
                         possessorMovement.leftKey, possessorMovement.rightKey);
         NPCMovement.conNum = possessor.movement.conNum;
         glow.GetType().GetProperty("enabled").SetValue(glow, true, null);
+
+        if (possessor.gameObject == GamePlay.S.Ghosts[0])
+        {
+            indicator = Instantiate(GamePlay.S.gIndicatorPrefab1, Vector3.zero, Quaternion.identity) as GameObject;
+            indicator.transform.parent = transform;
+            indicator.transform.localPosition = new Vector3(-0.03f, 0.15f, 0);
+        }
+        else if (possessor.gameObject == GamePlay.S.Ghosts[1])
+        {
+            indicator = Instantiate(GamePlay.S.gIndicatorPrefab2, Vector3.zero, Quaternion.identity) as GameObject;
+            indicator.transform.parent = transform;
+            indicator.transform.localPosition = new Vector3(-0.03f, 0.15f, 0);
+        }
     }
 
     public void turnOnMovement()
@@ -337,8 +352,12 @@ public class NPC : Human {
 		possessed = false;
 		// Disable the movement
 		NPCMovement.enabled = false;
-		// Re-enable the possession owner wherever the NPC is with an offset
-		Vector3 offset = new Vector3(0, .3f, 0);    
+        if (indicator)
+        {
+            DestroyObject(indicator);
+        }
+        // Re-enable the possession owner wherever the NPC is with an offset
+        Vector3 offset = new Vector3(0, .3f, 0);    
         possessionOwner.transform.position = gameObject.transform.position + offset;
         // Delay the ghost coming out of the body for trap kills
         if (delay)
