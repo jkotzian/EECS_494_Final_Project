@@ -3213,7 +3213,7 @@ Prefab:
       objectReference: {fileID: 1549593357}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: regularRoundTime
-      value: 120
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 11451664, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
       propertyPath: dIndicatorPrefab1

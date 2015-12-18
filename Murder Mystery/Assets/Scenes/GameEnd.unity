@@ -761,13 +761,15 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e9599d887ef22474080e50f27b19726b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e72c32c501fc745aba89c0bdef813f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &697786105
 Transform:
@@ -1004,6 +1006,8 @@ MonoBehaviour:
   - {fileID: 217033430}
   - {fileID: 28374288}
   - {fileID: 218017215}
+  winCameraObj: {fileID: 1087673603}
+  loseCameraObj: {fileID: 1959504209}
 --- !u!124 &1087673605
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1409,7 +1413,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

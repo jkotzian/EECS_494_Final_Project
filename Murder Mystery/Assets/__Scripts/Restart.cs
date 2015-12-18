@@ -6,10 +6,16 @@ using InControl;
 public class Restart : MonoBehaviour {
     public List<Text> texts;
     public List<Text> endTexts;
+    public GameObject winCameraObj;
+    public GameObject loseCameraObj;
+    private Rect leftScreen;
+    private Rect rightScreen;
 
 
-	void Start()
+    void Start()
     {
+        leftScreen = new Rect(0, 0, 0.5f, 1);
+        rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         string message = "";
         string winScore = "";
         string loseScore = "";
@@ -27,20 +33,26 @@ public class Restart : MonoBehaviour {
                 break;
 
             //case 4:
-            case 2:                        
+            case 2:    
                 if (TotalGame.S.bodyCount[0] > TotalGame.S.bodyCount[1])
                 {
+                    winCameraObj.GetComponent<Camera>().rect = leftScreen;
+                    loseCameraObj.GetComponent<Camera>().rect = rightScreen;
                     winScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                     loseScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                 }
                 else if (TotalGame.S.bodyCount[1] > TotalGame.S.bodyCount[0])
                 {
+                    winCameraObj.GetComponent<Camera>().rect = rightScreen;
+                    loseCameraObj.GetComponent<Camera>().rect = leftScreen;
                     winScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                     loseScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                 }
                 else
                 {
-                    if(endTexts.Count > 5)
+                    winCameraObj.GetComponent<Camera>().rect = leftScreen;
+                    loseCameraObj.GetComponent<Camera>().rect = rightScreen;
+                    if (endTexts.Count > 5)
                     {
                         endTexts[4].text = "TIE!";
                         endTexts[5].text = "TIE!";
