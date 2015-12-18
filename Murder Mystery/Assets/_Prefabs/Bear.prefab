@@ -53,6 +53,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &175364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 446156}
+  - 122: {fileID: 12288816}
+  m_Layer: 9
+  m_Name: Glow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &197494
 GameObject:
   m_ObjectHideFlags: 1
@@ -108,6 +124,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 433458}
   m_RootOrder: 1
+--- !u!4 &446156
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.00999999978, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 468846}
+  m_RootOrder: 1
 --- !u!4 &468846
 Transform:
   m_ObjectHideFlags: 1
@@ -115,10 +143,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.41000009, y: 3.23699999, z: 0}
+  m_LocalPosition: {x: -3.25478268, y: 1.47945094, z: 0}
   m_LocalScale: {x: 2.2872653, y: 2.2872653, z: 2.2872653}
   m_Children:
   - {fileID: 433458}
+  - {fileID: 446156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2322274
@@ -240,6 +269,7 @@ MonoBehaviour:
   swordSwingLimit: 0
   rigidbody: {fileID: 0}
   swordTimer: 0
+  glow: {fileID: 175364}
 --- !u!114 &11496960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,6 +281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e6e1b5c2ee8064dbb8850eae940849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &12288816
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175364}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278245119
+  m_Size: 1
 --- !u!122 &12298436
 Halo:
   m_ObjectHideFlags: 1
@@ -378,7 +419,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Size
-      value: .400000006
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.rgba
@@ -392,6 +433,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: glow
+      value: 
+      objectReference: {fileID: 175364}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105576}

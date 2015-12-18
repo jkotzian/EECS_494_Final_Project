@@ -33,6 +33,8 @@ public class Trap : MonoBehaviour {
     public Rigidbody rigidbody;
     bool rotating;
     public int swordTimer;
+
+    public GameObject glow;
     // Use this for initialization
     void Start()
     {
@@ -97,6 +99,9 @@ public class Trap : MonoBehaviour {
             }
             if (activatedTimer == animOverTime)
             {
+                // Remove the glow
+                glow.SetActive(false);
+                // The sword trap doesn't have an animation state
                 if (!swordTrap)
                     animator.SetTrigger("Done");
                 if (tutorialTrap)

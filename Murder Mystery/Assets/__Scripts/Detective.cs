@@ -69,7 +69,6 @@ public class Detective : Human {
             }
             Vector3 verticalOffset = new Vector3(0, .2f, 0);
             ghostHitObjOffset += (horizontalOffset + verticalOffset);
-            //ghostHitObjOffset += Vector3.up;
 
             ghostHitObjPos += ghostHitObjOffset;
 
