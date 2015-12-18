@@ -212,7 +212,7 @@ public class TotalGame : MonoBehaviour {
         weaponFireSound.Play();
         TDetective.GetComponent<Detective>().weaponEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        inReady = true;
+        inReady = false;
         inMainMenu = false;
         Application.LoadLevel("Tutorial");
     }
