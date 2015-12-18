@@ -10,6 +10,8 @@ public class Human : MonoBehaviour {
 	public GameObject	trackerPrefab;
     public KeyCode actionKey;
     public bool tutorialNPC;
+    // Tutorial text to remove upon killing the NPC
+    public GameObject tutorialText;
     // Number 1 - 0 of the the objective number this completes for the
     // tutorial
     public int objectiveNum;
@@ -46,6 +48,7 @@ public class Human : MonoBehaviour {
             if (tutorialNPC)
             {
                 GamePlay.S.completedObjective(objectiveNum);
+                tutorialText.SetActive(false);
             }
         }
         // If it's a Ghost 

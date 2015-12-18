@@ -5,24 +5,34 @@ using UnityEngine.UI;
 public class InvisibleMarker : MonoBehaviour {
 
 	public int index;
+    public bool final;
+
+    public GameObject oldText;
+    public GameObject newText;
+
+    public Text finalText;
+    public Text finalText1;
+    public Text finalText_D;
+    public Text finalText_D1;
+
 	public bool shown = false, firstTextShown = false;
 	public GameObject doneTextGhost1;
 	public GameObject doneTextGhost2;
 	public GameObject doneTextDetective1;
 	public GameObject doneTextDetective2;
-	Text finalText, finalText1, finalText_D, finalText_D1;
+	//Text finalText, finalText1, finalText_D, finalText_D1;
 
 	// Use this for initialization
 	void Start () {
-		finalText = GameObject.Find ("Kill").GetComponent<Text> ();
+		/*finalText = GameObject.Find ("Kill").GetComponent<Text> ();
 		finalText1 = GameObject.Find ("Kill_2").GetComponent<Text> ();
 		finalText_D = GameObject.Find ("Blaster_D1").GetComponent<Text> ();
-		finalText_D1 = GameObject.Find ("Blaster (4)").GetComponent<Text> ();
+		finalText_D1 = GameObject.Find ("Blaster (4)").GetComponent<Text> ();*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (doneTextGhost1.GetComponent<Text> ().isActiveAndEnabled) {
+		/*if (doneTextGhost1.GetComponent<Text> ().isActiveAndEnabled) {
 			finalText.enabled = false;
 		}
 		if (doneTextGhost2.GetComponent<Text> ().isActiveAndEnabled) {
@@ -33,11 +43,25 @@ public class InvisibleMarker : MonoBehaviour {
 		}
 		if (doneTextDetective2.GetComponent<Text> ().isActiveAndEnabled) {
 			finalText_D1.enabled = false;
-		}
+		}*/
 	}
 
-	void OnTriggerEnter(Collider other){
-		Text newText = null, oldText = null;
+    void OnTriggerExit(Collider other)
+    {
+        gameObject.SetActive(false);
+    }
+
+	void OnTriggerEnter(Collider other) {
+        if (!final)
+        {
+            oldText.SetActive(false);
+            newText.SetActive(true);
+        }
+        else
+        {
+            oldText.SetActive(false);
+        }
+		/*Text newText = null, oldText = null;
 		if (other.GetComponent<NPC> () != null) {
 			if (!other.GetComponent<NPC> ().possessed)
 				return;
@@ -122,18 +146,18 @@ public class InvisibleMarker : MonoBehaviour {
 			else if (index == 28){
 				if (other.name == "Collider")
 					return;
-				newText = GameObject.Find ("Blaster (4)").GetComponent<Text> ();
-				oldText = GameObject.Find ("Blaster_D1_2").GetComponent<Text> ();
+                newText = GameObject.Find("Blaster_D").GetComponent<Text>();
+				oldText = GameObject.Find ("Blaster_D_2").GetComponent<Text> ();
 			}
 			else if (index == 30){
 				if (other.name == "Collider")
 					return;
 				newText = GameObject.Find ("Blaster_D1_2").GetComponent<Text> ();
 				oldText = GameObject.Find ("Blaster (5)").GetComponent<Text> ();
-			}
-			newText.enabled = true;
+			}*/
+			/*newText.enabled = true;
 			oldText.enabled = false;
-			shown = true;
-		}
+			shown = true;*/
+		//}
 	}
 }

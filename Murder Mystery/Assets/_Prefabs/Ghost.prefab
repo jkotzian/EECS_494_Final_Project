@@ -151,6 +151,7 @@ MonoBehaviour:
   actionKey: 0
   tutorialNPC: 0
   objectiveNum: 0
+  active: 1
   bloodDropTimeMax: 0
   bloodDropInterval: 0
   newInterval: 1
@@ -349,6 +350,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: shrinkingIntoBodySpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: active
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

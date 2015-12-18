@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using InControl;
 
 public class Ghost : Human
-{                               
+{
+    public bool active;
     public RaycastHit hitInfo;
     public int bloodDropTimeMax;
     public int bloodDropInterval;
@@ -76,7 +77,7 @@ public class Ghost : Human
     // Update is called once per frame
     void Update()
     {      
-        if (TotalGame.S.inMainMenu || TotalGame.S.inReady)
+        if (TotalGame.S.inMainMenu || TotalGame.S.inReady || !active)
         {
             return;
         } 

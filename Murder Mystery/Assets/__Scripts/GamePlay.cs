@@ -371,12 +371,27 @@ public class GamePlay : MonoBehaviour {
 
         if (tutorialObjectivesCompleted == 2 && numPlayers == 2)
         {
+            doneTextGhost1.SetActive(false);
+            doneText2Ghost1.SetActive(false);
+
+            doneTextDetective1.SetActive(false);
+            doneText2Detective1.SetActive(false);
+
             completedText1.SetActive(true);
             completedText2.SetActive(true);
             StartCoroutine(tutorialEndSequence());
         }
         else if (tutorialObjectivesCompleted == 4 && numPlayers == 4)
         {
+            doneTextGhost1.SetActive(false);
+            doneText2Ghost1.SetActive(false);
+            doneTextGhost2.SetActive(false);
+            doneText2Ghost2.SetActive(false);
+            doneTextDetective1.SetActive(false);
+            doneText2Detective1.SetActive(false);
+            doneTextDetective2.SetActive(false);
+            doneText2Detective2.SetActive(false);
+
             completedText1.SetActive(true);
             completedText2.SetActive(true);
             StartCoroutine(tutorialEndSequence());
@@ -432,10 +447,10 @@ public class GamePlay : MonoBehaviour {
     IEnumerator tutorialEndSequence()
     {
         yield return new WaitForSeconds(3f);
-        //if (TotalGame.S.round == 2)
+        if (TotalGame.S.round == 2)
             Application.LoadLevel("MainMenu");
-        //else
-            //Application.LoadLevel("Tutorial");
+        else
+            Application.LoadLevel("Tutorial");
     }
 
     List<Vector3> generateStartLoc()
