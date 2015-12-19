@@ -1,0 +1,60 @@
+Initialize engine version: 5.2.2f1 (3757309da7e7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.146 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\James\Documents\GitHub\EECS_494_Final_Project\Murder Mystery\MurderMystery_v1.5_Beta_Data\Managed\System.dll (this message is harmless)
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Number of Devices: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1390 -> priority: 1 
+  Thread -> id: 1d0c -> priority: 1 
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.773604 ms
+InControl (version 1.4.4 build 3776)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1504.
+Total: 1.536316 ms (FindLiveObjects: 0.132971 ms CreateObjectMapping: 0.129402 ms MarkObjects: 1.246723 ms  DeleteObjects: 0.026326 ms)
+
+Sprite Shatter (PlantWall (1)): There was an error reading the texture data. Please ensure the "Read/Write" texture flag is set.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Sprite Shatter (PlantWall): There was an error reading the texture data. Please ensure the "Read/Write" texture flag is set.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Sprite Shatter (PlantWall (2)): There was an error reading the texture data. Please ensure the "Read/Write" texture flag is set.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Sprite Shatter (PlantWall (3)): There was an error reading the texture data. Please ensure the "Read/Write" texture flag is set.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
