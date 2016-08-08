@@ -23,8 +23,6 @@ public class HideLight : MonoBehaviour {
         {                        
             light1.enabled = false;
         }
-        //if (light2 != null && (hidden || alwaysHidden))
-            //light2.enabled = false;
     }
 
     void OnPreRender()
@@ -33,8 +31,6 @@ public class HideLight : MonoBehaviour {
         {                          
             light1.enabled = false;
         }
-        //if (light2 != null && (hidden || alwaysHidden))
-            //light2.enabled = false;
     }
     void OnPostRender()
     {
@@ -42,8 +38,6 @@ public class HideLight : MonoBehaviour {
         {                          
             light1.enabled = true;
         }
-        //if (light2 != null && (hidden || alwaysHidden))
-            //light2.enabled = true;
     }
 
     public void hideLight() {

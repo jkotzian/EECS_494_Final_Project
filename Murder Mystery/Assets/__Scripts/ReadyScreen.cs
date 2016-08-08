@@ -26,7 +26,7 @@ public class ReadyScreen : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) || (ready[0] && ready[1] && ready[2] && ready[3]))
         {
             TotalGame.S.inReady = false;
-            Application.LoadLevel("AlphaMansion");
+            Application.LoadLevel("Mansion");
         }  
         for (int i = 0; i < numControllers; i++)
         {

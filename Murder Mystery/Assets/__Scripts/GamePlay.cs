@@ -28,9 +28,6 @@ public class GamePlay : MonoBehaviour {
 	public GameObject		flamethrowerPrefab;
 	public GameObject		poisonWaterPrefab;
 	public GameObject		pianoPrefab;
-    public GameObject       detectiveCameraObj;
-    public GameObject       ghostCameraObj;
-    HideLight               ghostCamera;
 
     public int numNPCs;
     public int numFloors;
@@ -100,7 +97,6 @@ public class GamePlay : MonoBehaviour {
         rightScreen = new Rect(0.5f, 0, 0.5f, 1);
         startLoc = generateStartLoc();
         bookshelfDic = generateBookshelfDic();
-        ghostCamera = ghostCameraObj.GetComponent<HideLight>();
         numControllers = 0;
         tutorialObjectivesCompleted = 0;
     }
@@ -135,20 +131,6 @@ public class GamePlay : MonoBehaviour {
         createGhostsAndDetectives(tutorialStartLocGhost1.position, tutorialStartLocGhost2.position,
                                   tutorialStartLocDetective1.position, tutorialStartLocDetective2.position);
         TotalGame.S.round++;
-
-        // NOTE MAKE THIS INTO A FUNCITON AND CALL IT IN REGULAR GAMEPLAY
-        // set detective and ghost cameras to correct side.
-        if (TotalGame.S.round == 2)
-        {
-            detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
-            ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
-            switchControllers();
-        }
-        else
-        {
-            detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
-            ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
-        }
     }
 
     void regularGamePlayStart()
@@ -199,23 +181,8 @@ public class GamePlay : MonoBehaviour {
         bookshelfSpawnTime = Time.time;
         TotalGame.S.round++;
 
-        // set detective and ghost cameras to correct side.
-        if (TotalGame.S.round % 2 == 0)
-        {
-            detectiveCameraObj.GetComponent<Camera>().rect = leftScreen;
-            ghostCameraObj.GetComponent<Camera>().rect = rightScreen;
-            switchControllers();
-        }
-        else
-        {
-            detectiveCameraObj.GetComponent<Camera>().rect = rightScreen;
-            ghostCameraObj.GetComponent<Camera>().rect = leftScreen;
-        }
-
-        //if (TotalGame.S.round > 2)
-        //{
         roundTime = regularRoundTime;
-        //}
+
         timerText.text = "";
         scoreText.text = "";
     }
@@ -264,7 +231,7 @@ public class GamePlay : MonoBehaviour {
             while (bookshelfDic[locs[i]] == true && tries < 2)
             {
                 ++tries;
-                i = UnityEngine.Random.Range(0, 7);
+                i = UnityEngine.Random.Range(0, 6);
                 // See if the new place is taken
                 if (bookshelfDic[locs[i]] == false)
                 {

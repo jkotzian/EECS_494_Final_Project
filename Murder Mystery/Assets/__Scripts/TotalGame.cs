@@ -197,13 +197,14 @@ public class TotalGame : MonoBehaviour {
 
     IEnumerator startGame()
     {
-        AudioSource weaponFireSound = NGDetective.GetComponent<Detective>().weaponFireSoundObj.GetComponent<AudioSource>();
+        /*AudioSource weaponFireSound = NGDetective.GetComponent<Detective>().weaponFireSoundObj.GetComponent<AudioSource>();
         weaponFireSound.Play();
         NGDetective.GetComponent<Detective>().weaponEffect.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        */
         inReady = true;
         inMainMenu = false;
-        Application.LoadLevel("ReadyScreen1");
+        Application.LoadLevel("ReadyScreen");
+        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator startTutorial()

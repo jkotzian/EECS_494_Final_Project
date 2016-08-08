@@ -20,11 +20,8 @@ public class MansionEnvironment : MonoBehaviour {
 	// go on next
 	int                     nextTurnOnTime;
     int                     nextFlashTime;
-    public Transform cameraToHideObj;
-    public Transform cameraToDimObj;
-    HideLight cameraToHide;
-    DimLight cameraToDim;
-    public Transform        nightVisionObject;
+    public Transform        cameraToHideObj;
+    HideLight               cameraHideObj;
 	public bool lightsOn = true;
 	bool first;
 	
@@ -37,10 +34,8 @@ public class MansionEnvironment : MonoBehaviour {
 		nextTurnOffTime = turnOffTimeMax + 1;
 		// Set it so the lights start turned off
 		lightTimer = nextTurnOffTime - 1;
-		turnedOff = false;
-        //nightVisionObject.gameObject.SetActive(false);          
-        cameraToHide = cameraToHideObj.GetComponent<HideLight>();
-        cameraToDim = cameraToDimObj.GetComponent<DimLight>();
+		turnedOff = false;         
+        cameraHideObj = cameraToHideObj.GetComponent<HideLight>();
         first = true;
 	}
 	
@@ -58,7 +53,7 @@ public class MansionEnvironment : MonoBehaviour {
 		}
         if (turnedOff && lightTimer == nextFlashTime)
         {
-            StartCoroutine(cameraToHide.flashDown());
+            StartCoroutine(cameraHideObj.flashDown());
         }
 	}
 	
@@ -67,8 +62,7 @@ public class MansionEnvironment : MonoBehaviour {
 		// Say that the lights are off and bring the black screen
 		// to the forefront
 		turnedOff = true;
-		cameraToHide.hideLight();
-        cameraToDim.dimLight();
+		cameraHideObj.hideLight();
         StartCoroutine(delayActivateNightVision());
         // Reset the timer and figure out when to turn the lights
         // back on
@@ -92,8 +86,7 @@ public class MansionEnvironment : MonoBehaviour {
 		// Say that the lights are on and put the black screen
 		// in the background
 		turnedOff = false;
-		cameraToHide.unhideLight();
-        cameraToDim.undimLight();
+		cameraHideObj.unhideLight();
         StartCoroutine(delayDeactivateNightVision());
         // Reset the timer and figure out when to turn the lights
         // back off
@@ -105,32 +98,10 @@ public class MansionEnvironment : MonoBehaviour {
     IEnumerator delayActivateNightVision()
     {
         yield return new WaitForSeconds(1f);
-        //nightVisionObject.gameObject.SetActive(true);
     }
 
     IEnumerator delayDeactivateNightVision()
     {
         yield return new WaitForSeconds(1.1f);
-        //nightVisionObject.gameObject.SetActive(false);
     }
-	
-	//void OnTriggerStay(Collider other) {
-	//    //print (other.gameObject.tag);
-	//    if (other.gameObject.tag == "Murderer") {
-	//        if (Input.GetKeyDown (KeyCode.P) && !beenClicked) {
-	//            beenClicked = true;
-	//            //print ("Clicked");
-	//            Vector3 temp = blackScene.transform.position;
-	//            temp.z = -1;
-	//            blackScene.transform.position = temp;
-	//            //print (blackScene.transform.position);
-	//            lightObject.GetComponent<Light> ().enabled = false;
-	//            turnedOff = true;
-	//        }
-	//    }
-	//}
-	
-	//void OnTriggerExit(Collider other) {
-	//    beenClicked = false;
-	//}
 }
