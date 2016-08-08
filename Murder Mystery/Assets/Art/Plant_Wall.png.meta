@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 85331df743897cd438ea52b7ddfe608d
-timeCreated: 1450480137
+timeCreated: 1470688685
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,7 +23,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 1
   grayScaleToAlpha: 0
@@ -48,7 +48,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -64,8 +64,9 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Plant_Wall_1
       rect:
         serializedVersion: 2
@@ -74,8 +75,9 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Plant_Wall_2
       rect:
         serializedVersion: 2
@@ -84,8 +86,9 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Plant_Wall_3
       rect:
         serializedVersion: 2
@@ -94,8 +97,9 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Plant_Wall_4
       rect:
         serializedVersion: 2
@@ -104,8 +108,9 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     - name: Plant_Wall_5
       rect:
         serializedVersion: 2
@@ -114,8 +119,10 @@ TextureImporter:
         width: 28
         height: 62
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
