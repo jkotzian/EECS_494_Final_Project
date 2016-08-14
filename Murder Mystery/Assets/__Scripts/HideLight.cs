@@ -41,11 +41,11 @@ public class HideLight : MonoBehaviour {
     }
 
     public void hideLight() {
-        StartCoroutine(flashDown());
+        //StartCoroutine(flashDown());
     }
 
     public void unhideLight() {
-        StartCoroutine(flashUp());
+        //StartCoroutine(flashUp());
     }
 
     public IEnumerator flashDown()

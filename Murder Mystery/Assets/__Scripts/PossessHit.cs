@@ -32,7 +32,7 @@ public class PossessHit : MonoBehaviour
         {
             // If the ghost is not currently possessing someone,
             // and the target is alive
-            if (!ghostOwner.possessing && target.alive)
+            if (ghostOwner.currentState != Ghost.State.Possessing && target.alive)
             {
                 target.possess(ghostOwner);
                 Destroy(this.gameObject);

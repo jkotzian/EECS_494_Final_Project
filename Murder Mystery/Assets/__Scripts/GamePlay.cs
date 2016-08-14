@@ -246,7 +246,6 @@ public class GamePlay : MonoBehaviour {
                 GameObject bookshelf = Instantiate(bookshelfPrefab, locs[i], Quaternion.identity) as GameObject;
                 bookshelf.GetComponent<Bookshelf>().index = i;
             }
-            print("foundgoodlocation = " + foundGoodLocation);
         }
     }
 

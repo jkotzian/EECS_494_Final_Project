@@ -158,7 +158,7 @@ public class Trap : MonoBehaviour {
                                   InputManager.Devices[npc.NPCMovement.conNum].Action1.WasPressed);
         // If the ghost is in the middle of possessing and shrinking into the body,
         // then don't say the controller button was pressed
-        if (npc.possessed && npc.possessionOwner.shrinkingIntoBody)
+        if (npc.possessed)
         {
             controllerPressed = false;
         }

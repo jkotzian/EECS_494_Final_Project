@@ -211,7 +211,7 @@ public class NPC : Human {
                         
         // If the Ghost is possessed, they are not currently shrinkingInto the NPCs body, and they are 
         // not currently over a trap, AND they hit the possession key, then dispossess them
-        bool canDispossess = possessed && !possessionOwner.shrinkingIntoBody && !walkedOverTrap &&
+        bool canDispossess = possessed && !walkedOverTrap &&
                             (Input.GetKeyDown(possessionOwner.actionKey) || (NPCMovement.conNum < GamePlay.S.numControllers &&
                              InputManager.Devices[NPCMovement.conNum].Action1.WasPressed));
         if (canDispossess)
@@ -280,11 +280,7 @@ public class NPC : Human {
         hint.SetActive(false);
         possessionOwner = possessor;
         possessorMovement = possessor.GetComponent<Movement>();
-        
-        possessor.possessing = true;
-        possessor.possessedNPC = this;
 
-        possessor.ShrinkIntoBody(transform.position);
         // Set the velocity to 0
         rb.velocity = Vector3.zero;
         // Give it the same controller and controls as the ghost
@@ -363,7 +359,7 @@ public class NPC : Human {
         {
             possessionOwner.gameObject.SetActive(true);
         }
-        possessionOwner.possessing = false;
+        possessionOwner.currentState = Ghost.State.Idle;
 		possessionOwner = null;
     }
 
@@ -371,15 +367,15 @@ public class NPC : Human {
     {
         if (!possessed)
         { 
-            GhostCollider ghost = collider.GetComponent<GhostCollider>();
-            if (ghost)
+            GhostCollider ghostColl = collider.GetComponent<GhostCollider>();
+            if (ghostColl)
             {
-                Ghost ghostScript = ghost.GetComponentInParent<Ghost>();
-                if (ghostScript && ghostScript.possessing && !TotalGame.S.inReady)
+                Ghost ghost = ghostColl.GetComponentInParent<Ghost>();
+                if (ghost && ghost.currentState == Ghost.State.Possessing && !TotalGame.S.inReady)
                 {
                     hint.SetActive(false);
                 }
-                if (alive && ghostScript && ghostScript.alive && !TotalGame.S.inReady)
+                if (alive && ghost && ghost.alive && !TotalGame.S.inReady)
                 {
                     hint.SetActive(true);
                 }

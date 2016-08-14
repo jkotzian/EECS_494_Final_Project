@@ -6,66 +6,42 @@ using InControl;
 public class Ghost : Human
 {
     public bool active;
-    public RaycastHit hitInfo;
-    public int bloodDropTimeMax;
-    public int bloodDropInterval;
-    int bloodDropTimer;
-
-    public int newInterval;
-
-    List<GameObject> bloodTrail;
 
     public GameObject possessionObjRef;
     GameObject currentPossessionObj;
 
-    bool tracked;
-    float startTime;
+    NPC possessionTarget;
+    public NPC possessedNPC;
 
-    public bool possessing;
     public Movement movement;
+    public float flyingSpeed = 3;
+    public float closeEnoughDistance = .2f;
+
     public SpriteRenderer srend;
 
     bool growing;
-    bool shrinking;
-    public bool tryingToPossess;
     public float growthRate;
     public float maxGrowthY;
     public float normalY;
-
     public float growthVal;
+    public float fadingIntoBodySpeed;
 
-    public float shrinkingIntoBodySpeed;
-    public bool shrinkingIntoBody;
-    Vector3 targetPossessionPosition;
-
-    public NPC possessedNPC;
-
-	public GameObject healthBarPrefab;
-	GameObject healthBar;
-	public int currentLife;
-	int ghostLives;
-	Vector3 reserve;
-	float timer;
+    public enum State {Idle, FlyingToPossess, FadingIntoBody, Possessing}
+    public State currentState;
 
     void Awake()
     {
         setActionKey(KeyCode.Q);   
-        startTime = Time.time;
         normalY = transform.position.y;
 
-        possessing = false;
         currentPossessionObj = null;
 
         movement = GetComponent<Movement>();
         facingRight = true;
         srend = GetComponent<SpriteRenderer>();
-        tryingToPossess = false;
         growing = false;
-        shrinking = false;
-        shrinkingIntoBody = false;
 
-		ghostLives = 3;
-		currentLife = 3;
+        currentState = State.Idle;
     }
 
     // Update is called once per frame
@@ -76,68 +52,119 @@ public class Ghost : Human
             return;
         } 
 
-        if (shrinkingIntoBody)
-        {
-            float min = .1f;
-            Vector3 dir = (targetPossessionPosition - transform.position);
-            transform.Translate(dir * shrinkingIntoBodySpeed * Time.deltaTime);
-
-            if ((targetPossessionPosition - transform.position).magnitude < min)
-            {
-                // Re-enable the Ghost's movement
-                movement.enabled = true;
-                // Turn on the NPC's movement
-                possessedNPC.turnOnMovement();
-                // Turn off the Ghost object
-                gameObject.SetActive(false);
-                shrinkingIntoBody = false;
-                // Reset the Ghost
-                transform.localScale /= growthVal;
-                srend.color = Color.white;
-            }
-        }
         bool possessActivated = (Input.GetKeyDown(actionKey) ||
                                 (movement.conNum < GamePlay.S.numControllers && 
-                                InputManager.Devices[movement.conNum].Action1.WasPressed)) && 
-                                !currentPossessionObj && !possessing;
-        if (possessActivated)
-        {   
-            Vector3 possessionObjPos = transform.position;
-            currentPossessionObj = Instantiate(possessionObjRef, possessionObjPos, transform.rotation) as GameObject;
-            // Get the possession object
-            PossessHit possess = currentPossessionObj.GetComponent<PossessHit>();
-            possess.ghostOwner = this;
+                                InputManager.Devices[movement.conNum].Action1.WasPressed));
 
-            tryingToPossess = true;
-            srend.color = Color.red;
-            transform.localScale *= growthVal;
+        if (possessActivated && currentState == State.Idle)
+        {
+            // Set the possession target
+            possessionTarget = getClosestPossessionTarget(transform);
+            if (possessionTarget)
+                currentState = State.FlyingToPossess;
         }
+
         bool possessDeactivated = (Input.GetKeyUp(actionKey) || (movement.conNum < GamePlay.S.numControllers && 
-                                   InputManager.Devices[movement.conNum].Action1.WasReleased)) &&
-                                   currentPossessionObj;
+                                   InputManager.Devices[movement.conNum].Action1.WasReleased));
 		if (possessDeactivated)
         {
-            Destroy(currentPossessionObj);
-            currentPossessionObj = null;
-            srend.color = Color.white;
-            tryingToPossess = false;
-            transform.localScale /= growthVal;
+        
+        }
+        // If the ghost is flying to possess
+        if (currentState == State.FlyingToPossess)
+        {
+            // Make sure the possession target is still alive
+            if (!possessionTarget.alive)
+            {
+                // If it's not still alive, go back to idle
+                possessionTarget = null;
+                currentState = State.Idle;
+            }
+            // Check to see if the ghost has made it to the target
+            if (closeEnoughToTarget(possessionTarget))
+            {
+                currentState = State.FadingIntoBody;
+                StartCoroutine(fadeAndPossess());
+            }
+            else
+            {
+                flyTowardsTarget(possessionTarget);
+            }
         }
     }
-
-    public void ShrinkIntoBody(Vector3 targetPos)
+    // Fades the ghost sprite until it is transparent
+    public IEnumerator fadeAndPossess()
     {
-        shrinkingIntoBody = true;
-        targetPossessionPosition = targetPos;
-        // Turn off the movement to play the animation
-        movement.enabled = false;
+        float fadeAmnt = .1f;
+        float fadeSpeed = .05f;
+        float fadeValue = 1.0f;
+        while (fadeValue > 0)
+        {
+            srend.color = new Color(1f, 1f, 1f, fadeValue);
+            fadeValue -= fadeAmnt;
+            yield return new WaitForSeconds(fadeSpeed);
+        }
+        // Make sure the ghost is completely faded
+        srend.color = new Color(1f, 1f, 1f, 0.0f);
+        Debug.Log("Hey!");
     }
 
-    void FixedUpdate() { 
-		if (Time.time - startTime > newInterval){
-			//GameObject blood = Instantiate(trackerPrefab, transform.position, Quaternion.identity) as GameObject;
-            startTime = Time.time;
-		}
+    // Return whether or not the ghost is close enough to the NPC target
+    bool closeEnoughToTarget(NPC target)
+    {
+        // [TECH DEBT] constantly getting the Transform component
+        if ((target.GetComponent<Transform>().position - transform.position).sqrMagnitude <= 
+            closeEnoughDistance)
+            return true;
+        return false;
+    }
+    // Tells the ghost to fly towards the target's position
+    void flyTowardsTarget(NPC target)
+    {
+        // [TECH DEBT] getting the transform component
+        transform.position = Vector3.MoveTowards(transform.position, 
+                                                 target.GetComponent<Transform>().position, 
+                                                 flyingSpeed * Time.deltaTime);
+    }
+    // Gets the closest living NPC to the inputed position
+    // Returns null if there are no alive NPCs
+    NPC getClosestPossessionTarget(Transform ghostTransform)
+    {
+        // Calculate the distances between the ghost and all party guests
+        // [TECH DEBT] it would be more optimized if we went over a list of alive NPCs that
+        // was managed by the Gameplay class
+        NPC closestNPC = null;
+        float closestSqrDistance = Mathf.Infinity;
+        foreach (GameObject partyGuest in GamePlay.S.NPCs)
+        {
+            NPC npc = partyGuest.GetComponent<NPC>();
+            // See if the party guest is still alive
+            if (npc.alive)
+            {
+                if (!closestNPC) {
+                    closestNPC = npc;
+                    closestSqrDistance = (npc.GetComponent<Transform>().position - ghostTransform.position).sqrMagnitude;
+                }
+                else
+                {
+                    // Calculate the distance to see if it's the closest
+                    // [TECH DEBT] constantly getting the Tranform component here is bad
+                    float distanceSqrToTarget = 
+                    (npc.GetComponent<Transform>().position - ghostTransform.position).sqrMagnitude;
+                    // Check to see if it's now the closest NPC
+                    if (distanceSqrToTarget < closestSqrDistance)
+                    {
+                        closestNPC = npc;
+                        closestSqrDistance = distanceSqrToTarget;
+                    }
+                }
+            }
+        }
+        return closestNPC;
+    }
+
+    void FixedUpdate() {
+        // Ghost floating
         float divider = 2.5f;
         float multiplier = 7f;
         transform.Translate((Vector3.up * Time.deltaTime * Mathf.Cos(Time.time * multiplier))/divider);

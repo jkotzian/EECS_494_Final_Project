@@ -45,15 +45,15 @@ public class MansionEnvironment : MonoBehaviour {
 		//Debug.Log(lightTimer);
 		if (!turnedOff && lightTimer == nextTurnOffTime)
 		{
-			turnOff();
+			//turnOff();
 		}
 		if (turnedOff && lightTimer == nextTurnOnTime) 
 		{
-			turnOn();
+			//turnOn();
 		}
         if (turnedOff && lightTimer == nextFlashTime)
         {
-            StartCoroutine(cameraHideObj.flashDown());
+            //StartCoroutine(cameraHideObj.flashDown());
         }
 	}
 	

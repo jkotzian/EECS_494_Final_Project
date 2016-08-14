@@ -16,6 +16,7 @@ GameObject:
   - 212: {fileID: 21219084}
   - 95: {fileID: 9587184}
   - 122: {fileID: 12249080}
+  - 114: {fileID: 11419314}
   m_Layer: 11
   m_Name: Ghost
   m_TagString: Murderer
@@ -133,6 +134,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11419314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bbe62fbd6f7204f9d0e2c61cbfe411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11431540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,23 +166,18 @@ MonoBehaviour:
   tutorialText: {fileID: 0}
   objectiveNum: 0
   active: 1
-  bloodDropTimeMax: 0
-  bloodDropInterval: 0
-  newInterval: 1
   possessionObjRef: {fileID: 131168, guid: 07e0d6498df1c44c7af2d867741f5380, type: 2}
-  possessing: 0
+  possessedNPC: {fileID: 0}
   movement: {fileID: 0}
+  flyingSpeed: 1
+  closeEnoughDistance: 1
   srend: {fileID: 0}
-  tryingToPossess: 0
   growthRate: 1.2
   maxGrowthY: 3.4
   normalY: 0
   growthVal: 1.2
-  shrinkingIntoBodySpeed: 4
-  shrinkingIntoBody: 0
-  possessedNPC: {fileID: 0}
-  healthBarPrefab: {fileID: 0}
-  currentLife: 0
+  fadingIntoBodySpeed: 0
+  currentState: 0
 --- !u!114 &11483632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,7 +232,7 @@ Halo:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -257,7 +264,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 24e4e48f8b748b149929ae5ba41a152a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.684}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000
@@ -337,11 +344,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.r
-      value: .492647052
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Color.b
-      value: .529952466
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Sprite
@@ -378,6 +385,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
