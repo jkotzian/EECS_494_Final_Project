@@ -3307,6 +3307,10 @@ Prefab:
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8100888, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1783c9999a7c738459d97f04c3eb963f, type: 2}
   m_IsPrefabParent: 0

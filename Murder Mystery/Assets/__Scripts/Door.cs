@@ -184,7 +184,7 @@ public class Door : MonoBehaviour {
             if (npc.possessed)
             {
                 // Activate glow
-                ActivateNPCGlow(true);
+                //ActivateNPCGlow(true);
             }
             // Tell the NPC that they could take this elevator
             npc.setElevator(this);

@@ -31,8 +31,6 @@ public class NPC : Human {
 
     Animator animator;
 
-    public GameObject glowObject;
-    private Component glow;
     private GameObject indicator;
 
     public GameObject negativeScorePrefab;
@@ -82,7 +80,6 @@ public class NPC : Human {
         NPCMovement = GetComponent<Movement>();
         animator = GetComponent<Animator>();
         facingRight = true;
-        glow = glowObject.GetComponent("Halo");
         offset = new Vector3(0, 0.8f, -3);
     }
 
@@ -294,7 +291,6 @@ public class NPC : Human {
         NPCMovement.setUDLRKeys(possessorMovement.upKey, possessorMovement.downKey,
                         possessorMovement.leftKey, possessorMovement.rightKey);
         NPCMovement.conNum = possessor.movement.conNum;
-        glow.GetType().GetProperty("enabled").SetValue(glow, true, null);
 
         if (possessor.gameObject == GamePlay.S.Ghosts[0])
         {
@@ -369,7 +365,6 @@ public class NPC : Human {
         }
         possessionOwner.possessing = false;
 		possessionOwner = null;
-        glow.GetType().GetProperty("enabled").SetValue(glow, false, null);
     }
 
     void OnTriggerStay(Collider collider)

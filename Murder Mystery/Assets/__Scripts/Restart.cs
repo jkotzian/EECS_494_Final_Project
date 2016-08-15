@@ -6,8 +6,7 @@ using InControl;
 public class Restart : MonoBehaviour {
     public List<Text> texts;
     public List<Text> endTexts;
-    public GameObject winCameraObj;
-    public GameObject loseCameraObj;
+    public GameObject cameraObj;
     private Rect leftScreen;
     private Rect rightScreen;
 
@@ -21,12 +20,6 @@ public class Restart : MonoBehaviour {
         string loseScore = "";
         switch (TotalGame.S.round)
         {
-            /*case 1:
-                message = "Now switch roles \n(Swap controllers and monitors).\nPress Space to continue.";
-                break;
-            case 2:
-                message = "Switch roles \n(Swap controllers and monitors).\n\nWe're going to keep score now!\nPress Space to continue.";
-                break;*/
             //case 3:
             case 1:
                 message = (TotalGame.S.bodyCount[0] * 100).ToString();
@@ -36,22 +29,16 @@ public class Restart : MonoBehaviour {
             case 2:    
                 if (TotalGame.S.bodyCount[0] > TotalGame.S.bodyCount[1])
                 {
-                    winCameraObj.GetComponent<Camera>().rect = leftScreen;
-                    loseCameraObj.GetComponent<Camera>().rect = rightScreen;
                     winScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                     loseScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                 }
                 else if (TotalGame.S.bodyCount[1] > TotalGame.S.bodyCount[0])
                 {
-                    winCameraObj.GetComponent<Camera>().rect = rightScreen;
-                    loseCameraObj.GetComponent<Camera>().rect = leftScreen;
                     winScore = (TotalGame.S.bodyCount[1] * 100).ToString();
                     loseScore = (TotalGame.S.bodyCount[0] * 100).ToString();
                 }
                 else
                 {
-                    winCameraObj.GetComponent<Camera>().rect = leftScreen;
-                    loseCameraObj.GetComponent<Camera>().rect = rightScreen;
                     if (endTexts.Count > 5)
                     {
                         endTexts[4].text = "TIE!";
@@ -105,7 +92,7 @@ public class Restart : MonoBehaviour {
             if (TotalGame.S.round < 2)
             {
                 TotalGame.S.inReady = true;
-                Application.LoadLevel("ReadyScreen2");
+                Application.LoadLevel("ReadyScreen");
             }
             else
             {
